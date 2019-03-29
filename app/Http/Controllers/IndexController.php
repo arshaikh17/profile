@@ -83,10 +83,23 @@ class IndexController extends Controller {
 			"business"					 =>	"ali.rasheed@artisticdevelopers.com"
 		];
 		
+		$numbers						 =	[
+			"personal"					 =>	[
+				"number"				 =>	"+44 (0) 7411 404816",
+				"location"				 =>	"UK"
+			],
+			"personal"					 =>	[
+				"number"				 =>	"+92 (0) 336 325 9986"
+				"location"				 =>	"Pakistan"
+			]
+			
+		];
+		
 		return json_encode([
 			"Education"					 =>	$education,
 			"Address"					 =>	$address,
-			"Emails"					 =>	$emails
+			"Emails"					 =>	$emails,
+			"Numbers"					 =>	$numbers
 		]);
 		
 		
