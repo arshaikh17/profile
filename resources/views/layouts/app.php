@@ -22,11 +22,13 @@
 	<style>
 		body {
 			height: 100%;
-			
 			font-family: "Quicksand";
 		}
 		h1 {
 			color: #607D8B;
+		}
+		a:hover {
+			text-decoration: none;
 		}
 		#app {
 			margin-top: 50px;
@@ -79,6 +81,16 @@
 		.content-body {
 			margin-top: 10px;
 		}
+		footer {
+			background-color: #607D88;
+			color: white;
+			bottom: 0;
+			position: absolute;
+			width: 100%;
+		}
+		footer a {
+			color: white;
+		}
 	</style>
 </head>
 <body >
@@ -113,6 +125,12 @@
 		
 	</div>
 </body>
+<footer>
+	<div class="text-center py-3">© <?= date("Y"); ?> Copyright:
+		<a href="https://ialirasheed.com/"> <span class="font-weight-bold">Ali Rasheed</span></a>
+	</div>
+</footer>
+
 </html>
 <script>
 	var app								 =	angular.module("mainApp", ["ngRoute"]);
