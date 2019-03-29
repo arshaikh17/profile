@@ -78,9 +78,15 @@ class IndexController extends Controller {
 			"country"					 =>	"UK"
 		];
 		
+		$emails							 =	[
+			"personal"					 =>	"arshaikh_17@hotmail.com",
+			"business"					 =>	"ali.rasheed@artisticdevelopers.com"
+		];
+		
 		return json_encode([
 			"Education"					 =>	$education,
-			"Address"					 =>	$address
+			"Address"					 =>	$address,
+			"Emails"					 =>	$emails
 		]);
 		
 		
