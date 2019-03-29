@@ -69,8 +69,18 @@ class IndexController extends Controller {
 			]
 		];
 		
+		$address						 =	[
+			"house_number"				 =>	4,
+			"street"					 =>	"Colby Drive",
+			"town"						 =>	"Bradwell",
+			"city"						 =>	"Great Yarmouth",
+			"postcode"					 =>	"NR31 9FT",
+			"country"					 =>	"UK"
+		];
+		
 		return json_encode([
-			"Education"					 =>	$education
+			"Education"					 =>	$education,
+			"Address"					 =>	$address
 		]);
 		
 		
