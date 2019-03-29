@@ -38,29 +38,32 @@ class IndexController extends Controller {
 		
 		$education						 =	[
 			[
+				"id"					 =>	1,
 				"institute"				 =>	"University of Westminster",
 				"degree"				 =>	"MSc",
 				"subject"				 =>	"Advanced Software Engineer",
-				"startDate"				 =>	strtotime("16-09-2017"),
-				"endDate"				 =>	strtotime("16-09-2018"),
+				"startDate"				 =>	"2017",
+				"endDate"				 =>	"2018",
 				"city"					 =>	"London",
 				"country"				 =>	"UK"
 			],
 			[
+				"id"					 =>	2,
 				"institute"				 =>	"Shaheed Zulfiqar Ali Bhutto Institute of Science and Technology",
 				"degree"				 =>	"BSCS",
 				"subject"				 =>	"Computer Science",
-				"startDate"				 =>	strtotime("11-08-2013"),
-				"endDate"				 =>	strtotime("11-05-2017"),
+				"startDate"				 =>	"2013",
+				"endDate"				 =>	"2017",
 				"city"					 =>	"Karachi",
 				"country"				 =>	"Pakistan"
 			],
 			[
+				"id"					 =>	3,
 				"institute"				 =>	"Army Public College",
 				"degree"				 =>	"Intermediate",
 				"subject"				 =>	"Pre-Engineering",
-				"startDate"				 =>	strtotime("07-08-2011"),
-				"endDate"				 =>	strtotime("11-06-2013"),
+				"startDate"				 =>	"2011",
+				"endDate"				 =>	"2013",
 				"city"					 =>	"Karachi",
 				"country"				 =>	"Pakistan"
 			]

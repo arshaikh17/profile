@@ -52,8 +52,10 @@
 			height: 150px;
 			background-color: white;
 			margin-bottom: 10px;
-			border-bottom: 1px solid grey;
 			padding: 10px 10px 10px 10px;
+		}
+		.education-city {
+			color: #607D8B;
 		}
 	</style>
 </head>
@@ -145,7 +147,8 @@
 		return {
 			restrict					 :	"E",
 			scope						 :	{
-				education				 :	"="
+				education				 :	"=",
+				education_index			 :	"="
 			},
 			templateUrl					 :	"angular/templates/index/directives/education.html"
 		}
