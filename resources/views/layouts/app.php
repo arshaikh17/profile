@@ -70,7 +70,7 @@
 			background-color: #607D8B;
 			color: white;
 		}
-		.education-title {
+		.decoration-underline {
 			border-bottom: 2px solid #607D8B;
 		}
 		.education-content-body {
