@@ -150,6 +150,10 @@
 				controller				 :	"IndexController",
 				templateUrl				 :	"/angular/templates/index/education.html"
 			})
+			.when("/contact-me", {
+				controller				 :	"IndexController",
+				templateUrl				 :	"/angular/templates/index/contact-me.html"
+			})
 			.otherwise({
 				redirectTo				 :	"/"
 			});
