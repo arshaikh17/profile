@@ -76,7 +76,7 @@
 		.education-content-body {
 			padding: 15px 15px 15px 15px;
 		}
-		.education-body {
+		.content-body {
 			margin-top: 10px;
 		}
 	</style>
