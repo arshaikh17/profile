@@ -1,0 +1,14 @@
+<div class="row education">
+	<div class="col-md-1">
+		<span class="badge badge-info"> {{ education.startDate | date }} </span>
+		<span class="badge badge-info"> {{ education.endDate | date }} </span>
+	</div>
+	<div class="col-md-10 offset-md-1">
+		<h2> {{ education.institute }} </h2>
+		<p> 
+			<span class="font-weight-bold">{{ education.degree | uppercase }}</span> {{ education.subject }} 
+			<span class="float-right"> {{ education.city }}, {{ education.country }} </span> 
+		</p>
+	</div>
+	
+</div>
