@@ -111,6 +111,7 @@
 							<li><a href="#!education">Education</a></li>
 							<li>Skills</li>
 							<li>Experience</li>
+							<li><a href="#!contact-me">Contact Me</a></li>
 						</ul>
 					</div>
 				</div>
