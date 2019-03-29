@@ -53,9 +53,17 @@
 			background-color: white;
 			margin-bottom: 10px;
 			padding: 10px 10px 10px 10px;
+			
 		}
 		.education-city {
 			color: #607D8B;
+		}
+		.education-content {
+			transition: 0.3s;
+		}
+		.education:hover .education-content {
+			background-color: #607D8B;
+			color: white;
 		}
 	</style>
 </head>
