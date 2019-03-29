@@ -25,7 +25,7 @@
 			height: 100%;
 			font-family: "Quicksand";
 		}
-		h1 {
+		h1, h3, h5 {
 			color: #607D8B;
 		}
 		a:hover {
@@ -91,6 +91,16 @@
 		}
 		footer a {
 			color: white;
+		}
+		.contact-strip {
+			height: 80px;
+		}
+		.contact-icon {
+			background-color: #EFF2F3;
+		}
+		.contact-icon i {
+			margin-top: 22px;
+			color: #607D88;
 		}
 	</style>
 </head>
@@ -199,6 +209,18 @@
 			templateUrl					 :	"angular/templates/index/directives/education.html"
 		}
 		
-	})
+	});
+	
+	app.directive("contactStrip", function () {
+		
+		return {
+			restrict					 :	"E",
+			scope						 :	{
+				content					 :	"="
+			},
+			templateUrl					 :	"angular/templates/index/directives/contact-strip.html"
+		}
+		
+	});
 	
 </script>
