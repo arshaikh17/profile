@@ -1,4 +1,4 @@
-<div class="row education border border-light border-0">
+<div class="row education">
 	<div class="col-md-2 align-self-center text-center education-city">
 		<h5>
 			{{ education.city }}, <span class="font-weight-bold">{{ education.country }}</span>
@@ -6,9 +6,11 @@
 		<span> {{ education.startDate }} </span> - <span> {{ education.endDate }} </span>
 	</div>
 	<div class="col-md-10 education-content">
-		<h2> {{ education.institute }} </h2>
-		<p>
-			<span class="font-weight-bold">{{ education.degree | uppercase }}</span> {{ education.subject }} 
-		</p>
+		<div class="education-content-body">
+			<h2> {{ education.institute }} </h2>
+			<p>
+				<span class="font-weight-bold">{{ education.degree | uppercase }}</span> {{ education.subject }} 
+			</p>
+		</div>
 	</div>
 </div>

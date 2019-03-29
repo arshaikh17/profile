@@ -1,6 +1,10 @@
-<p>Education and certifications through out years</p>
-<div ng-repeat="education in appData.Education">
-	
-	
-	<education education="education"></education>
+<div class="row">
+	<div class="col-md-12 education-title">
+		<h1>Education and Achievements</h1>
+	</div>
+	<div class="col-md-12 education-body">
+		<div ng-repeat="education in appData.Education">
+			<education education="education"></education>
+		</div>
+	</div>
 </div>

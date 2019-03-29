@@ -25,6 +25,9 @@
 			
 			font-family: "Quicksand";
 		}
+		h1 {
+			color: #607D8B;
+		}
 		#app {
 			margin-top: 50px;
 		}
@@ -52,8 +55,10 @@
 			height: 150px;
 			background-color: white;
 			margin-bottom: 10px;
-			padding: 10px 10px 10px 10px;
-			
+			border: 1px solid #607D88;
+		}
+		.education:hover {
+			cursor: default;
 		}
 		.education-city {
 			color: #607D8B;
@@ -64,6 +69,15 @@
 		.education:hover .education-content {
 			background-color: #607D8B;
 			color: white;
+		}
+		.education-title {
+			border-bottom: 2px solid #607D8B;
+		}
+		.education-content-body {
+			padding: 15px 15px 15px 15px;
+		}
+		.education-body {
+			margin-top: 10px;
 		}
 	</style>
 </head>
