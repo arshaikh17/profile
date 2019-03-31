@@ -7,12 +7,29 @@
 			<div class="col-md-12">
 				<h3>Get in contact via <span class="font-weight-bold">email</span></h3>
 			</div>
-			<div class="col-md-4">
-				<contact-strip content="appData.Emails.personal"></contact-strip>
+			<div class="col-md-4" ng-repeat="email in appData.Emails">
+				<contact-strip
+					content="email"
+					icon="fa fa-envelope"
+				>
+				</contact-strip>
 			</div>
-			<div class="col-md-4">
-				<contact-strip content="appData.Emails.business"></contact-strip>
+		</div>
+	</div>
+	<div class="col-md-12 content-body">
+		<div class="row">
+			<div class="col-md-12">
+				<h3>Get in contact via <span class="font-weight-bold">phone</span></h3>
 			</div>
+			<div class="col-md-4" ng-repeat="number in appData.Numbers">
+				<contact-strip 
+					content="number.number"
+					icon="fa fa-mobile"
+					param2="number.location"
+				>
+				</contact-strip>
+			</div>
+
 		</div>
 	</div>
 </div>
