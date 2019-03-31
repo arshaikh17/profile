@@ -95,11 +95,51 @@ class IndexController extends Controller {
 			
 		];
 		
+		$skills							 =	[
+			"Backend Programming"		 =>	[
+				"PHP",
+				"NodeJS",
+				"Python",
+				"C#",
+			],
+			"JavaScript Libraries/Frameworks"				 =>	[
+				"JavaScript",
+				"jQuery",
+				"VueJS",
+				"ReactJS",
+				"AngularJS",
+			],
+			"Web Frameworks"			 =>	[
+				"Laravel",
+				"Zend Framework",
+				"Symfony"
+			],
+			"Frontend Designing Libraries"					 =>	[
+				"HTML/CSS",
+				"Bootstrap 3",
+				"Bootstrap 4",
+				"MaterializeCSS",
+			],
+			"Source Control"			 =>	[
+				"Git",
+			],
+			"Project Management Tools"	 =>	[
+				"Primavera",
+				"MS Project",
+				"Trello",
+			],
+			"Operating Systems"			 =>	[
+				"Windows",
+				"Linux"
+			]
+		];
+		
 		return json_encode([
 			"Education"					 =>	$education,
 			"Address"					 =>	$address,
 			"Emails"					 =>	$emails,
-			"Numbers"					 =>	$numbers
+			"Numbers"					 =>	$numbers,
+			"Skills"					 =>	$skills
 		]);
 		
 		
