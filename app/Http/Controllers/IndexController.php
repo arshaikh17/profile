@@ -79,16 +79,16 @@ class IndexController extends Controller {
 		];
 		
 		$emails							 =	[
-			"personal"					 =>	"arshaikh_17@hotmail.com",
-			"business"					 =>	"ali.rasheed@artisticdevelopers.com"
+			0							 =>	"arshaikh_17@hotmail.com",
+			1							 =>	"ali.rasheed@artisticdevelopers.com"
 		];
 		
 		$numbers						 =	[
-			"personal"					 =>	[
+			0							 =>	[
 				"number"				 =>	"+44 (0) 7411 404816",
 				"location"				 =>	"UK"
 			],
-			"personal"					 =>	[
+			1							 =>	[
 				"number"				 =>	"+92 (0) 336 325 9986",
 				"location"				 =>	"Pakistan"
 			]
