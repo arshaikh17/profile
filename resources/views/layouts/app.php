@@ -120,7 +120,7 @@
 							<li class="active"><a href="#!">Home</a></li>
 							<li><a href="#!about-me">About Me</a></li>
 							<li><a href="#!education">Education</a></li>
-							<li>Skills</li>
+							<li><a href="#!skills">Skills</a></li>
 							<li>Experience</li>
 							<li><a href="#!contact-me">Contact Me</a></li>
 						</ul>
@@ -165,6 +165,10 @@
 			.when("/contact-me", {
 				controller				 :	"IndexController",
 				templateUrl				 :	"/angular/templates/index/contact-me.html"
+			})
+			.when("/skills", {
+				controller				 :	"IndexController",
+				templateUrl				 :	"/angular/templates/index/skills.html"
 			})
 			.otherwise({
 				redirectTo				 :	"/"
