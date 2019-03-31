@@ -216,7 +216,9 @@
 		return {
 			restrict					 :	"E",
 			scope						 :	{
-				content					 :	"="
+				content					 :	"=",
+				icon					 :	"@icon",
+				param2					 :	"="
 			},
 			templateUrl					 :	"angular/templates/index/directives/contact-strip.html"
 		}
