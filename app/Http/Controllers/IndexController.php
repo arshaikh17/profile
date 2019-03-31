@@ -89,7 +89,7 @@ class IndexController extends Controller {
 				"location"				 =>	"UK"
 			],
 			"personal"					 =>	[
-				"number"				 =>	"+92 (0) 336 325 9986"
+				"number"				 =>	"+92 (0) 336 325 9986",
 				"location"				 =>	"Pakistan"
 			]
 			
