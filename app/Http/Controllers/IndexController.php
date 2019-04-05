@@ -134,6 +134,31 @@ class IndexController extends Controller {
 			]
 		];
 		
+		$experience						 =	[
+			[
+				"currentlyWorking"		 =>	false,
+				"startDate"				 =>	[
+					"month"				 =>	"June",
+					"year"				 =>	"2018"
+				],
+				"endDate"				 =>	[
+					"month"				 =>	"March",
+					"year"				 =>	"2019"
+				],
+				"company"				 =>	"Dotfive ltd",
+				"location"				 =>	[
+					"city"				 =>	"London",
+					"country"			 =>	"UK"
+				],
+				"type"					 =>	"permanent",
+				"position"				 =>	"Web Developer",
+				"techStack"				 =>	[
+					"PHP", "Laravel", "Zend Framework 3", "HTML5",
+					"CSS", "jQuery", "VueJS", "NodeJS", "MySQL", "Doctrine 2"
+				]
+			],
+		];
+		
 		return json_encode([
 			"Education"					 =>	$education,
 			"Address"					 =>	$address,
