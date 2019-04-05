@@ -266,4 +266,16 @@
 		
 	})
 	
+	app.directive("experienceStrip", function () {
+		
+		return {
+			restrict					 :	"E",
+			scope						 :	{
+				content					 :	"="
+			},
+			templateUrl					 :	"angular/templateUrl/index/directives/experience-strip.html"
+		}
+		
+	});
+	
 </script>
