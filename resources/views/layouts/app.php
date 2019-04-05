@@ -102,6 +102,25 @@
 			margin-top: 22px;
 			color: #607D88;
 		}
+		
+		.skill {
+			height: 65px;
+			width: 100%;
+			line-height: 65px;
+			border: 2px solid lightgrey;
+			margin-top: 10px;
+			text-align: center;
+			transition: 0.3s;
+		}
+		.skill > p {
+			display: inline-block;
+			vertical-align: middle;
+			line-height: normal;
+		}
+		.skill:hover {
+			background-color: #607D88;
+			color: white;
+		}
 	</style>
 </head>
 <body >
@@ -228,5 +247,17 @@
 		}
 		
 	});
+	
+	app.directive("skillStrip", function () {
+		
+		return {
+			restrict					 :	"E",
+			scope						 :	{
+				content					 :	"="
+			},
+			templateUrl					 :	"angular/templates/index/directives/skill-strip.html"
+		}
+		
+	})
 	
 </script>
