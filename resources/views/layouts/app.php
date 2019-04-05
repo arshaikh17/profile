@@ -142,7 +142,7 @@
 							<li><a href="#!about-me">About Me</a></li>
 							<li><a href="#!education">Education</a></li>
 							<li><a href="#!skills">Skills</a></li>
-							<li>Experience</li>
+							<li><a href="#!experience">Experience</a></li>
 							<li><a href="#!contact-me">Contact Me</a></li>
 						</ul>
 					</div>
@@ -190,6 +190,10 @@
 			.when("/skills", {
 				controller				 :	"IndexController",
 				templateUrl				 :	"/angular/templates/index/skills.html"
+			})
+			.when("/experience", {
+				controller				 :	"IndexController",
+				templateUrl				 :	"/angular/templates/index/experience.html"
 			})
 			.otherwise({
 				redirectTo				 :	"/"
