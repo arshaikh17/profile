@@ -105,7 +105,8 @@
 		}
 		
 		.skill {
-			height: 65px;
+			min-height: 65px;
+			height: auto;
 			width: 100%;
 			line-height: 65px;
 			border: 2px solid lightgrey;
