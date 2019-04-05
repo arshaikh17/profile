@@ -7,7 +7,12 @@
 		<div class="row">
 			<div class="col-md-6" ng-repeat="(index, skills) in appData.Skills">
 				<h3 class="font-weight-bold">{{ index }}</h3>
-				<p ng-repeat="skill in skills"><span class="font-weight-bold">{{ skill }}</span></p>
+				<div class="row">
+					<div class="col-md-3" ng-repeat="skill in skills">
+						<skill-strip content="skill"></skill-strip>
+					</div>
+				</div>
+				
 			</div>
 
 		</div>
