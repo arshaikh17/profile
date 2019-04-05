@@ -55,7 +55,8 @@
 			text-decoration: none;
 		}
 		.education {
-			height: 150px;
+			height: auto;
+			min-height: 150px;
 			background-color: white;
 			margin-bottom: 10px;
 			border: 1px solid #607D88;
