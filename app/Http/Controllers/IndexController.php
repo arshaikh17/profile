@@ -164,7 +164,8 @@ class IndexController extends Controller {
 			"Address"					 =>	$address,
 			"Emails"					 =>	$emails,
 			"Numbers"					 =>	$numbers,
-			"Skills"					 =>	$skills
+			"Skills"					 =>	$skills,
+			"Experience"				 =>	$experience,
 		]);
 		
 		
