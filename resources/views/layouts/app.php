@@ -13,6 +13,10 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -122,6 +126,44 @@
 		.skill:hover {
 			background-color: #607D88;
 			color: white;
+		}
+		
+		.experience {
+			border: 0.5px solid lightgrey;
+			min-height: 120px;
+			height: auto;
+			line-height: 100px;
+			margin-bottom: 10px;
+		}
+		.experience-company > .content {
+			display: inline-block;
+			vertical-align: middle;
+			line-height: normal;
+		}
+		.experience .experience-details {
+			background-color: #607D88;
+			color: white;
+		}
+		.experience .experience-details > p {
+			display: inline-block;
+			vertical-align: middle;
+			line-height: normal;
+		}
+		.experience .experience-responsibilities {
+			margin-top: 15px;
+			line-height: normal;
+		}
+		
+		.block {
+			display: block;
+		}
+		.badge {
+			margin-right: 5px;
+			padding: 5px 5px 5px 5px;
+			font-size: 12px;
+		}
+		.badges {
+			line-height: 1.6;
 		}
 	</style>
 </head>
@@ -273,7 +315,7 @@
 			scope						 :	{
 				content					 :	"="
 			},
-			templateUrl					 :	"angular/templateUrl/index/directives/experience-strip.html"
+			templateUrl					 :	"angular/templates/index/directives/experience-strip.html"
 		}
 		
 	});
