@@ -21,9 +21,7 @@
 	<div class="col-md-12 collapse" id="experience_{{ content.id }}">
 		<div class="experience-responsibilities">
 			<ul>
-				<li>Appointed as web developers of PHP.</li>
-				<li>Worked on backend in PHP 7 and NodeJS and in different frameworks such as Laravel, Zend Framework 3</li>
-				<li>Worked on frontend in Javascript, jQuery, HTML5, CSS</li>
+				<li ng-repeat="responsibility in content.responsibilities">{{ responsibility }}</li>
 			</ul>
 		</div>
 	</div>
