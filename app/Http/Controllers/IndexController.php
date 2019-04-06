@@ -136,6 +136,7 @@ class IndexController extends Controller {
 		
 		$experience						 =	[
 			[
+				"id"					 =>	4,
 				"currentlyWorking"		 =>	false,
 				"startDate"				 =>	[
 					"month"				 =>	"June",
@@ -155,6 +156,98 @@ class IndexController extends Controller {
 				"techStack"				 =>	[
 					"PHP", "Laravel", "Zend Framework 3", "HTML5",
 					"CSS", "jQuery", "VueJS", "NodeJS", "MySQL", "Doctrine 2"
+				],
+				"responsibilities"		 =>	[
+					"Appointed as web developers of PHP.",
+					"Worked on backend in PHP 7 and NodeJS and in different frameworks such as Laravel, Zend Framework 3",
+					"Worked on frontend in Javascript, jQuery, HTML5, CSS"
+				]
+			],
+			[
+				"id"					 =>	3,
+				"currentlyWorking"		 =>	false,
+				"startDate"				 =>	[
+					"month"				 =>	"July",
+					"year"				 =>	"2017"
+				],
+				"endDate"				 =>	[
+					"month"				 =>	"Feb",
+					"year"				 =>	"2018"
+				],
+				"company"				 =>	"TradeOptimize",
+				"location"				 =>	[
+					"city"				 =>	"Karachi",
+					"country"			 =>	"Pakistan"
+				],
+				"type"					 =>	"permanent",
+				"position"				 =>	"Software Engineer",
+				"techStack"				 =>	[
+					"PHP", "Laravel", "HTML5",
+					"CSS", "jQuery", "MySQL", "C#", "ASP MVC", "MS SQL",
+					"Rest APIs",
+				],
+				"responsibilities"		 =>	[
+					"Appointed as one of the lead developers of PHP LARAVEL and mid developer of C#.",
+					"Introduced a custom framework for CMS as proprietary asset of TradeOptimize.",
+					"Developed organizational website of whole company along with, CMS, involving both selling and buying module.",
+					"Developed REST APIs in order to integrate in other platforms associated with company."
+				]
+			],
+			[
+				"id"					 =>	2,
+				"currentlyWorking"		 =>	true,
+				"startDate"				 =>	[
+					"month"				 =>	"August",
+					"year"				 =>	"2017"
+				],
+				"endDate"				 =>	[
+					"month"				 =>	"",
+					"year"				 =>	""
+				],
+				"company"				 =>	"ArtisticDevelopers Ltd",
+				"location"				 =>	[
+					"city"				 =>	"Karachi",
+					"country"			 =>	"Pakistan"
+				],
+				"type"					 =>	"permanent",
+				"position"				 =>	"Software Engineer",
+				"techStack"				 =>	[
+					"PHP", "Laravel", "HTML5",
+					"CSS", "jQuery", "MySQL", "C#", "ASP MVC", "ASP .NET", "MS SQL",
+					"Rest APIs", "Symfony", "iOS",
+				],
+				"responsibilities"		 =>	[
+					"Managed team of 11 developers. Took responsibility to execute and deliver projects to the companies.",
+					"Played a role as Project Manager to Web Development team and successfully delivered 6 projects within 4 months."
+				]
+			],
+			[
+				"id"					 =>	1,
+				"currentlyWorking"		 =>	false,
+				"startDate"				 =>	[
+					"month"				 =>	"July",
+					"year"				 =>	"2016"
+				],
+				"endDate"				 =>	[
+					"month"				 =>	"September",
+					"year"				 =>	"2016"
+				],
+				"company"				 =>	"Precision Engineering and Consultancy",
+				"location"				 =>	[
+					"city"				 =>	"Muscat",
+					"country"			 =>	"Oman"
+				],
+				"type"					 =>	"intern",
+				"position"				 =>	"Software Engineer",
+				"techStack"				 =>	[
+					"PHP", "OOP", "HTML5",
+					"CSS", "jQuery", "MySQL", "C#", "JAVA", "MS SQL",
+					"Rest APIs", "Optimisation"
+				],
+				"responsibilities"		 =>	[
+					"Optimized the database queries for performance in existing proprietary software of PEC.",
+					"Developed a management module for their existing management system for their assets.",
+					"Designed and developed management module as web-based application and created REST APIs to integrate inventory in other modules.",
 				]
 			],
 		];
