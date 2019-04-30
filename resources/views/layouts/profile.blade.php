@@ -29,6 +29,9 @@
 			list-style: none;
 			display: inline-flex;
 		}
+		.social-links {
+			float: right;
+		}
 		.social-links a {
 			color: white;
 		}
@@ -82,6 +85,20 @@
 			margin-top: 25px;
 			margin-bottom: 25px;
 		}
+		
+	</style>
+	<style>
+		@media screen and (max-width: 768px) {
+			#downloadCV, #socialLinkDiv {
+				text-align: center !important;
+			}
+			
+			.social-links {
+				margin-right: 40px;
+				margin-top: 10px;
+				float: none;
+			}
+		}
 	</style>
 </head>
 <body>
@@ -89,11 +106,11 @@
 		<div class="top-layer">
 			<div class="container-fluid pt-3">
 				<div class="row">
-					<div class="col-md-6">
-						<a href="#" class="btn btn-primary border float-left"> <i class="fas fa-download"></i> Download CV</a>
+					<div class="col-md-6" id="downloadCV">
+						<a href="#" class="btn btn-primary border" id="downloadCVButton"> <i class="fas fa-download"></i> Download CV</a>
 					</div>
-					<div class="col-md-6">
-						<ul class="social-links float-right inline-list">
+					<div class="col-md-6" id="socialLinkDiv">
+						<ul class="social-links inline-list">
 							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
 							<li><a href="#"><i class="fab fa-stack-overflow"></i></a></li>
 							<li><a href="#"><i class="fab fa-twitter"></i></a></li>
