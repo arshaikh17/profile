@@ -19,6 +19,7 @@
 	<style>
 		body {
 			font-family: "Roboto";
+			background-color: #F5F5F5;
 		}
 		
 		.top-layer {
@@ -86,6 +87,24 @@
 			margin-bottom: 25px;
 		}
 		
+		.fourth-layer {
+			background-color: #01579B;
+			height: 60px;
+		}
+		.menu-list {
+			margin-top: 15px;
+		}
+		.menu-list li {
+			margin-right: 20px;
+		}
+		.menu-list li a {
+			color: #82B1FF;
+			text-decoration: none;
+			transition: 0.3s;
+		}
+		.menu-list li a:hover {
+			color: white;
+		}
 	</style>
 	<style>
 		@media screen and (max-width: 768px) {
@@ -99,10 +118,15 @@
 				float: none;
 			}
 		}
+		@media screen and (max-width: 448px) {
+			.fourth-layer {
+				display: none;
+			}
+		}
 	</style>
 </head>
-<body>
-	<header>
+<body data-spy="scroll" data-target=".menu-list" data-offset="50">
+	<main>
 		<div class="top-layer">
 			<div class="container-fluid pt-3">
 				<div class="row">
@@ -151,6 +175,28 @@
 				</div>
 			</div>
 		</div>
-	</header>
+		<div class="fourth-layer sticky-top">
+			<div class="container-fluid text-center">
+				<ul class="menu-list inline-list">
+					<li class="">
+						<a class="" href="#section1">Experiences</a>
+					</li>
+					<li class="">
+						<a class="" href="#section2">Education</a>
+					</li>
+					<li class="">
+						<a class="" href="#section3">Skills</a>
+					</li>
+					<li class="">
+						<a class="" href="#section3">Portfolio</a>
+					</li>
+					<li class="">
+						<a class="" href="#section3">Contact</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+	</main>
 </body>
 </html>
