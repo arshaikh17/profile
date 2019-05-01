@@ -21,6 +21,9 @@
 			font-family: "Roboto";
 			background-color: #F5F5F5;
 		}
+		h1, h2, h3 {
+			font-weight: 500;
+		}
 		
 		.top-layer {
 			background-color: #29B6F6;
@@ -105,6 +108,23 @@
 		.menu-list li a:hover {
 			color: white;
 		}
+		.content-area {
+			margin-top: 30px;
+			padding: 60px;
+			background-color: white;
+			box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+			-webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+			-moz-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+			-moz-border-radius: 2px;
+			-ms-border-radius: 2px;
+			-o-border-radius: 2px;
+			border-radius: 2px;
+			margin-bottom: 10px;
+		}
+		.content-title {
+			margin-bottom: 45px;
+			font-size: 24px;
+		}
 	</style>
 	<style>
 		@media screen and (max-width: 768px) {
@@ -121,6 +141,45 @@
 		@media screen and (max-width: 448px) {
 			.fourth-layer {
 				display: none;
+			}
+		}
+		
+		.experience-item {
+			margin-left: 300px;
+		}
+		.experience-location {
+			left: -250px;
+			top: -40px;
+			position: relative;
+			line-height: 5px;
+		}
+		.experience-title {
+			font-size: 25px;
+			font-weight: 300;
+		}
+		.experience-location > .job {
+			font-size: 18px;
+			color: #0288D1;
+		}
+		.experience-location > .location, .experience-location > .dates {
+			color: #8A8A8A;
+		}
+		.experience-description {
+			position: relative;
+			top: -80px;
+		}
+		@media screen and (max-width: 997px) {
+			.experience-location {
+				position: static;
+				left: 0px;
+				top: 0px;
+			}
+			.experience-description {
+				position: static;
+				top: 0px;
+			}
+			.experience-item {
+				margin-left: 0px;
 			}
 		}
 	</style>
@@ -179,10 +238,10 @@
 			<div class="container-fluid text-center">
 				<ul class="menu-list inline-list">
 					<li class="">
-						<a class="" href="#section1">Experiences</a>
+						<a class="" href="#experiences">Experiences</a>
 					</li>
 					<li class="">
-						<a class="" href="#section2">Education</a>
+						<a class="" href="#education">Education</a>
 					</li>
 					<li class="">
 						<a class="" href="#section3">Skills</a>
@@ -196,7 +255,123 @@
 				</ul>
 			</div>
 		</div>
-		
+		<div class="fifth-layer">
+			<div class="container">
+				<div class="content-area border" id="experiences">
+					<h2 class="content-title text-center">Work Experience</h2>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="experience-item">
+								<div class="experience-title">
+									<p>Google</p>
+								</div>
+								<div class="experience-location">
+									<p class="job">Web Developer</p>
+									<p class="location"><i class="fas fa-map-marker-alt"></i> London, UK</p>
+									<p class="dates">2018 - 2019</p>
+								</div>
+								<div class="experience-description">
+									<p>
+										Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+										<ul>
+											<li>Lorem ipsum dolor sit amet</li>
+											<li>Maecenas tempus tellus eget</li>
+											<li>Donec pede justo ante</li>
+										</ul>
+									</p>
+								</div>
+							</div>
+							<div class="experience-item">
+								<div class="experience-title">
+									<p>Google</p>
+								</div>
+								<div class="experience-location">
+									<p class="job">Web Developer</p>
+									<p class="location"><i class="fas fa-map-marker-alt"></i> London, UK</p>
+									<p class="dates">2018 - 2019</p>
+								</div>
+								<div class="experience-description">
+									<p>
+										Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+										<ul>
+											<li>Lorem ipsum dolor sit amet</li>
+											<li>Maecenas tempus tellus eget</li>
+											<li>Donec pede justo ante</li>
+										</ul>
+									</p>
+								</div>
+							</div>
+							<div class="experience-item">
+								<div class="experience-title">
+									<p>Google</p>
+								</div>
+								<div class="experience-location">
+									<p class="job">Web Developer</p>
+									<p class="location"><i class="fas fa-map-marker-alt"></i> London, UK</p>
+									<p class="dates">2018 - 2019</p>
+								</div>
+								<div class="experience-description">
+									<p>
+										Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+										<ul>
+											<li>Lorem ipsum dolor sit amet</li>
+											<li>Maecenas tempus tellus eget</li>
+											<li>Donec pede justo ante</li>
+										</ul>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content-area border" id="education">
+					<h2 class="content-title text-center">Education</h2>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="education-item">
+								<div class="education-title">MSc Advance Software Engineering</div>
+								<div class="education-location">University of Westminster</div>
+								<div class="education-dates">2017 - 2018</div>
+								<div class="education-description">
+									<p>
+										Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient 
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="education-item">
+								<div class="education-title">BSCS Computer Science</div>
+								<div class="education-location">SZABIST</div>
+								<div class="education-dates">2013 - 2017</div>
+								<div class="education-description">
+									<p>
+										Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient 
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</main>
+	<style>
+		.education-title {
+			color: #0288D1;
+			font-size: 18px;
+			font-weight: 500;
+		}
+		.education-location {
+			font-size: 16px;
+			font-weight: 300;
+		}
+		.education-dates {
+			color: #8A8A8A;
+		}
+		.education-description {
+			margin-top: 18px;
+		}
+	</style>
 </body>
 </html>
