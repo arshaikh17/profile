@@ -244,7 +244,7 @@
 						<a class="" href="#education">Education</a>
 					</li>
 					<li class="">
-						<a class="" href="#section3">Skills</a>
+						<a class="" href="#skills">Skills</a>
 					</li>
 					<li class="">
 						<a class="" href="#section3">Portfolio</a>
@@ -353,10 +353,100 @@
 						</div>
 					</div>
 				</div>
+				<div class="content-area border" id="skills">
+					<h2 class="content-title text-center">Professional Skills</h2>
+					<div class="row text-center skillset-row">
+						<div class="col-12 skillset-heading">Major Skills</div>
+						<div class="col-md-3 skillset-item">
+							<h4 class="skillset-title">PHP</h4>
+							<span class="skillset-level">Experienced, 2 years</span>
+						</div>
+						<div class="col-md-3 skillset-item">
+							<h4 class="skillset-title">JavaScript</h4>
+							<span class="skillset-level">Experienced, 2 years</span>
+						</div>
+						<div class="col-md-3 skillset-item">
+							<h4 class="skillset-title">MySQL</h4>
+							<span class="skillset-level">Experienced, 2 years</span>
+						</div>
+						<div class="col-md-3 skillset-item">
+							<h4 class="skillset-title">Python</h4>
+							<span class="skillset-level">Intermediate</span>
+						</div>
+					</div>
+					<div class="row text-center skillset-row">
+						<div class="col-12 skillset-heading">Frameworks</div>
+						<div class="col-12">
+							<span class="skillset-tag">Laravel</span>
+							<span class="skillset-tag">Zend Framework</span>
+							<span class="skillset-tag">Symfony</span>
+						</div>
+					</div>
+					<div class="row text-center skillset-row">
+						<div class="col-12 skillset-heading">Frontend Skills</div>
+						<div class="col-12">
+							<span class="skillset-tag">HTML5</span>
+							<span class="skillset-tag">CSS3</span>
+							<span class="skillset-tag">SCSS</span>
+							<span class="skillset-tag">Bootstrap 3</span>
+							<span class="skillset-tag">Bootstrap 4</span>
+							<span class="skillset-tag">VueJS</span>
+							<span class="skillset-tag">ReactJS</span>
+							<span class="skillset-tag">AngularJS</span>
+						</div>
+					</div>
+					<div class="row text-center skillset-row">
+						<div class="col-12 skillset-heading">Source Control Tools</div>
+						<div class="col-12">
+							<span class="skillset-tag">Git</span>
+						</div>
+					</div>
+					<div class="row text-center skillset-row">
+						<div class="col-12 skillset-heading">Professional Tools</div>
+						<div class="col-12">
+							<span class="skillset-tag">MS Office</span>
+							<span class="skillset-tag">Primavera</span>
+							<span class="skillset-tag">Trello</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</main>
 	<style>
+		.skillset-heading {
+			font-size: 18px;
+			color: #8A8A8A;
+			font-weight: 300;
+			margin-bottom: 20px;
+		}
+		.skillset-title {
+			font-size: 1.5rem;
+			font-weight: 500;
+		}
+		.skillset-level {
+			color: #8A8A8A;
+			font-size: 14px;
+		}
+		.skillset-row {
+			margin-bottom: 20px;
+		}
+		.skillset-item {
+			margin-bottom: 15px;
+		}
+		.skillset-tag {
+			-webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,.3);
+			-moz-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
+			box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
+			padding: 6px 30px;
+			display: inline-block;
+			margin-right: 10px;
+			border: 1px solid #f5f5f5;
+			font-weight: 500;
+			margin-bottom: 15px;
+			font-size: 16px;
+		}
+		
 		.education-title {
 			color: #0288D1;
 			font-size: 18px;
