@@ -247,7 +247,7 @@
 						<a class="" href="#skills">Skills</a>
 					</li>
 					<li class="">
-						<a class="" href="#section3">Portfolio</a>
+						<a class="" href="#portfolio">Portfolio</a>
 					</li>
 					<li class="">
 						<a class="" href="#section3">Contact</a>
@@ -256,7 +256,7 @@
 			</div>
 		</div>
 		<div class="fifth-layer">
-			<div class="container">
+			<div class="container-fluid">
 				<div class="content-area border" id="experiences">
 					<h2 class="content-title text-center">Work Experience</h2>
 					<div class="row">
@@ -410,10 +410,60 @@
 						</div>
 					</div>
 				</div>
+				<div class="content-area border" id="portfolio">
+					<h2 class="content-title text-center">Portfolio</h2>
+					<div class="row">
+						<?php for ($i = 0; $i <= 3; $i++) { ?>
+						<div class="col-md-3 portfolio-column">
+							<div class="portfolio-item">
+								<figure>
+									<img src="{{ asset('img/index.png') }}" class="img-fluid" />
+								</figure>
+								
+								<div class="portfolio-description">
+									<h3 class="portfolio-heading">Project Lorem Ipsum</h3>
+									<span class="protfolio-sub-text">PHP, Laravel</span>
+									<div class="protfolio-action">
+										View on GitHub
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<?php } ?>
+					</div>
+				</div>
 			</div>
 		</div>
 	</main>
 	<style>
+		.portfolio-column {
+			padding: 5px;
+		}
+		.portfolio-item {
+			background-color: #0288D1;
+			min-height: 270px;
+			height: auto;
+			-webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+			-moz-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+			box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+			color: white;
+		}
+		.portfolio-description {
+			padding: 10px 20px;
+		}
+		.portfolio-heading {
+			font-size: 16px;
+		}
+		.portfolio-sub-text, .portfolio-action {
+			font-size: 14px;
+		}
+		.protfolio-action {
+			margin-top: 20px;
+		}
+		.img-fluid {
+			max-width: 100%;
+		}
 		.skillset-heading {
 			font-size: 18px;
 			color: #8A8A8A;
