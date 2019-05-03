@@ -24,7 +24,10 @@
 		h1, h2, h3 {
 			font-weight: 500;
 		}
-		
+		a {
+			color: #0288D1;
+			text-decoration: none !important;
+		}
 		.top-layer {
 			background-color: #29B6F6;
 			height: 150px;
@@ -40,7 +43,6 @@
 			color: white;
 		}
 		.social-links li {
-			border: 2px solid white;
 			color: white;
 			width: 30px;
 			height: 30px;
@@ -48,6 +50,9 @@
 			margin-right: 5px;
 			text-align: center;
 			transition: 0.3s;
+		}
+		.top-social-links > li {
+			border: 2px solid white;
 		}
 		.social-links > li:hover {
 			background-color: white;
@@ -193,7 +198,7 @@
 						<a href="#" class="btn btn-primary border" id="downloadCVButton"> <i class="fas fa-download"></i> Download CV</a>
 					</div>
 					<div class="col-md-6" id="socialLinkDiv">
-						<ul class="social-links inline-list">
+						<ul class="social-links inline-list top-social-links">
 							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
 							<li><a href="#"><i class="fab fa-stack-overflow"></i></a></li>
 							<li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -205,7 +210,7 @@
 			</div>
 		</div>
 		<div class="second-layer">
-			<div class="container-fluid text-center pt-5">
+			<div class="container text-center pt-5">
 				<div class="row">
 					<div class="col-md-7 offset-md-3">
 						<div class="heading">
@@ -220,7 +225,7 @@
 			</div>
 		</div>
 		<div class="third-layer">
-			<div class="container-fluid text-center">
+			<div class="container text-center">
 				<div class="row contact">
 					<div class="col-md-4 item">
 						<i class="fas fa-envelope"></i> arshaikh_17@hotmail.com
@@ -235,7 +240,7 @@
 			</div>
 		</div>
 		<div class="fourth-layer sticky-top">
-			<div class="container-fluid text-center">
+			<div class="container text-center">
 				<ul class="menu-list inline-list">
 					<li class="">
 						<a class="" href="#experiences">Experiences</a>
@@ -250,13 +255,13 @@
 						<a class="" href="#portfolio">Portfolio</a>
 					</li>
 					<li class="">
-						<a class="" href="#section3">Contact</a>
+						<a class="" href="#contact">Contact</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 		<div class="fifth-layer">
-			<div class="container-fluid">
+			<div class="container">
 				<div class="content-area border" id="experiences">
 					<h2 class="content-title text-center">Work Experience</h2>
 					<div class="row">
@@ -414,9 +419,9 @@
 					<h2 class="content-title text-center">Portfolio</h2>
 					<div class="row">
 						<?php for ($i = 0; $i <= 3; $i++) { ?>
-						<div class="col-md-3 portfolio-column">
+						<div class="col-sm-6 col-md-3 portfolio-column">
 							<div class="portfolio-item">
-								<figure>
+								<figure class="text-center">
 									<img src="{{ asset('img/index.png') }}" class="img-fluid" />
 								</figure>
 								
@@ -433,10 +438,87 @@
 						<?php } ?>
 					</div>
 				</div>
+				<div class="content-area border" id="contact">
+					<h2 class="content-title text-center">Get in Touch</h2>
+					<div class="row">
+						<div class="col-md-3 text-center">
+							<img
+								src="https://themes.3rdwavemedia.com/sphere/bs4/4.0/assets/images/profile-image.png"
+								class="img-fluid img-circle"
+							/>
+						</div>
+						<div class="col-md-9">
+							<div class="contact-description">
+								<p class="contact-introduction">
+									I'm currently taking on freelance work. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.
+								</p>
+								<p>
+									<b>I can help with the following:</b>
+								</p>
+								<ul class="contact-keys">
+									<li>
+										<i class="fas fa-check"></i>
+										Back-end development with PHP
+									</li>
+									<li>
+										<i class="fas fa-check"></i>
+										App development with ReactJS
+									</li>
+									<li>
+										<i class="fas fa-check"></i>
+										Front-end development with AngularJS
+									</li>
+									<li>
+										<i class="fas fa-check"></i>
+										UI development
+									</li>
+									<li>
+										<i class="fas fa-check"></i>
+										UX prototyping
+									</li>
+								</ul>
+								<p>
+									Drop me a line at <a href="mailto:arshaikh_17@hotmail.com">arshaikh_17@hotmail.com</a> or call me at <a href="tel:+44 7411 404816">+44 7411 404816</a>
+								</p>
+								<ul class="inline-list bottom-social-list">
+									<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+									<li><a href="#"><i class="fab fa-stack-overflow"></i></a></li>
+									<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fab fa-github"></i></a></li>
+									<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+		<footer class="text-center">
+			<p>
+				Copyright @ <a href="https://ialirasheed.com">Ali Rasheed</a>
+			</p>
+		</footer>
 	</main>
 	<style>
+		.bottom-social-list {
+			padding: 0;
+		}
+		.bottom-social-list > li {
+			margin-right: 15px;
+			font-size: 24px;
+		}
+		footer {
+			margin-top: 80px;
+		}
+		.contact-keys {
+			list-style: none;
+		}
+		.contact-keys > li {
+			margin-bottom: 13px;
+		}
+		.fa-check {
+			color: #0288D1;
+		}
 		.portfolio-column {
 			padding: 5px;
 		}
@@ -460,6 +542,7 @@
 		}
 		.protfolio-action {
 			margin-top: 20px;
+			padding-bottom: 15px;
 		}
 		.img-fluid {
 			max-width: 100%;
@@ -491,7 +574,7 @@
 			padding: 6px 30px;
 			display: inline-block;
 			margin-right: 10px;
-			border: 1px solid #f5f5f5;
+			border: 1px solid #F5F5F5;
 			font-weight: 500;
 			margin-bottom: 15px;
 			font-size: 16px;
