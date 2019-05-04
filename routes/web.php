@@ -21,13 +21,26 @@ Route::get('/home', 'HomeController@index')->name('home');
  * Admin Routes
  */
 Route::group([
-		"prefix"						 =>	"/admin",
-		"as"							 =>	"admin."
-	], function () {
+	"prefix"							 =>	"/admin",
+	"as"								 =>	"admin."
+], function () {
 	
 	/**
 	 * Admin\AdminController Routes
 	 */
 	Route::get("/", "Admin\AdminController@index")->name("index");
+	
+	/**
+	 * Admin\ProfileController Routes
+	 */
+	Route::group([
+		"prefix"						 =>	"/profile",
+		"as"							 =>	"profile."
+	], function () {
+		
+		Route::get("/", "Admin\ProfileController@index")->name("index");
+		Route::post("/{form}/update", "Admin\ProfileController@update")->name("updatePost");
+		
+	});
 	
 });
