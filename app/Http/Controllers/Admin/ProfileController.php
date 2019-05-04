@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\AboutMe;
 use App\SocialMedia;
 
 class ProfileController extends Controller {
@@ -30,9 +31,10 @@ class ProfileController extends Controller {
 		
 		$socialTypes					 =	SocialMedia::getTypes();
 		
+		$about							 =	AboutMe::getAboutMe();
 		$socialMedias					 =	SocialMedia::all();
 		
-		return view(self::VIEW_PATH . "index", compact("socialTypes", "socialMedias"));
+		return view(self::VIEW_PATH . "index", compact("socialTypes", "socialMedias", "about"));
 		
 	}
 	
@@ -51,6 +53,12 @@ class ProfileController extends Controller {
 				
 				break;
 			
+			case "about":
+				
+				$this->updateAboutMe($request);
+				
+				break;
+				
 			default:
 				# code...
 				break;
@@ -92,6 +100,16 @@ class ProfileController extends Controller {
 			SocialMedia::removeSocialMedia(SocialMedia::find($id));
 			
 		}
+		
+	}
+	
+	/**
+	 * Processes about me
+	 * @param Illuminate\Http\Request $request
+	 */
+	private function updateAboutMe ($request) {
+		
+		AboutMe::saveAboutMe($request);
 		
 	}
 	
