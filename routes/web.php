@@ -10,9 +10,24 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 Route::get("/", function () { return view("layouts.profile"); });
 //Route::get("/", "IndexController@index")->name("index");
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/**
+ * Admin Routes
+ */
+Route::group([
+		"prefix"						 =>	"/admin",
+		"as"							 =>	"admin."
+	], function () {
+	
+	/**
+	 * Admin\AdminController Routes
+	 */
+	Route::get("/", "Admin\AdminController@index")->name("index");
+	
+});
