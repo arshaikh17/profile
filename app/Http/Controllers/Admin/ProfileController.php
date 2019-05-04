@@ -78,6 +78,7 @@ class ProfileController extends Controller {
 		$urls							 =	$request->urls;
 		$icons							 =	$request->icons;
 		$type_ids						 =	$request->type_ids;
+		$currentIds						 =	SocialMedia::getCurrentIDs();
 		
 		foreach ($ids as $key => $id) {
 			
@@ -92,7 +93,6 @@ class ProfileController extends Controller {
 			
 		}
 		
-		$currentIds						 =	SocialMedia::getCurrentIDs();
 		$differenceIds					 =	array_diff($currentIds, $ids) ?: [];
 		
 		foreach ($differenceIds as $id) {
