@@ -1,0 +1,32 @@
+@media screen and (max-width: 448px) {
+	.fourth-layer {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	#downloadCV, #socialLinkDiv {
+		text-align: center !important;
+	}
+	
+	.social-links {
+		margin-right: 40px;
+		margin-top: 10px;
+		float: none;
+	}
+}
+
+@media screen and (max-width: 997px) {
+	.experience-location {
+		position: static;
+		left: 0px;
+		top: 0px;
+	}
+	.experience-description {
+		position: static;
+		top: 0px;
+	}
+	.experience-item {
+		margin-left: 0px;
+	}
+}
