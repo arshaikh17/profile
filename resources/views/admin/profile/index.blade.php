@@ -8,6 +8,7 @@
 				<li class="nav-item">
 					<a class="nav-link active" data-toggle="tab" href="#about">About Me</a>
 					<a class="nav-link" data-toggle="tab" href="#social">My Socials</a>
+					<a class="nav-link" data-toggle="tab" href="#email">My Emails</a>
 				</li>
 			</ul>
 		</div>
@@ -33,6 +34,16 @@
 					])
 				</div>
 			</div>
+			<div class="card tab-pane" id="email">
+				<div class="card-header" data-toggle="collapse" href="#emails">
+					My Emails
+				</div>
+				<div id="emails" class="collapse show">
+					@include("admin.profile.partials.form.email-form", [
+						"emails"		 =>	$emails
+					])
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -42,6 +53,11 @@
 		@include("admin.profile.partials.form.social-media-row", [
 			"key"						 =>	"__INDEX__",
 			"socialTypes"				 =>	$socialTypes
+		])
+	</div>
+	<div id="emailTemplate">
+		@include("admin.profile.partials.form.email-row", [
+			"key"						 =>	"__INDEX__",
 		])
 	</div>
 </div>

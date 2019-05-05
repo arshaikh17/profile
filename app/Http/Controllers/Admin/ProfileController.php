@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\AboutMe;
 use App\SocialMedia;
+use App\Email;
 
 class ProfileController extends Controller {
 	
@@ -33,8 +34,9 @@ class ProfileController extends Controller {
 		
 		$about							 =	AboutMe::getAboutMe();
 		$socialMedias					 =	SocialMedia::all();
+		$emails							 =	Email::all();
 		
-		return view(self::VIEW_PATH . "index", compact("socialTypes", "socialMedias", "about"));
+		return view(self::VIEW_PATH . "index", compact("socialTypes", "socialMedias", "about", "emails"));
 		
 	}
 	
@@ -56,6 +58,12 @@ class ProfileController extends Controller {
 			case "about":
 				
 				$this->updateAboutMe($request);
+				
+				break;
+				
+			case "email":
+				
+				$this->updateEmails($request);
 				
 				break;
 				
@@ -110,6 +118,42 @@ class ProfileController extends Controller {
 	private function updateAboutMe ($request) {
 		
 		AboutMe::saveAboutMe($request);
+		
+	}
+	
+	/**
+	 * Processes email fields
+	 * @param Illuminate\Http\Request $request
+	 */
+	private function updateEmails ($request) {
+		
+		$ids							 =	$request->ids ?: [];
+		$titles							 =	$request->titles;
+		$emails							 =	$request->emails;
+		$is_primary_checks				 =	$request->is_primary_checks;
+		$currentIds						 =	Email::getCurrentIDs();
+		$primaryIndex					 =	array_search($request->is_primary, $is_primary_checks);
+		
+		foreach ($ids as $key => $id) {
+			
+			$data						 =	[
+				"id"					 =>	$id,
+				"title"					 =>	$titles[$key],
+				"email"					 =>	$emails[$key],
+				"is_primary"			 =>	$key == $primaryIndex ? 1 : 0
+			];
+			
+			Email::saveEmail((object) $data);
+			
+		}
+		
+		$differenceIds					 =	array_diff($currentIds, $ids) ?: [];
+		
+		foreach ($differenceIds as $id) {
+			
+			Email::removeEmail(Email::find($id));
+			
+		}
 		
 	}
 	
