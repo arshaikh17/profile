@@ -1,4 +1,4 @@
-<div class="row email-row border pt-2 pb-2 mb-2" id="{{ $key }}">
+<div class="row email-row border pt-2 pb-2 mb-2" id="email_row_{{ $key }}">
 	
 	<input type="hidden" name="ids[]" value="{{ isset($email) ? $email->id : '' }}" />
 	
@@ -46,7 +46,7 @@
 		<label>Del?</label>
 		<a
 			class="float-right btn btn-sm btn-danger text-white remove-template"
-			data-id="{{ $key }}"
+			data-id="email_row_{{ $key }}"
 		>
 			<i class="fas fa-times-circle"></i>
 		</a>
