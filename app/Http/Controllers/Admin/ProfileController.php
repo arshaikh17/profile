@@ -9,6 +9,7 @@ use App\AboutMe;
 use App\SocialMedia;
 use App\Email;
 use App\Phone;
+use App\Address;
 
 class ProfileController extends Controller {
 	
@@ -37,8 +38,9 @@ class ProfileController extends Controller {
 		$socialMedias					 =	SocialMedia::all();
 		$emails							 =	Email::all();
 		$phones							 =	Phone::all();
+		$addresses						 =	Address::all();
 		
-		return view(self::VIEW_PATH . "index", compact("socialTypes", "socialMedias", "about", "emails", "phones"));
+		return view(self::VIEW_PATH . "index", compact("socialTypes", "socialMedias", "about", "emails", "phones", "addresses"));
 		
 	}
 	
@@ -72,6 +74,12 @@ class ProfileController extends Controller {
 			case "phone":
 				
 				$this->updatePhones($request);
+				
+				break;
+				
+			case "address":
+				
+				$this->updateAddresss($request);
 				
 				break;
 				
@@ -196,6 +204,50 @@ class ProfileController extends Controller {
 		foreach ($differenceIds as $id) {
 			
 			Phone::removePhone(Phone::find($id));
+			
+		}
+		
+	}
+	
+	/**
+	 * Processes address fields
+	 * @param Illuminate\Http\Request $request
+	 */
+	private function updateAddresss ($request) {
+		
+		$ids							 =	$request->ids ?: [];
+		$titles							 =	$request->titles;
+		$addresses						 =	$request->addresses;
+		$cities							 =	$request->cities;
+		$states							 =	$request->states;
+		$countries						 =	$request->countries;
+		$postcodes						 =	$request->postcodes;
+		$is_primary_checks				 =	$request->is_primary_checks;
+		$currentIds						 =	Address::getCurrentIDs();
+		$primaryIndex					 =	array_search($request->is_primary, $is_primary_checks);
+		
+		foreach ($ids as $key => $id) {
+			
+			$data						 =	[
+				"id"					 =>	$id,
+				"title"					 =>	$titles[$key],
+				"address"				 =>	$addresses[$key],
+				"city"					 =>	$cities[$key],
+				"state"					 =>	$states[$key],
+				"country"				 =>	$countries[$key],
+				"postcode"				 =>	$postcodes[$key],
+				"is_primary"			 =>	$key == $primaryIndex ? 1 : 0
+			];
+			
+			Address::saveAddress((object) $data);
+			
+		}
+		
+		$differenceIds					 =	array_diff($currentIds, $ids) ?: [];
+		
+		foreach ($differenceIds as $id) {
+			
+			Address::removeAddress(Address::find($id));
 			
 		}
 		

@@ -10,6 +10,7 @@
 					<a class="nav-link" data-toggle="tab" href="#social">My Socials</a>
 					<a class="nav-link" data-toggle="tab" href="#email">My Emails</a>
 					<a class="nav-link" data-toggle="tab" href="#phone">My Phones</a>
+					<a class="nav-link" data-toggle="tab" href="#address">My Addresses</a>
 				</li>
 			</ul>
 		</div>
@@ -55,6 +56,16 @@
 					])
 				</div>
 			</div>
+			<div class="card tab-pane" id="address">
+				<div class="card-header" data-toggle="collapse" href="#addresses">
+					My Addresses
+				</div>
+				<div id="addresses" class="collapse show">
+					@include("admin.profile.partials.form.address-form", [
+						"addresses"		 =>	$addresses
+					])
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -73,6 +84,11 @@
 	</div>
 	<div id="phoneTemplate">
 		@include("admin.profile.partials.form.phone-row", [
+			"key"						 =>	"__INDEX__",
+		])
+	</div>
+	<div id="addressTemplate">
+		@include("admin.profile.partials.form.address-row", [
 			"key"						 =>	"__INDEX__",
 		])
 	</div>
