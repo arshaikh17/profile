@@ -68,10 +68,10 @@
 				</div>
 			</div>
 			<div class="card tab-pane" id="skill">
-				<div class="card-header" data-toggle="collapse" href="#addresses">
+				<div class="card-header" data-toggle="collapse" href="#skills">
 					My Skills
 				</div>
-				<div id="addresses" class="collapse show">
+				<div id="skills" class="collapse show">
 					@include("admin.profile.partials.form.skill-form", [
 						"skills"							 =>	$skills,
 						"skillCategories"					 =>	$skillCategories,
