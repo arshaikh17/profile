@@ -15,6 +15,14 @@ class Skill extends Model {
 	];
 	
 	/**
+	 * Appends
+	 */
+	protected $appends					 =	[
+		"experience_name",
+		"level_name"
+	];
+	
+	/**
 	 * Constants
 	 */
 	CONST CATEGORY_MAJOR				 =	1;
@@ -105,14 +113,14 @@ class Skill extends Model {
 	}
 	
 	/* =====================================================
-	 * 						OBJECT METHODS					
+	 * 						MUTATORS						
 	 * ===================================================*/
 	
 	/**
 	 * Returns experience
 	 * @return String $experience
 	 */
-	public function experience_level () {
+	public function getExperienceNameAttribute () {
 		
 		return self::getLevels()[$this->experience_level_id] ?? "";
 		
@@ -122,7 +130,7 @@ class Skill extends Model {
 	 * Returns category
 	 * @return String $category
 	 */
-	public function skill_category () {
+	public function getLevelNameAttribute () {
 		
 		return self::getCategories()[$this->skill_category_id] ?? "";
 		
