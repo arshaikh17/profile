@@ -10,6 +10,7 @@ use App\SocialMedia;
 use App\Email;
 use App\Phone;
 use App\Address;
+use App\Skill;
 
 class ProfileController extends Controller {
 	
@@ -33,14 +34,17 @@ class ProfileController extends Controller {
 	public function index () {
 		
 		$socialTypes					 =	SocialMedia::getTypes();
+		$skillCategories				 =	Skill::getCategories();
+		$skillLevels					 =	Skill::getLevels();
 		
 		$about							 =	AboutMe::getAboutMe();
 		$socialMedias					 =	SocialMedia::all();
 		$emails							 =	Email::all();
 		$phones							 =	Phone::all();
 		$addresses						 =	Address::all();
+		$skills							 =	Skill::all();
 		
-		return view(self::VIEW_PATH . "index", compact("socialTypes", "socialMedias", "about", "emails", "phones", "addresses"));
+		return view(self::VIEW_PATH . "index", compact("socialTypes", "socialMedias", "about", "emails", "phones", "addresses", "skills", "skillCategories", "skillLevels"));
 		
 	}
 	
@@ -80,6 +84,12 @@ class ProfileController extends Controller {
 			case "address":
 				
 				$this->updateAddresss($request);
+				
+				break;
+				
+			case "skill":
+				
+				$this->updateSkills($request);
 				
 				break;
 				
@@ -248,6 +258,44 @@ class ProfileController extends Controller {
 		foreach ($differenceIds as $id) {
 			
 			Address::removeAddress(Address::find($id));
+			
+		}
+		
+	}
+	
+	/**
+	 * Processes skill fields
+	 * @param Illuminate\Http\Request $request
+	 */
+	private function updateSkills ($request) {
+		
+		$ids							 =	$request->ids ?: [];
+		$titles							 =	$request->titles;
+		$experiences					 =	$request->experiences;
+		$experience_level_ids			 =	$request->experience_level_ids;
+		$skill_category_ids				 =	$request->skill_category_ids;
+		
+		$currentIds						 =	Skill::getCurrentIDs();
+		
+		foreach ($ids as $key => $id) {
+			
+			$data						 =	[
+				"id"					 =>	$id,
+				"title"					 =>	$titles[$key],
+				"experience"			 =>	$experiences[$key],
+				"experience_level_id"	 =>	$experience_level_ids[$key],
+				"skill_category_id"		 =>	$skill_category_ids[$key]
+			];
+			
+			Skill::saveSkill((object) $data);
+			
+		}
+		
+		$differenceIds					 =	array_diff($currentIds, $ids) ?: [];
+		
+		foreach ($differenceIds as $id) {
+			
+			Skill::removeSkill(Skill::find($id));
 			
 		}
 		

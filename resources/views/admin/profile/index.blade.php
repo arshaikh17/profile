@@ -11,6 +11,7 @@
 					<a class="nav-link" data-toggle="tab" href="#email">My Emails</a>
 					<a class="nav-link" data-toggle="tab" href="#phone">My Phones</a>
 					<a class="nav-link" data-toggle="tab" href="#address">My Addresses</a>
+					<a class="nav-link" data-toggle="tab" href="#skill">My Skills</a>
 				</li>
 			</ul>
 		</div>
@@ -66,6 +67,18 @@
 					])
 				</div>
 			</div>
+			<div class="card tab-pane" id="skill">
+				<div class="card-header" data-toggle="collapse" href="#addresses">
+					My Skills
+				</div>
+				<div id="addresses" class="collapse show">
+					@include("admin.profile.partials.form.skill-form", [
+						"skills"							 =>	$skills,
+						"skillCategories"					 =>	$skillCategories,
+						"skillLevels"						 =>	$skillLevels
+					])
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -89,6 +102,11 @@
 	</div>
 	<div id="addressTemplate">
 		@include("admin.profile.partials.form.address-row", [
+			"key"						 =>	"__INDEX__",
+		])
+	</div>
+	<div id="skillTemplate">
+		@include("admin.profile.partials.form.skill-row", [
 			"key"						 =>	"__INDEX__",
 		])
 	</div>
