@@ -83,7 +83,7 @@ class ProfileController extends Controller {
 				
 			case "address":
 				
-				$this->updateAddresss($request);
+				$this->updateAddresses($request);
 				
 				break;
 				
@@ -223,7 +223,7 @@ class ProfileController extends Controller {
 	 * Processes address fields
 	 * @param Illuminate\Http\Request $request
 	 */
-	private function updateAddresss ($request) {
+	private function updateAddresses ($request) {
 		
 		$ids							 =	$request->ids ?: [];
 		$titles							 =	$request->titles;
