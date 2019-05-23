@@ -138,7 +138,8 @@
 				<div id="responsibilitiesRows">
 					@forelse(($experience->responsibilities ?? []) as $responsibilityKey => $responsibility)
 						@include("admin.profile.partials.form.responsibility-row", [
-							"key"		 =>	$responsibilityKey
+							"key"							 =>	$responsibilityKey,
+							"responsibility"				 =>	$responsibility
 						])
 					@empty
 					@endforelse

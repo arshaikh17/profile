@@ -4,7 +4,7 @@
 			<input
 				type="text"
 				name="responsibilities[]"
-				value="{{ $experience->end_date }}"
+				value="{{ isset($responsibility) ? $responsibility : '' }}"
 				class="form-control"
 				placeholder="Briefly write about your responsibility"
 				required
