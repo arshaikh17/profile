@@ -34,6 +34,13 @@ class Experience extends Model
 	];
 	
 	/**
+	 * Appends
+	 */
+	protected $appends					 =	[
+		"job_type",
+	];
+	
+	/**
 	 * Constants
 	 */
 	CONST TYPE_PERMANENT				 =	1;
@@ -148,6 +155,20 @@ class Experience extends Model
 		}
 		
 		return $ids;
+		
+	}
+	
+	/* =====================================================
+	 * 						MUTATORS						
+	 * ===================================================*/
+	
+	/**
+	 * Returns job type
+	 * @return String $jobType
+	 */
+	public function getJobTypeAttribute () {
+		
+		return self::getTypes()[$this->job_type_id] ?? "";
 		
 	}
 	

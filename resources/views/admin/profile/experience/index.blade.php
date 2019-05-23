@@ -14,7 +14,38 @@
 				</a>
 			</h1>
 			<div class="row">
-				
+				<div class="col-12">
+					<table class="table table-hover table-condensed table-responsive table-striped">
+						<thead>
+							<tr>
+								<td>ID</td>
+								<th>Company Name</th>
+								<th>Job Title</th>
+								<th>Job Type</th>
+							</tr>
+						</thead>
+						<tbody>
+							@forelse ($experiences as $experience)
+								<tr>
+									<td>{{ $experience->id }}</td>
+									<td>
+										<a
+											href="{{ route('admin.profile.experience.edit', $experience) }}"
+										>
+											{{ $experience->company }}
+										</a>
+									</td>
+									<td>{{ $experience->title }}</td>
+									<td>{{ $experience->job_type }}</td>
+								</tr>
+							@empty
+								<tr>
+									<td>No experience added, yet.</td>
+								</tr>
+							@endforelse
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
