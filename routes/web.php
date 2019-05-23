@@ -60,6 +60,23 @@ Route::group([
 			
 		});
 		
+		/**
+		 * Admin\Profile\EducationController Routes
+		 */
+		Route::group([
+			"prefix"					 =>	"/education",
+			"as"						 =>	"education."
+		], function()
+		{
+			
+			Route::get("/", "Admin\Profile\EducationController@index")->name("index");
+			Route::get("/create", "Admin\Profile\EducationController@create")->name("create");
+			Route::get("/{education}/edit", "Admin\Profile\EducationController@edit")->name("edit");
+			Route::post("/{education}/edit", "Admin\Profile\EducationController@update")->name("editPost");
+			Route::post("/", "Admin\Profile\EducationController@store")->name("store");
+			
+		});
+		
 	});
 	
 });
