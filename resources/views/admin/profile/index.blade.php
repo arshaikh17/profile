@@ -12,6 +12,7 @@
 					<a class="nav-link" data-toggle="tab" href="#phone">My Phones</a>
 					<a class="nav-link" data-toggle="tab" href="#address">My Addresses</a>
 					<a class="nav-link" data-toggle="tab" href="#skill">My Skills</a>
+					<a class="nav-link" href="{{ route('admin.profile.experience.index') }}">My Experience</a>
 				</li>
 			</ul>
 		</div>

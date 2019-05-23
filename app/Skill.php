@@ -19,7 +19,7 @@ class Skill extends Model {
 	 */
 	protected $appends					 =	[
 		"experience_name",
-		"level_name"
+		"caregory_name"
 	];
 	
 	/**
@@ -130,7 +130,7 @@ class Skill extends Model {
 	 * Returns category
 	 * @return String $category
 	 */
-	public function getLevelNameAttribute () {
+	public function getCategoryNameAttribute () {
 		
 		return self::getCategories()[$this->skill_category_id] ?? "";
 		

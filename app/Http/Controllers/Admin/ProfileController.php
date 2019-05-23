@@ -11,6 +11,7 @@ use App\Email;
 use App\Phone;
 use App\Address;
 use App\Skill;
+use App\Experience;
 
 class ProfileController extends Controller {
 	

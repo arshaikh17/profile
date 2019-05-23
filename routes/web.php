@@ -23,7 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group([
 	"prefix"							 =>	"/admin",
 	"as"								 =>	"admin."
-], function () {
+], function()
+{
 	
 	/**
 	 * Admin\AdminController Routes
@@ -36,10 +37,28 @@ Route::group([
 	Route::group([
 		"prefix"						 =>	"/profile",
 		"as"							 =>	"profile."
-	], function () {
+	], function()
+	{
 		
 		Route::get("/", "Admin\ProfileController@index")->name("index");
 		Route::post("/{form}/update", "Admin\ProfileController@update")->name("updatePost");
+		
+		/**
+		 * Admin\Profile\ExperienceController Routes
+		 */
+		Route::group([
+			"prefix"					 =>	"/experience",
+			"as"						 =>	"experience."
+		], function()
+		{
+			
+			Route::get("/", "Admin\Profile\ExperienceController@index")->name("index");
+			Route::get("/create", "Admin\Profile\ExperienceController@create")->name("create");
+			Route::get("/{experience}/edit", "Admin\Profile\ExperienceController@edit")->name("edit");
+			Route::post("/{experience}/edit", "Admin\Profile\ExperienceController@update")->name("editPost");
+			Route::post("/", "Admin\Profile\ExperienceController@store")->name("store");
+			
+		});
 		
 	});
 	

@@ -68,6 +68,23 @@
 		</nav>
 
 		<main class="py-4">
+			@if(session("status"))
+				<div class="container">
+					<div class="alert alert-success alert-dismissable fade in">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong>Success!</strong> {{session("status")}}
+					</div>
+				</div>
+			@endif
+			
+			@if($errors->has("status"))
+				<div class="container">
+					<div class="alert alert-danger alert-dismissable fade in">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong>Error!</strong> {{$errors->first()}}
+					</div>
+				</div>
+			@endif
 			@yield('content')
 		</main>
 	</div>
