@@ -26,6 +26,7 @@ class SkillTag extends Model {
 	 * Constants
 	 */
 	CONST ENTITY_EXPERIENCE				 =	1;
+	CONST ENTITY_PROJECT				 =	2;
 	
 	/**
 	 * Creates or updates skill tag

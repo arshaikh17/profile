@@ -77,6 +77,23 @@ Route::group([
 			
 		});
 		
+		/**
+		 * Admin\Profile\ProjectController Routes
+		 */
+		Route::group([
+			"prefix"					 =>	"/project",
+			"as"						 =>	"project."
+		], function()
+		{
+			
+			Route::get("/", "Admin\Profile\ProjectController@index")->name("index");
+			Route::get("/create", "Admin\Profile\ProjectController@create")->name("create");
+			Route::get("/{project}/edit", "Admin\Profile\ProjectController@edit")->name("edit");
+			Route::post("/{project}/edit", "Admin\Profile\ProjectController@update")->name("editPost");
+			Route::post("/", "Admin\Profile\ProjectController@store")->name("store");
+			
+		});
+		
 	});
 	
 });
