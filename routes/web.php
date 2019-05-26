@@ -94,6 +94,23 @@ Route::group([
 			
 		});
 		
+		/**
+		 * Admin\Profile\CVController Routes
+		 */
+		Route::group([
+			"prefix"					 =>	"/cv",
+			"as"						 =>	"cv."
+		], function()
+		{
+			
+			Route::get("/", "Admin\Profile\CVController@index")->name("index");
+			Route::get("/{cv}/edit", "Admin\Profile\CVController@edit")->name("edit");
+			Route::post("/{cv}/edit", "Admin\Profile\CVController@update")->name("editPost");
+			Route::post("/", "Admin\Profile\CVController@store")->name("store");
+			Route::get("/{cv}/preview", "Admin\Profile\CVController@preview")->name("preview");
+			
+		});
+		
 	});
 	
 });
