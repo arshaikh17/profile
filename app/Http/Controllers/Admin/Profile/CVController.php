@@ -50,7 +50,7 @@ class CVController extends Controller
 		
 		$cvs							 =	$this->cvs;
 		
-		return view($this->path_view . "index", compact("cvs", "cv"));
+		return view($this->path_view . "edit", compact("cvs", "cv"));
 		
 	}
 	
@@ -61,10 +61,7 @@ class CVController extends Controller
 	public function store(Request $request)
 	{
 		
-		$data							 =	$request->toArray();
-		$data["id"]						 =	null;
-		
-		CV::saveCV((object) $data);
+		CV::saveCV($request);
 		
 		return redirect()->back()->with("status", "CV added.");
 		

@@ -24,7 +24,7 @@ class CV extends Model
 	/**
 	 * Scoped variables
 	 */
-	public static $path_cv			 =	"/uploads/cv/";
+	public static $path_cv				 =	"/uploads/cv/";
 	protected static $mime_types		 =	[
 		"application/pdf"
 	];
@@ -46,7 +46,7 @@ class CV extends Model
 			
 		}
 		
-		self::updateIsMainColumn();
+		if ($data->is_main) self::updateIsMainColumn();
 		
 		CV::updateOrCreate([
 			"id"						 =>	$data->id
