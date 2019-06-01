@@ -62,7 +62,7 @@ class Email extends Model {
 	 * Returns primary email
 	 * @return App\Email $email
 	 */
-	public static function getPrimaryEmail () {
+	public static function getPrimaryEmail() {
 		
 		return Email::where("is_primary", "=", 1)
 				->first()

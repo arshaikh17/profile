@@ -112,6 +112,26 @@ class Skill extends Model {
 		
 	}
 	
+	/**
+	 * Returns all skills categorised
+	 * 
+	 * @return App\Skill[] $skills
+	 */
+	public static function getSkills()
+	{
+		
+		$skills							 =	[];
+		
+		foreach (self::getCategories() as $categoryKey => $categories) {
+			
+			$skills[$categories]		 =	Skill::where("skill_category_id", "=", $categoryKey)->get();
+			
+		}
+		
+		return $skills;
+		
+	}
+	
 	/* =====================================================
 	 * 						MUTATORS						
 	 * ===================================================*/

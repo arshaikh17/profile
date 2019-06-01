@@ -11,11 +11,26 @@
 |
 */
 Auth::routes();
-Route::get("/", function () { return view("layouts.profile"); });
+//Route::get("/", function () { return view("layouts.profile"); });
 //Route::get("/", "IndexController@index")->name("index");
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/**
+ * Index Routes
+ */
+Route::group([
+	"as"								 =>	"index."
+], function() {
+	
+	/**
+	 * IndexController Routes
+	 */
+	Route::get("/", "IndexController@index")->name("index");
+	Route::get("/downloadCV/{cv}", "IndexController@downloadCV")->name("downloadCV");
+	
+});
 
 /**
  * Admin Routes

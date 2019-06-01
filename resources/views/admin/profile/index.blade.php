@@ -12,7 +12,10 @@
 					<a class="nav-link" data-toggle="tab" href="#phone">My Phones</a>
 					<a class="nav-link" data-toggle="tab" href="#address">My Addresses</a>
 					<a class="nav-link" data-toggle="tab" href="#skill">My Skills</a>
-					<a class="nav-link" href="{{ route('admin.profile.experience.index') }}">My Experience</a>
+					<a class="nav-link" href="{{ route('admin.profile.experience.index') }}">My Experiences</a>
+					<a class="nav-link" href="{{ route('admin.profile.education.index') }}">My Educations</a>
+					<a class="nav-link" href="{{ route('admin.profile.project.index') }}">My Projects</a>
+					<a class="nav-link" href="{{ route('admin.profile.cv.index') }}">My CVs</a>
 				</li>
 			</ul>
 		</div>

@@ -83,4 +83,16 @@ class CV extends Model
 		
 	}
 	
+	/**
+	 * Returns Main CV
+	 * 
+	 * @return App\CV $cv
+	 */
+	public static function getActiveCV()
+	{
+		
+		return CV::where("is_main", "=", 1)->first();
+		
+	}
+	
 }

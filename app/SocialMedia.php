@@ -17,6 +17,13 @@ class SocialMedia extends Model {
 	];
 	
 	/**
+	 * Appends
+	 */
+	protected $appends					 =	[
+		"type"
+	];
+	
+	/**
 	 * Constants
 	 */
 	CONST TYPE_FACEBOOK					 =	1;
@@ -84,6 +91,20 @@ class SocialMedia extends Model {
 		}
 		
 		return $ids;
+		
+	}
+	
+	/* =====================================================
+	 * 						MUTATORS						
+	 * ===================================================*/
+	
+	/**
+	 * Returns type
+	 * @return String $type
+	 */
+	public function getTypeAttribute () {
+		
+		return self::getTypes()[$this->type_id] ?? "";
 		
 	}
 	

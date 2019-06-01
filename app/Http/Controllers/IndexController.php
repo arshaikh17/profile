@@ -4,28 +4,72 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\AboutMe;
+use App\Address;
+use App\CV;
+use App\Education;
+use App\Experience;
+use App\Email;
+use App\Gallery;
+use App\Phone;
+use App\Project;
+use App\Skill;
+use App\SkillTag;
+use App\SocialMedia;
+
+use Response;
+
 class IndexController extends Controller {
 	
 	/**
 	 * Constructor
 	 */
-	public function __construct () {
+	public function __construct() {
 		
 		
 		
 	}
 	
 	/**
-	 * Index method
-	 * @return Array $data
+	 * Returns index view
 	 */
-	public function index () {
+	public function index() {
 		
-		$data							 =	[
-			"csrf_token"				 =>	csrf_token()
-		];
+		$cv								 =	CV::getActiveCV();
+		$socialMedias					 =	SocialMedia::all();
+		$about							 =	AboutMe::getAboutMe();
+		$email							 =	Email::getPrimaryEmail();
+		$phone							 =	Phone::getPrimaryPhone();
+		$address						 =	Address::getPrimaryAddress();
+		$experiences					 =	Experience::all();
+		$educations						 =	Education::all();
+		$skills							 =	Skill::getSkills();
+		$projects						 =	Project::all();
 		
-		return view("index.index", compact("data"));
+		return view("index.index", compact(
+			"cv",
+			"socialMedias",
+			"about",
+			"email",
+			"phone",
+			"address",
+			"experiences",
+			"educations",
+			"skills",
+			"projects"
+		));
+		
+	}
+	
+	/**
+	 * Returns CV as stream to download
+	 * 
+	 * @param App\CV $cv
+	 * @return Response $response
+	 */
+	public function downloadCV(CV $cv) {
+		
+		return Response::download(public_path() . CV::$path_cv . $cv->cv);
 		
 	}
 	
