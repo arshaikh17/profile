@@ -4,9 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Phone extends Model {
+use App\AbstractModel;
+
+class Phone extends AbstractModel {
 	
-	//Fillable columns
+	/**
+	 * Fillable columns
+	 */
 	protected $fillable					 =	[
 		"title",
 		"phone",
@@ -15,9 +19,10 @@ class Phone extends Model {
 	
 	/**
 	 * Updates phones
+	 * 
 	 * @param json $data[]
 	 */
-	public static function savePhone ($data) {
+	public static function savePhone($data) {
 		
 		Phone::updateOrCreate([
 			"id"						 =>	$data->id
@@ -31,37 +36,32 @@ class Phone extends Model {
 	
 	/**
 	 * Removes Phone
+	 * 
 	 * @param App\Phone $phone
 	 */
-	public static function removePhone (Phone $phone) {
+	public static function removePhone(Phone $phone) {
 		
 		$phone->delete();
 		
 	}
 	
 	/**
-	 * Returns current Phone ids
+	 * Returns current ids associated to Phone model
+	 * 
 	 * @return array $ids
 	 */
-	public static function getCurrentIDs () {
+	public static function getCurrentIDs() {
 		
-		$ids							 =	[];
-		
-		foreach (Phone::all() as $phone) {
-			
-			$ids[]						 =	$phone->id;
-			
-		}
-		
-		return $ids;
+		return parent::getModelIDs(Phone::all());
 		
 	}
 	
 	/**
 	 * Returns primary phone
+	 * 
 	 * @return App\Phone $phone
 	 */
-	public static function getPrimaryPhone () {
+	public static function getPrimaryPhone() {
 		
 		return Phone::where("is_primary", "=", 1)
 				->first()
