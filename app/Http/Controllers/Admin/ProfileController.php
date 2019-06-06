@@ -158,7 +158,7 @@ class ProfileController extends Controller {
 		$titles							 =	$request->titles;
 		$emails							 =	$request->emails;
 		$is_primary_checks				 =	$request->is_primary_checks;
-		$currentIds						 =	Email::getCurrentIDs();
+		$currentIds						 =	Email::getCurrentIDs(Email::all());
 		$primaryIndex					 =	array_search($request->is_primary, $is_primary_checks);
 		
 		foreach ($ids as $key => $id) {
