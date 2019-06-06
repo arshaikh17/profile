@@ -4,7 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Gallery extends Model
+use App\AbstractModel;
+
+class Gallery extends AbstractModel
 {
 	
 	/**
@@ -18,17 +20,13 @@ class Gallery extends Model
 	];
 	
 	/**
-	 * Constants
-	 */
-	CONST ENTITY_PROJECT				 =	2;
-	
-	/**
 	 * Scoped Variables
 	 */
 	private static $path_gallery		 =	"/uploads/gallery/";
 	
 	/**
 	 * Creates or updates gallery image
+	 * 
 	 * @param File $image
 	 * @param Array $data
 	 */
@@ -57,6 +55,7 @@ class Gallery extends Model
 	
 	/**
 	 * Removes Gallery image
+	 * 
 	 * @param App\Gallery $gallery
 	 */
 	public static function removeGallery(Gallery $gallery)
@@ -69,7 +68,8 @@ class Gallery extends Model
 	}
 	
 	/**
-	 * Returns current Gallery ids
+	 * Returns current ids associated to Gallery model
+	 * 
 	 * @param Integer $entityType
 	 * @param Integer $entityId
 	 * @return array $ids
@@ -77,20 +77,12 @@ class Gallery extends Model
 	public static function getCurrentIDs($entityType, $entityId)
 	{
 		
-		$ids							 =	[];
-		
 		$galleries						 =	Gallery::where("entity_type_id", "=", $entityType)
 			->where("entity_id", "=", $entityId)
 			->get()
 		;
 		
-		foreach ($galleries as $gallery) {
-			
-			$ids[]						 =	$gallery->id;
-			
-		}
-		
-		return $ids;
+		return parent::getModelIDs($galleries);
 		
 	}
 	

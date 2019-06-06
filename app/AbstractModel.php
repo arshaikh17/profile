@@ -8,6 +8,11 @@ class AbstractModel extends Model
 {
 	
 	/**
+	 * Constants
+	 */
+	CONST ENTITY_PROJECT				 =	2;
+	
+	/**
 	 * Returns current ids associated to model
 	 * 
 	 * @param App\Model[] $model
