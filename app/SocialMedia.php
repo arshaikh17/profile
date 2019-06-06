@@ -4,12 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\AbstractModel;
+
 class SocialMedia extends Model {
 	
-	//Table name
+	/**
+	 * Table name
+	 */
 	protected $table					 =	"social_medias";
 	
-	//Fillable columns
+	/**
+	 * Fillable columns
+	 */
 	protected $fillable					 =	[
 		"url",
 		"icon",
@@ -35,9 +41,10 @@ class SocialMedia extends Model {
 	
 	/**
 	 * Returns social media types
+	 * 
 	 * @return array $types[]
 	 */
-	public static function getTypes () {
+	public static function getTypes() {
 		
 		return [
 			self::TYPE_FACEBOOK			 =>	"Facebook",
@@ -52,9 +59,10 @@ class SocialMedia extends Model {
 	
 	/**
 	 * Updates social media
+	 * 
 	 * @param json $data[]
 	 */
-	public static function saveSocialMedia ($data) {
+	public static function saveSocialMedia($data) {
 		
 		SocialMedia::updateOrCreate([
 			"id"						 =>	$data->id
@@ -68,29 +76,22 @@ class SocialMedia extends Model {
 	
 	/**
 	 * Removes social media
+	 * 
 	 * @param App\SocialMedia $socialMedia
 	 */
-	public static function removeSocialMedia (SocialMedia $socialMedia) {
+	public static function removeSocialMedia(SocialMedia $socialMedia) {
 		
 		$socialMedia->delete();
 		
 	}
 	
 	/**
-	 * Returns current social media ids
+	 * Returns current ids associated to SocialMedia model
 	 * @return array $ids
 	 */
-	public static function getCurrentIDs () {
+	public static function getCurrentIDs() {
 		
-		$ids							 =	[];
-		
-		foreach (SocialMedia::all() as $socialMedia) {
-			
-			$ids[]						 =	$socialMedia->id;
-			
-		}
-		
-		return $ids;
+		return parent::getModelIDs(SocialMedia::all());
 		
 	}
 	
@@ -100,9 +101,10 @@ class SocialMedia extends Model {
 	
 	/**
 	 * Returns type
+	 * 
 	 * @return String $type
 	 */
-	public function getTypeAttribute () {
+	public function getTypeAttribute() {
 		
 		return self::getTypes()[$this->type_id] ?? "";
 		
