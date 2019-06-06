@@ -10,6 +10,7 @@ abstract class AbstractModel extends Model
 	/**
 	 * Constants
 	 */
+	CONST ENTITY_EXPERIENCE				 =	1;
 	CONST ENTITY_PROJECT				 =	2;
 	
 	/**

@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\AbstractModel;
 use App\Skill;
 
-class SkillTag extends Model {
+class SkillTag extends AbstractModel
+{
 	
 	/**
 	 * Table name
@@ -23,13 +25,8 @@ class SkillTag extends Model {
 	];
 	
 	/**
-	 * Constants
-	 */
-	CONST ENTITY_EXPERIENCE				 =	1;
-	CONST ENTITY_PROJECT				 =	2;
-	
-	/**
 	 * Creates or updates skill tag
+	 * 
 	 * @param Array $data
 	 */
 	public static function saveSkillTag(Array $data)
@@ -49,6 +46,7 @@ class SkillTag extends Model {
 	
 	/**
 	 * Removes SkillTag
+	 * 
 	 * @param App\SkillTag $skillTag
 	 */
 	public static function removeSkillTag(SkillTag $skillTag)
@@ -59,7 +57,8 @@ class SkillTag extends Model {
 	}
 	
 	/**
-	 * Returns current Experience ids
+	 * Returns current ids associated to SkillTag model
+	 * 
 	 * @param Integer $entityType
 	 * @param Integer $entityId
 	 * @return array $ids
@@ -67,20 +66,12 @@ class SkillTag extends Model {
 	public static function getCurrentIDs($entityType, $entityId)
 	{
 		
-		$ids							 =	[];
-		
 		$skillTags						 =	SkillTag::where("entity_type_id", "=", $entityType)
 			->where("entity_id", "=", $entityId)
 			->get()
 		;
 		
-		foreach ($skillTags as $skillTag) {
-			
-			$ids[]						 =	$skillTag->id;
-			
-		}
-		
-		return $ids;
+		return parent::getModelIDs($skillTags);
 		
 	}
 	
@@ -90,6 +81,7 @@ class SkillTag extends Model {
 	
 	/**
 	 * Returns skill associated to a skill tag
+	 * 
 	 * @return Array $skill[]
 	 */
 	public function skill()
