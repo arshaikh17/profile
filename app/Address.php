@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\AbstractModel;
 
-class Address extends Model {
+class Address extends AbstractModel {
 		
-	//Fillable columns
+	/**
+	 * Fillable columns
+	 */
 	protected $fillable					 =	[
 		"title",
 		"address",
@@ -19,9 +22,10 @@ class Address extends Model {
 	
 	/**
 	 * Updates addresses
+	 * 
 	 * @param json $data[]
 	 */
-	public static function saveAddress ($data) {
+	public static function saveAddress($data) {
 		
 		Address::updateOrCreate([
 			"id"						 =>	$data->id
@@ -39,37 +43,32 @@ class Address extends Model {
 	
 	/**
 	 * Removes Address
+	 * 
 	 * @param App\Address $address
 	 */
-	public static function removeAddress (Address $address) {
+	public static function removeAddress(Address $address) {
 		
 		$address->delete();
 		
 	}
 	
 	/**
-	 * Returns current Address ids
+	 * Returns current ids associated to Addressmodel
+	 * 
 	 * @return array $ids
 	 */
-	public static function getCurrentIDs () {
+	public static function getCurrentIDs() {
 		
-		$ids							 =	[];
-		
-		foreach (Address::all() as $address) {
-			
-			$ids[]						 =	$address->id;
-			
-		}
-		
-		return $ids;
+		return parent::getModelIDs(Address::all());
 		
 	}
 	
 	/**
 	 * Returns primary address
+	 * 
 	 * @return App\Address $address
 	 */
-	public static function getPrimaryAddress () {
+	public static function getPrimaryAddress() {
 		
 		return Address::where("is_primary", "=", 1)
 				->first()
