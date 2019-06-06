@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\AbstractModel;
 
-class Education extends Model
+class Education extends AbstractModel
 {
 	
 	/**
@@ -142,21 +143,14 @@ class Education extends Model
 	}
 	
 	/**
-	 * Returns current Education ids
+	 * Returns current ids associated to Education model
+	 * 
 	 * @return array $ids
 	 */
 	public static function getCurrentIDs()
 	{
 		
-		$ids							 =	[];
-		
-		foreach (Education::all() as $education) {
-			
-			$ids[]						 =	$education->id;
-			
-		}
-		
-		return $ids;
+		return parent::getModelIDs(Education::all());
 		
 	}
 	
@@ -168,7 +162,7 @@ class Education extends Model
 	 * Returns degree type
 	 * @return String $degreeType
 	 */
-	public function getDegreeTypeAttribute () {
+	public function getDegreeTypeAttribute() {
 		
 		return self::getDegreeTypes()[$this->degree_type_id] ?? "";
 		
@@ -178,7 +172,7 @@ class Education extends Model
 	 * Returns degree acronym
 	 * @return String $degreeAcronym
 	 */
-	public function getDegreeAcronymAttribute () {
+	public function getDegreeAcronymAttribute() {
 		
 		return self::getDegreeAcronyms()[$this->degree_type_id] ?? "";
 		
