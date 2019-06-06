@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\AbstractModel;
 use App\SkillTag;
 use App\Gallery;
 
-class Project extends Model
+class Project extends AbstractModel
 {
 	
 	/**
@@ -38,6 +39,7 @@ class Project extends Model
 	
 	/**
 	 * Updates project
+	 * 
 	 * @param App\Project $project
 	 * @param json $data[]
 	 */
@@ -122,6 +124,7 @@ class Project extends Model
 	
 	/**
 	 * Removes Project
+	 * 
 	 * @param App\Project $project
 	 */
 	public static function removeProject(Project $project)
@@ -132,21 +135,14 @@ class Project extends Model
 	}
 	
 	/**
-	 * Returns current Project ids
+	 * Returns current ids associated to Project model
+	 * 
 	 * @return array $ids
 	 */
 	public static function getCurrentIDs()
 	{
 		
-		$ids							 =	[];
-		
-		foreach (Project::all() as $project) {
-			
-			$ids[]						 =	$project->id;
-			
-		}
-		
-		return $ids;
+		return parent::getModelIDs(Project::all());
 		
 	}
 	
@@ -160,6 +156,7 @@ class Project extends Model
 	
 	/**
 	 * Returns skills associated to a project
+	 * 
 	 * @return Array $skilltags[]
 	 */
 	public function skill_tags()
@@ -173,6 +170,7 @@ class Project extends Model
 	
 	/**
 	 * Returns experience associated to a project
+	 * 
 	 * @return Array $experience[]
 	 */
 	public function experience()
@@ -184,6 +182,7 @@ class Project extends Model
 	
 	/**
 	 * Returns gallery images associated to a project
+	 * 
 	 * @return Array $images[]
 	 */
 	public function gallery()
