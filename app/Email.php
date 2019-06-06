@@ -42,6 +42,17 @@ class Email extends AbstractModel {
 	}
 	
 	/**
+	 * Returns current ids associated to Email model
+	 * 
+	 * @return array $ids
+	 */
+	public static function getCurrentIDs() {
+		
+		return parent::getModelIDs(Email::all());
+		
+	}
+	
+	/**
 	 * Returns primary email
 	 * @return App\Email $email
 	 */

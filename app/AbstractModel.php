@@ -13,7 +13,7 @@ class AbstractModel extends Model
 	 * @param App\Model[] $model
 	 * @return array $ids
 	 */
-	public static function getCurrentIDs($modelCollection) {
+	public static function getModelIDs($modelCollection) {
 		
 		$ids							 =	[];
 		
