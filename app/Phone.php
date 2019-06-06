@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\AbstractModel;
 
-class Phone extends AbstractModel {
+class Phone extends AbstractModel
+{
 	
 	/**
 	 * Fillable columns
@@ -22,7 +23,8 @@ class Phone extends AbstractModel {
 	 * 
 	 * @param json $data[]
 	 */
-	public static function savePhone($data) {
+	public static function savePhone($data)
+	{
 		
 		Phone::updateOrCreate([
 			"id"						 =>	$data->id
@@ -39,7 +41,8 @@ class Phone extends AbstractModel {
 	 * 
 	 * @param App\Phone $phone
 	 */
-	public static function removePhone(Phone $phone) {
+	public static function removePhone(Phone $phone)
+	{
 		
 		$phone->delete();
 		
@@ -50,7 +53,8 @@ class Phone extends AbstractModel {
 	 * 
 	 * @return array $ids
 	 */
-	public static function getCurrentIDs() {
+	public static function getCurrentIDs()
+	{
 		
 		return parent::getModelIDs(Phone::all());
 		
@@ -61,7 +65,8 @@ class Phone extends AbstractModel {
 	 * 
 	 * @return App\Phone $phone
 	 */
-	public static function getPrimaryPhone() {
+	public static function getPrimaryPhone()
+	{
 		
 		return Phone::where("is_primary", "=", 1)
 				->first()

@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AdminController extends Controller {
+class AdminController extends Controller
+{
 	
 	/**
 	 * Constructor
 	 */
-	public function __construct () {
+	public function __construct()
+	{
 		
 		$this->middleware("auth");
 		
@@ -19,7 +21,8 @@ class AdminController extends Controller {
 	/**
 	 * Displays index view
 	 */
-	public function index () {
+	public function index()
+	{
 		
 		return view("admin.admin.index");
 		

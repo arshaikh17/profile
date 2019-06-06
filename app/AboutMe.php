@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\AboutMe;
 
-class AboutMe extends Model {
+class AboutMe extends Model
+{
 	
 	/**
 	 * Table name
@@ -40,9 +41,11 @@ class AboutMe extends Model {
 	
 	/**
 	 * Returns active about me record
+	 * 
 	 * @return AboutMe $about
 	 */
-	public static function getAboutMe () {
+	public static function getAboutMe()
+	{
 		
 		return AboutMe::find(1);
 		
@@ -50,9 +53,11 @@ class AboutMe extends Model {
 	
 	/**
 	 * Updates About me
+	 * 
 	 * @param json $data[]
 	 */
-	public static function saveAboutMe ($data) {
+	public static function saveAboutMe($data)
+	{
 		
 		$profile_picture				 =	self::getAboutMe()->profile_picture;
 		

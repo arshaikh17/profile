@@ -13,7 +13,8 @@ use App\Address;
 use App\Skill;
 use App\Experience;
 
-class ProfileController extends Controller {
+class ProfileController extends Controller
+{
 	
 	/**
 	 * Constants
@@ -23,7 +24,8 @@ class ProfileController extends Controller {
 	/**
 	 * Constructor
 	 */
-	public function __construct () {
+	public function __construct()
+	{
 		
 		$this->middleware("auth");
 		
@@ -32,7 +34,8 @@ class ProfileController extends Controller {
 	/**
 	 * Displays index view
 	 */
-	public function index () {
+	public function index()
+	{
 		
 		$socialTypes					 =	SocialMedia::getTypes();
 		$skillCategories				 =	Skill::getCategories();
@@ -51,10 +54,12 @@ class ProfileController extends Controller {
 	
 	/**
 	 * Updates profile values
+	 * 
 	 * @param Illuminate\Http\Request $request
 	 * @param String $form
 	 */
-	public function update (Request $request, $form) {
+	public function update(Request $request, $form)
+	{
 		
 		switch ($form) {
 			
@@ -105,9 +110,11 @@ class ProfileController extends Controller {
 	
 	/**
 	 * Processes social media fields
+	 * 
 	 * @param Illuminate\Http\Request $request
 	 */
-	private function updateSocialMediaFields ($request) {
+	private function updateSocialMediaFields($request)
+	{
 		
 		$ids							 =	$request->ids ?: [];
 		$urls							 =	$request->urls;
@@ -140,9 +147,11 @@ class ProfileController extends Controller {
 	
 	/**
 	 * Processes about me
+	 * 
 	 * @param Illuminate\Http\Request $request
 	 */
-	private function updateAboutMe ($request) {
+	private function updateAboutMe($request)
+	{
 		
 		AboutMe::saveAboutMe($request);
 		
@@ -150,9 +159,11 @@ class ProfileController extends Controller {
 	
 	/**
 	 * Processes email fields
+	 * 
 	 * @param Illuminate\Http\Request $request
 	 */
-	private function updateEmails ($request) {
+	private function updateEmails($request)
+	{
 		
 		$ids							 =	$request->ids ?: [];
 		$titles							 =	$request->titles;
@@ -186,9 +197,11 @@ class ProfileController extends Controller {
 	
 	/**
 	 * Processes phone fields
+	 * 
 	 * @param Illuminate\Http\Request $request
 	 */
-	private function updatePhones ($request) {
+	private function updatePhones($request)
+	{
 		
 		$ids							 =	$request->ids ?: [];
 		$titles							 =	$request->titles;
@@ -222,9 +235,11 @@ class ProfileController extends Controller {
 	
 	/**
 	 * Processes address fields
+	 * 
 	 * @param Illuminate\Http\Request $request
 	 */
-	private function updateAddresses ($request) {
+	private function updateAddresses($request)
+	{
 		
 		$ids							 =	$request->ids ?: [];
 		$titles							 =	$request->titles;
@@ -266,9 +281,11 @@ class ProfileController extends Controller {
 	
 	/**
 	 * Processes skill fields
+	 * 
 	 * @param Illuminate\Http\Request $request
 	 */
-	private function updateSkills ($request) {
+	private function updateSkills($request)
+	{
 		
 		$ids							 =	$request->ids ?: [];
 		$titles							 =	$request->titles;

@@ -60,6 +60,7 @@ class Education extends AbstractModel
 	
 	/**
 	 * Returns Degree types
+	 * 
 	 * @return array $degrees[]
 	 */
 	public static function getDegreeTypes()
@@ -76,6 +77,7 @@ class Education extends AbstractModel
 	
 	/**
 	 * Returns Degree acronyms
+	 * 
 	 * @return array $acronyms[]
 	 */
 	public static function getDegreeAcronyms()
@@ -92,6 +94,7 @@ class Education extends AbstractModel
 	
 	/**
 	 * Updates education
+	 * 
 	 * @param App\Education $education
 	 * @param json $data[]
 	 */
@@ -133,6 +136,7 @@ class Education extends AbstractModel
 	
 	/**
 	 * Removes Education
+	 * 
 	 * @param App\Education $education
 	 */
 	public static function removeEducation(Education $education)
@@ -160,9 +164,11 @@ class Education extends AbstractModel
 	
 	/**
 	 * Returns degree type
+	 * 
 	 * @return String $degreeType
 	 */
-	public function getDegreeTypeAttribute() {
+	public function getDegreeTypeAttribute()
+	{
 		
 		return self::getDegreeTypes()[$this->degree_type_id] ?? "";
 		
@@ -170,9 +176,11 @@ class Education extends AbstractModel
 	
 	/**
 	 * Returns degree acronym
+	 * 
 	 * @return String $degreeAcronym
 	 */
-	public function getDegreeAcronymAttribute() {
+	public function getDegreeAcronymAttribute()
+	{
 		
 		return self::getDegreeAcronyms()[$this->degree_type_id] ?? "";
 		

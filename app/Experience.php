@@ -55,6 +55,7 @@ class Experience extends AbstractModel
 	
 	/**
 	 * Returns Experience types
+	 * 
 	 * @return array $types[]
 	 */
 	public static function getTypes()
@@ -70,6 +71,7 @@ class Experience extends AbstractModel
 	
 	/**
 	 * Updates experience
+	 * 
 	 * @param App\Experience $experience
 	 * @param json $data[]
 	 */
@@ -131,6 +133,7 @@ class Experience extends AbstractModel
 	
 	/**
 	 * Removes Experience
+	 * 
 	 * @param App\Experience $experience
 	 */
 	public static function removeExperience(Experience $experience)
@@ -142,6 +145,7 @@ class Experience extends AbstractModel
 	
 	/**
 	 * Returns current ids associated to Experience model
+	 * 
 	 * @return array $ids
 	 */
 	public static function getCurrentIDs()
@@ -157,9 +161,11 @@ class Experience extends AbstractModel
 	
 	/**
 	 * Returns job type
+	 * 
 	 * @return String $jobType
 	 */
-	public function getJobTypeAttribute() {
+	public function getJobTypeAttribute()
+	{
 		
 		return self::getTypes()[$this->job_type_id] ?? "";
 		

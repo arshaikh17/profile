@@ -5,10 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\AbstractModel;
 
-class Email extends AbstractModel {
+class Email extends AbstractModel
+{
 	
-	
-	//Fillable columns
+	/**
+	 * Fillable columns
+	 */
 	protected $fillable					 =	[
 		"title",
 		"email",
@@ -17,9 +19,11 @@ class Email extends AbstractModel {
 	
 	/**
 	 * Updates emails
+	 * 
 	 * @param json $data[]
 	 */
-	public static function saveEmail ($data) {
+	public static function saveEmail($data)
+	{
 		
 		Email::updateOrCreate([
 			"id"						 =>	$data->id
@@ -33,9 +37,11 @@ class Email extends AbstractModel {
 	
 	/**
 	 * Removes Email
+	 * 
 	 * @param App\Email $email
 	 */
-	public static function removeEmail (Email $email) {
+	public static function removeEmail(Email $email)
+	{
 		
 		$email->delete();
 		
@@ -46,7 +52,8 @@ class Email extends AbstractModel {
 	 * 
 	 * @return array $ids
 	 */
-	public static function getCurrentIDs() {
+	public static function getCurrentIDs()
+	{
 		
 		return parent::getModelIDs(Email::all());
 		
@@ -54,9 +61,11 @@ class Email extends AbstractModel {
 	
 	/**
 	 * Returns primary email
+	 * 
 	 * @return App\Email $email
 	 */
-	public static function getPrimaryEmail() {
+	public static function getPrimaryEmail()
+	{
 		
 		return Email::where("is_primary", "=", 1)
 				->first()

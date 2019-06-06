@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\AbstractModel;
 
-class Skill extends AbstractModel {
+class Skill extends AbstractModel
+{
 	
 	/**
 	 * Fillable columns
@@ -45,7 +46,8 @@ class Skill extends AbstractModel {
 	 * 
 	 * @return array $categories[]
 	 */
-	public static function getCategories() {
+	public static function getCategories()
+	{
 		
 		return [
 			self::CATEGORY_MAJOR							 =>	"Major",
@@ -62,7 +64,8 @@ class Skill extends AbstractModel {
 	 * 
 	 * @return array $levels[]
 	 */
-	public static function getLevels() {
+	public static function getLevels()
+	{
 		
 		return [
 			self::LEVEL_BEGINNER		 =>	"Beginner",
@@ -78,7 +81,8 @@ class Skill extends AbstractModel {
 	 * 
 	 * @param json $data[]
 	 */
-	public static function saveSkill($data) {
+	public static function saveSkill($data)
+	{
 		
 		Skill::updateOrCreate([
 			"id"						 =>	$data->id
@@ -96,7 +100,8 @@ class Skill extends AbstractModel {
 	 * 
 	 * @param App\Skill $skill
 	 */
-	public static function removeSkill(Skill $skill) {
+	public static function removeSkill(Skill $skill)
+	{
 		
 		$skill->delete();
 		
@@ -107,7 +112,8 @@ class Skill extends AbstractModel {
 	 * 
 	 * @return array $ids
 	 */
-	public static function getCurrentIDs() {
+	public static function getCurrentIDs()
+	{
 		
 		return parent::getModelIDs(Skill::all());
 		
@@ -142,7 +148,8 @@ class Skill extends AbstractModel {
 	 * 
 	 * @return String $experience
 	 */
-	public function getExperienceNameAttribute() {
+	public function getExperienceNameAttribute()
+	{
 		
 		return self::getLevels()[$this->experience_level_id] ?? "";
 		
@@ -153,7 +160,8 @@ class Skill extends AbstractModel {
 	 * 
 	 * @return String $category
 	 */
-	public function getCategoryNameAttribute() {
+	public function getCategoryNameAttribute()
+	{
 		
 		return self::getCategories()[$this->skill_category_id] ?? "";
 		

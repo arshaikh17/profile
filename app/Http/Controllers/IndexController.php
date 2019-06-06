@@ -19,12 +19,14 @@ use App\SocialMedia;
 
 use Response;
 
-class IndexController extends Controller {
+class IndexController extends Controller
+{
 	
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 		
 		
 		
@@ -33,7 +35,8 @@ class IndexController extends Controller {
 	/**
 	 * Returns index view
 	 */
-	public function index() {
+	public function index()
+	{
 		
 		$cv								 =	CV::getActiveCV();
 		$socialMedias					 =	SocialMedia::all();
@@ -67,7 +70,8 @@ class IndexController extends Controller {
 	 * @param App\CV $cv
 	 * @return Response $response
 	 */
-	public function downloadCV(CV $cv) {
+	public function downloadCV(CV $cv)
+	{
 		
 		return Response::download(public_path() . CV::$path_cv . $cv->cv);
 		
@@ -75,10 +79,12 @@ class IndexController extends Controller {
 	
 	/**
 	 * Returns App main data and configuration values
+	 * 
 	 * @param Illuminate\Http\Request $request
 	 * @return Array $data
 	 */
-	public function appData (Request $request) {
+	public function appData(Request $request)
+	{
 		
 		$education						 =	[
 			[

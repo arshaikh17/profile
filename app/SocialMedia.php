@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\AbstractModel;
 
-class SocialMedia extends Model {
+class SocialMedia extends Model
+{
 	
 	/**
 	 * Table name
@@ -44,7 +45,8 @@ class SocialMedia extends Model {
 	 * 
 	 * @return array $types[]
 	 */
-	public static function getTypes() {
+	public static function getTypes()
+	{
 		
 		return [
 			self::TYPE_FACEBOOK			 =>	"Facebook",
@@ -62,7 +64,8 @@ class SocialMedia extends Model {
 	 * 
 	 * @param json $data[]
 	 */
-	public static function saveSocialMedia($data) {
+	public static function saveSocialMedia($data)
+	{
 		
 		SocialMedia::updateOrCreate([
 			"id"						 =>	$data->id
@@ -79,7 +82,8 @@ class SocialMedia extends Model {
 	 * 
 	 * @param App\SocialMedia $socialMedia
 	 */
-	public static function removeSocialMedia(SocialMedia $socialMedia) {
+	public static function removeSocialMedia(SocialMedia $socialMedia)
+	{
 		
 		$socialMedia->delete();
 		
@@ -87,9 +91,11 @@ class SocialMedia extends Model {
 	
 	/**
 	 * Returns current ids associated to SocialMedia model
+	 * 
 	 * @return array $ids
 	 */
-	public static function getCurrentIDs() {
+	public static function getCurrentIDs()
+	{
 		
 		return parent::getModelIDs(SocialMedia::all());
 		
@@ -104,7 +110,8 @@ class SocialMedia extends Model {
 	 * 
 	 * @return String $type
 	 */
-	public function getTypeAttribute() {
+	public function getTypeAttribute()
+	{
 		
 		return self::getTypes()[$this->type_id] ?? "";
 		

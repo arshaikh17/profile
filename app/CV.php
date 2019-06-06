@@ -31,6 +31,7 @@ class CV extends Model
 	
 	/**
 	 * Updates cv
+	 * 
 	 * @param json $data[]
 	 */
 	public static function saveCV($data)
@@ -60,6 +61,7 @@ class CV extends Model
 	
 	/**
 	 * Removes CV
+	 * 
 	 * @param App\CV $cv
 	 */
 	public static function removeCV(CV $cv)
