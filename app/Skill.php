@@ -4,9 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Skill extends Model {
+use App\AbstractModel;
+
+class Skill extends AbstractModel {
 	
-	//Fillable columns
+	/**
+	 * Fillable columns
+	 */
 	protected $fillable					 =	[
 		"title",
 		"experience",
@@ -38,9 +42,10 @@ class Skill extends Model {
 	
 	/**
 	 * Returns Skill categories
+	 * 
 	 * @return array $categories[]
 	 */
-	public static function getCategories () {
+	public static function getCategories() {
 		
 		return [
 			self::CATEGORY_MAJOR							 =>	"Major",
@@ -54,9 +59,10 @@ class Skill extends Model {
 	
 	/**
 	 * Returns Skill experience level
+	 * 
 	 * @return array $levels[]
 	 */
-	public static function getLevels () {
+	public static function getLevels() {
 		
 		return [
 			self::LEVEL_BEGINNER		 =>	"Beginner",
@@ -69,9 +75,10 @@ class Skill extends Model {
 	
 	/**
 	 * Updates skill
+	 * 
 	 * @param json $data[]
 	 */
-	public static function saveSkill ($data) {
+	public static function saveSkill($data) {
 		
 		Skill::updateOrCreate([
 			"id"						 =>	$data->id
@@ -86,29 +93,23 @@ class Skill extends Model {
 	
 	/**
 	 * Removes Skill
+	 * 
 	 * @param App\Skill $skill
 	 */
-	public static function removeSkill (Skill $skill) {
+	public static function removeSkill(Skill $skill) {
 		
 		$skill->delete();
 		
 	}
 	
 	/**
-	 * Returns current skill ids
+	 * Returns current ids associated to Skill model
+	 * 
 	 * @return array $ids
 	 */
-	public static function getCurrentIDs () {
+	public static function getCurrentIDs() {
 		
-		$ids							 =	[];
-		
-		foreach (Skill::all() as $skill) {
-			
-			$ids[]						 =	$skill->id;
-			
-		}
-		
-		return $ids;
+		return parent::getModelIDs(Skill::all());
 		
 	}
 	
@@ -138,9 +139,10 @@ class Skill extends Model {
 	
 	/**
 	 * Returns experience
+	 * 
 	 * @return String $experience
 	 */
-	public function getExperienceNameAttribute () {
+	public function getExperienceNameAttribute() {
 		
 		return self::getLevels()[$this->experience_level_id] ?? "";
 		
@@ -148,9 +150,10 @@ class Skill extends Model {
 	
 	/**
 	 * Returns category
+	 * 
 	 * @return String $category
 	 */
-	public function getCategoryNameAttribute () {
+	public function getCategoryNameAttribute() {
 		
 		return self::getCategories()[$this->skill_category_id] ?? "";
 		
