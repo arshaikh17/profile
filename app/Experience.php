@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\AbstractModel;
 use App\SkillTag;
 
-class Experience extends Model
+class Experience extends AbstractModel
 {
 	
 	/**
@@ -140,21 +141,13 @@ class Experience extends Model
 	}
 	
 	/**
-	 * Returns current Experience ids
+	 * Returns current ids associated to Experience model
 	 * @return array $ids
 	 */
 	public static function getCurrentIDs()
 	{
 		
-		$ids							 =	[];
-		
-		foreach (Experience::all() as $experience) {
-			
-			$ids[]						 =	$experience->id;
-			
-		}
-		
-		return $ids;
+		return parent::(Experience::all());
 		
 	}
 	
@@ -166,7 +159,7 @@ class Experience extends Model
 	 * Returns job type
 	 * @return String $jobType
 	 */
-	public function getJobTypeAttribute () {
+	public function getJobTypeAttribute() {
 		
 		return self::getTypes()[$this->job_type_id] ?? "";
 		
@@ -178,6 +171,7 @@ class Experience extends Model
 	
 	/**
 	 * Returns skills associated to a experience
+	 * 
 	 * @return Array $skilltags[]
 	 */
 	public function skill_tags()
