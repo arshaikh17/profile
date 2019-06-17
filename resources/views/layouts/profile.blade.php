@@ -215,7 +215,7 @@
 					<div class="row">
 						<div class="col-md-3 text-center">
 							<img
-								src="{{ asset('uploads/defaults/no_image.png') }}"
+								src="{{ asset('defaults/no_image.png') }}"
 								class="img-fluid img-circle"
 							/>
 						</div>
