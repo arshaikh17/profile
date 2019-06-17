@@ -1,10 +1,10 @@
 <form
 	method="POST"
-	action="{{ route('admin.profile.updatePost', 'about') }}"
+	action="{{ route('admin.profile.detail.store') }}"
 	enctype="multipart/form-data"
 >
 	<div class="card-body">
-		<div id="aboutMeFields">
+		<div id="detailsFields">
 			{{ csrf_field() }}
 			
 			<div class="row form-group">
@@ -13,8 +13,8 @@
 					<input
 						type="text"
 						class="form-control"
-						name="first_name"
-						value="{{ isset($about) ? $about->first_name : '' }}"
+						name="details[first_name]"
+						value="{{ $details->first_name ?? '' }}"
 						required
 					/>
 				</div>
@@ -23,8 +23,8 @@
 					<input
 						type="text"
 						class="form-control"
-						name="surname"
-						value="{{ isset($about) ? $about->surname : '' }}"
+						name="details[surname]"
+						value="{{ $details->surname ?? '' }}"
 						required
 					/>
 				</div>
@@ -34,8 +34,8 @@
 						<input
 							type="text"
 							class="form-control"
-							name="work_title"
-							value="{{ isset($about) ? $about->work_title : '' }}"
+							name="details[work_title]"
+							value="{{ $details->work_title ?? '' }}"
 							required
 						/>
 					</div>
@@ -45,9 +45,9 @@
 						<label>Objective</label>
 						<textarea
 							class="form-control"
-							name="objective"
+							name="details[objective]"
 							required
-						>{{ isset($about) ? $about->objective : '' }}</textarea>
+						>{{ $details->objective ?? '' }}</textarea>
 					</div>
 				</div>
 				<div class="col-12">
@@ -56,20 +56,21 @@
 						<textarea
 							class="form-control"
 							placeholder="Briefly describe yourself"
-							name="brief"
+							name="details[brief]"
 							rows="6"
 							required
-						>{{ isset($about) ? $about->brief : '' }}</textarea>
+						>{{ $details->brief ?? "" }}</textarea>
 					</div>
 				</div>
 				<div class="col-12">
 					<div class="form-group">
 						<label>Responsibilities</label>
 						<div id="responsibilitiesRows">
-							@forelse(($about->responsibilities ?? []) as $responsibilityKey => $responsibility)
+							@forelse(json_decode($details->responsibilities ?? "{}") as $responsibilityKey => $responsibility)
 								@include("admin.profile.partials.form.responsibility-row", [
 									"key"					 =>	$responsibilityKey,
-									"responsibility"		 =>	$responsibility
+									"responsibility"		 =>	$responsibility,
+									"inputName"				 =>	"details[responsibilities][]"
 								])
 							@empty
 							@endforelse
@@ -82,22 +83,6 @@
 						>
 							Add
 						</a>
-					</div>
-				</div>
-				<div class="col-12 mt-5">
-					<div class="form-group">
-						<img
-							src="{{ $about->profile_picture ? asset('uploads/profile/' . $about->profile_picture) : asset('uploads/defaults/no_image.png') }}"
-							class="img-responsive"
-							width="250"
-						/>
-					</div>
-					<div class="form-group">
-						<label>Upload Profile Picture</label>
-						<input
-							type="file"
-							name="profile_picture"
-						/>
 					</div>
 				</div>
 			</div>
@@ -114,7 +99,8 @@
 <div class="invisible">
 	<div id="responsibilitiesRowTemplate">
 		@include("admin.profile.partials.form.responsibility-row", [
-			"key"						 =>	"__INDEX__"
+			"key"						 =>	"__INDEX__",
+			"inputName"					 =>	"details[responsibilities][]"
 		])
 	</div>
 </div>

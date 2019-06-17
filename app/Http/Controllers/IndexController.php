@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\AboutMe;
+use App\Detail;
 use App\Address;
 use App\CV;
 use App\Education;
@@ -40,7 +40,7 @@ class IndexController extends Controller
 		
 		$cv								 =	CV::getActiveCV();
 		$socialMedias					 =	SocialMedia::all();
-		$about							 =	AboutMe::getAboutMe();
+		$details						 =	Detail::all();
 		$email							 =	Email::getPrimaryEmail();
 		$phone							 =	Phone::getPrimaryPhone();
 		$address						 =	Address::getPrimaryAddress();
@@ -52,7 +52,7 @@ class IndexController extends Controller
 		return view("index.index", compact(
 			"cv",
 			"socialMedias",
-			"about",
+			"details",
 			"email",
 			"phone",
 			"address",

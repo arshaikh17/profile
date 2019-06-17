@@ -59,6 +59,20 @@ Route::group([
 		Route::post("/{form}/update", "Admin\ProfileController@update")->name("updatePost");
 		
 		/**
+		 * Admin\Profile\DetailController Routes
+		 */
+		Route::group([
+			"prefix"					 =>	"/detail",
+			"as"						 =>	"detail."
+		], function()
+		{
+			
+			Route::get("/", "Admin\Profile\DetailController@index")->name("index");
+			Route::post("/", "Admin\Profile\DetailController@store")->name("store");
+			
+		});
+		
+		/**
 		 * Admin\Profile\ExperienceController Routes
 		 */
 		Route::group([

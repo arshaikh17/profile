@@ -6,12 +6,12 @@
 		<div class="col-sm-4 col-md-3">
 			<ul class="nav nav-tabs flex-column">
 				<li class="nav-item">
-					<a class="nav-link active" data-toggle="tab" href="#about">About Me</a>
-					<a class="nav-link" data-toggle="tab" href="#social">My Socials</a>
+					<a class="nav-link active" data-toggle="tab" href="#social">My Socials</a>
 					<a class="nav-link" data-toggle="tab" href="#email">My Emails</a>
 					<a class="nav-link" data-toggle="tab" href="#phone">My Phones</a>
 					<a class="nav-link" data-toggle="tab" href="#address">My Addresses</a>
 					<a class="nav-link" data-toggle="tab" href="#skill">My Skills</a>
+					<a class="nav-link" href="{{ route('admin.profile.detail.index') }}">My Details</a>
 					<a class="nav-link" href="{{ route('admin.profile.experience.index') }}">My Experiences</a>
 					<a class="nav-link" href="{{ route('admin.profile.education.index') }}">My Educations</a>
 					<a class="nav-link" href="{{ route('admin.profile.project.index') }}">My Projects</a>
@@ -20,17 +20,7 @@
 			</ul>
 		</div>
 		<div class="col-sm-8 col-md-9 tab-content">
-			<div class="card tab-pane active" id="about">
-				<div class="card-header" data-toggle="collapse" href="#aboutMe">
-					About Me
-				</div>
-				<div id="aboutMe" class="collapse show">
-					@include("admin.profile.partials.form.about-me-form", [
-						"about"			 =>	$about
-					])
-				</div>
-			</div>
-			<div class="card tab-pane" id="social">
+			<div class="card tab-pane active" id="social">
 				<div class="card-header" data-toggle="collapse" href="#socialMedias">
 					Social Medias
 				</div>

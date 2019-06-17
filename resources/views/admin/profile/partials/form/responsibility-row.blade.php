@@ -3,7 +3,7 @@
 		<div class="col-11">
 			<input
 				type="text"
-				name="responsibilities[]"
+				name="{{ $inputName ?? 'responsibilities[]' }}"
 				value="{{ isset($responsibility) ? $responsibility : '' }}"
 				class="form-control"
 				placeholder="Briefly write about your responsibility"

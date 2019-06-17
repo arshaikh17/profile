@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\AboutMe;
+use App\Detail;
 use App\SocialMedia;
 use App\Email;
 use App\Phone;
@@ -41,14 +41,14 @@ class ProfileController extends Controller
 		$skillCategories				 =	Skill::getCategories();
 		$skillLevels					 =	Skill::getLevels();
 		
-		$about							 =	AboutMe::getAboutMe();
+		$details						 =	Detail::all();
 		$socialMedias					 =	SocialMedia::all();
 		$emails							 =	Email::all();
 		$phones							 =	Phone::all();
 		$addresses						 =	Address::all();
 		$skills							 =	Skill::all();
 		
-		return view(self::VIEW_PATH . "index", compact("socialTypes", "socialMedias", "about", "emails", "phones", "addresses", "skills", "skillCategories", "skillLevels"));
+		return view(self::VIEW_PATH . "index", compact("socialTypes", "socialMedias", "emails", "phones", "addresses", "skills", "skillCategories", "skillLevels"));
 		
 	}
 	
@@ -69,12 +69,6 @@ class ProfileController extends Controller
 				
 				break;
 			
-			case "about":
-				
-				$this->updateAboutMe($request);
-				
-				break;
-				
 			case "email":
 				
 				$this->updateEmails($request);
@@ -142,18 +136,6 @@ class ProfileController extends Controller
 			SocialMedia::removeSocialMedia(SocialMedia::find($id));
 			
 		}
-		
-	}
-	
-	/**
-	 * Processes about me
-	 * 
-	 * @param Illuminate\Http\Request $request
-	 */
-	private function updateAboutMe($request)
-	{
-		
-		AboutMe::saveAboutMe($request);
 		
 	}
 	

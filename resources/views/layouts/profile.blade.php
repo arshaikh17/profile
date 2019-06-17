@@ -44,10 +44,10 @@
 				<div class="row">
 					<div class="col-md-7 offset-md-3">
 						<div class="heading">
-							<h1 class="name">{{ $about->first_name . " " . $about->surname }}</h1>
-							<h3 class="title">{{ $about->work_title }}</h3>
+							<h1 class="name">{{ $details->first_name . " " . $details->surname }}</h1>
+							<h3 class="title">{{ $details->work_title }}</h3>
 							<p class="objective">
-								{{ $about->objective }}
+								{{ $details->objective }}
 							</p>
 						</div>
 					</div>
@@ -215,20 +215,20 @@
 					<div class="row">
 						<div class="col-md-3 text-center">
 							<img
-								src="{{ asset('uploads/profile/' . $about->profile_picture) }}"
+								src="{{ asset('uploads/defaults/no_image.png') }}"
 								class="img-fluid img-circle"
 							/>
 						</div>
 						<div class="col-md-9">
 							<div class="contact-description">
 								<p class="contact-introduction">
-									{{ $about->brief }}
+									{{ $details->brief }}
 								</p>
 								<p>
 									<b>I can help with the following:</b>
 								</p>
 								<ul class="contact-keys">
-									@forelse ($about->responsibilities as $responsibility)
+									@forelse (json_decode($details->responsibilities ?? "{}") as $responsibility)
 									<li>
 										<i class="fas fa-check"></i>
 										{{ $responsibility }}
