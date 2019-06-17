@@ -151,7 +151,7 @@ class Experience extends AbstractModel
 	public static function getCurrentIDs()
 	{
 		
-		return parent::(Experience::all());
+		return parent::getCurrentIDs(Experience::all());
 		
 	}
 	
