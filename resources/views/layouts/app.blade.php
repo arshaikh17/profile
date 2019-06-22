@@ -15,6 +15,37 @@
 	<!-- Styles -->
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+	<style>
+	.character {
+		height: 400px;
+		margin-bottom: 20px;
+		border: 2px solid  	#E8E8E8;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+	.character > .image {
+		height: 200px;
+	}
+	.character > .image > img {
+		height:100%;
+		width:100%;
+	}
+	.character > .details {
+		flex-grow: 1;
+		padding: 20px 20px 20px 20px;
+	}
+	.character > .details > .name {
+		font-size: 25px;
+	}
+	.character > .action {
+		text-align: center;
+		padding-bottom: 10px;
+	}
+	.character > .action .btn {
+		width: 40%;
+	}
+</style>
 </head>
 <body>
 	<div id="app">
@@ -66,7 +97,7 @@
 				</div>
 			</div>
 		</nav>
-
+		
 		<main class="py-4">
 			@if(session("status"))
 				<div class="container">
