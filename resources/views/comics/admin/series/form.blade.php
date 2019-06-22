@@ -33,7 +33,28 @@
 						/>
 					</label>
 				</div>
+				
+				<h4>Attach Characters</h4>
 				<div class="form-group">
+					<label>Select Characters</label>
+					<select
+						class="form-control"
+						name="character_id"
+					>
+						<option selected>Characters</option>
+						@forelse ($characters as $character)
+							<option
+								value="{{ $character->id }}"
+								@if ($character->id == $series->character_id) selected @endif
+							>
+								{{ $character->name }}
+							</option>
+						@empty
+							<option selected disabled>No characters in database</option>
+						@endforelse
+					</select>
+				</div>
+				<div class="form-group mt-2">
 					<input
 						type="submit"
 						class="btn btn-sm btn-primary w-100"

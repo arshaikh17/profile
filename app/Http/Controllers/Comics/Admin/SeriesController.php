@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Comics\Series;
+use App\Models\Comics\Character;
 
 class SeriesController extends Controller
 {
@@ -67,7 +68,7 @@ class SeriesController extends Controller
 	public function store(Request $request)
 	{
 		
-		Series::saveSeries($request);
+		Series::saveSeries(new Series, $request);
 		
 		return redirect()->back()->with("status", "Record added.");
 		
@@ -82,7 +83,7 @@ class SeriesController extends Controller
 	public function update(Series $series, Request $request)
 	{
 		
-		Series::saveSeries($request);
+		Series::saveSeries($series, $request);
 		
 		return redirect()->back()->with("status", "Record updated.");
 		
@@ -96,7 +97,9 @@ class SeriesController extends Controller
 	private function getForm(Series $series)
 	{
 		
-		return view(self::VIEW_PATH . "form", compact("series"));
+		$characters						 =	Character::all();
+		
+		return view(self::VIEW_PATH . "form", compact("series", "characters"));
 		
 	}
 	

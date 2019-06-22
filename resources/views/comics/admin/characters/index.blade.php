@@ -39,23 +39,21 @@
 									</div>
 								</div>
 								<div class="action">
-									
-										<a
-											href="{{ route('comics.admin.characters.edit', $character) }}"
-											title="{{ $character->name }}"
-											class="btn btn-sm btn-success"
-										>
-											Edit
-										</a>
-									
-										<a
-											href="{{ route('comics.admin.characters.show', $character) }}"
-											title="{{ $character->name }}"
-											class="btn btn-sm btn-primary"
-										>
-											Visit
-										</a>
-									
+									<a
+										href="{{ route('comics.admin.characters.edit', $character) }}"
+										title="{{ $character->name }}"
+										class="btn btn-sm btn-success"
+									>
+										Edit
+									</a>
+								
+									<a
+										href="{{ route('comics.admin.characters.show', $character) }}"
+										title="{{ $character->name }}"
+										class="btn btn-sm btn-primary"
+									>
+										Visit
+									</a>
 								</div>
 							</div>
 						</div>

@@ -5,6 +5,7 @@ namespace App\Models\Comics;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Traits\ModelTrait;
+use App\Models\Comics\Character;
 
 class Series extends Model
 {
@@ -27,17 +28,20 @@ class Series extends Model
 	/**
 	 * Saves record
 	 * 
+	 * @param App\Models\Comics\Series $series
 	 * @param json $data[]
 	 */
-	public static function saveSeries($data)
+	public static function saveSeries(Series $series, $data)
 	{
 		
-		Series::updateOrCreate([
-			"id"						 =>	$data->id
-		], [
+		$series->fill([
 			"title"						 =>	$data->title,
 			"is_completed"				 =>	$data->is_completed ?: 0
 		]);
+		
+		if ($data->character_id) $series->character()->associate(Character::find($data->character_id));
+		
+		$series->save();
 		
 	}
 	
@@ -62,6 +66,22 @@ class Series extends Model
 	{
 		
 		return (new self)->getModelIDs(Series::all());
+		
+	}
+	
+	/* =====================================================
+	 * 						RELATIONS						
+	 * ===================================================*/
+	
+	/**
+	 * Returns character associated with series
+	 * 
+	 * @return App\Models\Comics\Character $character
+	 */
+	public function character()
+	{
+		
+		return $this->belongsTo(Character::class, "character_id", "id");
 		
 	}
 	

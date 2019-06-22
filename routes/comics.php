@@ -40,6 +40,7 @@ Route::group([
 		{
 			
 			Route::get("/", "Comics\Admin\SeriesController@index")->name("index");
+			Route::get("/show/{character}", "Comics\Admin\SeriesController@show")->name("show");
 			Route::get("/create", "Comics\Admin\SeriesController@create")->name("create");
 			Route::get("/{series}/edit", "Comics\Admin\SeriesController@edit")->name("edit");
 			Route::post("/{series}/edit", "Comics\Admin\SeriesController@update")->name("update");
