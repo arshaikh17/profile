@@ -67,6 +67,25 @@ Route::group([
 			
 		});
 		
+		/**
+		 * /Comics/Admin/ArcController Routes
+		 * 
+		 */
+		Route::group([
+			"prefix"					 =>	"/arcs",
+			"as"						 =>	"arcs."
+		], function()
+		{
+			
+			Route::get("/", "Comics\Admin\ArcController@index")->name("index");
+			Route::get("/show/{arc}", "Comics\Admin\ArcController@show")->name("show");
+			Route::get("/create", "Comics\Admin\ArcController@create")->name("create");
+			Route::get("/{arc}/edit", "Comics\Admin\ArcController@edit")->name("edit");
+			Route::post("/{arc}/edit", "Comics\Admin\ArcController@update")->name("update");
+			Route::post("/", "Comics\Admin\ArcController@store")->name("store");
+			
+		});
+		
 	});
 	
 });
