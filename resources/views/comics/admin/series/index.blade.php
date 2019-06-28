@@ -22,7 +22,7 @@
 									<img
 										src="{{ $singleSeries->character && $singleSeries->character->cover && file_exists('uploads/comics/characters/' . $singleSeries->character->cover) ? asset('uploads/comics/characters/' . $singleSeries->character->cover) : asset('defaults/no_image.png') }}"
 										class="img img-fluid"
-										title="{{ $singleSeries->character->name }}"
+										title="{{ $singleSeries->name }}"
 									/>
 								</div>
 								<div class="details">
