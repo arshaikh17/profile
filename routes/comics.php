@@ -86,6 +86,25 @@ Route::group([
 			
 		});
 		
+		/**
+		 * /Comics/Admin/IssueController Routes
+		 * 
+		 */
+		Route::group([
+			"prefix"					 =>	"/issues",
+			"as"						 =>	"issues."
+		], function()
+		{
+			
+			Route::get("/", "Comics\Admin\IssueController@index")->name("index");
+			Route::get("/show/{issues}", "Comics\Admin\IssueController@show")->name("show");
+			Route::get("/create/{selectedArc?}", "Comics\Admin\IssueController@create")->name("create");
+			Route::get("/{issue}/edit", "Comics\Admin\IssueController@edit")->name("edit");
+			Route::post("/{issue}/edit", "Comics\Admin\IssueController@update")->name("update");
+			Route::post("/", "Comics\Admin\IssueController@store")->name("store");
+			
+		});
+		
 	});
 	
 });

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Traits\ModelTrait;
 use App\Models\Comics\Series;
+use App\Models\Comics\Arc;
 
 class Arc extends Model
 {
@@ -104,6 +105,18 @@ class Arc extends Model
 	{
 		
 		return $this->belongsTo(Series::class, "series_id", "id");
+		
+	}
+	
+	/**
+	 * Returns issues associated with arc
+	 * 
+	 * @return App\Models\Comics\Issue $issues[]
+	 */
+	public function issues()
+	{
+		
+		return $this->hasMany(Issue::class, "arc_id", "id");
 		
 	}
 	

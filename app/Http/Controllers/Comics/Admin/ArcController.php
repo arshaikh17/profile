@@ -39,6 +39,18 @@ class ArcController extends Controller
 	}
 	
 	/**
+	 * Displays show view
+	 * 
+	 * @param App\Models\Comics\Arc $arc
+	 */
+	public function show(Arc $arc)
+	{
+		
+		return view(self::VIEW_PATH . "show", compact("arc"));
+		
+	}
+	
+	/**
 	 * Displays create view
 	 */
 	public function create()

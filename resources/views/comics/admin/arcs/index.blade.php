@@ -28,14 +28,13 @@
 								<div class="details">
 									<p class="name">{{ $arc->title }}</p>
 									<div class="series">
-										@forelse (($arc->series ?? []) as $series)
+										@if ($arc->series)
 											<a
-												href="{{ route('comics.admin.arcs.edit', $arc) }}"
+												href="{{ route('comics.admin.series.edit', $arc->series) }}"
 											>
-												<span class="badge badge-primary p-2 mt-1">{{ $arc->title }}</span>
+												<span class="badge badge-primary p-2 mt-1">{{ $arc->series->title }}</span>
 											</a>
-										@empty
-										@endforelse
+										@endif
 									</div>
 								</div>
 								<div class="action">
@@ -52,7 +51,7 @@
 										title="{{ $arc->title }}"
 										class="btn btn-sm btn-primary"
 									>
-										Visit
+										Issues
 									</a>
 								</div>
 							</div>

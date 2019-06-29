@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Traits\ModelTrait;
 use App\Models\Comics\Character;
+use App\Models\Comics\Arc;
 
 class Series extends Model
 {
@@ -82,6 +83,18 @@ class Series extends Model
 	{
 		
 		return $this->belongsTo(Character::class, "character_id", "id");
+		
+	}
+	
+	/**
+	 * Returns arcs under the series
+	 * 
+	 * @return App\Models\Comics\Arc $arcs
+	 */
+	public function arcs()
+	{
+		
+		return $this->hasMany(Arc::class, "series_id", "id");
 		
 	}
 	
