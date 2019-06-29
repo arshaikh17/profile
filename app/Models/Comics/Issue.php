@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Traits\ModelTrait;
 use App\Models\Comics\Arc;
+use App\Models\Comics\Series;
 use App\Models\Comics\Author;
 
 class Issue extends Model
@@ -70,6 +71,7 @@ class Issue extends Model
 			"cover"						 =>	$cover
 		]);
 		
+		if ($data->series_id) $issue->series()->associate($data->series_id);
 		if ($data->arc_id) $issue->arc()->associate(Arc::find($data->arc_id));
 		
 		$issue->save();
@@ -132,6 +134,18 @@ class Issue extends Model
 	{
 		
 		return $this->belongsTo(Arc::class, "arc_id", "id");
+		
+	}
+	
+	/**
+	 * Returns series associated with issue
+	 * 
+	 * @return App\Models\Comics\Series $series
+	 */
+	public function series()
+	{
+		
+		return $this->belongsTo(Series::class, "series_id", "id");
 		
 	}
 	

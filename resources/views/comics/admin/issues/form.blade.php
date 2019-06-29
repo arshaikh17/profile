@@ -76,19 +76,39 @@
 				</div>
 				<h3>Attach Series and Arc</h3>
 				<div class="form-group">
+					<label>Select Series</label>
+					<select
+						class="form-control"
+						name="series_id"
+						required
+					>
+						<option selected>No Series</option>
+						@forelse ($series as $singleSeries)
+							<option
+								value="{{ $singleSeries->id }}"
+								@if (!isset($selectedSeries) && $issue->series_id == $singleSeries->id) selected @endif
+								@if (isset($selectedSeries) && $selectedArc->id == $singleSeries->id) selected @endif
+							>
+								{{ $singleSeries->title }}
+							</option>
+						@empty
+						@endforelse
+					</select>
+				</div>
+				<div class="form-group">
 					<label>Select Arc</label>
 					<select
 						class="form-control"
 						name="arc_id"
 						required
 					>
-						<option selected disabled>Select Arc</option>
+						<option selected>No Arc</option>
 						@forelse ($series as $singleSeries)
 							<optgroup label="{{ $singleSeries->title }}">
 								@forelse ($singleSeries->arcs as $arc)
 									<option
 										value="{{ $arc->id }}"
-										@if (!isset($arc) && $issue->arc_id == $arc->id) selected @endif
+										@if (!isset($selectedArc) && $issue->arc_id == $arc->id) selected @endif
 										@if (isset($selectedArc) && $selectedArc->id == $arc->id) selected @endif
 									>
 										{{ $arc->title }}
