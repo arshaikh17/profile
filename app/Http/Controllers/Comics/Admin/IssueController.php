@@ -57,10 +57,10 @@ class IssueController extends Controller
 	 * @param App\Models\Comics\Series $selectedSeries
 	 * @param App\Models\Comics\Arc $selectedArc
 	 */
-	public function createWithSeriesAndArc(Series $selectSeries, Arc $selectedArc = null)
+	public function createWithSeriesAndArc(Series $selectedSeries, Arc $selectedArc = null)
 	{
 		
-		return $this->getForm(new Issue, $selectSeries, $selectedArc);
+		return $this->getForm(new Issue, $selectedSeries, $selectedArc);
 		
 	}
 	
@@ -118,7 +118,7 @@ class IssueController extends Controller
 		$series							 =	Series::all();
 		$authors						 =	Author::all();
 		
-		return view(self::VIEW_PATH . "form", compact("issue", "statuses", "series", "authors", "selectSeries", "selectedArc"));
+		return view(self::VIEW_PATH . "form", compact("issue", "statuses", "series", "authors", "selectedSeries", "selectedArc"));
 		
 	}
 	

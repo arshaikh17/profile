@@ -87,7 +87,7 @@
 							<option
 								value="{{ $singleSeries->id }}"
 								@if (!isset($selectedSeries) && $issue->series_id == $singleSeries->id) selected @endif
-								@if (isset($selectedSeries) && $selectedArc->id == $singleSeries->id) selected @endif
+								@if (isset($selectedSeries) && $selectedSeries->id == $singleSeries->id) selected @endif
 							>
 								{{ $singleSeries->title }}
 							</option>
