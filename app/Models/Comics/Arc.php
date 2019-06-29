@@ -29,8 +29,8 @@ class Arc extends Model
 	/**
 	 * Constants
 	 */
+	CONST STATUS_INCOMPLETE				 =	0;
 	CONST STATUS_COMPLETE				 =	1;
-	CONST STATUS_WISHLIST				 =	2;
 	
 	/**
 	 * Saves record
@@ -85,8 +85,8 @@ class Arc extends Model
 	{
 		
 		return [
+			self::STATUS_INCOMPLETE		 =>	"Incomplete",
 			self::STATUS_COMPLETE		 =>	"Completed",
-			self::STATUS_WISHLIST		 =>	"Wishlist"
 		];
 		
 	}
