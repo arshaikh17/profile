@@ -129,6 +129,7 @@
 						name="author_ids[]"
 						multiple
 						required
+						style="height: 300px;"
 					>
 						<option disabled>Select authors</option>
 						@forelse ($authors as $author)
