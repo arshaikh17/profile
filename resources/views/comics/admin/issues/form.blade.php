@@ -9,7 +9,7 @@
 				@if (isset($selectedArc)) under {{ $selectedArc->title }} Arc @endif
 			</h1>
 		</div>
-		<div class="col-6">
+		<div class="col-12">
 			@if ($issue->cover)
 				<div class="text-center mb-3">
 					<span>
