@@ -43,6 +43,8 @@ class RouteServiceProvider extends ServiceProvider
 		
 		$this->mapComicsRoutes();
 		
+		$this->mapWishlistsRoutes();
+		
 	}
 	
 	/**
@@ -91,6 +93,21 @@ class RouteServiceProvider extends ServiceProvider
 		Route::middleware("web")
 			->namespace($this->namespace)
 			->group(base_path("routes/comics.php"))
+		;
+		
+	}
+	
+	/**
+	 * Define the "wishlists" routes for the application.
+	 *
+	 * @return void
+	 */
+	protected function mapWishlistsRoutes()
+	{
+		
+		Route::middleware("web")
+			->namespace($this->namespace)
+			->group(base_path("routes/wishlists.php"))
 		;
 		
 	}

@@ -121,6 +121,20 @@ class Issue extends Model
 		
 	}
 	
+	/**
+	 * Marks issue as owned
+	 *
+	 * @param App\Models\Comics\Issue $issue
+	 */
+	public static function markOwned(Issue $issue)
+	{
+		
+		$issue->update([
+			"owned_status"				 =>	self::STATUS_OWNED
+		]);
+		
+	}
+	
 	/* =====================================================
 	 * 						RELATIONS						
 	 * ===================================================*/
