@@ -32,7 +32,7 @@ class SeriesController extends Controller
 	public function index()
 	{
 		
-		$series					 =	Series::paginate(1);
+		$series					 =	Series::paginate(10);
 		
 		return view(self::VIEW_PATH . "index", compact("series"));
 		
