@@ -31,6 +31,7 @@
 							class="form-control"
 							value="1"
 							name="is_completed"
+							@if ($series->is_completed) checked @endif
 						/>
 					</label>
 				</div>
@@ -40,7 +41,7 @@
 						type="file"
 						name="cover"
 						class="form-control"
-						@if ($series->id) required @endif
+						@if (!$series->id) required @endif
 					/>
 				</div>
 				<h4>Attach Characters</h4>
