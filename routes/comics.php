@@ -7,9 +7,6 @@
 
 /**
  * All Comics Routes
- * 
- * /Comics
- * 
  */
 Route::group([
 	"prefix"							 =>	"/comics",

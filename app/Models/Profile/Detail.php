@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Models\Profile;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Detail extends Model
+{
+	
+	/**
+	 * Table name
+	 */
+	//protected $table					 =	"about_me";
+	
+	/**
+	 * Fillable columns
+	 */
+	protected $fillable					 =	[
+		"key",
+		"value",
+	];
+	
+	/**
+	 * Casts
+	 */
+	/*protected $casts					 =	[
+		"responsibilities"				 =>	"array"
+	];*/
+	
+	/* =====================================================
+	 * 						STATIC METHODS					
+	 * ===================================================*/
+	
+	/**
+	 * Override parent method to return custom output
+	 * Returns details
+	 * 
+	 * @return App\Models\Profile\Detail $details[]
+	 */
+	public static function all($columns = [])
+	{
+		$detailRows						 =	parent::all();
+		
+		$details						 =	[];
+		
+		foreach ($detailRows as $detail) {
+			
+			$details[$detail->key]		 = $detail->value;
+			
+		}
+		
+		return (object) $details;
+		
+	}
+	
+	/**
+	 * Saves record
+	 * 
+	 * @param json $data[]
+	 */
+	public static function saveDetails($data)
+	{
+		
+		foreach ($data as $key => $value) {
+			
+			//Special Cases
+			if ($key == "responsibilities") $value			 =	json_encode($value);
+			
+			Detail::updateOrCreate([
+				"key"					 =>	$key
+			], [
+				"key"					 =>	$key,
+				"value"					 =>	$value
+			]);
+			
+		}
+		
+	}
+	
+}

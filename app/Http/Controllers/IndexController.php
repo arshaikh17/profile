@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Detail;
-use App\Address;
-use App\CV;
-use App\Education;
-use App\Experience;
-use App\Email;
-use App\Gallery;
-use App\Phone;
-use App\Project;
-use App\Skill;
-use App\SkillTag;
-use App\SocialMedia;
+use App\Models\Profile\Detail;
+use App\Models\Profile\Address;
+use App\Models\Profile\CV;
+use App\Models\Profile\Education;
+use App\Models\Profile\Experience;
+use App\Models\Profile\Email;
+use App\Models\Profile\Gallery;
+use App\Models\Profile\Phone;
+use App\Models\Profile\Project;
+use App\Models\Profile\Skill;
+use App\Models\Profile\SkillTag;
+use App\Models\Profile\SocialMedia;
 
 use Response;
 

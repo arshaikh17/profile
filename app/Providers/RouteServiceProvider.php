@@ -41,6 +41,8 @@ class RouteServiceProvider extends ServiceProvider
 		
 		$this->mapWebRoutes();
 		
+		$this->mapProfileRoutes();
+		
 		$this->mapComicsRoutes();
 		
 		$this->mapWishlistsRoutes();
@@ -78,6 +80,21 @@ class RouteServiceProvider extends ServiceProvider
 			->middleware("api")
 			->namespace($this->namespace)
 			->group(base_path("routes/api.php"))
+		;
+		
+	}
+	
+	/**
+	 * Define the "profile" routes for the application.
+	 *
+	 * @return void
+	 */
+	protected function mapProfileRoutes()
+	{
+		
+		Route::middleware("web")
+			->namespace($this->namespace)
+			->group(base_path("routes/profile.php"))
 		;
 		
 	}

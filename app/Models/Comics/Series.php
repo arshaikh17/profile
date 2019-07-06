@@ -28,7 +28,7 @@ class Series extends Model
 	];
 	
 	/**
-	 * Scoped Variable
+	 * Scoped variables
 	 */
 	private static $path_logo			 =	"/uploads/comics/series/";
 	
