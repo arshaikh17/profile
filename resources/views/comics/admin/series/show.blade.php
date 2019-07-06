@@ -62,54 +62,6 @@
 							@endforelse
 						</ul>
 					</div>
-					<div class="col-md-4 shadow-sm p-4 mb-4 bg-white">
-						<p class="font-weight-bold">
-							<a
-								href="{{ route('comics.admin.arcs.show', [$arc]) }}"
-								class="text-secondary"
-							>
-								{{ $arc->title }}
-							</a>
-						</p>
-						<ul>
-							@forelse ($arc->issues as $issue)
-								<li>
-									<a
-										href="{{ route('comics.admin.issues.show', [$issue]) }}"
-										class="text-secondary"
-									>
-										#{{ $issue->issue }} - {{ $issue->title }}
-									</a>
-								</li>
-							@empty
-								<li>No issues in {{ $arc->title }}</li>
-							@endforelse
-						</ul>
-					</div>
-					<div class="col-md-4 shadow-sm p-4 mb-4 bg-white">
-						<p class="font-weight-bold">
-							<a
-								href="{{ route('comics.admin.arcs.show', [$arc]) }}"
-								class="text-secondary"
-							>
-								{{ $arc->title }}
-							</a>
-						</p>
-						<ul>
-							@forelse ($arc->issues as $issue)
-								<li>
-									<a
-										href="{{ route('comics.admin.issues.show', [$issue]) }}"
-										class="text-secondary"
-									>
-										#{{ $issue->issue }} - {{ $issue->title }}
-									</a>
-								</li>
-							@empty
-								<li>No issues in {{ $arc->title }}</li>
-							@endforelse
-						</ul>
-					</div>
 				@empty
 					<div class="col-12">No arcs in {{ $series->title }}</div>
 				@endforelse
