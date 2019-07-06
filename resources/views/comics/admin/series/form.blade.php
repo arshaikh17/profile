@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("layouts.comics")
 
 @section("content")
 <div class="container">
@@ -6,10 +6,11 @@
 		<div class="col-12">
 			<h1>{{ $series->id ? "Update" : "Create" }} Series</h1>
 		</div>
-		<div class="col-6 offset-3">
+		<div class="col-12 col-md-6">
 			<form
 				action="{{ $series->id ? route('comics.admin.series.update', $series) : route('comics.admin.series.store') }}"
 				method="POST"
+				enctype="multipart/form-data"
 			>
 			{{csrf_field()}}
 				<div class="form-group">
@@ -33,7 +34,15 @@
 						/>
 					</label>
 				</div>
-				
+				<div class="form-group">
+					<label>Upload Cover</label>
+					<input
+						type="file"
+						name="cover"
+						class="form-control"
+						@if ($series->id) required @endif
+					/>
+				</div>
 				<h4>Attach Characters</h4>
 				<div class="form-group">
 					<label>Select Characters</label>
@@ -63,6 +72,17 @@
 				</div>
 			</form>
 		</div>
+		
+		@if ($series->cover)
+			<div class="col-12 col-md-6">
+				<img
+					src="{{ asset('uploads/comics/series/' . $series->cover) }}"
+					title="{{ $series->title }}"
+					alt="{{ $series->cover }}"
+					class="img-fluid mx-auto d-block"
+				/>
+			</div>
+		@endif
 	</div>
 </div>
 @endsection

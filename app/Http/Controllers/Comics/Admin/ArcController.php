@@ -52,11 +52,13 @@ class ArcController extends Controller
 	
 	/**
 	 * Displays create view
+	 * 
+	 * @param App\Models\Comics\Series $series
 	 */
-	public function create()
+	public function create(Series $series = null)
 	{
 		
-		return $this->getForm(new Arc());
+		return $this->getForm(new Arc(), $series);
 		
 	}
 	
@@ -104,15 +106,16 @@ class ArcController extends Controller
 	/**
 	 * Returns form
 	 * 
-	 * @param App\Arc $arc
+	 * @param App\Models\Comics\Arc $arc
+	 * @param App\Models\Comics\Series $selectedSeries
 	 */
-	private function getForm(Arc $arc)
+	private function getForm(Arc $arc, Series $selectedSeries = null)
 	{
 		
 		$series							 =	Series::all();
 		$statuses						 =	Arc::getStatusTypes();
 		
-		return view(self::VIEW_PATH . "form", compact("arc", "series", "statuses"));
+		return view(self::VIEW_PATH . "form", compact("arc", "series", "statuses", "selectedSeries"));
 		
 	}
 	

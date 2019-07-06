@@ -54,7 +54,8 @@
 						@forelse ($series as $singleSeries)
 							<option
 								value="{{ $singleSeries->id }}"
-								@if ($singleSeries->id == $arc->series_id) selected @endif
+								@if (!isset($selectedSeries) && $singleSeries->id == $arc->series_id) selected @endif
+								@if (isset($selectedSeries) && $singleSeries->id == $selectedSeries->id) selected @endif
 							>
 								{{ $singleSeries->title }}
 							</option>
