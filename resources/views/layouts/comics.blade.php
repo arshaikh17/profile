@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<title>{{ config('app.name', 'Laravel') }} Comics Area</title>
+	<title>Comics Area</title>
 	<!-- Scripts -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script src="{{ asset('js/app.js') }}" defer></script>
@@ -17,6 +17,16 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 	@include("partials.modules.nprogress")
 	<style>
+	body {
+		background-color: #D0D3D6;
+	}
+	.card {
+		border-radius: 0px;
+	}
+	.statistics-card {
+		margin-bottom: 10px;
+		color: rgb(108, 117, 125);
+	}
 	.character {
 		height: 400px;
 		margin-bottom: 20px;
@@ -142,7 +152,7 @@
 	<div id="app">
 		<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
 			<div class="container">
-				<a class="navbar-brand" href="{{ url('/') }}">
+				<a class="navbar-brand" href="{{ route('comics.admin.index') }}">
 					Comics Area
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -151,6 +161,51 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<!-- Left Side Of Navbar -->
 					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a
+								href="{{ route('comics.admin.characters.index') }}"
+								title="Characters"
+								class="nav-link"
+							>
+								Characters
+							</a>
+						</li>
+						<li class="nav-item">
+							<a
+								href=""
+								title="Authors"
+								class="nav-link"
+							>
+								Authors
+							</a>
+						</li>
+						<li class="nav-item">
+							<a
+								href="{{ route('comics.admin.series.index') }}"
+								title="Series"
+								class="nav-link"
+							>
+								Series
+							</a>
+						</li>
+						<li class="nav-item">
+							<a
+								href="{{ route('comics.admin.arcs.index') }}"
+								title="Arcs"
+								class="nav-link"
+							>
+								Arcs
+							</a>
+						</li>
+						<li class="nav-item">
+							<a
+								href="{{ route('comics.admin.issues.index') }}"
+								title="Issues"
+								class="nav-link"
+							>
+								Issues
+							</a>
+						</li>
 					</ul>
 
 					<!-- Right Side Of Navbar -->

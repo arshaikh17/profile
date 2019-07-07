@@ -24,7 +24,7 @@
 			</div>
 			<div class="col-12">
 				<table
-					class="table table-condensed table-hover table-striped"
+					class="table table-condensed table-hover"
 					id="seriesTable"
 				>
 					<thead>

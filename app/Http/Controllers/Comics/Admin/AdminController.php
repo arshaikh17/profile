@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Comics\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Auth;
+
 class AdminController extends Controller
 {
 	
@@ -24,7 +26,9 @@ class AdminController extends Controller
 	public function index()
 	{
 		
-		return view("comics.admin.index");
+		$comics							 =	Auth::user()->comics();
+		
+		return view("comics.admin.index", compact("comics"));
 		
 	}
 	
