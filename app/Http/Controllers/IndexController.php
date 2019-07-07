@@ -44,8 +44,8 @@ class IndexController extends Controller
 		$email							 =	Email::getPrimaryEmail();
 		$phone							 =	Phone::getPrimaryPhone();
 		$address						 =	Address::getPrimaryAddress();
-		$experiences					 =	Experience::all();
-		$educations						 =	Education::all();
+		$experiences					 =	Experience::orderBy("id", "DESC")->get();
+		$educations						 =	Education::orderBy("id", "DESC")->get();
 		$skills							 =	Skill::getSkills();
 		$projects						 =	Project::all();
 		
