@@ -23,6 +23,8 @@ Route::group([
 	], function()
 	{
 		
+		Route::get("/", "Comics\Admin\AdminController@index")->name("index");
+		
 		/**
 		 * /Comics/Admin/SeriesController Routes
 		 */

@@ -20,6 +20,9 @@
 	
 
 </head>
+@if (Auth::user())
+	@include("partials.admin-nav")
+@endif
 <body data-spy="scroll" data-target=".menu-list" data-offset="50">
 	<main>
 		<div class="top-layer">
