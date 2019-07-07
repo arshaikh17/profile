@@ -6,6 +6,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Models\Comics\Comics;
+use App\Models\Comics\Profile;
+
 class User extends Authenticatable
 {
 	
@@ -40,5 +43,33 @@ class User extends Authenticatable
 	protected $casts					 =	[
 		"email_verified_at"				 =>	"datetime",
 	];
+	
+	/* =====================================================
+	 * 						MODEL MAPPERS					
+	 * ===================================================*/
+	
+	/**
+	 * Returns comics object
+	 * 
+	 * @return App\Models\Comics\Comics $comics
+	 */
+	public function comics()
+	{
+		
+		return new Comics;
+		
+	}
+	
+	/**
+	 * Returns profile object
+	 * 
+	 * @return App\Models\Comics\Profile $profile
+	 */
+	public function profile()
+	{
+		
+		return new Profile;
+		
+	}
 	
 }
