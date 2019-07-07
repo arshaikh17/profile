@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Detail;
+use App\Models\Profile\Detail;
 
 class ProfileSeeder extends Seeder
 {
