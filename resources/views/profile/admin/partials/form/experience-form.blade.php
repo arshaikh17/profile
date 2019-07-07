@@ -129,7 +129,7 @@
 					placeholder="Briefly describe your job"
 					rows="6"
 					required
-				>{{ $experience->title }}</textarea>
+				>{{ $experience->brief }}</textarea>
 			</div>
 		</div>
 		<div class="col-12">
