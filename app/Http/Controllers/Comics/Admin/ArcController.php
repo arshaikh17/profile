@@ -32,7 +32,7 @@ class ArcController extends Controller
 	public function index()
 	{
 		
-		$arcs							 =	Arc::all();
+		$arcs							 =	Arc::paginate(20);
 		
 		return view(self::VIEW_PATH . "index", compact("arcs"));
 		
@@ -100,6 +100,30 @@ class ArcController extends Controller
 		Arc::saveArc($arc, $request);
 		
 		return redirect()->back()->with("status", "Record updated.");
+		
+	}
+	
+	/**
+	 * Performs search on model
+	 * 
+	 * @param Illuminate\Http\Request $request
+	 * @return View $view
+	 */
+	public function search(Request $request)
+	{
+		
+		$term							 =	$request->term;
+		
+		$view							 =	"";
+		
+		$arcs							 =	Arc::searchArcs($term);
+		
+		foreach ($arcs as $arc) $view	 .=	view("comics.partials.arcs-table-body-row", ["arc" => $arc])->render();
+		
+		return response()->json([
+			"message"					 =>	"Success",
+			"data"						 =>	$view
+		], 200);
 		
 	}
 	

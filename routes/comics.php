@@ -77,6 +77,7 @@ Route::group([
 			Route::get("/{arc}/edit", "Comics\Admin\ArcController@edit")->name("edit");
 			Route::post("/{arc}/edit", "Comics\Admin\ArcController@update")->name("update");
 			Route::post("/", "Comics\Admin\ArcController@store")->name("store");
+			Route::get("/search", "Comics\Admin\ArcController@search")->name("search");
 			
 		});
 		

@@ -66,6 +66,21 @@ class Arc extends Model
 	}
 	
 	/**
+	 * Searched the model
+	 * 
+	 * @param String $term
+	 * @return App\Models\Comics\Arc $arcs[]
+	 */
+	public static function searchArcs($term)
+	{
+		
+		return Arc::whereRaw("title LIKE '%" . $term . "%'")
+			->get()
+		;
+		
+	}
+	
+	/**
 	 * Returns current ids associated to model
 	 * 
 	 * @return array $ids
