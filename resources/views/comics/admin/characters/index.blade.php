@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("layouts.comics")
 
 @section("content")
 <div class="container">
@@ -10,62 +10,51 @@
 					href="{{ route('comics.admin.characters.create') }}"
 					class="btn btn-sm btn-primary"
 				>
-					Create New Character
+					Create New Characters
 				</a>
 			</h1>
+			<div class="col-12 mt-5">
+				<input
+					type="text"
+					class="form-control ajax-search-table"
+					placeholder="Search characters"
+					data-table="seriesTable"
+					data-route="{{ route('comics.admin.characters.search') }}"
+				>
+			</div>
 			<div class="col-12">
-				<div class="row">
-					@forelse ($characters as $character)
-						<div class="col-12 col-md-4">
-							<div class="character">
-								<div class="image">
-									<img
-										src="{{ $character->cover && file_exists('uploads/comics/characters/' . $character->cover) ? asset('uploads/comics/characters/' . $character->cover) : asset('defaults/no_image.png') }}"
-										class="img img-fluid"
-										title="{{ $character->name }}"
-									/>
-								</div>
-								<div class="details">
-									<p class="name">{{ $character->name }}</p>
-									<div class="series">
-										@forelse ($character->series->take(3) as $series)
-											<a
-												href="{{ route('comics.admin.series.edit', $series) }}"
-											>
-												<span class="badge badge-primary p-2 mt-1">{{ $series->title }}</span>
-											</a>
-										@empty
-										@endforelse
-									</div>
-								</div>
-								<div class="action">
-									<a
-										href="{{ route('comics.admin.characters.edit', $character) }}"
-										title="{{ $character->name }}"
-										class="btn btn-sm btn-success"
-									>
-										Edit
-									</a>
-								
-									<a
-										href="{{ route('comics.admin.characters.show', $character) }}"
-										title="{{ $character->name }}"
-										class="btn btn-sm btn-primary"
-									>
-										Visit
-									</a>
-								</div>
-							</div>
-						</div>
-					@empty
-						<div class="col-12">
-							<p>No characters added in database, yet.</p>
-						</div>
-					@endforelse
+				<table
+					class="table table-condensed table-hover"
+					id="seriesTable"
+				>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Issues</th>
+							<th>Arcs</th>
+							<th>Series</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@forelse ($characters as $character)
+							@include("comics.partials.characters-table-body-row", [
+								"character"					 =>	$character
+							])
+						@empty
+							<tr>
+								<td>No characters added.</td>
+							</tr>
+						@endforelse
+					</tbody>
+				</table>
+			</div>
+			<div class="col-12">
+				<div class="float-right">
+					{{ $characters->links() }}
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
 @endsection

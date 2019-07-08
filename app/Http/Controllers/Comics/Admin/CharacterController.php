@@ -31,7 +31,7 @@ class CharacterController extends Controller
 	public function index()
 	{
 		
-		$characters						 =	Character::all();
+		$characters						 =	Character::paginate(20);
 		
 		return view(self::VIEW_PATH . "index", compact("characters"));
 		
@@ -85,6 +85,30 @@ class CharacterController extends Controller
 		Character::saveCharacter($character, $request);
 		
 		return redirect()->back()->with("status", "Record updated.");
+		
+	}
+	
+	/**
+	 * Performs search on model
+	 * 
+	 * @param Illuminate\Http\Request $request
+	 * @return View $view
+	 */
+	public function search(Request $request)
+	{
+		
+		$term							 =	$request->term;
+		
+		$view							 =	"";
+		
+		$characters						 =	Character::searchCharacters($term);
+		
+		foreach ($characters as $character) $view			 .=	view("comics.partials.characters-table-body-row", ["character" => $character])->render();
+		
+		return response()->json([
+			"message"					 =>	"Success",
+			"data"						 =>	$view
+		], 200);
 		
 	}
 	

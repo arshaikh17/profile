@@ -59,6 +59,7 @@ Route::group([
 			Route::get("/{character}/edit", "Comics\Admin\CharacterController@edit")->name("edit");
 			Route::post("/{character}/edit", "Comics\Admin\CharacterController@update")->name("update");
 			Route::post("/", "Comics\Admin\CharacterController@store")->name("store");
+			Route::get("/search", "Comics\Admin\CharacterController@search")->name("search");
 			
 		});
 		

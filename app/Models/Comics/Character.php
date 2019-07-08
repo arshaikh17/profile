@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Traits\ModelTrait;
 use App\Models\Comics\Series;
+use App\Models\Comics\Arc;
 
 class Character extends Model
 {
@@ -29,6 +30,10 @@ class Character extends Model
 	 * Scoped Variable
 	 */
 	private static $path_logo			 =	"/uploads/comics/characters/";
+	
+	/* =====================================================
+	 * 						STATIC METHODS					
+	 * ===================================================*/
 	
 	/**
 	 * Saves record
@@ -75,6 +80,21 @@ class Character extends Model
 	}
 	
 	/**
+	 * Searched the model
+	 * 
+	 * @param String $term
+	 * @return App\Models\Comics\Character $characters[]
+	 */
+	public static function searchCharacters($term)
+	{
+		
+		return Character::whereRaw("name LIKE '%" . $term . "%'")
+			->get()
+		;
+		
+	}
+	
+	/**
 	 * Returns current ids associated to model
 	 * 
 	 * @return array $ids
@@ -83,6 +103,42 @@ class Character extends Model
 	{
 		
 		return (new self)->getModelIDs(Character::all());
+		
+	}
+	
+	/* =====================================================
+	 * 							METHODS						
+	 * ===================================================*/
+	
+	/**
+	 * Returns arcs associated with character
+	 * 
+	 * @return App\Models\Comics\Arc $arcs[]
+	 */
+	public function arcs()
+	{
+		
+		$seriesIds						 =	$this->series()->pluck("id")->toArray();
+		
+		return Arc::whereIn("series_id", $seriesIds)
+			->get()
+		;
+		
+	}
+	
+	/**
+	 * Returns issues associated with character
+	 * 
+	 * @return App\Models\Comics\Issues $issues[]
+	 */
+	public function issues()
+	{
+		
+		$seriesIds						 =	$this->series()->pluck("id")->toArray();
+		
+		return Issue::whereIn("series_id", $seriesIds)
+			->get()
+		;
 		
 	}
 	
