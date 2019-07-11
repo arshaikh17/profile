@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("layouts.comics")
 
 @section("content")
 <div class="container">
@@ -126,27 +126,33 @@
 					</div>
 					<div class="col-md-4">
 						<h3>Attach Authors</h3>
-							<div class="form-group">
-								<label>Authors</label>
-								<select
-									class="form-control"
-									name="author_ids[]"
-									multiple
-									required
-									style="height: 450px;"
-								>
-									<option disabled>Select authors</option>
-									@forelse ($authors as $author)
-										<option
-											value="{{ $author->id }}"
-											@if ($issue->authors && $issue->authors->contains($author)) selected @endif
-										>
-											{{ $author->name }}
-										</option>
-									@empty
-									@endforelse
-								</select>
-							</div>
+						<input
+							class="form-control filter-element mb-2"
+							type="text"
+							placeholder="Search Authors.."
+							data-path="#authorsField option"
+						/>
+						<div class="form-group">
+							<select
+								class="form-control"
+								name="author_ids[]"
+								id="authorsField"
+								multiple
+								required
+								style="height: 450px;"
+							>
+								<option disabled>Select authors</option>
+								@forelse ($authors as $author)
+									<option
+										value="{{ $author->id }}"
+										@if ($issue->authors && $issue->authors->contains($author)) selected @endif
+									>
+										{{ $author->name }}
+									</option>
+								@empty
+								@endforelse
+							</select>
+						</div>
 					</div>
 				</div>
 				<div class="form-group">

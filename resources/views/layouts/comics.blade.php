@@ -94,6 +94,7 @@
 <script>
 	$(document).ready(function() {
 		searchTable();
+		filterElements();
 	});
 	
 	/**
@@ -144,6 +145,25 @@
 			}, ms || 0);
 			
 		};
+		
+	}
+	
+	/**
+	 * Filters the elements
+	 */
+	function filterElements() {
+		
+		$(".filter-element").on("keyup", function() {
+			
+			var value					 =	$(this).val().toLowerCase();
+			
+			$($(this).data("path")).filter(function() {
+				
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				
+			});
+			
+		});
 		
 	}
 </script>
