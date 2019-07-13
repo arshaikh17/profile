@@ -1,0 +1,10 @@
+body {
+	background-color: #D0D3D6;
+}
+.card {
+	border-radius: 0px;
+}
+.statistics-card {
+	margin-bottom: 10px;
+	color: rgb(108, 117, 125);
+}
