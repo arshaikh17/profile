@@ -6,6 +6,9 @@
 		<li class="nav-item ml-2">
 			<a class="nav-link btn btn-sm btn-secondary" href="{{ route('comics.admin.index') }}">Comics Area</a>
 		</li>
+		<li class="nav-item ml-2">
+			<a class="nav-link btn btn-sm btn-light" href="{{ route('wishlists.index') }}">Wishlists</a>
+		</li>
 	</ul>
 	<ul class="navbar-nav">
 		<li class="nav-item">
