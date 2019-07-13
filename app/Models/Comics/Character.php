@@ -80,7 +80,7 @@ class Character extends Model
 	}
 	
 	/**
-	 * Searched the model
+	 * Searches the model
 	 * 
 	 * @param String $term
 	 * @return App\Models\Comics\Character $characters[]

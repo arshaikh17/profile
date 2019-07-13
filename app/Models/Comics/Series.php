@@ -84,7 +84,7 @@ class Series extends Model
 	}
 	
 	/**
-	 * Searched the model
+	 * Searches the model
 	 * 
 	 * @param String $term
 	 * @return App\Models\Comics\Series $series[]

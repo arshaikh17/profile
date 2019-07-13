@@ -16,7 +16,7 @@
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 	@include("partials.modules.nprogress")
-	<style>
+<style>
 	body {
 		background-color: #D0D3D6;
 	}
@@ -26,69 +26,6 @@
 	.statistics-card {
 		margin-bottom: 10px;
 		color: rgb(108, 117, 125);
-	}
-	.character {
-		height: 400px;
-		margin-bottom: 20px;
-		border: 2px solid  	#E8E8E8;
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-	}
-	.character > .image {
-		height: 200px;
-	}
-	.character > .image > img {
-		height:100%;
-		width:100%;
-	}
-	.character > .details {
-		flex-grow: 1;
-		padding: 20px 20px 20px 20px;
-	}
-	.character > .details > .name {
-		font-size: 15px;
-	}
-	.character > .action {
-		text-align: center;
-		padding-bottom: 10px;
-	}
-	.character > .action .btn {
-		width: 40%;
-	}
-	
-	.issue {
-		height: 470px;
-		margin-bottom: 20px;
-		border: 2px solid #E8E8E8;
-	}
-	.issue > .image {
-		height: 316px;
-	}
-	.issue > .image > img {
-		height:100%;
-		width:100%;
-	}
-	.issue > .details {
-		line-height: 15px;
-		padding-left: 20px;
-		padding-right: 20px;
-	}
-	.issue > .details > .name {
-		margin-top: 10px;
-		height: 35px;
-		font-size: 15px;
-	}
-	.issue > .details > .issue-number {
-		height: 20px;
-		font-weight: bold;
-	}
-	.issue > .action {
-		text-align: center;
-		padding-bottom: 10px;
-	}
-	.issue > .action .btn {
-		width: 40%;
 	}
 </style>
 <script>
@@ -192,7 +129,7 @@
 						</li>
 						<li class="nav-item">
 							<a
-								href=""
+								href="{{ route('comics.admin.authors.index') }}"
 								title="Authors"
 								class="nav-link"
 							>

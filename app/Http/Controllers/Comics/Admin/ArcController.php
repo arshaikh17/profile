@@ -65,7 +65,7 @@ class ArcController extends Controller
 	/**
 	 * Displays edit view
 	 * 
-	 * @param App\Arc $arc
+	 * @param App\Models\Comics\Arc $arc
 	 */
 	public function edit(Arc $arc)
 	{

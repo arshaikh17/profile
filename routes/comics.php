@@ -64,6 +64,24 @@ Route::group([
 		});
 		
 		/**
+		 * /Comics/Admin/AuthorController Routes
+		 */
+		Route::group([
+			"prefix"					 =>	"/authors",
+			"as"						 =>	"authors."
+		], function()
+		{
+			
+			Route::get("/", "Comics\Admin\AuthorController@index")->name("index");
+			Route::get("/create", "Comics\Admin\AuthorController@create")->name("create");
+			Route::get("/{author}/edit", "Comics\Admin\AuthorController@edit")->name("edit");
+			Route::post("/{author}/edit", "Comics\Admin\AuthorController@update")->name("update");
+			Route::post("/", "Comics\Admin\AuthorController@store")->name("store");
+			Route::get("/search", "Comics\Admin\AuthorController@search")->name("search");
+			
+		});
+		
+		/**
 		 * /Comics/Admin/ArcController Routes
 		 */
 		Route::group([
@@ -101,6 +119,28 @@ Route::group([
 			
 		});
 		
+	});
+	
+	/**
+	 * Comics/AuthorController Routes
+	 */
+	Route::group([
+		"prefix"						 =>	"/authors",
+		"as"							 =>	"authors."
+	], function()
+	{
+		Route::get("/{author}", "Comics\AuthorController@show")->name("show");
+	});
+	
+	/**
+	 * Comics/IssueController Routes
+	 */
+	Route::group([
+		"prefix"						 =>	"/issues",
+		"as"							 =>	"issues."
+	], function()
+	{
+		Route::get("/{issue}", "Comics\IssueController@show")->name("show");
 	});
 	
 });

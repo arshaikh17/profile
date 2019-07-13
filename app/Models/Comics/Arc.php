@@ -33,6 +33,10 @@ class Arc extends Model
 	CONST STATUS_INCOMPLETE				 =	0;
 	CONST STATUS_COMPLETE				 =	1;
 	
+	/* =====================================================
+	 * 						STATIC METHODS					
+	 * ===================================================*/
+	
 	/**
 	 * Saves record
 	 * 
@@ -66,7 +70,7 @@ class Arc extends Model
 	}
 	
 	/**
-	 * Searched the model
+	 * Searches the model
 	 * 
 	 * @param String $term
 	 * @return App\Models\Comics\Arc $arcs[]
