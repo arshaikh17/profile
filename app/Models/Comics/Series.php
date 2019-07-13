@@ -169,4 +169,18 @@ class Series extends Model
 		
 	}
 	
+	/**
+	 * Returns issues under the series with no arcs
+	 * 
+	 * @return App\Models\Comics\Issue $issues[]
+	 */
+	public function singleIssues()
+	{
+		
+		return $this->hasMany(Issue::class, "series_id", "id")
+			->whereNull("arc_id")
+		;
+		
+	}
+	
 }
