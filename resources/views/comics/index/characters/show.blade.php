@@ -105,4 +105,9 @@
 		
 	</div>
 </div>
+<script>
+	$(".arcs-row").masonry({
+		itemSelector					 :	".arc",
+	});
+</script>
 @endsection
