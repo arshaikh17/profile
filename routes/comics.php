@@ -54,7 +54,6 @@ Route::group([
 		{
 			
 			Route::get("/", "Comics\Admin\CharacterController@index")->name("index");
-			Route::get("/show/{character}", "Comics\Admin\CharacterController@show")->name("show");
 			Route::get("/create", "Comics\Admin\CharacterController@create")->name("create");
 			Route::get("/{character}/edit", "Comics\Admin\CharacterController@edit")->name("edit");
 			Route::post("/{character}/edit", "Comics\Admin\CharacterController@update")->name("update");
@@ -141,6 +140,17 @@ Route::group([
 	], function()
 	{
 		Route::get("/{issue}", "Comics\IssueController@show")->name("show");
+	});
+	
+	/**
+	 * Comics/CharacterController Routes
+	 */
+	Route::group([
+		"prefix"						 =>	"/characters",
+		"as"							 =>	"characters."
+	], function()
+	{
+		Route::get("/{character}", "Comics\CharacterController@show")->name("show");
 	});
 	
 });

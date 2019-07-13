@@ -1,7 +1,7 @@
 <tr>
 	<td>
 		<a
-			href="{{ route('comics.admin.characters.show', $character) }}"
+			href="{{ route('comics.characters.show', $character) }}"
 			title="{{ $character->name }}"
 		>
 			{{ $character->name }}
