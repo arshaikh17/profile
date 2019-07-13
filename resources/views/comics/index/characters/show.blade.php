@@ -68,9 +68,9 @@
 					<div class="row">
 						<div class="col-12 col-md-8">
 							<h4>Arcs</h4>
-							<div class="row">
+							<div class="row arcs-row">
 								@forelse ($singleSeries->arcs as $arc)
-								<div class="col-12 col-md-6 mb-4">
+								<div class="col-12 col-md-6 mb-4 arc">
 									<div class="shadow p-4 bg-dark text-white">
 										{{ $arc->title }}
 										<ul>
