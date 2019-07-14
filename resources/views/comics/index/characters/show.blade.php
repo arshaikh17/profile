@@ -49,7 +49,15 @@
 			<ul class="nav nav-pills p-3">
 				@forelse ($series as $seriesKey => $singleSeries)
 				<li class="nav-item bg-dark">
-					<a class="nav-link text-white @if ($seriesKey == 0) active @endif" data-toggle="pill" href="#series_{{ $singleSeries->id }}">{{ $singleSeries->title }}</a>
+					<a
+						class="nav-link text-white @if ($seriesKey == 0) active @endif masonry-link"
+						data-toggle="pill"
+						href="#series_{{ $singleSeries->id }}"
+						data-masonry-parent=".arcs-row"
+						data-masonry-child=".arc"
+					>
+						{{ $singleSeries->title }}
+					</a>
 				</li>
 				@empty
 				@endforelse
@@ -105,9 +113,4 @@
 		
 	</div>
 </div>
-<script>
-	$(".arcs-row").masonry({
-		itemSelector					 :	".arc",
-	});
-</script>
 @endsection
