@@ -45,24 +45,6 @@ Route::group([
 		});
 		
 		/**
-		 * /Comics/Admin/CharacterController Routes
-		 */
-		Route::group([
-			"prefix"					 =>	"/characters",
-			"as"						 =>	"characters."
-		], function()
-		{
-			
-			Route::get("/", "Comics\Admin\CharacterController@index")->name("index");
-			Route::get("/create", "Comics\Admin\CharacterController@create")->name("create");
-			Route::get("/{character}/edit", "Comics\Admin\CharacterController@edit")->name("edit");
-			Route::post("/{character}/edit", "Comics\Admin\CharacterController@update")->name("update");
-			Route::post("/", "Comics\Admin\CharacterController@store")->name("store");
-			Route::get("/search", "Comics\Admin\CharacterController@search")->name("search");
-			
-		});
-		
-		/**
 		 * /Comics/Admin/AuthorController Routes
 		 */
 		Route::group([
@@ -120,6 +102,8 @@ Route::group([
 		
 	});
 	
+	Route::get("/", "Comics\ComicsController@index")->name("index");
+	
 	/**
 	 * Comics/AuthorController Routes
 	 */
@@ -150,7 +134,22 @@ Route::group([
 		"as"							 =>	"characters."
 	], function()
 	{
+		
+		Route::group([
+			"middleware"				 =>	"auth"
+		], function() {
+			
+			Route::get("/create", "Comics\CharacterController@create")->name("create");
+			Route::get("/{character}/edit", "Comics\CharacterController@edit")->name("edit");
+			Route::post("/{character}/edit", "Comics\CharacterController@update")->name("update");
+			Route::post("/", "Comics\CharacterController@store")->name("store");
+			Route::get("/search", "Comics\CharacterController@search")->name("search");
+		
+		});
+		
+		Route::get("/", "Comics\CharacterController@index")->name("index");
 		Route::get("/{character}", "Comics\CharacterController@show")->name("show");
+		
 	});
 	
 });

@@ -8,9 +8,9 @@
 @section("body")
 <body>
 	<div id="app">
-		<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+		<nav class="navbar navbar-expand-md bg-dark navbar-laravel">
 			<div class="container">
-				<a class="navbar-brand" href="{{ route('comics.admin.index') }}">
+				<a class="navbar-brand" href="{{ route('comics.index') }}">
 					Comics Area
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -21,7 +21,7 @@
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item">
 							<a
-								href="{{ route('comics.admin.characters.index') }}"
+								href="{{ route('comics.characters.create') }}"
 								title="Characters"
 								class="nav-link"
 							>

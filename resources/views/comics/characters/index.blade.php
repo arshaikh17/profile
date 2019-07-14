@@ -1,4 +1,4 @@
-@extends("layouts.comics")
+@extends("layouts.comics.public")
 
 @section("content")
 <div class="container">
@@ -7,7 +7,7 @@
 			<h1>
 				My Comics Characters
 				<a
-					href="{{ route('comics.admin.characters.create') }}"
+					href="{{ route('comics.characters.create') }}"
 					class="btn btn-sm btn-primary"
 				>
 					Create New Characters
@@ -19,7 +19,7 @@
 					class="form-control ajax-search-table"
 					placeholder="Search characters"
 					data-table="seriesTable"
-					data-route="{{ route('comics.admin.characters.search') }}"
+					data-route="{{ route('comics.characters.search') }}"
 				>
 			</div>
 			<div class="col-12">

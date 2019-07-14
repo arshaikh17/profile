@@ -18,7 +18,7 @@
 	</td>
 	<td>
 		<a
-			href="{{ route('comics.admin.characters.edit', [$character]) }}"
+			href="{{ route('comics.characters.edit', [$character]) }}"
 			class="btn btn-sm btn-light"
 		>
 			Edit

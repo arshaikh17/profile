@@ -1,4 +1,4 @@
-@extends("layouts.comics")
+@extends("layouts.comics.admin")
 
 @section("content")
 <div class="container">
@@ -18,7 +18,7 @@
 				</div>
 			@endif
 			<form
-				action="{{ $character->id ? route('comics.admin.characters.update', $character) : route('comics.admin.characters.store') }}"
+				action="{{ $character->id ? route('comics.characters.update', $character) : route('comics.characters.store') }}"
 				method="POST"
 				enctype="multipart/form-data"
 			>

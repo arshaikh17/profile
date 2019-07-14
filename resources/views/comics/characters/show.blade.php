@@ -16,7 +16,7 @@
 					@if (Auth::user())
 					<div class="clearfix mb-2">
 						<div class="float-md-right">
-							<a href="{{ route('comics.admin.characters.edit', $character) }}" class="btn btn-sm btn-primary">Edit</a>
+							<a href="{{ route('comics.characters.edit', $character) }}" class="btn btn-sm btn-primary">Edit</a>
 						</div>
 					</div>
 					@endif
