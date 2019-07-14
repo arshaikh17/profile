@@ -105,7 +105,7 @@
 											</div>
 										</div>
 										@empty
-										<div class="col-12"><p>No arcs under {{ $singleSeries->title }}</p></div>
+										<div class="col-12"><p>No arcs in {{ $singleSeries->title }}</p></div>
 										@endforelse
 									</div>
 								</div>
@@ -123,13 +123,13 @@
 										<div class="bg-dark text-white shadow p-2">#{{ $singleIssue->issue . " - " . $singleIssue->title }}</div>
 									</div>
 								@empty
-									<div class="col-12"><p>No single issues.</p></div>
+									<div class="col-12"><p>No arcs and single issues in {{ $singleSeries->title }}.</p></div>
 								@endforelse
 							@endif
 						</div>
 					</div>
 				@empty
-					<div class="col-12"><p>No comics under {{ $character->name }}</p></div>
+					<div class="col-12"><p>No comics in {{ $singleSeries->title }}</p></div>
 				@endforelse
 			</div>
 		</div>
