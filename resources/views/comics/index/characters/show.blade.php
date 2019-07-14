@@ -47,38 +47,77 @@
 			@endphp
 			
 			<ul class="nav nav-pills p-3">
-				@forelse ($series as $seriesKey => $singleSeries)
 				<li class="nav-item bg-dark">
 					<a
-						class="nav-link text-white @if ($seriesKey == 0) active @endif masonry-link"
-						data-toggle="pill"
-						href="#series_{{ $singleSeries->id }}"
-						data-masonry-parent=".arcs-row"
-						data-masonry-child=".arc"
+						class="nav-link text-white toggle-dom active"
+						data-toggle-dom-child=".series-container"
 					>
-						{{ $singleSeries->title }}
+						All
 					</a>
 				</li>
+				@forelse ($series as $seriesKey => $singleSeries)
+					<li class="nav-item bg-dark">
+						<a
+							class="nav-link text-white toggle-dom"
+							data-toggle-dom-id="series_container_{{ $singleSeries->id }}"
+							data-toggle-dom-child=".series-container"
+						>
+							{{ $singleSeries->title }}
+						</a>
+					</li>
 				@empty
 				@endforelse
 			</ul>
-			<div class="tab-content">
+			<div class="">
 				@forelse ($series as $seriesKey => $singleSeries)
 				
 				@php
 					$singleIssues		 =	$singleSeries->singleIssues;
 				@endphp
 				
-				<div class="tab-pane container @if ($seriesKey == 0) active @else fade @endif" id="series_{{ $singleSeries->id }}">
+				<div
+					class="container series-container masonry-grid"
+					data-toggle-dom-value="series_container_{{ $singleSeries->id }}"
+					data-masonry-parent=".arcs-row"
+					data-masonry-child=".arc"
+				>
 					
 					<h3 class="bg-dark shadow p-3 mt-2 text-white">{{ $singleSeries->title }}</h3>
 					
 					<div class="row">
 						<div class="col-12 col-md-8">
 							<h4>Arcs</h4>
-							<div class="row arcs-row">
+							<div
+								class="row arcs-row"
+							>
 								@forelse ($singleSeries->arcs as $arc)
 								<div class="col-12 col-md-6 mb-4 arc">
+									<div class="shadow p-4 bg-dark text-white">
+										{{ $arc->title }}
+										<ul>
+											@forelse ($arc->issues as $issue)
+											<li>#{{ $issue->issue . ' - ' . $issue->title }}</li>
+											@empty
+											@endforelse
+										</ul>
+									</div>
+								</div>
+								<div class="col-12 col-md-6 mb-4 arc" data-toggle-dom-value="arc_of_series_{{ $singleSeries->id }}">
+									<div class="shadow p-4 bg-dark text-white">
+										{{ $arc->title }}
+										<ul>
+											@forelse ($arc->issues as $issue)
+											<li>#{{ $issue->issue . ' - ' . $issue->title }}</li>
+											@empty
+											@endforelse
+											@forelse ($arc->issues as $issue)
+											<li>#{{ $issue->issue . ' - ' . $issue->title }}</li>
+											@empty
+											@endforelse
+										</ul>
+									</div>
+								</div>
+								<div class="col-12 col-md-6 mb-4 arc" data-toggle-dom-value="arc_of_series_{{ $singleSeries->id }}">
 									<div class="shadow p-4 bg-dark text-white">
 										{{ $arc->title }}
 										<ul>
@@ -113,4 +152,39 @@
 		
 	</div>
 </div>
+@endsection
+
+@section("js")
+<script type="text/javascript">
+$(".masonry-grid").each(function (index, grid) {
+	
+	$($(this).data("masonry-parent")).masonry({
+		itemSelector					 :	$(this).data("masonry-child"),
+	})
+	
+});
+
+$("body").on("click", ".toggle-dom", function (e) {
+	
+	e.preventDefault();
+	
+	var element							 =	$(this);
+	$(".toggle-dom").removeClass("active");
+	element.addClass("active");
+	
+	var value							 =	element.data("toggle-dom-id");
+	var className						 =	element.data("toggle-dom-child");
+	
+	if (value === undefined) {
+		
+		$(className).show();
+		return false;
+		
+	}
+	
+	$(className).hide();
+	$(`${className}[data-toggle-dom-value="${value}"]`).show();
+	
+})
+</script>
 @endsection
