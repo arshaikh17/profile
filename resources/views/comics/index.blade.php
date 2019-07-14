@@ -1,4 +1,4 @@
-@extends("layouts.comics.public")
+@extends("layouts.comics")
 
 @section("content")
 <div class="container">

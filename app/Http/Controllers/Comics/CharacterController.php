@@ -40,7 +40,7 @@ class CharacterController extends Controller
 	public function index()
 	{
 		
-		$characters						 =	Character::paginate(20);
+		$characters						 =	Character::paginate(10);
 		
 		return view(self::VIEW_PATH . "index", compact("characters"));
 		

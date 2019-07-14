@@ -1,4 +1,5 @@
-@extends("layouts.comics.public")
+@extends("layouts.comics")
+
 @section("content")
 <div class="container">
 	<div class="row">
@@ -7,8 +8,8 @@
 				<div class="col-md-4">
 					<div>
 						<img
-						src="{{ asset('uploads/comics/characters/' . $character->cover) }}"
-						class="img-fluid"
+							src="{{ asset('uploads/comics/characters/' . $character->cover) }}"
+							class="img-fluid"
 						/>
 					</div>
 				</div>
@@ -16,7 +17,7 @@
 					@if (Auth::user())
 					<div class="clearfix mb-2">
 						<div class="float-md-right">
-							<a href="{{ route('comics.characters.edit', $character) }}" class="btn btn-sm btn-primary">Edit</a>
+							<a href="{{ route('comics.characters.edit', $character) }}" class="btn btn-sm btn-dark">Edit</a>
 						</div>
 					</div>
 					@endif

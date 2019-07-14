@@ -1,11 +1,4 @@
 /*======================================
- * Body
-======================================*/
-body {
-	background-color: #D0D3D6;
-}
-
-/*======================================
  * Navbar
 ======================================*/
 .navbar .navbar-brand {
@@ -28,4 +21,21 @@ body {
 .statistics-card {
 	margin-bottom: 10px;
 	color: rgb(108, 117, 125);
+}
+
+/*======================================
+ * Character
+======================================*/
+.character .character-image, .character .character-image img {
+	height: 400px;
+}
+.character-info {
+	margin-top: 8%;
+}
+
+/*======================================
+ * Pagination
+======================================*/
+.pagination {
+	justify-content: center !important;
 }

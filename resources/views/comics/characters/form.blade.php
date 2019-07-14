@@ -1,4 +1,4 @@
-@extends("layouts.comics.admin")
+@extends("layouts.comics")
 
 @section("content")
 <div class="container">
@@ -22,7 +22,7 @@
 				method="POST"
 				enctype="multipart/form-data"
 			>
-			{{csrf_field()}}
+				{{csrf_field()}}
 				<div class="form-group">
 					<label>Name</label>
 					<input
@@ -45,7 +45,7 @@
 				<div class="form-group">
 					<input
 						type="submit"
-						class="btn btn-sm btn-primary w-100"
+						class="btn btn-sm btn-dark w-100"
 						value="Save"
 					/>
 				</div>
