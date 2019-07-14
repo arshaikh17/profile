@@ -111,25 +111,6 @@ class Series extends Model
 	}
 	
 	/* =====================================================
-	 * 							METHODS						
-	 * ===================================================*/
-	
-	/**
-	 * Returns issues with no arcs associated
-	 * 
-	 * @return App\Models\Comics\Issues $issues[]
-	 */
-	public function issuesWithoutArcs()
-	{
-		
-		return Issue::whereNull("arc_id")
-			->where("series_id", "=", $this->id)
-			->get()
-		;
-		
-	}
-	
-	/* =====================================================
 	 * 						RELATIONS						
 	 * ===================================================*/
 	
@@ -172,14 +153,19 @@ class Series extends Model
 	/**
 	 * Returns issues under the series with no arcs
 	 * 
+	 * @param Bool $excludeWishlistIssues
 	 * @return App\Models\Comics\Issue $issues[]
 	 */
-	public function singleIssues()
+	public function singleIssues($excludeWishlistIssues = true)
 	{
 		
-		return $this->hasMany(Issue::class, "series_id", "id")
+		$issues							 =	$this->hasMany(Issue::class, "series_id", "id")
 			->whereNull("arc_id")
 		;
+		
+		if ($excludeWishlistIssues) $issues->where("owned_status", "=", Issue::STATUS_OWNED);
+		
+		return !$excludeWishlistIssues ? $issues : $issues->get();
 		
 	}
 	

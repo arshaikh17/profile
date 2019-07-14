@@ -130,12 +130,17 @@ class Arc extends Model
 	/**
 	 * Returns issues associated with arc
 	 * 
+	 * @param Bool $excludeWishlistIssues
 	 * @return App\Models\Comics\Issue $issues[]
 	 */
-	public function issues()
+	public function issues($excludeWishlistIssues = false)
 	{
 		
-		return $this->hasMany(Issue::class, "arc_id", "id");
+		$issues							 =	$this->hasMany(Issue::class, "arc_id", "id")
+			->where("owned_status", "=", Issue::STATUS_OWNED)
+		;
+		
+		return !$excludeWishlistIssues ? $issues : $issues->get();
 		
 	}
 	

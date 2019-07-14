@@ -73,7 +73,7 @@
 				@forelse ($series as $seriesKey => $singleSeries)
 				
 					@php
-						$singleIssues	 =	$singleSeries->singleIssues;
+						$singleIssues	 =	$singleSeries->singleIssues(true);
 					@endphp
 					
 					<div
@@ -97,7 +97,7 @@
 											<div class="shadow p-4 bg-dark text-white">
 												{{ $arc->title }}
 												<ul>
-													@forelse ($arc->issues as $issue)
+													@forelse ($arc->issues(true) as $issue)
 													<li>#{{ $issue->issue . ' - ' . $issue->title }}</li>
 													@empty
 													@endforelse
@@ -123,13 +123,13 @@
 										<div class="bg-dark text-white shadow p-2">#{{ $singleIssue->issue . " - " . $singleIssue->title }}</div>
 									</div>
 								@empty
-									<p>No single issues.</p>
+									<div class="col-12"><p>No single issues.</p></div>
 								@endforelse
 							@endif
 						</div>
 					</div>
 				@empty
-					<p>No comics under {{ $character->name }}</p>
+					<div class="col-12"><p>No comics under {{ $character->name }}</p></div>
 				@endforelse
 			</div>
 		</div>

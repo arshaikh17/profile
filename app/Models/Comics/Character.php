@@ -120,7 +120,7 @@ class Character extends Model
 		
 		$seriesIds						 =	$this->series()->pluck("id")->toArray();
 		
-		return Arc::whereIn("series_id", $seriesIds)
+		return Arc::whereIn("comics_arcs.series_id", $seriesIds)
 			->get()
 		;
 		
