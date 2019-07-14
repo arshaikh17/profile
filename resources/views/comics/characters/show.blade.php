@@ -78,6 +78,8 @@
 					
 					<div
 						class="container series-container masonry-grid"
+						data-toggle="collapse"
+						data-target="#series_container_{{ $singleSeries->id }}"
 						data-toggle-dom-value="series_container_{{ $singleSeries->id }}"
 						data-masonry-parent=".arcs-row"
 						data-masonry-child=".arc"
@@ -85,7 +87,7 @@
 						
 						<h3 class="bg-dark shadow p-3 mt-2 text-white">{{ $singleSeries->title }}</h3>
 						
-						<div class="row">
+						<div class="row collapse show" id="series_container_{{ $singleSeries->id }}">
 							@if ($singleSeries->arcs->count())
 								<div class="col-12 col-md-8">
 									<h4>Arcs</h4>
