@@ -16,7 +16,7 @@ class IssueController extends Controller
 	/**
 	 * Constants
 	 */
-	CONST VIEW_PATH						 =	"comics.admin.issues.";
+	CONST VIEW_PATH						 =	"comics.issues.";
 	
 	/**
 	 * Constructor
