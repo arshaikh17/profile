@@ -102,32 +102,6 @@
 										</ul>
 									</div>
 								</div>
-								<div class="col-12 col-md-6 mb-4 arc" data-toggle-dom-value="arc_of_series_{{ $singleSeries->id }}">
-									<div class="shadow p-4 bg-dark text-white">
-										{{ $arc->title }}
-										<ul>
-											@forelse ($arc->issues as $issue)
-											<li>#{{ $issue->issue . ' - ' . $issue->title }}</li>
-											@empty
-											@endforelse
-											@forelse ($arc->issues as $issue)
-											<li>#{{ $issue->issue . ' - ' . $issue->title }}</li>
-											@empty
-											@endforelse
-										</ul>
-									</div>
-								</div>
-								<div class="col-12 col-md-6 mb-4 arc" data-toggle-dom-value="arc_of_series_{{ $singleSeries->id }}">
-									<div class="shadow p-4 bg-dark text-white">
-										{{ $arc->title }}
-										<ul>
-											@forelse ($arc->issues as $issue)
-											<li>#{{ $issue->issue . ' - ' . $issue->title }}</li>
-											@empty
-											@endforelse
-										</ul>
-									</div>
-								</div>
 								@empty
 								<div class="col-12"><p>No arcs under {{ $singleSeries->title }}</p></div>
 								@endforelse
