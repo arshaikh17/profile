@@ -85,36 +85,45 @@
 					<h3 class="bg-dark shadow p-3 mt-2 text-white">{{ $singleSeries->title }}</h3>
 					
 					<div class="row">
-						<div class="col-12 col-md-8">
-							<h4>Arcs</h4>
-							<div
-								class="row arcs-row"
-							>
-								@forelse ($singleSeries->arcs as $arc)
-								<div class="col-12 col-md-6 mb-4 arc">
-									<div class="shadow p-4 bg-dark text-white">
-										{{ $arc->title }}
-										<ul>
-											@forelse ($arc->issues as $issue)
-											<li>#{{ $issue->issue . ' - ' . $issue->title }}</li>
-											@empty
-											@endforelse
-										</ul>
+						@if ($singleSeries->arcs->count())
+							<div class="col-12 col-md-8">
+								<h4>Arcs</h4>
+								<div
+									class="row arcs-row"
+								>
+									@forelse ($singleSeries->arcs as $arc)
+									<div class="col-12 col-md-6 mb-4 arc">
+										<div class="shadow p-4 bg-dark text-white">
+											{{ $arc->title }}
+											<ul>
+												@forelse ($arc->issues as $issue)
+												<li>#{{ $issue->issue . ' - ' . $issue->title }}</li>
+												@empty
+												@endforelse
+											</ul>
+										</div>
 									</div>
+									@empty
+									<div class="col-12"><p>No arcs under {{ $singleSeries->title }}</p></div>
+									@endforelse
 								</div>
+							</div>
+							<div class="col-12 col-md-4">
+								<h4>Single Issues</h4>
+								@forelse ($singleIssues as $singleIssue)
+									<div class="border border-secondary shadow p-2">#{{ $singleIssue->issue . " - " . $singleIssue->title }}</div>
 								@empty
-								<div class="col-12"><p>No arcs under {{ $singleSeries->title }}</p></div>
+									<p>No single issues.</p>
 								@endforelse
 							</div>
-						</div>
-						<div class="col-12 col-md-4">
-							<h4>Single Issues</h4>
-							@if ($singleIssues->count())
+						@else
 							@forelse ($singleIssues as $singleIssue)
-							<div class="border border-secondary shadow p-2">#{{ $singleIssue->issue . " - " . $singleIssue->title }}</div>
+								<div class="col-12 col-md-4 mb-2">
+									<div class="bg-dark text-white shadow p-2">#{{ $singleIssue->issue . " - " . $singleIssue->title }}</div>
+								</div>
 							@empty
+								<p>No single issues.</p>
 							@endforelse
-						</div>
 						@endif
 					</div>
 				</div>
