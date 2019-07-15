@@ -13,7 +13,7 @@ class AuthorController extends Controller
 	/**
 	 * Constants
 	 */
-	CONST VIEW_PATH						 =	"comics.admin.authors.";
+	CONST VIEW_PATH						 =	"comics.authors.";
 	
 	/**
 	 * Constructor
