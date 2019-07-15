@@ -1,6 +1,6 @@
 <form
 	method="POST"
-	action="{{ $author->id ? route('comics.admin.authors.edit', $author) : route('comics.admin.authors.create') }}"
+	action="{{ $author->id ? route('comics.admin.authors.update', $author) : route('comics.admin.authors.store') }}"
 >
 	{{ csrf_field() }}
 	<div class="form-group">
