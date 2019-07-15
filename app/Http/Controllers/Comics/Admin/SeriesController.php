@@ -14,7 +14,7 @@ class SeriesController extends Controller
 	/**
 	 * Constants
 	 */
-	CONST VIEW_PATH						 =	"comics.admin.series.";
+	CONST VIEW_PATH						 =	"comics.series.";
 	
 	/**
 	 * Constructor

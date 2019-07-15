@@ -14,7 +14,7 @@ class ArcController extends Controller
 	/**
 	 * Constants
 	 */
-	CONST VIEW_PATH						 =	"comics.admin.arcs.";
+	CONST VIEW_PATH						 =	"comics.arcs.";
 	
 	/**
 	 * Constructor
