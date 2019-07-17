@@ -129,10 +129,47 @@ class Character extends Model
 	/**
 	 * Returns issues associated with character
 	 * 
+	 * @param Bool $sorted
 	 * @return App\Models\Comics\Issues $issues[]
 	 */
-	public function issues()
+	public function issues($sorted = false)
 	{
+		
+		if ($sorted) {
+		
+			$series = [];
+			
+			foreach ($this->series as $singleSeries) {
+				
+				$issues					 =	$singleSeries
+					->issues()
+					->orderBy("issue", "ASC")
+					->where("owned_status", "=", 1)
+					->get()
+				;
+				
+				$series[$singleSeries->title]["series"]		 =	$singleSeries;
+				$series[$singleSeries->title]["arcs"]		 =	[];
+				$series[$singleSeries->title]["singles"]	 =	[];
+				
+				foreach ($issues as $key => $issue) {
+					
+					if ($issue->arc) {
+						
+						$series[$singleSeries->title]["arcs"][$issue->arc->title]["arc"]			 =	$issue->arc;
+						$series[$singleSeries->title]["arcs"][$issue->arc->title]["issues"][]		 =	$issue;
+						
+					}
+					
+					if (!$issue->arc && isset($series[$singleSeries->title])) $series[$singleSeries->title]["singles"][] =	$issue;
+					
+				}
+				
+			}
+			
+			return $series;
+			
+		}
 		
 		$seriesIds						 =	$this->series()->pluck("id")->toArray();
 		

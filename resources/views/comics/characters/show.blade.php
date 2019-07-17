@@ -44,7 +44,7 @@
 			<h1 class="text-center mb-2">Comics</h1>
 			
 			@php
-				$series					 =	$character->series;
+				$series					 =	$character->issues(true);
 			@endphp
 			
 			<ul class="nav nav-pills p-3">
@@ -60,10 +60,10 @@
 					<li class="nav-item bg-dark">
 						<a
 							class="nav-link text-white toggle-dom"
-							data-toggle-dom-id="series_container_{{ $singleSeries->id }}"
+							data-toggle-dom-id="series_container_{{ $singleSeries['series']->id }}"
 							data-toggle-dom-child=".series-container"
 						>
-							{{ $singleSeries->title }}
+							{{ $singleSeries['series']->title }}
 						</a>
 					</li>
 				@empty
@@ -72,32 +72,31 @@
 			<div class="">
 				@forelse ($series as $seriesKey => $singleSeries)
 				
-					@php
-						$singleIssues	 =	$singleSeries->singleIssues(true);
-					@endphp
+					
 					
 					<div
 						class="container series-container masonry-grid"
-						data-toggle-dom-value="series_container_{{ $singleSeries->id }}"
+						data-toggle-dom-value="series_container_{{ $singleSeries['series']->id }}"
 						data-masonry-parent=".arcs-row"
 						data-masonry-child=".arc"
 					>
 						
-						<h3 class="bg-dark shadow p-3 mt-2 text-white">{{ $singleSeries->title }}</h3>
+						<h3 class="bg-dark shadow p-3 mt-2 text-white">{{ $singleSeries['series']->title }}</h3>
 						
 						<div class="row">
-							@if ($singleSeries->arcs->count())
+							@if (count($singleSeries['arcs']))
 								<div class="col-12 col-md-8">
 									<h4>Arcs</h4>
 									<div
 										class="row arcs-row"
 									>
-										@forelse ($singleSeries->arcs as $arc)
+										@forelse ($singleSeries['arcs'] as $arcKey => $arc)
 										<div class="col-12 col-md-6 mb-4 arc">
 											<div class="shadow p-4 bg-dark text-white">
-												{{ $arc->title }}
+												
+												{{ $arc["arc"]->title }}
 												<ul>
-													@forelse ($arc->issues(true) as $issue)
+													@forelse ($arc["issues"] ?? [] as $issue)
 													<li>#{{ $issue->issue . ' - ' . $issue->title }}</li>
 													@empty
 													@endforelse
@@ -105,31 +104,31 @@
 											</div>
 										</div>
 										@empty
-										<div class="col-12"><p>No arcs in {{ $singleSeries->title }}</p></div>
+										<div class="col-12"><p>No arcs in {{ $singleSeries['series']->title }}</p></div>
 										@endforelse
 									</div>
 								</div>
 								<div class="col-12 col-md-4">
 									<h4>Single Issues</h4>
-									@forelse ($singleIssues as $singleIssue)
+									@forelse ($singleSeries["singles"] as $singleIssue)
 										<div class="border border-secondary shadow p-2">#{{ $singleIssue->issue . " - " . $singleIssue->title }}</div>
 									@empty
 										<p>No single issues.</p>
 									@endforelse
 								</div>
 							@else
-								@forelse ($singleIssues as $singleIssue)
+								@forelse ($singleSeries["singles"] as $singleIssue)
 									<div class="col-12 col-md-4 mb-2">
 										<div class="bg-dark text-white shadow p-2">#{{ $singleIssue->issue . " - " . $singleIssue->title }}</div>
 									</div>
 								@empty
-									<div class="col-12"><p>No arcs and single issues in {{ $singleSeries->title }}.</p></div>
+									<div class="col-12"><p>No arcs and single issues in {{ $singleSeries["series"]->title }}.</p></div>
 								@endforelse
 							@endif
 						</div>
 					</div>
 				@empty
-					<div class="col-12"><p>No comics in {{ $singleSeries->title }}</p></div>
+					<div class="col-12"><p>No comics in {{ $singleSeries["series"]->title }}</p></div>
 				@endforelse
 			</div>
 		</div>
