@@ -1,4 +1,4 @@
-<div class="toast" style="position:absolute; bottom:0; right: 0;" data-autohide="false">
+<div class="toast fixed-bottom" data-autohide="false">
 	<div class="toast-header">
 		<strong class="mr-auto text-{{ $alertType == 'success' ? 'primary' : 'danger' }}">{{ $alertType == "success" ? "Success" : "Fail" }} Alert!</strong>
 		<small class="text-muted"></small>
