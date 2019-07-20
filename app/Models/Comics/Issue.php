@@ -78,6 +78,19 @@ class Issue extends Model
 		
 		if ($data->author_ids && count($data->author_ids)) foreach ($data->author_ids as $author_id) $issue->authors()->attach($author_id);
 		
+		//Save New Authors
+		if ($data->authors) {
+			
+			foreach ($data->authors as $author) {
+				
+				$author					 =	Author::saveAuthor(new Author, $author);
+				
+				$issue->authors()->attach($author);
+				
+			}
+			
+		}
+		
 		return $issue;
 		
 	}

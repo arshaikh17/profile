@@ -1,0 +1,1 @@
+<script type="text/javascript" src="{{ asset('modules/shared.js') }}"></script>

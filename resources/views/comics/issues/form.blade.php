@@ -38,43 +38,49 @@
 								required
 							/>
 						</div>
-						<div class="form-group">
-							<label>Issue Number</label>
-							<input
-								type="text"
-								class="form-control"
-								value="{{ $issue->issue }}"
-								name="issue"
-								required
-							/>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Issue Number</label>
+									<input
+										type="text"
+										class="form-control"
+										value="{{ $issue->issue }}"
+										name="issue"
+										required
+									/>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Cover</label>
+									<input
+										type="file"
+										class="form-control"
+										name="cover"
+										{{ $issue->id ? "" : "required" }}
+									/>
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-							<label>Cover</label>
-							<input
-								type="file"
-								class="form-control"
-								name="cover"
-								{{ $issue->id ? "" : "required" }}
-							/>
-						</div>
+						
+						
 						<div class="form-group">
 							<label>Owned Status</label>
-							<select
-								class="form-control"
-								name="owned_status"
-								required
-							>
-								<option selected disabled>Set status</option>
-								@forelse ($statuses as $statusKey => $status)
-									<option
+							<br/>
+							@forelse ($statuses as $statusKey => $status)
+								<label>
+									<input
+										type="radio"
+										name="owned_status"
 										value="{{ $statusKey }}"
+										class="form-control"
 										@if ($issue->owned_status == $statusKey) selected @endif
-									>
-										{{ $status }}
-									</option>
-								@empty
-								@endforelse
-							</select>
+									/>
+									{{ $status }}
+								</label>
+							@empty
+							@endforelse
 						</div>
 						<h3>Attach Series and Arc</h3>
 						<div class="form-group">
@@ -155,6 +161,29 @@
 						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-12">
+						<h3>
+							New Authors
+							<a
+								href="#"
+								class="btn btn-sm btn-primary add-template"
+								data-template="authorsFormFields"
+								data-append="authorsForm"
+							>
+							Add Author
+						</a>
+						</h3>
+					</div>
+					<div class="col-12">
+						<div class="row" id="authorsForm">
+							
+						</div>
+					</div>
+					<div class="col-12">
+						
+					</div>
+				</div>
 				<div class="form-group">
 					<input
 						type="submit"
@@ -163,6 +192,17 @@
 					/>
 				</div>
 			</form>
+		</div>
+	</div>
+</div>
+
+<div class="invisible">
+	<div id="authorsFormFields">
+		<div class="col-md-4" id="__INDEX__">
+			@include("comics.partials.authors-form-fields", [
+				"subForm"				 =>	"true"
+			])
+			<a href="#" class="btn btn-sm btn-danger remove-template" data-id="__INDEX__">delete</a>
 		</div>
 	</div>
 </div>

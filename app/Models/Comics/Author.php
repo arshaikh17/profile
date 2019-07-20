@@ -36,16 +36,21 @@ class Author extends Model
 	 * 
 	 * @param App\Models\Comics\Author $author
 	 * @param json $data[]
+	 * @return App\Models\Comics\Author $author
 	 */
 	public static function saveAuthor(Author $author, $data)
 	{
 		
+		if (!is_array($data)) $data		 =	(array) $data;
+		
 		$author->fill([
-			"first_name"				 =>	$data->first_name,
-			"surname"					 =>	$data->surname
+			"first_name"				 =>	$data["first_name"],
+			"surname"					 =>	$data["surname"]
 		]);
 		
 		$author->save();
+		
+		return $author;
 		
 	}
 	

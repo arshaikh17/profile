@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('modules/comics/css/app.css') }}">
 	<script src="{{ asset('modules/comics/js/app.js') }}"></script>
 	@yield("scripts")
+	@include("partials.modules.shared")
 </head>
 <body>
 	<div id="app">
