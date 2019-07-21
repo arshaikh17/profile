@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Comics\Admin;
+namespace App\Http\Controllers\Comics;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Models\Comics\Issue;
+use App\Models\Comics\Character;
 use App\Models\Comics\Series;
-use App\Models\Comics\Author;
 use App\Models\Comics\Arc;
+use App\Models\Comics\Issue;
+use App\Models\Comics\Author;
 
 class IssueController extends Controller
 {
@@ -34,9 +35,20 @@ class IssueController extends Controller
 	public function index()
 	{
 		
-		$issues							 =	Issue::all();
+		$statistics						 =	Issue::statistics();
+		$characters						 =	Character::all();
 		
-		return view(self::VIEW_PATH . "index", compact("issues"));
+		return view(self::VIEW_PATH . "index", compact("statistics", "characters"));
+		
+	}
+	
+	/**
+	 * Displays show view
+	 */
+	public function show(Issue $issue)
+	{
+		
+		return view(self::VIEW_PATH . "show", compact("issue"));
 		
 	}
 	
@@ -86,7 +98,7 @@ class IssueController extends Controller
 		
 		Issue::saveIssue(new Issue, $request);
 		
-		return redirect()->back()->with("status", "Record added.");
+		return redirect()->back()->with("message", "Record added.");
 		
 	}
 	
@@ -101,7 +113,7 @@ class IssueController extends Controller
 		
 		Issue::saveIssue($issue, $request);
 		
-		return redirect()->back()->with("status", "Record updated.");
+		return redirect()->back()->with("message", "Record updated.");
 		
 	}
 	

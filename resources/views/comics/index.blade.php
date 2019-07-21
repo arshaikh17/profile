@@ -37,7 +37,7 @@
 					<h1 class="card-text">{{ $comics->issues()->count() }}</h1>
 				</div>
 			</div>
-			<a href="{{ route('comics.admin.issues.index') }}" class="btn btn-sm btn-dark mt-1 w-100">View</a>
+			<a href="{{ route('comics.issues.index') }}" class="btn btn-sm btn-dark mt-1 w-100">View</a>
 		</div>
 	</div>
 	

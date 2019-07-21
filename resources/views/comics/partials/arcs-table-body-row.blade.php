@@ -21,7 +21,7 @@
 			Edit
 		</a>
 		<a
-			href="{{ route('comics.admin.issues.createWithSeriesAndArc', [$arc->series, $arc]) }}"
+			href="{{ route('comics.issues.createWithSeriesAndArc', [$arc->series, $arc]) }}"
 			class="btn btn-sm btn-dark"
 		>
 			Add Issue

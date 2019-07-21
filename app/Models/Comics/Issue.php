@@ -148,6 +148,26 @@ class Issue extends Model
 		
 	}
 	
+	/**
+	 * Returns details about Issues
+	 * 
+	 * @return Array $statistics
+	 */
+	public static function statistics()
+	{
+		
+		$statistics						 =	[];
+		
+		$statistics						 =	[
+			"total"						 =>	Issue::count(),
+			"owned"						 =>	Issue::where("owned_status", "=", Issue::STATUS_OWNED)->count(),
+			"wishlist"					 =>	Issue::where("owned_status", "=", Issue::STATUS_WISHLIST)->count()
+		];
+		
+		return $statistics;
+		
+	}
+	
 	/* =====================================================
 	 * 						RELATIONS						
 	 * ===================================================*/

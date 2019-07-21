@@ -21,7 +21,7 @@
 				</div>
 			@endif
 			<form
-				action="{{ $issue->id ? route('comics.admin.issues.update', $issue) : route('comics.admin.issues.store') }}"
+				action="{{ $issue->id ? route('comics.issues.update', $issue) : route('comics.issues.store') }}"
 				method="POST"
 				enctype="multipart/form-data"
 			>
@@ -75,7 +75,7 @@
 										name="owned_status"
 										value="{{ $statusKey }}"
 										class="form-control"
-										@if ($issue->owned_status == $statusKey) selected @endif
+										@if ($issue->owned_status == $statusKey) checked @endif
 									/>
 									{{ $status }}
 								</label>

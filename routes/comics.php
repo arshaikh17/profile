@@ -84,7 +84,7 @@ Route::group([
 		/**
 		 * /Comics/Admin/IssueController Routes
 		 */
-		Route::group([
+		/*Route::group([
 			"prefix"					 =>	"/issues",
 			"as"						 =>	"issues."
 		], function()
@@ -98,7 +98,7 @@ Route::group([
 			Route::post("/{issue}/edit", "Comics\Admin\IssueController@update")->name("update");
 			Route::post("/", "Comics\Admin\IssueController@store")->name("store");
 			
-		});
+		});*/
 		
 	});
 	
@@ -123,7 +123,14 @@ Route::group([
 		"as"							 =>	"issues."
 	], function()
 	{
+		Route::get("/", "Comics\IssueController@index")->name("index");
+		Route::get("/show/{issues}", "Comics\IssueController@show")->name("show");
+		Route::get("/create", "Comics\IssueController@create")->name("create");
+		Route::get("/create/{selectedSeries}/{selectedArc?}", "Comics\IssueController@createWithSeriesAndArc")->name("createWithSeriesAndArc");
 		Route::get("/{issue}", "Comics\IssueController@show")->name("show");
+		Route::get("/{issue}/edit", "Comics\IssueController@edit")->name("edit");
+		Route::post("/{issue}/edit", "Comics\IssueController@update")->name("update");
+		Route::post("/", "Comics\IssueController@store")->name("store");
 	});
 	
 	/**

@@ -1,68 +1,89 @@
-@extends("layouts.app")
+@extends("layouts.comics")
 
 @section("content")
 <div class="container">
 	<div class="row">
 		<div class="col-12">
 			<h1>
-				My Comics Characters
+				My Comics Issues
 				<a
-					href="{{ route('comics.admin.characters.create') }}"
-					class="btn btn-sm btn-primary"
+					href="{{ route('comics.issues.create') }}"
+					class="btn btn-sm btn-dark"
 				>
-					Create New Character
+					Create New Issue
 				</a>
 			</h1>
-			<div class="col-12">
-				<div class="row">
-					@forelse ($characters as $character)
-						<div class="col-12 col-md-4">
-							<div class="character">
-								<div class="image">
-									<img
-										src="{{ $character->cover && file_exists('uploads/comics/characters/' . $character->cover) ? asset('uploads/comics/characters/' . $character->cover) : asset('defaults/no_image.png') }}"
-										class="img img-fluid"
-										title="{{ $character->name }}"
-									/>
+		</div>
+		<div class="col-12 mt-3">
+			<div class="row">
+				<div class="col-12 col-sm-6 col-md-4">
+					<div class="text-dark p-3 shadow border border-secondary">
+						<h5>Total</h5>
+						<h2>{{ $statistics["total"] }}</h2>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6 col-md-4">
+					<div class="bg-dark text-white p-3 shadow border border-secondary">
+						<h5>Owned</h5>
+						<h2>{{ $statistics["owned"] }}</h2>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6 col-md-4">
+					<div class="bg-dark text-white p-3 shadow border border-secondary">
+						<h5>Wishlists</h5>
+						<h2>{{ $statistics["wishlist"] }}</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-3">
+				@forelse ($characters as $character)
+					<div class="col-12 mb-4">
+						<h2 data-toggle="collapse" data-target="#characterRow_{{ $character->id }}">{{ $character->name }}</h2>
+						<div class="row collapse show" id="characterRow_{{ $character->id }}">
+							@forelse ($character->issues(true, false) as $series)
+								<div class="col-12">
+									<h5 data-toggle="collapse" data-target="#seriesRow_{{ $series['series']->id }}">{{ $series["series"]->title }}</h5>
 								</div>
-								<div class="details">
-									<p class="name">{{ $character->name }}</p>
-									<div class="series">
-										@forelse ($character->series->take(3) as $series)
-											<a
-												href="{{ route('comics.admin.series.edit', $series) }}"
-											>
-												<span class="badge badge-primary p-2 mt-1">{{ $series->title }}</span>
-											</a>
+								<div class="col-12">
+									<div class="row collapse show" id="seriesRow_{{ $series['series']->id }}">
+										@forelse ($series["arcs"] as $arc)
+											<div class="col-12 col-sm-6 col-md-4">
+												<p
+													data-toggle="collapse"
+													data-target="#arcRow_{{ $arc['arc']->id }}"
+												>
+													{{ $arc["arc"]->title }}
+												</p>
+												<ul class="collapse show" id="arcRow_{{ $arc['arc']->id }}">
+													@forelse ($arc["issues"] as $issue)
+														<li>
+															<a
+																href="{{ route('comics.issues.show', $issue) }}">
+																#{{ $issue->issue }} - {{ $issue->title }}
+															</a>
+														</li>
+													@empty
+														<li>No issues, here :O</li>
+													@endforelse
+												</ul>
+											</div>
 										@empty
+											<div class="col-12"><p>No arcs :(</p></div>
 										@endforelse
 									</div>
 								</div>
-								<div class="action">
-									<a
-										href="{{ route('comics.admin.characters.edit', $character) }}"
-										title="{{ $character->name }}"
-										class="btn btn-sm btn-success"
-									>
-										Edit
-									</a>
-								
-									<a
-										href="{{ route('comics.admin.characters.show', $character) }}"
-										title="{{ $character->name }}"
-										class="btn btn-sm btn-primary"
-									>
-										Visit
-									</a>
+							@empty
+								<div class="col-12">
+									<p>No series attached with {{ $character->name }}? Are you kidding?</p>
 								</div>
-							</div>
+							@endforelse
 						</div>
-					@empty
-						<div class="col-12">
-							<p>No characters added in database, yet.</p>
-						</div>
-					@endforelse
-				</div>
+					</div>
+				@empty
+					<div class="col-12">
+						<p>Wait wait wait... no characters :(</p>
+					</div>
+				@endforelse
 			</div>
 		</div>
 	</div>
