@@ -42,10 +42,10 @@
 						<div class="row collapse show" id="characterRow_{{ $character->id }}">
 							@forelse ($character->issues(true, false) as $series)
 								<div class="col-12">
-									<h5 data-toggle="collapse" data-target="#seriesRow_{{ $series['series']->id }}">{{ $series["series"]->title }}</h5>
+									<h5 data-toggle="collapse" data-target=".seriesRow_{{ $series['series']->id }}">{{ $series["series"]->title }}</h5>
 								</div>
 								<div class="col-12">
-									<div class="row collapse show" id="seriesRow_{{ $series['series']->id }}">
+									<div class="row collapse show seriesRow_{{ $series['series']->id }}" id="seriesRow_{{ $series['series']->id }}">
 										@forelse ($series["arcs"] as $arc)
 											<div class="col-12 col-sm-6 col-md-4">
 												<p
@@ -71,7 +71,7 @@
 											<div class="col-12"><p>No arcs :(</p></div>
 										@endforelse
 									</div>
-									<div class="row">
+									<div class="row collapse show seriesRow_{{ $series['series']->id }}">
 										<div class="col-12"><p data-toggle="collapse" data-target="#singlesOfSeries_{{ $series['series']->id }}">Issues without arc</p></div>
 											<div class="col-12 collapse show" id="singlesOfSeries_{{ $series['series']->id }}">
 												<div class="row">
