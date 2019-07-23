@@ -46,6 +46,7 @@
 								</div>
 								<div class="col-12">
 									<div class="row collapse show" id="seriesRow_{{ $series['series']->id }}">
+										{{dd($series)}}
 										@forelse ($series["arcs"] as $arc)
 											<div class="col-12 col-sm-6 col-md-4">
 												<p
@@ -67,6 +68,23 @@
 													@endforelse
 												</ul>
 											</div>
+											<div class="col-12"><p>Issues without arc</p></div>
+											@forelse (array_chunk($series["singles"], 5) as $singles)
+												<div class="col-12 col-sm-6 col-md-4">
+													<ul>
+														@foreach ($singles as $issue)
+															<li>
+																<a
+																	href="{{ route('comics.issues.show', $issue) }}">
+																	#{{ $issue->issue }} - {{ $issue->title }}
+																</a>
+															</li>
+														@endforeach
+													</ul>
+												</div>
+											@empty
+												<div class="col-12"><p>Nothing to see here.</p></div>
+											@endforelse
 										@empty
 											<div class="col-12"><p>No arcs :(</p></div>
 										@endforelse
