@@ -73,7 +73,7 @@
 									</div>
 									<div class="row">
 										<div class="col-12"><p data-toggle="collapse" data-target="#singlesOfSeries_{{ $series['series']->id }}">Issues without arc</p></div>
-											<div class="col-12">
+											<div class="col-12 collapse show" id="singlesOfSeries_{{ $series['series']->id }}">
 												<div class="row">
 													@forelse (array_chunk($series["singles"], 5) as $singles)
 															<div class="col-12 col-sm-6 col-md-4">
