@@ -46,7 +46,6 @@
 								</div>
 								<div class="col-12">
 									<div class="row collapse show" id="seriesRow_{{ $series['series']->id }}">
-										{{dd($series)}}
 										@forelse ($series["arcs"] as $arc)
 											<div class="col-12 col-sm-6 col-md-4">
 												<p
