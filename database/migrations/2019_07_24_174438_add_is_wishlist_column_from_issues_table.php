@@ -21,7 +21,7 @@ class AddIsWishlistColumnFromIssuesTable extends Migration
 			
 		});
 		
-		(new \Comics\UpdateIssuesWishlistSeeder)->run();
+		(new Comics\UpdateIssuesWishlistSeeder)->run();
 		
 	}
 	
