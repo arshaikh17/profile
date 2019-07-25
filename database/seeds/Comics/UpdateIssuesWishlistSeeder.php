@@ -17,9 +17,9 @@ class UpdateIssuesWishlistSeeder extends Seeder
 	public function run()
 	{
 		
-		Issue::where("owned_status", "=", Issue::STATUS_WISHLIST)
+		Issue::where("owned_status", "=", 2)
 			->update([
-				"is_wishlist"			 =>	1
+				"is_wishlist"			 =>	Issue::STATUS_WISHLIST
 			])
 		;
 		
