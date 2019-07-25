@@ -17,12 +17,12 @@ class Wishlist extends Model
 	/**
 	 * Gets comics for wishlists
 	 * 
-	 * @return App\Models\Comics\Arc $arcs[]
+	 * @return App\Models\Comics $comics[]
 	 */
 	public static function getComicsWishlists()
 	{
 		
-		$issues							 =	Issue::where("owned_status", "=", Issue::STATUS_WISHLIST)
+		$issues							 =	Issue::where("is_wishlist", "=", Issue::STATUS_WISHLIST)
 			->get()
 		;
 			

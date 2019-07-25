@@ -137,7 +137,7 @@ class Arc extends Model
 	{
 		
 		$issues							 =	$this->hasMany(Issue::class, "arc_id", "id")
-			->where("owned_status", "=", Issue::STATUS_OWNED)
+			->where("is_wishlist", "=", Issue::STATUS_OWNED)
 		;
 		
 		return !$excludeWishlistIssues ? $issues : $issues->get();

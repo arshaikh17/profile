@@ -147,7 +147,7 @@ class Character extends Model
 					->orderBy("issue", "ASC")
 				;
 				
-				if ($excludeWishlist) $issues->where("owned_status", "=", Issue::STATUS_OWNED);
+				if ($excludeWishlist) $issues->where("is_wishlist", "=", Issue::STATUS_OWNED);
 				
 				$issues					 =	$issues->get();
 				

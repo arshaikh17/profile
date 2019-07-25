@@ -58,7 +58,9 @@
 													@forelse ($arc["issues"] as $issue)
 														<li>
 															<a
-																href="{{ route('comics.issues.show', $issue) }}">
+																href="{{ route('comics.issues.show', $issue) }}"
+																class="{{ $issue->is_wishlist ? 'text-dark' : '' }}"
+															>
 																#{{ $issue->issue }} - {{ $issue->title }}
 															</a>
 														</li>
@@ -82,6 +84,7 @@
 																		<li>
 																			<a
 																				href="{{ route('comics.issues.show', $issue) }}"
+																				class="{{ $issue->is_wishlist ? 'text-dark' : '' }}"
 																			>
 																				#{{ $issue->issue }} - {{ $issue->title }}
 																			</a>

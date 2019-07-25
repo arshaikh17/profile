@@ -26,7 +26,7 @@ class Issue extends Model
 		"title",
 		"issue",
 		"cover",
-		"owned_status",
+		"is_wishlist",
 	];
 	
 	/**
@@ -37,8 +37,8 @@ class Issue extends Model
 	/**
 	 * Constants
 	 */
-	CONST STATUS_OWNED					 =	1;
-	CONST STATUS_WISHLIST				 =	2;
+	CONST STATUS_OWNED					 =	0;
+	CONST STATUS_WISHLIST				 =	1;
 	
 	/**
 	 * Saves record
@@ -67,7 +67,7 @@ class Issue extends Model
 		$issue->fill([
 			"title"						 =>	$data->title,
 			"issue"						 =>	$data->issue,
-			"owned_status"				 =>	$data->owned_status,
+			"is_wishlist"				 =>	$data->is_wishlist ?: 0,
 			"cover"						 =>	$cover
 		]);
 		
@@ -120,21 +120,6 @@ class Issue extends Model
 	}
 	
 	/**
-	 * Returns issue owned status types
-	 * 
-	 * @return array $statuses
-	 */
-	public static function getStatuses()
-	{
-		
-		return [
-			self::STATUS_OWNED			 =>	"Owned",
-			self::STATUS_WISHLIST		 =>	"Wishlist",
-		];
-		
-	}
-	
-	/**
 	 * Marks issue as owned
 	 *
 	 * @param App\Models\Comics\Issue $issue
@@ -143,7 +128,7 @@ class Issue extends Model
 	{
 		
 		$issue->update([
-			"owned_status"				 =>	self::STATUS_OWNED
+			"is_wishlist"				 =>	self::STATUS_OWNED
 		]);
 		
 	}
@@ -160,8 +145,8 @@ class Issue extends Model
 		
 		$statistics						 =	[
 			"total"						 =>	Issue::count(),
-			"owned"						 =>	Issue::where("owned_status", "=", Issue::STATUS_OWNED)->count(),
-			"wishlist"					 =>	Issue::where("owned_status", "=", Issue::STATUS_WISHLIST)->count()
+			"owned"						 =>	Issue::where("is_wishlist", "=", Issue::STATUS_OWNED)->count(),
+			"wishlist"					 =>	Issue::where("is_wishlist", "=", Issue::STATUS_WISHLIST)->count()
 		];
 		
 		return $statistics;

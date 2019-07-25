@@ -163,7 +163,7 @@ class Series extends Model
 			->whereNull("arc_id")
 		;
 		
-		if ($excludeWishlistIssues) $issues->where("owned_status", "=", Issue::STATUS_OWNED);
+		if ($excludeWishlistIssues) $issues->where("is_wishlist", "=", Issue::STATUS_OWNED);
 		
 		return !$excludeWishlistIssues ? $issues : $issues->get();
 		

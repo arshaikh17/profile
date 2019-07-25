@@ -66,21 +66,16 @@
 						
 						
 						<div class="form-group">
-							<label>Owned Status</label>
-							<br/>
-							@forelse ($statuses as $statusKey => $status)
-								<label>
-									<input
-										type="radio"
-										name="owned_status"
-										value="{{ $statusKey }}"
-										class="form-control"
-										@if ($issue->owned_status == $statusKey) checked @endif
-									/>
-									{{ $status }}
-								</label>
-							@empty
-							@endforelse
+							<label>
+								<input
+									type="checkbox"
+									name="is_wishlist"
+									value="1"
+									class="form-control"
+									@if ($issue->is_wishlist) checked @endif
+								/>
+								Is Wishlist?
+							</label>
 						</div>
 						<h3>Attach Series and Arc</h3>
 						<div class="form-group">

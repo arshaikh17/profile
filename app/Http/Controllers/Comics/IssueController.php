@@ -126,11 +126,10 @@ class IssueController extends Controller
 	private function getForm(Issue $issue, Series $selectedSeries = null, Arc $selectedArc = null)
 	{
 		
-		$statuses						 =	Issue::getStatuses();
 		$series							 =	Series::all();
 		$authors						 =	Author::all();
 		
-		return view(self::VIEW_PATH . "form", compact("issue", "statuses", "series", "authors", "selectedSeries", "selectedArc"));
+		return view(self::VIEW_PATH . "form", compact("issue", "series", "authors", "selectedSeries", "selectedArc"));
 		
 	}
 	
