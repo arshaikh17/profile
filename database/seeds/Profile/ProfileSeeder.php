@@ -1,5 +1,7 @@
 <?php
 
+namespace Profile;
+
 use Illuminate\Database\Seeder;
 
 use App\Models\Profile\Detail;

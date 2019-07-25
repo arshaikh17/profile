@@ -1,5 +1,7 @@
 <?php
 
+namespace Comics;
+
 use Illuminate\Database\Seeder;
 
 use App\Models\Comics\Issue;
