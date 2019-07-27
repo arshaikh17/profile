@@ -1,7 +1,7 @@
 <tr>
 	<td>
 		<a
-			href="{{ route('comics.admin.arcs.show', $arc) }}"
+			href="{{ route('comics.arcs.show', $arc) }}"
 			title="{{ $arc->title }}"
 		>
 			{{ $arc->title }}
@@ -15,7 +15,7 @@
 	</td>
 	<td>
 		<a
-			href="{{ route('comics.admin.arcs.edit', [$arc]) }}"
+			href="{{ route('comics.arcs.edit', [$arc]) }}"
 			class="btn btn-sm btn-light"
 		>
 			Edit

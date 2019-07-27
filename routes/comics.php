@@ -63,25 +63,6 @@ Route::group([
 		});
 		
 		/**
-		 * /Comics/Admin/ArcController Routes
-		 */
-		Route::group([
-			"prefix"					 =>	"/arcs",
-			"as"						 =>	"arcs."
-		], function()
-		{
-			
-			Route::get("/", "Comics\Admin\ArcController@index")->name("index");
-			Route::get("/show/{arc}", "Comics\Admin\ArcController@show")->name("show");
-			Route::get("/create/{series?}", "Comics\Admin\ArcController@create")->name("create");
-			Route::get("/{arc}/edit", "Comics\Admin\ArcController@edit")->name("edit");
-			Route::post("/{arc}/edit", "Comics\Admin\ArcController@update")->name("update");
-			Route::post("/", "Comics\Admin\ArcController@store")->name("store");
-			Route::get("/search", "Comics\Admin\ArcController@search")->name("search");
-			
-		});
-		
-		/**
 		 * /Comics/Admin/IssueController Routes
 		 */
 		/*Route::group([
@@ -113,6 +94,25 @@ Route::group([
 	], function()
 	{
 		Route::get("/{author}", "Comics\AuthorController@show")->name("show");
+	});
+	
+	/**
+		 * /Comics/ArcController Routes
+		 */
+	Route::group([
+		"prefix"						 =>	"/arcs",
+		"as"							 =>	"arcs."
+	], function()
+	{
+		
+		Route::get("/", "Comics\ArcController@index")->name("index");
+		Route::get("/show/{arc}", "Comics\ArcController@show")->name("show");
+		Route::get("/create/{series?}", "Comics\ArcController@create")->name("create");
+		Route::get("/{arc}/edit", "Comics\ArcController@edit")->name("edit");
+		Route::post("/{arc}/edit", "Comics\ArcController@update")->name("update");
+		Route::post("/", "Comics\ArcController@store")->name("store");
+		Route::get("/search", "Comics\ArcController@search")->name("search");
+		
 	});
 	
 	/**

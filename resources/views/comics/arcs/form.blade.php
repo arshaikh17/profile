@@ -8,7 +8,7 @@
 		</div>
 		<div class="col-6 offset-3">
 			<form
-				action="{{ $arc->id ? route('comics.admin.arcs.update', $arc) : route('comics.admin.arcs.store') }}"
+				action="{{ $arc->id ? route('comics.arcs.update', $arc) : route('comics.arcs.store') }}"
 				method="POST"
 			>
 			{{csrf_field()}}
@@ -23,24 +23,14 @@
 					/>
 				</div>
 				<div class="form-group">
-					<label>Is Completed?</label>
-					<select
-						class="form-control"
-						name="is_completed"
-						required
-					>
-						<option selected>Status</option>
-						@forelse ($statuses as $statusKey => $status)
-							<option
-								value="{{ $statusKey }}"
-								@if ($statusKey == $arc->is_completed) selected @endif
-							>
-								{{ $status }}
-							</option>
-						@empty
-							<option selected disabled>No status</option>
-						@endforelse
-					</select>
+					<label>Is Completed?
+						<input
+							type="checkbox"
+							class="form-control"
+							name="is_completed"
+							@if ($arc->is_completed) checked @endif
+						/>
+					</label>
 				</div>
 				
 				<h4>Attach Series</h4>
@@ -67,7 +57,7 @@
 				<div class="form-group mt-2">
 					<input
 						type="submit"
-						class="btn btn-sm btn-primary w-100"
+						class="btn btn-sm btn-dark w-100"
 						value="Save"
 					/>
 				</div>

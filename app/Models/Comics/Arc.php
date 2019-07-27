@@ -48,7 +48,7 @@ class Arc extends Model
 		
 		$arc->fill([
 			"title"						 =>	$data->title,
-			"is_completed"				 =>	$data->is_completed ?: 0
+			"is_completed"				 =>	$data->is_completed ? self::STATUS_COMPLETE : self::STATUS_INCOMPLETE
 		]);
 		
 		if ($data->series_id) $arc->series()->associate(Series::find($data->series_id));

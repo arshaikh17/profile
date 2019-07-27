@@ -90,7 +90,7 @@ class CharacterController extends Controller
 		
 		Character::saveCharacter(new Character, $request);
 		
-		return redirect()->back()->with("status", "Record added.");
+		return redirect()->back()->with("message", "Record added.");
 		
 	}
 	
@@ -105,7 +105,7 @@ class CharacterController extends Controller
 		
 		Character::saveCharacter($character, $request);
 		
-		return redirect()->back()->with("status", "Record updated.");
+		return redirect()->back()->with("message", "Record updated.");
 		
 	}
 	

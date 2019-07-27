@@ -12,7 +12,7 @@
 	</div>
 	<div class="action">
 		<a
-			href="{{ route('comics.admin.issues.edit', $issue) }}"
+			href="{{ route('comics.issues.edit', $issue) }}"
 			title="{{ $issue->title }}"
 			class="btn btn-sm btn-primary"
 		>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Comics\Admin;
+namespace App\Http\Controllers\Comics;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -84,22 +84,22 @@ class ArcController extends Controller
 		
 		Arc::saveArc(new Arc, $request);
 		
-		return redirect()->back()->with("status", "Record added.");
+		return redirect()->back()->with("message", "Record added.");
 		
 	}
 	
 	/**
 	 * Updates record
 	 * 
-	 * @param App\Arc $arc
 	 * @param Illuminate\Http\Request $request
+	 * @param App\Models\Comics\Arc $arc
 	 */
-	public function update(Arc $arc, Request $request)
+	public function update(Request $request, Arc $arc)
 	{
 		
 		Arc::saveArc($arc, $request);
 		
-		return redirect()->back()->with("status", "Record updated.");
+		return redirect()->back()->with("message", "Record updated.");
 		
 	}
 	

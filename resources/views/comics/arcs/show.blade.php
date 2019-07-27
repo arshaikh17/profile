@@ -1,52 +1,31 @@
-@extends("layouts.app")
-
+@extends("layouts.comics")
 @section("content")
 <div class="container">
 	<div class="row">
 		<div class="col-12">
 			<h1>
-				{{ $arc->title }}
-				<a
-					href="{{ route('comics.admin.arcs.edit', $arc) }}"
-					class="btn btn-sm btn-primary"
+			{{ $arc->title }}
+			<a
+				href="{{ route('comics.arcs.edit', $arc) }}"
+				class="btn btn-sm btn-dark"
 				>
-					Edit
-				</a>
+				Edit
+			</a>
 			</h1>
-			<div class="col-12">
-				<div class="row">
-					@forelse ($arc->issues as $issue)
-						<div class="col-12 col-sm-6 col-md-3">
-							@include("comics.partials.issue", ["issue" => $issue])
-						</div>
-						<div class="col-12 col-sm-6 col-md-3">
-							@include("comics.partials.issue", ["issue" => $issue])
-						</div>
-						<div class="col-12 col-sm-6 col-md-3">
-							@include("comics.partials.issue", ["issue" => $issue])
-						</div>
-						<div class="col-12 col-sm-6 col-md-3">
-							@include("comics.partials.issue", ["issue" => $issue])
-						</div>
-						<div class="col-12 col-sm-6 col-md-3">
-							@include("comics.partials.issue", ["issue" => $issue])
-						</div>
-						<div class="col-12 col-sm-6 col-md-3">
-							@include("comics.partials.issue", ["issue" => $issue])
-						</div>
-						<div class="col-12 col-sm-6 col-md-3">
-							@include("comics.partials.issue", ["issue" => $issue])
-						</div>
-						<div class="col-12 col-sm-6 col-md-3">
-							@include("comics.partials.issue", ["issue" => $issue])
-						</div>
-						<div class="col-12 col-sm-6 col-md-3">
-							@include("comics.partials.issue", ["issue" => $issue])
-						</div>
-					@empty
-						<div class="col-12"><p>No issues added.</p></div>
-					@endforelse
-				</div>
+		</div>
+		<div class="col-12 mt-3">
+			<div class="row">
+				@forelse ($arc->issues as $issue)
+					<div class="col-12 col-sm-4 col-md-3">
+						@include("comics.partials.item-vertical-grid", [
+							"image"							 =>	$issue->cover && file_exists('uploads/comics/issues/' . $issue->cover) ? asset('uploads/comics/issues/' . $issue->cover) : asset('defaults/no_image.png'),
+							"title"							 =>	"#" . $issue->issue,
+							"link"							 =>	route("comics.issues.show", $issue)
+						])
+					</div>
+				@empty
+					<div class="col-12"><p>No issues added.</p></div>
+				@endforelse
 			</div>
 		</div>
 	</div>

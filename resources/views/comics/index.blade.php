@@ -28,7 +28,7 @@
 					<h1 class="card-text">{{ $comics->arcs()->count() }}</h1>
 				</div>
 			</div>
-			<a href="{{ route('comics.admin.arcs.index') }}" class="btn btn-sm btn-dark mt-1 w-100">View</a>
+			<a href="{{ route('comics.arcs.index') }}" class="btn btn-sm btn-dark mt-1 w-100">View</a>
 		</div>
 		<div class="col-12 col-sm-6 col-md-3 statistics-card">
 			<div class="card">

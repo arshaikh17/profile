@@ -1,6 +1,6 @@
 <div class="item-grid">
 	<div class="item-image">
-		<a href="#">
+		<a href="{{ $link ?? '#' }}">
 			<img class="pic-1" src="{{ $image }}">
 		</a>
 		<ul class="actions">
