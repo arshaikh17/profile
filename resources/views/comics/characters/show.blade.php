@@ -25,22 +25,22 @@
 					<div class="shadow-sm p-4 mb-4 bg-white">
 						<div class="row">
 							<div class="col-12">
-							    <table class="table table-condensed table-hover">
-							        <tbody>
-							            <tr>
-							               <td>Issues</td> 
-							               <td><p class="font-weight-bold">{{ $character->issues(false, true)->count() }}</p></td>
-							            </tr>
-							            <tr>
-							               <td>Arcs</td> 
-							               <td><p class="font-weight-bold">{{ $character->arcs()->count() }}</p></td>
-							            </tr>
-							            <tr>
-							               <td>Series</td> 
-							               <td><p class="font-weight-bold">{{ $character->series()->count() }}</p></td>
-							            </tr>
-							        </tbody>
-							    </table>
+								<table class="table table-condensed table-hover">
+									<tbody>
+										<tr>
+											<td>Issues</td> 
+											<td><p class="font-weight-bold">{{ $character->issues(false, true)->count() }}</p></td>
+										</tr>
+										<tr>
+											<td>Arcs</td> 
+											<td><p class="font-weight-bold">{{ $character->arcs()->count() }}</p></td>
+										</tr>
+										<tr>
+											<td>Series</td> 
+											<td><p class="font-weight-bold">{{ $character->series()->count() }}</p></td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -79,9 +79,6 @@
 			</ul>
 			<div class="">
 				@forelse ($series as $seriesKey => $singleSeries)
-				
-					
-					
 					<div
 						class="container series-container masonry-grid"
 						data-toggle-dom-value="series_container_{{ $singleSeries['series']->id }}"

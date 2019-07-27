@@ -176,7 +176,7 @@ class Character extends Model
 		
 		$seriesIds						 =	$this->series()->pluck("id")->toArray();
 		
-		$issues                          =  Issue::whereIn("series_id", $seriesIds);
+		$issues							 =	Issue::whereIn("series_id", $seriesIds);
 		
 		if ($excludeWishlist) $issues->where("is_wishlist", "=", Issue::STATUS_OWNED);
 
