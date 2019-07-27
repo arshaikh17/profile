@@ -176,9 +176,11 @@ class Character extends Model
 		
 		$seriesIds						 =	$this->series()->pluck("id")->toArray();
 		
-		return Issue::whereIn("series_id", $seriesIds)
-			->get()
-		;
+		$issues                          =  Issue::whereIn("series_id", $seriesIds);
+		
+		if ($excludeWishlist) $issues->where("is_wishlist", "=", Issue::STATUS_OWNED);
+
+		return $issues->get();
 		
 	}
 	

@@ -24,15 +24,23 @@
 					<h1 class="bg-dark text-white p-4">{{ $character->name }}</h1>
 					<div class="shadow-sm p-4 mb-4 bg-white">
 						<div class="row">
-							<div class="col-4">
-								<p>Issues</p>
-								<p>Arcs</p>
-								<p>Series</p>
-							</div>
-							<div class="col-8">
-								<p class="font-weight-bold">{{ $character->issues()->count() }}</p>
-								<p class="font-weight-bold">{{ $character->arcs()->count() }}</p>
-								<p class="font-weight-bold">{{ $character->series()->count() }}</p>
+							<div class="col-12">
+							    <table class="table table-condensed table-hover">
+							        <tbody>
+							            <tr>
+							               <td>Issues</td> 
+							               <td><p class="font-weight-bold">{{ $character->issues(false, true)->count() }}</p></td>
+							            </tr>
+							            <tr>
+							               <td>Arcs</td> 
+							               <td><p class="font-weight-bold">{{ $character->arcs()->count() }}</p></td>
+							            </tr>
+							            <tr>
+							               <td>Series</td> 
+							               <td><p class="font-weight-bold">{{ $character->series()->count() }}</p></td>
+							            </tr>
+							        </tbody>
+							    </table>
 							</div>
 						</div>
 					</div>
@@ -80,10 +88,10 @@
 						data-masonry-parent=".arcs-row"
 						data-masonry-child=".arc"
 					>
-						
-						<h3 class="bg-dark shadow p-3 mt-2 text-white">{{ $singleSeries['series']->title }}</h3>
-						
 						<div class="row">
+						    <div class="col-12">
+						        <p class="bg-dark shadow p-2 mt-2 text-white text-20">{{ $singleSeries['series']->title }}</p>
+						    </div>
 							@if (count($singleSeries['arcs']))
 								<div class="col-12 col-md-8">
 									<h4>Arcs</h4>
