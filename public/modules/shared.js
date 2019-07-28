@@ -3,6 +3,7 @@ $(document).ready(function () {
 	templateRendering();
 	searchTable();
 	filterElements();
+	initialiseTooltip();
 	
 });
 
@@ -83,6 +84,13 @@ function filterElements() {
 		
 	});
 	
+}
+/**
+ * Bootstrap 4 tooltip initialisation
+ */
+function initialiseTooltip(){
+	$('[data-toggle="tooltip"]').tooltip();
+	$('.toast').toast('show');
 }
 
 /**

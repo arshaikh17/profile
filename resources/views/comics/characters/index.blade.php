@@ -17,19 +17,15 @@
 				@endif
 			</h1>
 		</div>
-		<!--<div class="col-12 mt-5 mb-5">
-			<input
-				type="text"
-				class="form-control ajax-search-table"
-				placeholder="Search characters"
-				data-table="seriesTable"
-				data-route="{{ route('comics.characters.search') }}"
-			/>
-		</div>-->
 		<div class="col-12">
 			<div class="row">
 				@forelse ($characters as $character)
-					<div class="col-12 col-sm-6 col-md-4">
+					<div
+						class="col-12 col-sm-6 col-md-4"
+						title="{{ $character->name }}"
+						data-toggle="tooltip"
+						data-placement="bottom"
+					>
 						<div class="character">
 							<div class="character-image">
 								<a href="{{ route('comics.characters.show', $character) }}">
