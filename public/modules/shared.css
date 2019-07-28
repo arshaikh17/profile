@@ -38,3 +38,15 @@ h3{margin:1em;text-transform:capitalize;font-size:1.7em;}
 .h-170 {
 	height: 170px;
 }
+
+/********************************* WISHLIST ITEM **************************/
+.wishlist-item:after {
+	content: "wishlist";
+	margin-right: 5px;
+	padding: 0px 5px 0px 5px;
+	color: #fff;
+	background-color: #343a40;
+	border-color: #343a40;
+	border-radius: 5px;
+	font-size: 10px;
+}
