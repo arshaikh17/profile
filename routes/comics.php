@@ -26,25 +26,6 @@ Route::group([
 		Route::get("/", "Comics\Admin\AdminController@index")->name("index");
 		
 		/**
-		 * /Comics/Admin/SeriesController Routes
-		 */
-		Route::group([
-			"prefix"					 =>	"/series",
-			"as"						 =>	"series."
-		], function()
-		{
-			
-			Route::get("/", "Comics\Admin\SeriesController@index")->name("index");
-			Route::get("/show/{series}", "Comics\Admin\SeriesController@show")->name("show");
-			Route::get("/create", "Comics\Admin\SeriesController@create")->name("create");
-			Route::get("/{series}/edit", "Comics\Admin\SeriesController@edit")->name("edit");
-			Route::post("/{series}/edit", "Comics\Admin\SeriesController@update")->name("update");
-			Route::post("/", "Comics\Admin\SeriesController@store")->name("store");
-			Route::get("/search", "Comics\Admin\SeriesController@search")->name("search");
-			
-		});
-		
-		/**
 		 * /Comics/Admin/AuthorController Routes
 		 */
 		Route::group([
@@ -94,6 +75,25 @@ Route::group([
 	], function()
 	{
 		Route::get("/{author}", "Comics\AuthorController@show")->name("show");
+	});
+	
+	/**
+	 * /Comics/SeriesController Routes
+	 */
+	Route::group([
+		"prefix"					 =>	"/series",
+		"as"						 =>	"series."
+	], function()
+	{
+		
+		Route::get("/", "Comics\SeriesController@index")->name("index");
+		Route::get("/show/{series}", "Comics\SeriesController@show")->name("show");
+		Route::get("/create", "Comics\SeriesController@create")->name("create");
+		Route::get("/{series}/edit", "Comics\SeriesController@edit")->name("edit");
+		Route::post("/{series}/edit", "Comics\SeriesController@update")->name("update");
+		Route::post("/", "Comics\SeriesController@store")->name("store");
+		Route::get("/search", "Comics\SeriesController@search")->name("search");
+		
 	});
 	
 	/**

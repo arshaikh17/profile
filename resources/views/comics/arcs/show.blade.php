@@ -4,13 +4,19 @@
 	<div class="row">
 		<div class="col-12">
 			<h1>
-			{{ $arc->title }}
-			<a
-				href="{{ route('comics.arcs.edit', $arc) }}"
-				class="btn btn-sm btn-dark"
-				>
-				Edit
-			</a>
+				{{ $arc->title }}
+				<a
+					href="{{ route('comics.arcs.edit', $arc) }}"
+					class="btn btn-sm btn-dark"
+					>
+					Edit
+				</a>
+				<a
+					href="{{ route('comics.issues.createWithSeriesAndArc', [$arc->series, $arc]) }}"
+					class="btn btn-sm btn-dark"
+					>
+					Add Issue
+				</a>
 			</h1>
 		</div>
 		<div class="col-12 mt-3">

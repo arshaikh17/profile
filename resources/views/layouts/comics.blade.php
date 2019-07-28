@@ -31,6 +31,10 @@
 					"route"				 =>	route("comics.characters.index")
 				],
 				[
+					"title"				 =>	"Arcs",
+					"route"				 =>	route("comics.arcs.index")
+				],
+				[
 					"title"				 =>	"Issues",
 					"route"				 =>	route("comics.issues.index")
 				]

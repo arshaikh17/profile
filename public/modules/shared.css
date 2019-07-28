@@ -31,5 +31,10 @@ h3{margin:1em;text-transform:capitalize;font-size:1.7em;}
 
 /********************************** FONT SIZES *********************************/
 .text-20 {
-    font-size: 20px;
+	font-size: 20px;
+}
+
+/******************************** HEIGHTS ******************************/
+.h-170 {
+	height: 170px;
 }

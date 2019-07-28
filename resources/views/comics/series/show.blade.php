@@ -16,33 +16,33 @@
 		</div>
 		<div class="col-12 text-center mt-2">
 			<a
-				href="{{ route('comics.admin.series.edit', [$series]) }}"
+				href="{{ route('comics.series.edit', [$series]) }}"
 				class="btn btn-light"
 			>
 				Edit
 			</a>
 			<a
-				href="{{ route('comics.admin.arcs.create', [$series]) }}"
+				href="{{ route('comics.arcs.create', [$series]) }}"
 				class="btn btn-secondary"
 			>
 				Add Arc
 			</a>
 			<a
-				href="{{ route('comics.admin.issues.createWithSeriesAndArc', [$series]) }}"
+				href="{{ route('comics.issues.createWithSeriesAndArc', [$series]) }}"
 				class="btn btn-dark"
 			>
 				Add Issue
 			</a>
 		</div>
 		<div class="col-12">
-			<p class="text-uppercase mt-4" data-toggle="collapse" data-target="#arcsAndIssues">Arcs and Issues</p>
-			<div class="row collapse show" id="arcsAndIssues">
+			<p class="text-uppercase mt-4">Arcs and Issues</p>
+			<div class="row collapse show">
 				@forelse ($series->arcs as $arc)
 					<div class="col-md-4 shadow-sm p-4 mb-4 bg-white">
 						<p class="font-weight-bold">
 							<a
-								href="{{ route('comics.admin.arcs.show', [$arc]) }}"
-								class="text-secondary"
+								href="{{ route('comics.arcs.show', [$arc]) }}"
+								class="text-dark"
 							>
 								{{ $arc->title }}
 							</a>
@@ -51,7 +51,7 @@
 							@forelse ($arc->issues as $issue)
 								<li>
 									<a
-										href="{{ route('comics.admin.issues.show', [$issue]) }}"
+										href="{{ route('comics.issues.show', [$issue]) }}"
 										class="text-secondary"
 									>
 										#{{ $issue->issue }} - {{ $issue->title }}
@@ -68,14 +68,14 @@
 			</div>
 		</div>
 		<div class="col-12">
-			<p class="text-uppercase mt-4" data-toggle="collapse" data-target="#issuesWithoutArcs">Issues without Arcs</p>
+			<p class="text-uppercase mt-4">Issues without Arcs</p>
 			<div class="row">
-				<div class="col-12 shadow-sm p-4 mb-4 bg-white collapse show" id="issuesWithoutArcs">
+				<div class="col-12 shadow-sm p-4 mb-4 bg-white">
 					<ul>
-						@forelse ($series->issuesWithoutArcs() as $issue)
+						@forelse ($series->singleIssues() as $issue)
 							<li>
 								<a
-									href="{{ route('comics.admin.issues.show', [$issue]) }}"
+									href="{{ route('comics.issues.show', [$issue]) }}"
 									class="text-secondary"
 								>
 									#{{ $issue->issue }} - {{ $issue->title }}

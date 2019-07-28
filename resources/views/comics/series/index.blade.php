@@ -1,56 +1,52 @@
 @extends("layouts.comics")
-
 @section("content")
 <div class="container">
 	<div class="row">
 		<div class="col-12">
 			<h1>
-				My Comics Series
-				<a
-					href="{{ route('comics.admin.series.create') }}"
-					class="btn btn-sm btn-primary"
-				>
-					Create New Series
-				</a>
+			My Comics Series
+			<a
+				href="{{ route('comics.series.create') }}"
+				class="btn btn-sm btn-primary"
+			>
+				Create New Series
+			</a>
 			</h1>
-			<div class="col-12 mt-5">
-				<input
-					type="text"
-					class="form-control ajax-search-table"
-					placeholder="Search series"
-					data-table="seriesTable"
-					data-route="{{ route('comics.admin.series.search') }}"
-				>
-			</div>
-			<div class="col-12">
-				<table
-					class="table table-condensed table-hover"
-					id="seriesTable"
-				>
-					<thead>
-						<tr>
-							<th>Title</th>
-							<th>Complete Status</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						@forelse ($series as $singleSeries)
-							@include("comics.partials.series-table-body-row", [
-								"series" =>	$singleSeries
-							])
-						@empty
-							<tr>
-								<td>No series added.</td>
-							</tr>
-						@endforelse
-					</tbody>
-				</table>
-			</div>
-			<div class="col-12">
-				<div class="float-right">
-					{{ $series->links() }}
-				</div>
+		</div>
+		<div class="col-12 mt-3">
+			<div class="row">
+				@forelse ($series as $singleSeries)
+					<div class="col-12 col-sm-6 col-md-4 series">
+						<div class="h-170 border">
+							<a
+								href="{{ route('comics.series.show', $singleSeries) }}"
+								title="{{ $singleSeries->title }}"
+							>
+								<img
+									src="{{ $singleSeries->cover ? asset('uploads/comics/series/' . $singleSeries->cover) : asset('defaults/no_image.png') }}"
+									class="img-fluid mx-auto d-block mt-3"
+									width="300"
+									title="{{ $singleSeries->title }}"
+								/>
+							</a>
+						</div>
+						<div class="border p-3">
+							<a
+								href="{{ route('comics.series.show', $singleSeries) }}"
+								title="{{ $singleSeries->title }}"
+								class="text-dark"
+							>
+								<p class="text-20">{{ $singleSeries->title }}</p>
+							</a>
+							<p>Total Issues: <span class="text-bold">{{ $singleSeries->issues()->count() }}</span></p>
+							<span class="badge badge-dark p-2">{{ $singleSeries->character->name }}</span>
+						</div>
+					</div>
+				@empty
+					<div class="row">
+						<p>At the moment, nothing's in here...</p>
+					</div>
+				@endforelse
 			</div>
 		</div>
 	</div>

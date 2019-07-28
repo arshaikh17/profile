@@ -1,7 +1,7 @@
 <tr>
 	<td>
 		<a
-			href="{{ route('comics.admin.series.show', $series) }}"
+			href="{{ route('comics.series.show', $series) }}"
 			title="{{ $series->title }}"
 		>
 			{{ $series->title }}
@@ -12,19 +12,19 @@
 	</td>
 	<td>
 		<a
-			href="{{ route('comics.admin.series.edit', [$series]) }}"
+			href="{{ route('comics.series.edit', [$series]) }}"
 			class="btn btn-sm btn-light"
 		>
 			Edit
 		</a>
 		<a
-			href="{{ route('comics.admin.arcs.create', [$series]) }}"
+			href="{{ route('comics.arcs.create', [$series]) }}"
 			class="btn btn-sm btn-secondary"
 		>
 			Add Arc
 		</a>
 		<a
-			href="{{ route('comics.admin.issues.createWithSeriesAndArc', [$series]) }}"
+			href="{{ route('comics.issues.createWithSeriesAndArc', [$series]) }}"
 			class="btn btn-sm btn-dark"
 		>
 			Add Issue

@@ -77,7 +77,8 @@
 								Is Wishlist?
 							</label>
 						</div>
-						<h3>Attach Series and Arc</h3>
+						
+						<p class="text-20">Attach Series and Arc</p>
 						<div class="form-group">
 							<label>Select Series</label>
 							<select
@@ -100,33 +101,53 @@
 						</div>
 						<div class="form-group">
 							<label>Select Arc</label>
-							<select
-								class="form-control"
-								name="arc_id"
-								required
-							>
-								<option selected>No Arc</option>
-								@forelse ($series as $singleSeries)
-									<optgroup label="{{ $singleSeries->title }}">
-										@forelse ($singleSeries->arcs as $arc)
-											<option
-												value="{{ $arc->id }}"
-												@if (!isset($selectedArc) && $issue->arc_id == $arc->id) selected @endif
-												@if (isset($selectedArc) && $selectedArc->id == $arc->id) selected @endif
-											>
-												{{ $arc->title }}
-											</option>
-										@empty
-											<option disabled>No arcs in this series</option>
-										@endforelse
-									</optgroup>
-								@empty
-								@endforelse
-							</select>
+							@if (isset($selectedSeries))
+								<select
+									class="form-control"
+									name="arc_id"
+									required
+								>
+									<option selected>No Arc</option>
+									@forelse ($selectedSeries->arcs as $arc)
+										<option
+											value="{{ $arc->id }}"
+											@if (!isset($selectedArc) && $issue->arc_id == $arc->id) selected @endif
+											@if (isset($selectedArc) && $selectedArc->id == $arc->id) selected @endif
+										>
+											{{ $arc->title }}
+										</option>
+									@empty
+									@endforelse
+								</select>
+							@else
+								<select
+									class="form-control"
+									name="arc_id"
+									required
+								>
+									<option selected>No Arc</option>
+									@forelse ($series as $singleSeries)
+										<optgroup label="{{ $singleSeries->title }}">
+											@forelse ($singleSeries->arcs as $arc)
+												<option
+													value="{{ $arc->id }}"
+													@if (!isset($selectedArc) && $issue->arc_id == $arc->id) selected @endif
+													@if (isset($selectedArc) && $selectedArc->id == $arc->id) selected @endif
+												>
+													{{ $arc->title }}
+												</option>
+												@empty
+												<option disabled>No arcs in this series</option>
+											@endforelse
+										</optgroup>
+									@empty
+									@endforelse
+								</select>
+							@endif
 						</div>
 					</div>
 					<div class="col-md-4">
-						<h3>Attach Authors</h3>
+						<p class="text-20">Attach Authors</p>
 						<input
 							class="form-control filter-element mb-2"
 							type="text"
@@ -158,7 +179,7 @@
 				</div>
 				<div class="row">
 					<div class="col-12">
-						<h3>
+						<p class="text-20">
 							New Authors
 							<a
 								href="#"
@@ -166,17 +187,14 @@
 								data-template="authorsFormFields"
 								data-append="authorsForm"
 							>
-							Add Author
-						</a>
-						</h3>
+								Add Author
+							</a>
+						</p>
 					</div>
 					<div class="col-12">
 						<div class="row" id="authorsForm">
 							
 						</div>
-					</div>
-					<div class="col-12">
-						
 					</div>
 				</div>
 				<div class="form-group">

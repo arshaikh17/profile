@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Comics\Admin;
+namespace App\Http\Controllers\Comics;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -32,7 +32,7 @@ class SeriesController extends Controller
 	public function index()
 	{
 		
-		$series					 =	Series::paginate(10);
+		$series					 =	Series::all();
 		
 		return view(self::VIEW_PATH . "index", compact("series"));
 		

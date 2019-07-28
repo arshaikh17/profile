@@ -8,7 +8,7 @@
 		</div>
 		<div class="col-12 col-md-6">
 			<form
-				action="{{ $series->id ? route('comics.admin.series.update', $series) : route('comics.admin.series.store') }}"
+				action="{{ $series->id ? route('comics.series.update', $series) : route('comics.series.store') }}"
 				method="POST"
 				enctype="multipart/form-data"
 			>
