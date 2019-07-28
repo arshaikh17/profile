@@ -133,7 +133,7 @@
 						</div>
 					</div>
 				@empty
-					<div class="col-12"><p>No comics in {{ $singleSeries["series"]->title }}</p></div>
+					<div class="col-12"><p>No comics in {{ $character->name }}</p></div>
 				@endforelse
 			</div>
 		</div>
