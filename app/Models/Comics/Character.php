@@ -130,10 +130,10 @@ class Character extends Model
 	 * Returns issues associated with character
 	 * 
 	 * @param Bool $sorted
-	 * @param Bool $excludeWishlist
+	 * @param Bool $includeWishlist
 	 * @return App\Models\Comics\Issues $issues[]
 	 */
-	public function issues($sorted = false, $excludeWishlist = true)
+	public function issues($sorted = false, $includeWishlist = true)
 	{
 		
 		if ($sorted) {
@@ -147,7 +147,7 @@ class Character extends Model
 					->orderBy("issue", "ASC")
 				;
 				
-				if ($excludeWishlist) $issues->where("is_wishlist", "=", Issue::STATUS_OWNED);
+				if (!$includeWishlist) $issues->where("is_wishlist", "=", Issue::STATUS_OWNED);
 				
 				$issues					 =	$issues->get();
 				
@@ -178,7 +178,7 @@ class Character extends Model
 		
 		$issues							 =	Issue::whereIn("series_id", $seriesIds);
 		
-		if ($excludeWishlist) $issues->where("is_wishlist", "=", Issue::STATUS_OWNED);
+		if (!$includeWishlist) $issues->where("is_wishlist", "=", Issue::STATUS_OWNED);
 
 		return $issues->get();
 		

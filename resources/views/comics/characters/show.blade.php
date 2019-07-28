@@ -86,9 +86,13 @@
 						data-masonry-child=".arc"
 					>
 						<div class="row">
-						    <div class="col-12">
-						        <p class="bg-dark shadow p-2 mt-2 text-white text-20">{{ $singleSeries['series']->title }}</p>
-						    </div>
+							<div class="col-12">
+								<p class="bg-dark shadow p-2 mt-2 text-white text-20">
+									<a href="{{ route('comics.series.show', $singleSeries['series']) }}" class="text-white">
+										{{ $singleSeries['series']->title }}
+									</a>
+								</p>
+							</div>
 							@if (count($singleSeries['arcs']))
 								<div class="col-12 col-md-8">
 									<h4>Arcs</h4>
@@ -98,11 +102,16 @@
 										@forelse ($singleSeries['arcs'] as $arcKey => $arc)
 										<div class="col-12 col-md-6 mb-4 arc">
 											<div class="shadow p-4 bg-dark text-white">
-												
-												{{ $arc["arc"]->title }}
+												<a href="{{ route('comics.arcs.show', $arc['arc']) }}" class="text-white">
+													{{ $arc["arc"]->title }}
+												</a>
 												<ul>
 													@forelse ($arc["issues"] ?? [] as $issue)
-													<li>#{{ $issue->issue . ' - ' . $issue->title }}</li>
+														<li class="@if ($issue->is_wishlist) wishlist-item @endif">
+															<a href="{{ route('comics.issues.show', $issue) }}" class="text-white">
+																#{{ $issue->issue . ' - ' . $issue->title }}
+															</a>
+														</li>
 													@empty
 													@endforelse
 												</ul>
@@ -116,7 +125,11 @@
 								<div class="col-12 col-md-4">
 									<h4>Single Issues</h4>
 									@forelse ($singleSeries["singles"] as $singleIssue)
-										<div class="border border-secondary shadow p-2">#{{ $singleIssue->issue . " - " . $singleIssue->title }}</div>
+										<div class="border border-secondary shadow p-2 @if ($issue->is_wishlist) wishlist-item @endif">
+											<a href="{{ route('comics.issues.show', $issue) }}" class="text-dark">
+												#{{ $singleIssue->issue . " - " . $singleIssue->title }}
+											</a>
+										</div>
 									@empty
 										<p>No single issues.</p>
 									@endforelse
@@ -124,7 +137,11 @@
 							@else
 								@forelse ($singleSeries["singles"] as $singleIssue)
 									<div class="col-12 col-md-4 mb-2">
-										<div class="bg-dark text-white shadow p-2">#{{ $singleIssue->issue . " - " . $singleIssue->title }}</div>
+										<div class="bg-dark text-white shadow p-2 @if ($issue->is_wishlist) wishlist-item @endif">
+											<a href="{{ route('comics.issues.show', $issue) }}" class="text-white">
+												#{{ $singleIssue->issue . " - " . $singleIssue->title }}
+											</a>
+										</div>
 									</div>
 								@empty
 									<div class="col-12"><p>No arcs and single issues in {{ $singleSeries["series"]->title }}.</p></div>

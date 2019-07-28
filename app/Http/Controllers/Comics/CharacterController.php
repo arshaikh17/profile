@@ -97,10 +97,10 @@ class CharacterController extends Controller
 	/**
 	 * Updates record
 	 * 
-	 * @param App\Character $character
 	 * @param Illuminate\Http\Request $request
+	 * @param App\Models\Comics\Character $character
 	 */
-	public function update(Character $character, Request $request)
+	public function update(Request $request, Character $character)
 	{
 		
 		Character::saveCharacter($character, $request);
