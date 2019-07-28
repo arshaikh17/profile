@@ -28,7 +28,7 @@
 									Arc: {{ $issue->arc ? $issue->arc->title : "" }}
 								</span>
 								@if (Auth::user())
-									<a href="{{ route('comics.admin.issues.edit', $issue) }}" class="btn btn-sm btn-primary w-100 mt-1">Edit</a>
+									<a href="{{ route('comics.issues.edit', $issue) }}" class="btn btn-sm btn-dark w-100 mt-1">Edit</a>
 								@endif
 							</div>
 						</div>

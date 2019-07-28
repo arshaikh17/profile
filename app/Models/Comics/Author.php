@@ -41,7 +41,7 @@ class Author extends Model
 	public static function saveAuthor(Author $author, $data)
 	{
 		
-		if (!is_array($data)) $data		 =	(array) $data;
+		$data		 =	$data->toArray();
 		
 		$author->fill([
 			"first_name"				 =>	$data["first_name"],

@@ -7,7 +7,7 @@
 			My Comics Series
 			<a
 				href="{{ route('comics.series.create') }}"
-				class="btn btn-sm btn-primary"
+				class="btn btn-sm btn-dark"
 			>
 				Create New Series
 			</a>

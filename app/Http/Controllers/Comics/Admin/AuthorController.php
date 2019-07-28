@@ -38,6 +38,18 @@ class AuthorController extends Controller
 	}
 	
 	/**
+	 * Displays show view
+	 * 
+	 * @param App\Models\Comics\Author $author
+	 */
+	public function show(Author $author)
+	{
+		
+		return view(self::VIEW_PATH . "show", compact("author"));
+		
+	}
+	
+	/**
 	 * Displays create view
 	 */
 	public function create()

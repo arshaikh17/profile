@@ -14,55 +14,6 @@ Route::group([
 ], function()
 {
 	
-	/**
-	 * Admin Routes
-	 */
-	Route::group([
-		"prefix"						 =>	"/admin",
-		"as"							 =>	"admin."
-	], function()
-	{
-		
-		Route::get("/", "Comics\Admin\AdminController@index")->name("index");
-		
-		/**
-		 * /Comics/Admin/AuthorController Routes
-		 */
-		Route::group([
-			"prefix"					 =>	"/authors",
-			"as"						 =>	"authors."
-		], function()
-		{
-			
-			Route::get("/", "Comics\Admin\AuthorController@index")->name("index");
-			Route::get("/create", "Comics\Admin\AuthorController@create")->name("create");
-			Route::get("/{author}/edit", "Comics\Admin\AuthorController@edit")->name("edit");
-			Route::post("/{author}/edit", "Comics\Admin\AuthorController@update")->name("update");
-			Route::post("/", "Comics\Admin\AuthorController@store")->name("store");
-			Route::get("/search", "Comics\Admin\AuthorController@search")->name("search");
-			
-		});
-		
-		/**
-		 * /Comics/Admin/IssueController Routes
-		 */
-		/*Route::group([
-			"prefix"					 =>	"/issues",
-			"as"						 =>	"issues."
-		], function()
-		{
-			
-			Route::get("/", "Comics\Admin\IssueController@index")->name("index");
-			Route::get("/show/{issues}", "Comics\Admin\IssueController@show")->name("show");
-			Route::get("/create", "Comics\Admin\IssueController@create")->name("create");
-			Route::get("/create/{selectedSeries}/{selectedArc?}", "Comics\Admin\IssueController@createWithSeriesAndArc")->name("createWithSeriesAndArc");
-			Route::get("/{issue}/edit", "Comics\Admin\IssueController@edit")->name("edit");
-			Route::post("/{issue}/edit", "Comics\Admin\IssueController@update")->name("update");
-			Route::post("/", "Comics\Admin\IssueController@store")->name("store");
-			
-		});*/
-		
-	});
 	
 	Route::get("/", "Comics\ComicsController@index")->name("index");
 	
@@ -74,7 +25,15 @@ Route::group([
 		"as"							 =>	"authors."
 	], function()
 	{
+		
+		Route::get("/", "Comics\AuthorController@index")->name("index");
+		Route::get("/create", "Comics\AuthorController@create")->name("create");
+		Route::get("/{author}/edit", "Comics\AuthorController@edit")->name("edit");
+		Route::post("/{author}/edit", "Comics\AuthorController@update")->name("update");
+		Route::post("/", "Comics\AuthorController@store")->name("store");
+		Route::get("/search", "Comics\AuthorController@search")->name("search");
 		Route::get("/{author}", "Comics\AuthorController@show")->name("show");
+		
 	});
 	
 	/**

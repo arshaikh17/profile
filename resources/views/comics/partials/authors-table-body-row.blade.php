@@ -10,7 +10,7 @@
 	<td>{{ $author->issues->count() }}</td>
 	<td>
 		<a
-			href="{{ route('comics.admin.authors.edit', [$author]) }}"
+			href="{{ route('comics.authors.edit', [$author]) }}"
 			class="btn btn-sm btn-light"
 		>
 			Edit
