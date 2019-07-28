@@ -183,7 +183,7 @@
 							New Authors
 							<a
 								href="#"
-								class="btn btn-sm btn-primary add-template"
+								class="btn btn-sm btn-dark add-template"
 								data-template="authorsFormFields"
 								data-append="authorsForm"
 							>
@@ -200,7 +200,7 @@
 				<div class="form-group">
 					<input
 						type="submit"
-						class="btn btn-sm btn-primary w-100"
+						class="btn btn-sm btn-dark w-100"
 						value="Save"
 					/>
 				</div>
