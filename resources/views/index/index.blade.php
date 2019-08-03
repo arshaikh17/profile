@@ -1,1 +1,1 @@
-@extends("layouts.profile")
+@extends("layouts.profileIndex")
