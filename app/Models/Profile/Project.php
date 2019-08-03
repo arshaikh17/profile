@@ -8,12 +8,12 @@ use App\Models\Profile\AbstractModel;
 use App\Models\Profile\SkillTag;
 use App\Models\Profile\Gallery;
 
-use App\Traits\ModelTrait;
+use App\Traits\ProfileTrait;
 
 class Project extends AbstractModel
 {
 	
-	use ModelTrait;
+	use ProfileTrait;
 	
 	/**
 	 * Fillable columns

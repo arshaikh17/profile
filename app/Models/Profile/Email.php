@@ -5,12 +5,12 @@ namespace App\Models\Profile;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Profile\AbstractModel;
 
-use App\Traits\ModelTrait;
+use App\Traits\ProfileTrait;
 
 class Email extends AbstractModel
 {
 	
-	use ModelTrait;
+	use ProfileTrait;
 	
 	/**
 	 * Fillable columns

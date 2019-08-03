@@ -5,7 +5,6 @@ namespace App\Models\Comics;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Traits\ModelTrait;
-use App\Traits\ComicsTrait;
 
 use App\Models\Comics\Arc;
 use App\Models\Comics\Series;
@@ -14,9 +13,10 @@ use App\Models\Comics\Author;
 class Issue extends Model
 {
 	
-	use ModelTrait,
-		ComicsTrait
-	;
+	/**
+	 * Traits
+	 */
+	use ComicsTrait;
 	
 	/**
 	 * Fillable columns

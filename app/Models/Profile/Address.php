@@ -5,12 +5,15 @@ namespace App\Models\Profile;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Profile\AbstractModel;
 
-use App\Traits\ModelTrait;
+use App\Traits\ProfileTrait;
 
 class Address extends AbstractModel
 {
 	
-	use ModelTrait;
+	/**
+	 * Traits
+	 */
+	use ProfileTrait;
 	
 	/**
 	 * Fillable columns

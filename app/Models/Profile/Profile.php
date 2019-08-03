@@ -31,7 +31,7 @@ class Profile extends Model
 	/**
 	 * Returns model object
 	 * 
-	 * @return App\Models\Comics\Address
+	 * @return App\Models\Profile\Address
 	 */
 	public function addresses()
 	{
@@ -43,7 +43,7 @@ class Profile extends Model
 	/**
 	 * Returns model object
 	 * 
-	 * @return App\Models\Comics\CV
+	 * @return App\Models\Profile\CV
 	 */
 	public function cvs()
 	{
@@ -55,7 +55,7 @@ class Profile extends Model
 	/**
 	 * Returns model object
 	 * 
-	 * @return App\Models\Comics\Detail
+	 * @return App\Models\Profile\Detail
 	 */
 	public function details()
 	{
@@ -67,7 +67,7 @@ class Profile extends Model
 	/**
 	 * Returns model object
 	 * 
-	 * @return App\Models\Comics\Education
+	 * @return App\Models\Profile\Education
 	 */
 	public function educations()
 	{
@@ -79,7 +79,7 @@ class Profile extends Model
 	/**
 	 * Returns model object
 	 * 
-	 * @return App\Models\Comics\Email
+	 * @return App\Models\Profile\Email
 	 */
 	public function emails()
 	{
@@ -91,7 +91,7 @@ class Profile extends Model
 	/**
 	 * Returns model object
 	 * 
-	 * @return App\Models\Comics\Experience
+	 * @return App\Models\Profile\Experience
 	 */
 	public function experiences()
 	{
@@ -103,7 +103,7 @@ class Profile extends Model
 	/**
 	 * Returns model object
 	 * 
-	 * @return App\Models\Comics\Gallery
+	 * @return App\Models\Profile\Gallery
 	 */
 	public function galleries()
 	{
@@ -115,7 +115,7 @@ class Profile extends Model
 	/**
 	 * Returns model object
 	 * 
-	 * @return App\Models\Comics\Phone
+	 * @return App\Models\Profile\Phone
 	 */
 	public function phones()
 	{
@@ -127,7 +127,7 @@ class Profile extends Model
 	/**
 	 * Returns model object
 	 * 
-	 * @return App\Models\Comics\Project
+	 * @return App\Models\Profile\Project
 	 */
 	public function projects()
 	{
@@ -139,7 +139,7 @@ class Profile extends Model
 	/**
 	 * Returns model object
 	 * 
-	 * @return App\Models\Comics\Skill
+	 * @return App\Models\Profile\Skill
 	 */
 	public function skills()
 	{
@@ -151,7 +151,7 @@ class Profile extends Model
 	/**
 	 * Returns model object
 	 * 
-	 * @return App\Models\Comics\SocialMedia
+	 * @return App\Models\Profile\SocialMedia
 	 */
 	public function socialMedias()
 	{

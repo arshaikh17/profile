@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Profile\AbstractModel;
 use App\Models\Profile\SkillTag;
 
-use App\Traits\ModelTrait;
+use App\Traits\ProfileTrait;
 
 class Experience extends AbstractModel
 {
 	
-	use ModelTrait;
+	use ProfileTrait;
 	
 	/**
 	 * Fillable columns

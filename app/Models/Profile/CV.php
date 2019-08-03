@@ -4,13 +4,15 @@ namespace App\Models\Profile;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Traits\ProfileTrait;
+
 class CV extends Model
 {
 	
 	/**
-	 * Table
+	 * Traits
 	 */
-	protected $table					 =	"cvs";
+	use ProfileTrait;
 	
 	/**
 	 * Fillable columns

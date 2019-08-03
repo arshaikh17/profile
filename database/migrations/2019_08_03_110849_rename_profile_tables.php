@@ -16,6 +16,8 @@ class RenameProfileTables extends Migration
 	{
 		
 		Schema::rename("cvs", "profile_cvs");
+		Schema::rename("addresses", "profile_addresses");
+		Schema::rename("projects", "profile_projects");
 		Schema::rename("details", "profile_details");
 		Schema::rename("educations", "profile_educations");
 		Schema::rename("emails", "profile_emails");
@@ -37,6 +39,8 @@ class RenameProfileTables extends Migration
 	{
 		
 		Schema::rename("profile_cvs", "cvs");
+		Schema::rename("profile_addresses", "addresses");
+		Schema::rename("profile_projects", "projects");
 		Schema::rename("profile_details", "details");
 		Schema::rename("profile_educations", "educations");
 		Schema::rename("profile_emails", "emails");

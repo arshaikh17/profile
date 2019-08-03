@@ -7,17 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Profile\AbstractModel;
 use App\Models\Profile\Skill;
 
-use App\Traits\ModelTrait;
+use App\Traits\ProfileTrait;
 
 class SkillTag extends AbstractModel
 {
 	
-	use ModelTrait;
-	
-	/**
-	 * Table name
-	 */
-	protected $table					 =	"skill_tags";
+	use ProfileTrait;
 	
 	/**
 	 * Fillable columns

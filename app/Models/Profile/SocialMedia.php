@@ -4,17 +4,12 @@ namespace App\Models\Profile;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Traits\ModelTrait;
+use App\Traits\ProfileTrait;
 
 class SocialMedia extends Model
 {
 	
-	use ModelTrait;
-	
-	/**
-	 * Table name
-	 */
-	protected $table					 =	"social_medias";
+	use ProfileTrait;
 	
 	/**
 	 * Fillable columns

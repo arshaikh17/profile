@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Profile\AbstractModel;
 
-use App\Traits\ModelTrait;
+use App\Traits\ProfileTrait;
 
 class Skill extends AbstractModel
 {
 	
-	use ModelTrait;
+	use ProfileTrait;
 	
 	/**
 	 * Fillable columns

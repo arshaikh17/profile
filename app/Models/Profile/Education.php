@@ -5,17 +5,12 @@ namespace App\Models\Profile;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Profile\AbstractModel;
 
-use App\Traits\ModelTrait;
+use App\Traits\ProfileTrait;
 
 class Education extends AbstractModel
 {
 	
-	use ModelTrait;
-	
-	/**
-	 * Table name
-	 */
-	protected $table					 =	"educations";
+	use ProfileTrait;
 	
 	/**
 	 * Fillable columns

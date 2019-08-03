@@ -4,13 +4,15 @@ namespace App\Models\Profile;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Traits\ProfileTrait;
+
 class Detail extends Model
 {
 	
 	/**
-	 * Table name
+	 * Traits
 	 */
-	//protected $table					 =	"about_me";
+	use ProfileTrait;
 	
 	/**
 	 * Fillable columns
@@ -19,13 +21,6 @@ class Detail extends Model
 		"key",
 		"value",
 	];
-	
-	/**
-	 * Casts
-	 */
-	/*protected $casts					 =	[
-		"responsibilities"				 =>	"array"
-	];*/
 	
 	/* =====================================================
 	 * 						STATIC METHODS					

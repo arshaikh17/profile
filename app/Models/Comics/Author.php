@@ -9,6 +9,9 @@ use App\Traits\ComicsTrait;
 class Author extends Model
 {
 	
+	/**
+	 * Traits
+	 */
 	use ComicsTrait;
 	
 	/**
