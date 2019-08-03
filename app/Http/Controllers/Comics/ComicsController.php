@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 
 use Auth;
 
+use App\Models\Comics\Comics;
+use App\Models\Comics\Arc;
+
 class ComicsController extends Controller
 {
 	
@@ -31,7 +34,7 @@ class ComicsController extends Controller
 	public function index()
 	{
 		
-		$comics							 =	Auth::user()->comics();
+		$comics							 =	new Comics;
 		
 		return view(self::VIEW_PATH . "index", compact("comics"));
 		

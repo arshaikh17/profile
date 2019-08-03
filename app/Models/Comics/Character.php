@@ -5,18 +5,17 @@ namespace App\Models\Comics;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Traits\ModelTrait;
+use App\Traits\ComicsTrait;
+
 use App\Models\Comics\Series;
 use App\Models\Comics\Arc;
 
 class Character extends Model
 {
 	
-	use ModelTrait;
-	
-	/**
-	 * Table
-	 */
-	protected $table					 =	"comics_characters";
+	use ModelTrait,
+		ComicsTrait
+	;
 	
 	/**
 	 * Fillable columns

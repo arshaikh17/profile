@@ -4,13 +4,12 @@ namespace App\Models\Comics;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Traits\ComicsTrait;
+
 class Author extends Model
 {
 	
-	/**
-	 * Table
-	 */
-	protected $table					 =	"comics_authors";
+	use ComicsTrait;
 	
 	/**
 	 * Fillables
