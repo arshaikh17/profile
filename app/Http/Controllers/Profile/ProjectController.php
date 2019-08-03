@@ -13,9 +13,9 @@ class ProjectController extends Controller
 {
 	
 	/**
-	 * Scoped variables
+	 * Constants
 	 */
-	private $path_view					 =	"profile.projects.";
+	CONST VIEW_PATH						 =	"profile.projects.";
 	
 	/**
 	 * Constructor
@@ -35,7 +35,7 @@ class ProjectController extends Controller
 		
 		$projects						 =	Project::all();
 		
-		return view($this->path_view . "index", compact("projects"));
+		return view(self::VIEW_PATH . "index", compact("projects"));
 		
 	}
 	
@@ -101,7 +101,7 @@ class ProjectController extends Controller
 		$skills							 =	Skill::all();
 		$experiences					 =	Experience::all();
 		
-		return view($this->path_view . "form", compact("project", "skills", "experiences"));
+		return view(self::VIEW_PATH . "form", compact("project", "skills", "experiences"));
 		
 	}
 	

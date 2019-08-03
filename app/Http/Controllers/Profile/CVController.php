@@ -12,9 +12,13 @@ class CVController extends Controller
 {
 	
 	/**
+	 * Constants
+	 */
+	CONST VIEW_PATH						 =	"profile.cvs.";
+	
+	/**
 	 * Scoped variables
 	 */
-	private $path_view					 =	"profile.cvs.";
 	private $cvs						 =	[];
 	
 	/**
@@ -37,7 +41,7 @@ class CVController extends Controller
 		
 		$cvs							 =	$this->cvs;
 		
-		return view($this->path_view . "index", compact("cvs"));
+		return view(self::VIEW_PATH . "index", compact("cvs"));
 		
 	}
 	
@@ -51,7 +55,7 @@ class CVController extends Controller
 		
 		$cvs							 =	$this->cvs;
 		
-		return view($this->path_view . "edit", compact("cvs", "cv"));
+		return view(self::VIEW_PATH . "edit", compact("cvs", "cv"));
 		
 	}
 	
