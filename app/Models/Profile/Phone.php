@@ -11,6 +11,9 @@ use App\Traits\ProfileTrait;
 class Phone extends AbstractModel
 {
 	
+	/**
+	 * Traits
+	 */
 	use ProfileTrait;
 	
 	/**

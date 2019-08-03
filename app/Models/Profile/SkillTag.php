@@ -12,7 +12,15 @@ use App\Traits\ProfileTrait;
 class SkillTag extends AbstractModel
 {
 	
+	/**
+	 * Traits
+	 */
 	use ProfileTrait;
+	
+	/**
+	 * Table
+	 */
+	protected $table					 =	"profile_skill_tags";
 	
 	/**
 	 * Fillable columns

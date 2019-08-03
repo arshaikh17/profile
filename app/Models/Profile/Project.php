@@ -13,6 +13,9 @@ use App\Traits\ProfileTrait;
 class Project extends AbstractModel
 {
 	
+	/**
+	 * Traits
+	 */
 	use ProfileTrait;
 	
 	/**

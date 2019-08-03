@@ -11,6 +11,9 @@ use App\Traits\ProfileTrait;
 class Gallery extends AbstractModel
 {
 	
+	/**
+	 * Traits
+	 */
 	use ProfileTrait;
 	
 	/**

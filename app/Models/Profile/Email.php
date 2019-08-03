@@ -10,6 +10,9 @@ use App\Traits\ProfileTrait;
 class Email extends AbstractModel
 {
 	
+	/**
+	 * Traits
+	 */
 	use ProfileTrait;
 	
 	/**

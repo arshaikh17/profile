@@ -10,6 +10,9 @@ use App\Traits\ProfileTrait;
 class Education extends AbstractModel
 {
 	
+	/**
+	 * Traits
+	 */
 	use ProfileTrait;
 	
 	/**

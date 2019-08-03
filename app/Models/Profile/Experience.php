@@ -12,6 +12,9 @@ use App\Traits\ProfileTrait;
 class Experience extends AbstractModel
 {
 	
+	/**
+	 * Traits
+	 */
 	use ProfileTrait;
 	
 	/**

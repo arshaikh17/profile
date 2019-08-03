@@ -11,6 +11,9 @@ use App\Traits\ProfileTrait;
 class Skill extends AbstractModel
 {
 	
+	/**
+	 * Traits
+	 */
 	use ProfileTrait;
 	
 	/**

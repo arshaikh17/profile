@@ -9,7 +9,15 @@ use App\Traits\ProfileTrait;
 class SocialMedia extends Model
 {
 	
+	/**
+	 * Traits
+	 */
 	use ProfileTrait;
+	
+	/**
+	 * Table
+	 */
+	protected $table					 =	"profile_social_medias";
 	
 	/**
 	 * Fillable columns
