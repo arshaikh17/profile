@@ -1,4 +1,6 @@
-/********************* ITEM GRID **********************/
+/*======================================
+ * ITEM GRID
+======================================*/
 h3{margin:1em;text-transform:capitalize;font-size:1.7em;}
 .item-grid{font-family:Roboto,sans-serif;text-align:center;position:relative;z-index:1;background-color: white;border: 0.5px solid #607D8B;margin-bottom: 10px;}
 .item-grid:before{content:"";height:81%;width:100%;background:#fff;opacity:0;position:absolute;top:0;left:0;z-index:-1;transition:all .5s ease 0s}
@@ -29,17 +31,23 @@ h3{margin:1em;text-transform:capitalize;font-size:1.7em;}
 @media only screen and (max-width:359px){.item-grid .rating{margin:0}
 }
 
-/********************************** FONT SIZES *************************/
+/*======================================
+ * FONT SIZES
+======================================*/
 .text-20 {
 	font-size: 20px;
 }
 
-/******************************** HEIGHTS ******************************/
+/*======================================
+ * HEIGHTS
+======================================*/
 .h-170 {
 	height: 170px;
 }
 
-/********************************* WISHLIST ITEM **************************/
+/*======================================
+ * WISHLIST ITEM
+======================================*/
 .wishlist-item:after {
 	content: "wishlist";
 	margin-right: 5px;
@@ -49,4 +57,12 @@ h3{margin:1em;text-transform:capitalize;font-size:1.7em;}
 	border-color: #343a40;
 	border-radius: 5px;
 	font-size: 10px;
+}
+
+/*======================================
+ * Statistics Card
+======================================*/
+.statistics-card {
+	margin-bottom: 10px;
+	color: rgb(108, 117, 125);
 }

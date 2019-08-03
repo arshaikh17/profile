@@ -10,11 +10,9 @@
 	@include("partials.modules.bootstrap4")
 	@include("partials.modules.fontawesome-5-8-1")
 	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+	@include("partials.modules.shared")
 </head>
 <body>
-@if (Auth::user())
-	@include("partials.admin-nav")
-@endif
 	<div id="app">
 		<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
 			<div class="container">

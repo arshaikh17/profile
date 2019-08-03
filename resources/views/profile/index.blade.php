@@ -3,6 +3,98 @@
 @section("content")
 <div class="container">
 	<div class="row">
+		<div class="col-12 col-sm-4 statistics-card">
+			<a href="">
+				<div class="card">
+					<div class="card-body bg-primary text-white">
+						<h4 class="card-title">Details</h4>
+						<h1 class="card-text">{{ $profile->details()->count() }}</h1>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-12 col-sm-4 statistics-card">
+			<a href="">
+				<div class="card">
+					<div class="card-body bg-primary text-white">
+						<h4 class="card-title">Social Medias</h4>
+						<h1 class="card-text">{{ $profile->socialMedias()->count() }}</h1>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-12 col-sm-4 statistics-card">
+			<a href="">
+				<div class="card">
+					<div class="card-body bg-primary text-white">
+						<h4 class="card-title">CVs</h4>
+						<h1 class="card-text">{{ $profile->cvs()->count() }}</h1>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-12 col-sm-4 statistics-card">
+			<a href="">
+				<div class="card">
+					<div class="card-body bg-primary text-white">
+						<h4 class="card-title">Emails</h4>
+						<h1 class="card-text">{{ $profile->emails()->count() }}</h1>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-12 col-sm-4 statistics-card">
+			<a href="">
+				<div class="card">
+					<div class="card-body bg-primary text-white">
+						<h4 class="card-title">Phones</h4>
+						<h1 class="card-text">{{ $profile->phones()->count() }}</h1>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-12 col-sm-4 statistics-card">
+			<a href="">
+				<div class="card">
+					<div class="card-body bg-primary text-white">
+						<h4 class="card-title">Address</h4>
+						<h1 class="card-text">{{ $profile->addresses()->count() }}</h1>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-12 col-sm-6 statistics-card">
+			<a href="">
+				<div class="card">
+					<div class="card-body bg-primary text-white">
+						<h4 class="card-title">Educations</h4>
+						<h1 class="card-text">{{ $profile->educations()->count() }}</h1>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-12 col-sm-6 statistics-card">
+			<a href="">
+				<div class="card">
+					<div class="card-body bg-primary text-white">
+						<h4 class="card-title">Experiences</h4>
+						<h1 class="card-text">{{ $profile->experiences()->count() }}</h1>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-12 statistics-card">
+			<a href="">
+				<div class="card">
+					<div class="card-body bg-primary text-white">
+						<h4 class="card-title">Projects</h4>
+						<h1 class="card-text">{{ $profile->projects()->count() }}</h1>
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-sm-4 col-md-3">
 			<ul class="nav nav-tabs flex-column">
 				<li class="nav-item">

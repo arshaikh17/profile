@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Profile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Models\Profile\Profile;
 use App\Models\Profile\Detail;
 use App\Models\Profile\SocialMedia;
 use App\Models\Profile\Email;
@@ -48,7 +49,9 @@ class ProfileController extends Controller
 		$addresses						 =	Address::all();
 		$skills							 =	Skill::all();
 		
-		return view(self::VIEW_PATH . "index", compact("socialTypes", "socialMedias", "emails", "phones", "addresses", "skills", "skillCategories", "skillLevels"));
+		$profile						 =	new Profile;
+		
+		return view(self::VIEW_PATH . "index", compact("socialTypes", "socialMedias", "emails", "phones", "addresses", "skills", "skillCategories", "skillLevels", "profile"));
 		
 	}
 	

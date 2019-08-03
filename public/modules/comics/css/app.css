@@ -16,14 +16,6 @@
 }
 
 /*======================================
- * Statistics Card
-======================================*/
-.statistics-card {
-	margin-bottom: 10px;
-	color: rgb(108, 117, 125);
-}
-
-/*======================================
  * Character
 ======================================*/
 .character .character-image, .character .character-image img {
