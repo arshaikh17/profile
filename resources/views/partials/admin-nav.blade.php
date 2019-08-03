@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm sticky-top bg-dark">
 	<ul class="navbar-nav mr-auto">
 		<li class="nav-item">
-			<a class="nav-link btn btn-sm btn-primary" href="{{ route('profile.admin.index') }}">Profile Management</a>
+			<a class="nav-link btn btn-sm btn-primary" href="{{ route('profile.index') }}">Profile Management</a>
 		</li>
 		<li class="nav-item ml-2">
 			<a class="nav-link btn btn-sm btn-secondary" href="{{ route('comics.index') }}">Comics Area</a>
