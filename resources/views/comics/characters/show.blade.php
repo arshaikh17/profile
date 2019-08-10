@@ -157,38 +157,3 @@
 	</div>
 </div>
 @endsection
-
-@section("js")
-<script type="text/javascript">
-$(".masonry-grid").each(function (index, grid) {
-	
-	$($(this).data("masonry-parent")).masonry({
-		itemSelector					 :	$(this).data("masonry-child"),
-	})
-	
-});
-
-$("body").on("click", ".toggle-dom", function (e) {
-	
-	e.preventDefault();
-	
-	var element							 =	$(this);
-	$(".toggle-dom").removeClass("active");
-	element.addClass("active");
-	
-	var value							 =	element.data("toggle-dom-id");
-	var className						 =	element.data("toggle-dom-child");
-	
-	if (value === undefined) {
-		
-		$(className).show();
-		return false;
-		
-	}
-	
-	$(className).hide();
-	$(`${className}[data-toggle-dom-value="${value}"]`).show();
-	
-})
-</script>
-@endsection
