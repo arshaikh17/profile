@@ -79,7 +79,7 @@ class AuthorController extends Controller
 	public function store(Request $request)
 	{
 		
-		Author::saveAuthor(new Author, $request);
+		Author::saveAuthor(new Author, $request->toArray());
 		
 		return redirect()->back()->with("status", "Record added.");
 		
@@ -94,7 +94,7 @@ class AuthorController extends Controller
 	public function update(Author $author, Request $request)
 	{
 		
-		Author::saveAuthor($author, $request);
+		Author::saveAuthor($author, $request->toArray());
 		
 		return redirect()->back()->with("status", "Record updated.");
 		

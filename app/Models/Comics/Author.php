@@ -37,13 +37,11 @@ class Author extends Model
 	 * Saves record
 	 * 
 	 * @param App\Models\Comics\Author $author
-	 * @param json $data[]
+	 * @param array $data[]
 	 * @return App\Models\Comics\Author $author
 	 */
 	public static function saveAuthor(Author $author, $data)
 	{
-		
-		$data		 =	$data->toArray();
 		
 		$author->fill([
 			"first_name"				 =>	$data["first_name"],
