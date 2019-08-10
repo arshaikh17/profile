@@ -41,7 +41,7 @@ class Arc extends Model
 	 * Saves record
 	 * 
 	 * @param App\Models\Comics\Arc $arc
-	 * @param json $data[]
+	 * @param Array $data
 	 */
 	public static function saveArc(Arc $arc, $data)
 	{

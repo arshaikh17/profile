@@ -38,7 +38,7 @@ class Character extends Model
 	 * Saves record
 	 * 
 	 * @param App\Models\Comics\Character $character
-	 * @param json $data[]
+	 * @param Array $data
 	 */
 	public static function saveCharacter(Character $character, $data)
 	{

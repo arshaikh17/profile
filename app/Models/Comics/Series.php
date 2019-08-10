@@ -47,7 +47,7 @@ class Series extends Model
 	 * Saves record
 	 * 
 	 * @param App\Models\Comics\Series $series
-	 * @param json $data[]
+	 * @param Array $data
 	 */
 	public static function saveSeries(Series $series, $data)
 	{

@@ -37,7 +37,7 @@ class Author extends Model
 	 * Saves record
 	 * 
 	 * @param App\Models\Comics\Author $author
-	 * @param array $data[]
+	 * @param Array $data
 	 * @return App\Models\Comics\Author $author
 	 */
 	public static function saveAuthor(Author $author, $data)

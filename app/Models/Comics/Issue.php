@@ -43,8 +43,8 @@ class Issue extends Model
 	 * Saves record
 	 * 
 	 * @param App\Models\Comics\Issue $issue
-	 * @param json $data[]
-	 * @return App\Models\Comics\Issue
+	 * @param Array $data
+	 * @return App\Models\Comics\Issue $issue
 	 */
 	public static function saveIssue(Issue $issue, $data)
 	{
