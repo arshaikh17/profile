@@ -42,6 +42,10 @@
 								</a>
 							</td>
 						</tr>
+						<tr>
+							<td>Wislist</td>
+							<td>{{ $issue->is_wishlist ? "Yes" : "NO" }}</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
