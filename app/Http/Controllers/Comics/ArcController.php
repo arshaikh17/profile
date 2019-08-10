@@ -58,7 +58,7 @@ class ArcController extends Controller
 	public function create(Series $series = null)
 	{
 		
-		return $this->getForm(new Arc(), $series);
+		return $this->getForm(new Arc, $series);
 		
 	}
 	
@@ -82,7 +82,7 @@ class ArcController extends Controller
 	public function store(Request $request)
 	{
 		
-		Arc::saveArc(new Arc, $request);
+		Arc::saveArc(new Arc, $request->toArray());
 		
 		return redirect()->back()->with("message", "Record added.");
 		
@@ -97,7 +97,7 @@ class ArcController extends Controller
 	public function update(Request $request, Arc $arc)
 	{
 		
-		Arc::saveArc($arc, $request);
+		Arc::saveArc($arc, $request->toArray());
 		
 		return redirect()->back()->with("message", "Record updated.");
 		

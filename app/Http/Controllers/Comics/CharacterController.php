@@ -64,7 +64,7 @@ class CharacterController extends Controller
 	public function create()
 	{
 		
-		return $this->getForm(new Character());
+		return $this->getForm(new Character);
 		
 	}
 	
@@ -88,7 +88,7 @@ class CharacterController extends Controller
 	public function store(Request $request)
 	{
 		
-		Character::saveCharacter(new Character, $request);
+		Character::saveCharacter(new Character, $request->toArray());
 		
 		return redirect()->back()->with("message", "Record added.");
 		
@@ -103,7 +103,7 @@ class CharacterController extends Controller
 	public function update(Request $request, Character $character)
 	{
 		
-		Character::saveCharacter($character, $request);
+		Character::saveCharacter($character, $request->toArray());
 		
 		return redirect()->back()->with("message", "Record updated.");
 		

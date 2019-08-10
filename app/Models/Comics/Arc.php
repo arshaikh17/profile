@@ -46,11 +46,11 @@ class Arc extends Model
 	{
 		
 		$arc->fill([
-			"title"						 =>	$data->title,
-			"is_completed"				 =>	$data->is_completed ? self::STATUS_COMPLETE : self::STATUS_INCOMPLETE
+			"title"						 =>	$data["title"] ?? "",
+			"is_completed"				 =>	$data["is_completed"] ?? self::STATUS_INCOMPLETE
 		]);
 		
-		if ($data->series_id) $arc->series()->associate(Series::find($data->series_id));
+		if ($data["series_id"] ?? 0) $arc->series()->associate(Series::find($data["series_id"]));
 		
 		$arc->save();
 		
@@ -129,17 +129,12 @@ class Arc extends Model
 	/**
 	 * Returns issues associated with arc
 	 * 
-	 * @param Bool $includeWishlists
 	 * @return App\Models\Comics\Issue $issues[]
 	 */
-	public function issues($includeWishlists = true)
+	public function issues()
 	{
 		
-		$issues							 =	$this->hasMany(Issue::class, "arc_id", "id");
-		
-		if (!$includeWishlists) $issues->where("is_wishlist", "=", Issue::STATUS_OWNED);
-		
-		return $includeWishlists ? $issues : $issues->get();
+		return $this->hasMany(Issue::class, "arc_id", "id");
 		
 	}
 	

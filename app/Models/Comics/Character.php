@@ -45,9 +45,9 @@ class Character extends Model
 		
 		$cover							 =	$character->cover;
 		
-		if ($data->hasFile("cover")) {
+		if ($data["cover"] ?? false) {
 			
-			$file						 =	$data->file("cover");
+			$file						 =	$data["cover"];
 			
 			//if (file_exists(public_path() . self::$path_logo . $cover)) var_dump(unlink(public_path() . self::$path_logo . $cover));
 			
@@ -60,7 +60,7 @@ class Character extends Model
 		Character::updateOrCreate([
 			"id"						 =>	$character->id
 		], [
-			"name"						 =>	$data->name,
+			"name"						 =>	$data["name"],
 			"cover"						 =>	$cover
 		]);
 		
