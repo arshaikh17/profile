@@ -6,6 +6,7 @@
 		<p 
 			data-toggle="collapse"
 			data-target="#cvForm"
+			class="hover-link" 
 		>
 			Add New CV
 		</p>
