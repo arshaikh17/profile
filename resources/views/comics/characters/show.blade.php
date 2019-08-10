@@ -58,7 +58,7 @@
 			<ul class="nav nav-pills p-3">
 				<li class="nav-item bg-dark">
 					<a
-						class="nav-link text-white toggle-dom active"
+						class="nav-link text-white toggle-dom active hover-link"
 						data-toggle-dom-child=".series-container"
 					>
 						All
@@ -67,7 +67,7 @@
 				@forelse ($series as $seriesKey => $singleSeries)
 					<li class="nav-item bg-dark">
 						<a
-							class="nav-link text-white toggle-dom"
+							class="nav-link text-white toggle-dom hover-link"
 							data-toggle-dom-id="series_container_{{ $singleSeries['series']->id }}"
 							data-toggle-dom-child=".series-container"
 						>
