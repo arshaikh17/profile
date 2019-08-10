@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-12 col-sm-4 statistics-card">
-			<a href="">
+			<a href="{{ route('profile.details.index') }}">
 				<div class="card">
 					<div class="card-body bg-primary text-white">
 						<h4 class="card-title">Details</h4>
@@ -24,7 +24,7 @@
 			</a>
 		</div>
 		<div class="col-12 col-sm-4 statistics-card">
-			<a href="">
+			<a href="{{ route('profile.cvs.index') }}">
 				<div class="card">
 					<div class="card-body bg-primary text-white">
 						<h4 class="card-title">CVs</h4>
@@ -64,7 +64,7 @@
 			</a>
 		</div>
 		<div class="col-12 col-sm-6 statistics-card">
-			<a href="">
+			<a href="{{ route('profile.educations.index') }}">
 				<div class="card">
 					<div class="card-body bg-primary text-white">
 						<h4 class="card-title">Educations</h4>
@@ -74,7 +74,7 @@
 			</a>
 		</div>
 		<div class="col-12 col-sm-6 statistics-card">
-			<a href="">
+			<a href="{{ route('profile.experiences.index') }}">
 				<div class="card">
 					<div class="card-body bg-primary text-white">
 						<h4 class="card-title">Experiences</h4>
@@ -84,7 +84,7 @@
 			</a>
 		</div>
 		<div class="col-12 statistics-card">
-			<a href="">
+			<a href="{{ route('profile.projects.index') }}">
 				<div class="card">
 					<div class="card-body bg-primary text-white">
 						<h4 class="card-title">Projects</h4>
