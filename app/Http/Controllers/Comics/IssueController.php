@@ -96,7 +96,7 @@ class IssueController extends Controller
 	public function store(Request $request)
 	{
 		
-		Issue::saveIssue(new Issue, $request);
+		Issue::saveIssue(new Issue, $request->toArray());
 		
 		return redirect()->back()->with("message", "Record added.");
 		
@@ -111,7 +111,7 @@ class IssueController extends Controller
 	public function update(Issue $issue, Request $request)
 	{
 		
-		Issue::saveIssue($issue, $request);
+		Issue::saveIssue($issue, $request->toArray());
 		
 		return redirect()->back()->with("message", "Record updated.");
 		

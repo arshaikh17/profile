@@ -46,9 +46,9 @@ class Series extends Model
 		
 		$cover							 =	$series->cover;
 		
-		if ($data->hasFile("cover")) {
+		if ($data["cover"] ?? false) {
 			
-			$file						 =	$data->file("cover");
+			$file						 =	$data["cover"];
 			
 			//if (file_exists(public_path() . self::$path_logo . $cover)) var_dump(unlink(public_path() . self::$path_logo . $cover));
 			
@@ -59,12 +59,12 @@ class Series extends Model
 		}
 		
 		$series->fill([
-			"title"						 =>	$data->title,
-			"is_completed"				 =>	$data->is_completed ?: 0,
+			"title"						 =>	$data["title"] ?? "",
+			"is_completed"				 =>	$data["is_completed"] ?? 0,
 			"cover"						 =>	$cover
 		]);
 		
-		if ($data->character_id) $series->character()->associate(Character::find($data->character_id));
+		if ($data["character_id"] ?? false) $series->character()->associate(Character::find($data["character_id"]));
 		
 		$series->save();
 		

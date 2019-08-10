@@ -51,9 +51,9 @@ class Issue extends Model
 		
 		$cover							 =	$issue->cover;
 		
-		if ($data->hasFile("cover")) {
+		if ($data["cover"] ?? false) {
 			
-			$file						 =	$data->file("cover");
+			$file						 =	$data["cover"];
 			
 			//if (file_exists(public_path() . self::$path_logo . $cover)) var_dump(unlink(public_path() . self::$path_logo . $cover));
 			
@@ -64,23 +64,23 @@ class Issue extends Model
 		}
 		
 		$issue->fill([
-			"title"						 =>	$data->title,
-			"issue"						 =>	$data->issue,
-			"is_wishlist"				 =>	$data->is_wishlist ?: 0,
+			"title"						 =>	$data["title"] ?? "",
+			"issue"						 =>	$data["issue"] ?? "",
+			"is_wishlist"				 =>	$data["is_wishlist"] ?? self::STATUS_WISHLIST,
 			"cover"						 =>	$cover
 		]);
 		
-		if ($data->series_id) $issue->series()->associate($data->series_id);
-		if ($data->arc_id) $issue->arc()->associate(Arc::find($data->arc_id));
+		if ($data["series_id"] ?? false) $issue->series()->associate($data["series_id"]);
+		if ($data["arc_id"] ?? false) $issue->arc()->associate(Arc::find($data["arc_id"]));
 		
 		$issue->save();
 		
-		if ($data->author_ids && count($data->author_ids)) foreach ($data->author_ids as $author_id) $issue->authors()->attach($author_id);
+		if ($data["author_ids"] && count($data["author_ids"])) foreach ($data["author_ids"] as $author_id) $issue->authors()->attach($author_id);
 		
 		//Save New Authors
-		if ($data->authors) {
+		if ($data["authors"] ?? false) {
 			
-			foreach ($data->authors as $author) {
+			foreach ($data["authors"] as $author) {
 				
 				$author					 =	Author::saveAuthor(new Author, $author);
 				

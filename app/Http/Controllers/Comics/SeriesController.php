@@ -80,7 +80,7 @@ class SeriesController extends Controller
 	public function store(Request $request)
 	{
 		
-		Series::saveSeries(new Series, $request);
+		Series::saveSeries(new Series, $request->toArray());
 		
 		return redirect()->back()->with("status", "Record added.");
 		
@@ -95,7 +95,7 @@ class SeriesController extends Controller
 	public function update(Series $series, Request $request)
 	{
 		
-		Series::saveSeries($series, $request);
+		Series::saveSeries($series, $request->toArray());
 		
 		return redirect()->back()->with("status", "Record updated.");
 		
