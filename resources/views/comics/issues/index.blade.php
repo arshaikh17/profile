@@ -59,7 +59,7 @@
 														<li>
 															<a
 																href="{{ route('comics.issues.show', $issue) }}"
-																class="{{ $issue->is_wishlist ? 'text-dark' : '' }}"
+																class="{{ $issue->is_wishlist ? 'wishlist-item' : '' }}"
 															>
 																#{{ $issue->issue }} - {{ $issue->title }}
 															</a>
@@ -84,7 +84,7 @@
 																		<li>
 																			<a
 																				href="{{ route('comics.issues.show', $issue) }}"
-																				class="{{ $issue->is_wishlist ? 'text-dark' : '' }}"
+																				class="{{ $issue->is_wishlist ? 'wishlist-item' : '' }}"
 																			>
 																				#{{ $issue->issue }} - {{ $issue->title }}
 																			</a>
