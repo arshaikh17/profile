@@ -101,7 +101,7 @@ class ProfileController extends Controller
 				break;
 		}
 		
-		return redirect()->back()->with("status", "Profile updated.");
+		return redirect()->back()->with("message", "Profile updated.");
 		
 	}
 	

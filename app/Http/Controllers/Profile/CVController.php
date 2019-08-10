@@ -69,7 +69,7 @@ class CVController extends Controller
 		
 		CV::saveCV($request);
 		
-		return redirect()->back()->with("status", "CV added.");
+		return redirect()->back()->with("message", "CV added.");
 		
 	}
 	
@@ -84,7 +84,7 @@ class CVController extends Controller
 		
 		CV::saveCV($request);
 		
-		return redirect()->back()->with("status", "CV updated.");
+		return redirect()->back()->with("message", "CV updated.");
 		
 	}
 	

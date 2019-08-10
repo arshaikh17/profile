@@ -47,7 +47,7 @@ class DetailController extends Controller
 		
 		Detail::saveDetails($request->details);
 		
-		return redirect()->back()->with("status", "Details saved.");
+		return redirect()->back()->with("message", "Details saved.");
 		
 	}
 	

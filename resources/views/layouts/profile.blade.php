@@ -34,24 +34,19 @@
 		</nav>
 		
 		<main class="py-4">
-			@if(session("status"))
-				<div class="container">
-					<div class="alert alert-success alert-dismissable fade in">
-						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						<strong>Success!</strong> {{session("status")}}
-					</div>
-				</div>
+			@if (session()->has("message"))
+				@include("partials.toast-alert", [
+					"alertType"					 =>	"success",
+					"message"					 =>	session("message")
+				])
 			@endif
-			
-			@if($errors->has("status"))
-				<div class="container">
-					<div class="alert alert-danger alert-dismissable fade in">
-						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						<strong>Error!</strong> {{$errors->first()}}
-					</div>
-				</div>
+			@if ($errors->any())
+				@include("partials.toast-alert", [
+					"alertType"					 =>	"fail",
+					"message"					 =>	$errors->first()
+				])
 			@endif
-			@yield('content')
+			@yield("content")
 		</main>
 	</div>
 	@yield("script")

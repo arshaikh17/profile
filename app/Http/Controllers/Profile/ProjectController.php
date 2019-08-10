@@ -71,7 +71,7 @@ class ProjectController extends Controller
 		
 		Project::saveProject(new Project, $request);
 		
-		return redirect()->back()->with("status", "Project added.");
+		return redirect()->back()->with("message", "Project added.");
 		
 	}
 	
@@ -86,7 +86,7 @@ class ProjectController extends Controller
 		
 		Project::saveProject($project, $request);
 		
-		return redirect()->back()->with("status", "Project updated.");
+		return redirect()->back()->with("message", "Project updated.");
 		
 	}
 	

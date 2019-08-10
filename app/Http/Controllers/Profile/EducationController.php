@@ -70,7 +70,7 @@ class EducationController extends Controller
 		
 		Education::saveEducation(new Education, $request);
 		
-		return redirect()->back()->with("status", "Education added.");
+		return redirect()->back()->with("message", "Education added.");
 		
 	}
 	
@@ -85,7 +85,7 @@ class EducationController extends Controller
 		
 		Education::saveEducation($education, $request);
 		
-		return redirect()->back()->with("status", "Education updated.");
+		return redirect()->back()->with("message", "Education updated.");
 		
 	}
 	

@@ -70,7 +70,7 @@ class ExperienceController extends Controller
 		
 		Experience::saveExperience(new Experience, $request);
 		
-		return redirect()->back()->with("status", "Experience added.");
+		return redirect()->back()->with("message", "Experience added.");
 		
 	}
 	
@@ -85,7 +85,7 @@ class ExperienceController extends Controller
 		
 		Experience::saveExperience($experience, $request);
 		
-		return redirect()->back()->with("status", "Experience updated.");
+		return redirect()->back()->with("message", "Experience updated.");
 		
 	}
 	
