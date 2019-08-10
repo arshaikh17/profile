@@ -41,7 +41,7 @@ class CV extends Model
 	 * @param App\Models\Profile\CV $cv
 	 * @param Array $data[]
 	 */
-	public static function saveCV(CV $cv $data)
+	public static function saveCV(CV $cv, $data)
 	{
 		
 		$cv_name						 =	$data["cv_name"] ?? "";
