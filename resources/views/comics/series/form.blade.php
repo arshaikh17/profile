@@ -67,7 +67,7 @@
 				<div class="form-group mt-2">
 					<input
 						type="submit"
-						class="btn btn-sm btn-primary w-100"
+						class="btn btn-sm btn-dark w-100"
 						value="Save"
 					/>
 				</div>
