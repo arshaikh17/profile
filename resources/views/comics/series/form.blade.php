@@ -24,18 +24,6 @@
 					/>
 				</div>
 				<div class="form-group">
-					<label>
-						Is Completed?
-						<input
-							type="checkbox"
-							class="form-control"
-							value="1"
-							name="is_completed"
-							@if ($series->is_completed) checked @endif
-						/>
-					</label>
-				</div>
-				<div class="form-group">
 					<label>Upload Cover</label>
 					<input
 						type="file"

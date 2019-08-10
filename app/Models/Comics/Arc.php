@@ -8,6 +8,7 @@ use App\Traits\ComicsTrait;
 
 use App\Models\Comics\Series;
 use App\Models\Comics\Arc;
+use App\Models\Comics\Issue;
 
 class Arc extends Model
 {
@@ -22,15 +23,15 @@ class Arc extends Model
 	 */
 	protected $fillable					 =	[
 		"title",
-		"is_completed",
 		"series_id"
 	];
 	
 	/**
-	 * Constants
+	 * Appends
 	 */
-	CONST STATUS_INCOMPLETE				 =	0;
-	CONST STATUS_COMPLETE				 =	1;
+	protected $appends					 =	[
+		"is_completed",
+	];
 	
 	/* =====================================================
 	 * 						STATIC METHODS					
@@ -47,10 +48,9 @@ class Arc extends Model
 		
 		$arc->fill([
 			"title"						 =>	$data["title"] ?? "",
-			"is_completed"				 =>	$data["is_completed"] ?? self::STATUS_INCOMPLETE
 		]);
 		
-		if ($data["series_id"] ?? 0) $arc->series()->associate(Series::find($data["series_id"]));
+		if ($data["series_id"] ?? false) $arc->series()->associate(Series::find($data["series_id"]));
 		
 		$arc->save();
 		
@@ -95,21 +95,6 @@ class Arc extends Model
 		
 	}
 	
-	/**
-	 * Returns arc status types
-	 * 
-	 * @return array $statuses
-	 */
-	public static function getStatusTypes()
-	{
-		
-		return [
-			self::STATUS_INCOMPLETE		 =>	"Incomplete",
-			self::STATUS_COMPLETE		 =>	"Completed",
-		];
-		
-	}
-	
 	/* =====================================================
 	 * 						RELATIONS						
 	 * ===================================================*/
@@ -135,6 +120,27 @@ class Arc extends Model
 	{
 		
 		return $this->hasMany(Issue::class, "arc_id", "id");
+		
+	}
+	
+	/* =====================================================
+	 * 						MUTATORS						
+	 * ===================================================*/
+	
+	/**
+	 * Returns arc completion attribute
+	 * 
+	 * @return Boolean $is_completed
+	 */
+	public function getIsCompletedAttribute()
+	{
+		
+		return $this->issues()
+			->where("is_wishlist", "=", Issue::STATUS_WISHLIST)
+			->count()
+			? true
+			: false
+		;
 		
 	}
 	

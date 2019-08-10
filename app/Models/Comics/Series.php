@@ -8,6 +8,7 @@ use App\Traits\ComicsTrait;
 
 use App\Models\Comics\Character;
 use App\Models\Comics\Arc;
+use App\Models\Comics\Issue;
 
 class Series extends Model
 {
@@ -24,6 +25,13 @@ class Series extends Model
 		"title",
 		"is_completed",
 		"cover"
+	];
+	
+	/**
+	 * Appends
+	 */
+	protected $appends					 =	[
+		"is_completed",
 	];
 	
 	/**
@@ -60,7 +68,6 @@ class Series extends Model
 		
 		$series->fill([
 			"title"						 =>	$data["title"] ?? "",
-			"is_completed"				 =>	$data["is_completed"] ?? 0,
 			"cover"						 =>	$cover
 		]);
 		
@@ -159,6 +166,27 @@ class Series extends Model
 		
 		return $this->hasMany(Issue::class, "series_id", "id")
 			->whereNull("arc_id")
+		;
+		
+	}
+	
+	/* =====================================================
+	 * 						MUTATORS						
+	 * ===================================================*/
+	
+	/**
+	 * Returns series completion attribute depending on arc completion
+	 * 
+	 * @return Boolean $is_completed
+	 */
+	public function getIsCompletedAttribute()
+	{
+		
+		return $this->issues()
+			->where("is_wishlist", "=", Issue::STATUS_WISHLIST)
+			->count()
+			? true
+			: false
 		;
 		
 	}

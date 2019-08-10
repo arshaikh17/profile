@@ -22,16 +22,6 @@
 						required
 					/>
 				</div>
-				<div class="form-group">
-					<label>Is Completed?
-						<input
-							type="checkbox"
-							class="form-control"
-							name="is_completed"
-							@if ($arc->is_completed) checked @endif
-						/>
-					</label>
-				</div>
 				
 				<h4>Attach Series</h4>
 				<div class="form-group">

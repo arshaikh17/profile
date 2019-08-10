@@ -137,9 +137,8 @@ class ArcController extends Controller
 	{
 		
 		$series							 =	Series::all();
-		$statuses						 =	Arc::getStatusTypes();
 		
-		return view(self::VIEW_PATH . "form", compact("arc", "series", "statuses", "selectedSeries"));
+		return view(self::VIEW_PATH . "form", compact("arc", "series", "selectedSeries"));
 		
 	}
 	

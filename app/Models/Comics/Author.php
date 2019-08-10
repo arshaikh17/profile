@@ -113,6 +113,11 @@ class Author extends Model
 	 * 						MUTATORS						
 	 * ===================================================*/
 	
+	/**
+	 * Return first_name and surname concatenated
+	 * 
+	 * @return String $name
+	 */
 	public function getNameAttribute()
 	{
 		
