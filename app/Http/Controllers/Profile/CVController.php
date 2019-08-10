@@ -67,7 +67,7 @@ class CVController extends Controller
 	public function store(Request $request)
 	{
 		
-		CV::saveCV($request);
+		CV::saveCV(new Cv, $request->toArray());
 		
 		return redirect()->back()->with("message", "CV added.");
 		
@@ -82,7 +82,7 @@ class CVController extends Controller
 	public function update(CV $cv, Request $request)
 	{
 		
-		CV::saveCV($request);
+		CV::saveCV($cv, $request->toArray());
 		
 		return redirect()->back()->with("message", "CV updated.");
 		

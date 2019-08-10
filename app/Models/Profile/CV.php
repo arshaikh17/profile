@@ -38,15 +38,16 @@ class CV extends Model
 	/**
 	 * Saves record
 	 * 
-	 * @param json $data[]
+	 * @param App\Models\Profile\CV $cv
+	 * @param Array $data[]
 	 */
-	public static function saveCV($data)
+	public static function saveCV(CV $cv $data)
 	{
 		
-		$cv_name						 =	$data->cv_name ?? "";
-		$cv								 =	$data->cv;
+		$cv_name						 =	$data["cv_name"] ?? "";
+		$cv								 =	$data["cv"] ?? false;
 		
-		if ($data->hasFile("cv") && in_array($cv->getClientMimeType(), self::$mime_types)) {
+		if ($cv && in_array($cv->getClientMimeType(), self::$mime_types)) {
 			
 			$cv_name					 =	time() . "." . $cv->getClientOriginalName();
 			$cv->move(public_path() . self::$path_cv, $cv_name);
@@ -56,11 +57,11 @@ class CV extends Model
 		if ($data->is_main) self::updateIsMainColumn();
 		
 		CV::updateOrCreate([
-			"id"						 =>	$data->id
+			"id"						 =>	$cv->id
 		], [
-			"title"						 =>	$data->title,
+			"title"						 =>	$data["title"],
 			"cv"						 =>	$cv_name,
-			"is_main"					 =>	$data->is_main ?: 0
+			"is_main"					 =>	$data["is_main"] ?? 0
 		]);
 		
 	}
