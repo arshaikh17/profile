@@ -42,6 +42,11 @@
 					"title"				 =>	"Issues",
 					"route"				 =>	route("comics.issues.index")
 				]
+				,
+				[
+					"title"				 =>	"Authors",
+					"route"				 =>	route("comics.authors.index")
+				]
 			]
 		])
 		
