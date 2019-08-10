@@ -36,13 +36,13 @@
 				</thead>
 				<tbody>
 					@forelse ($authors as $author)
-					@include("comics.partials.authors-table-body-row", [
-					"author" =>	$author
-					])
+						@include("comics.partials.authors-table-body-row", [
+						"author"		 =>	$author
+						])
 					@empty
-					<tr>
-						<td>No authors added.</td>
-					</tr>
+						<tr>
+							<td>No authors added.</td>
+						</tr>
 					@endforelse
 				</tbody>
 			</table>

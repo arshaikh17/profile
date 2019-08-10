@@ -29,7 +29,7 @@
 									<tbody>
 										<tr>
 											<td>Issues</td> 
-											<td><p class="font-weight-bold">{{ $character->issues(false, true)->count() }}</p></td>
+											<td><p class="font-weight-bold">{{ $character->issues()->count() }}</p></td>
 										</tr>
 										<tr>
 											<td>Arcs</td> 

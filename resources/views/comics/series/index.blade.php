@@ -38,7 +38,7 @@
 							>
 								<p class="text-20">{{ $singleSeries->title }}</p>
 							</a>
-							<p>Total Issues: <span class="text-bold">{{ $singleSeries->issues()->count() }}</span></p>
+							<p>Total Issues: <span class="text-bold">{{ $singleSeries->issues->count() }}</span></p>
 							<span class="badge badge-dark p-2">{{ $singleSeries->character->name }}</span>
 						</div>
 					</div>

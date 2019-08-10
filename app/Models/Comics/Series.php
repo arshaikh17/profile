@@ -152,19 +152,14 @@ class Series extends Model
 	/**
 	 * Returns issues under the series with no arcs
 	 * 
-	 * @param Bool $includeWishlists
 	 * @return App\Models\Comics\Issue $issues[]
 	 */
-	public function singleIssues($includeWishlists = true)
+	public function singleIssues()
 	{
 		
-		$issues							 =	$this->hasMany(Issue::class, "series_id", "id")
+		return $this->hasMany(Issue::class, "series_id", "id")
 			->whereNull("arc_id")
 		;
-		
-		if (!$includeWishlists) $issues->where("is_wishlist", "=", Issue::STATUS_OWNED);
-		
-		return $includeWishlists ? $issues : $issues->get();
 		
 	}
 	

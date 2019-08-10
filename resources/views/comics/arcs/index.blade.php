@@ -37,13 +37,13 @@
 				</thead>
 				<tbody>
 					@forelse ($arcs as $arc)
-					@include("comics.partials.arcs-table-body-row", [
-					"arc"	 =>	$arc
-					])
+						@include("comics.partials.arcs-table-body-row", [
+							"arc"		 =>	$arc
+						])
 					@empty
-					<tr>
-						<td>No arcs added.</td>
-					</tr>
+						<tr>
+							<td>No arcs added.</td>
+						</tr>
 					@endforelse
 				</tbody>
 			</table>

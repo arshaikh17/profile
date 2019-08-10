@@ -40,7 +40,7 @@
 					<div class="col-12 mb-4">
 						<h2 data-toggle="collapse" data-target="#characterRow_{{ $character->id }}">{{ $character->name }}</h2>
 						<div class="row collapse show" id="characterRow_{{ $character->id }}">
-							@forelse ($character->issues(true, false) as $series)
+							@forelse ($character->issues(true) as $series)
 								<div class="col-12">
 									<h5 data-toggle="collapse" data-target=".seriesRow_{{ $series['series']->id }}">{{ $series["series"]->title }}</h5>
 								</div>
