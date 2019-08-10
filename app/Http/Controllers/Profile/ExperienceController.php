@@ -44,7 +44,7 @@ class ExperienceController extends Controller
 	public function create()
 	{
 		
-		return $this->getForm(new Experience());
+		return $this->getForm(new Experience);
 		
 	}
 	
@@ -68,7 +68,7 @@ class ExperienceController extends Controller
 	public function store(Request $request)
 	{
 		
-		Experience::saveExperience(new Experience, $request);
+		Experience::saveExperience(new Experience, $request->toArray());
 		
 		return redirect()->back()->with("message", "Experience added.");
 		
@@ -83,7 +83,7 @@ class ExperienceController extends Controller
 	public function update(Experience $experience, Request $request)
 	{
 		
-		Experience::saveExperience($experience, $request);
+		Experience::saveExperience($experience, $request->toArray());
 		
 		return redirect()->back()->with("message", "Experience updated.");
 		

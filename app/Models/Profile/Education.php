@@ -102,16 +102,15 @@ class Education extends AbstractModel
 	 * Saves record
 	 * 
 	 * @param App\Models\Profile\Education $education
-	 * @param json $data[]
+	 * @param Array $data
 	 */
 	public static function saveEducation(Education $education, $data)
 	{
 		
 		$institute_logo					 =	$education->institute_logo;
+		$file							 =	$data["institute_logo"] ?? false;
 		
-		if ($data->hasFile("institute_logo")) {
-			
-			$file						 =	$data->file("institute_logo");
+		if ($file) {
 			
 			//if (file_exists(public_path() . self::$path_logo . $education->institute_logo)) var_dump(unlink(public_path() . self::$path_logo . "$education->institute_logo"));
 			
@@ -122,20 +121,20 @@ class Education extends AbstractModel
 		}
 		
 		$education						 =	Education::updateOrCreate([
-			"id"						 =>	$data->id
+			"id"						 =>	$education->id
 		], [
-			"title"						 =>	$data->title,
-			"degree"					 =>	$data->degree,
-			"institute"					 =>	$data->institute,
-			"start_date"				 =>	$data->start_date,
-			"end_date"					 =>	$data->end_date,
-			"city"						 =>	$data->city,
-			"country"					 =>	$data->country,
+			"title"						 =>	$data["title"],
+			"degree"					 =>	$data["degree"],
+			"institute"					 =>	$data["institute"],
+			"start_date"				 =>	$data["start_date"],
+			"end_date"					 =>	$data["end_date"],
+			"city"						 =>	$data["city"],
+			"country"					 =>	$data["country"],
 			"institute_logo"			 =>	$institute_logo,
-			"description"				 =>	$data->description,
-			"majors"					 =>	$data->majors,
-			"is_active"					 =>	$data->is_active ?: 0,
-			"degree_type_id"			 =>	$data->degree_type_id
+			"description"				 =>	$data["description"],
+			"majors"					 =>	$data["majors"],
+			"is_active"					 =>	$data["is_active"] ?? 0,
+			"degree_type_id"			 =>	$data["degree_type_id"]
 		]);
 		
 	}

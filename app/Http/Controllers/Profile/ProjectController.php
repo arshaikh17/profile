@@ -45,7 +45,7 @@ class ProjectController extends Controller
 	public function create()
 	{
 		
-		return $this->getForm(new Project());
+		return $this->getForm(new Project);
 		
 	}
 	
@@ -69,7 +69,7 @@ class ProjectController extends Controller
 	public function store(Request $request)
 	{
 		
-		Project::saveProject(new Project, $request);
+		Project::saveProject(new Project, $request->toArray());
 		
 		return redirect()->back()->with("message", "Project added.");
 		
@@ -84,7 +84,7 @@ class ProjectController extends Controller
 	public function update(Project $project, Request $request)
 	{
 		
-		Project::saveProject($project, $request);
+		Project::saveProject($project, $request->toArray());
 		
 		return redirect()->back()->with("message", "Project updated.");
 		

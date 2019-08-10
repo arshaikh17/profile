@@ -58,10 +58,9 @@ class Project extends AbstractModel
 	{
 		
 		$cover							 =	$project->cover;
+		$file							 =	$data["cover"] ?? false;
 		
-		if ($data->hasFile("cover")) {
-			
-			$file						 =	$data->file("cover");
+		if ($file) {
 			
 			//if (file_exists(public_path() . self::$path_logo . $project->cover)) var_dump(unlink(public_path() . self::$path_cover . $project->cover));
 			
@@ -72,19 +71,19 @@ class Project extends AbstractModel
 		}
 		
 		$project						 =	Project::updateOrCreate([
-			"id"						 =>	$data->id
+			"id"						 =>	$project->id
 		], [
-			"title"						 =>	$data->title,
-			"description"				 =>	$data->description,
-			"link"						 =>	$data->link,
-			"repository"				 =>	$data->repository,
-			"responsibilities"			 =>	$data->responsibilities,
+			"title"						 =>	$data["title"],
+			"description"				 =>	$data["description"],
+			"link"						 =>	$data["link"],
+			"repository"				 =>	$data["repository"],
+			"responsibilities"			 =>	$data["responsibilities"],
 			"cover"						 =>	$cover,
-			"company_id"				 =>	$data->company_id
+			"company_id"				 =>	$data["company_id"]
 		]);
 		
 		$skillTags						 =	SkillTag::getCurrentIDs(SkillTag::ENTITY_PROJECT, $project->id);
-		$newSkillTags					 =	$data->existing_skill_tags ?? [];
+		$newSkillTags					 =	$data["existing_skill_tags"] ?? [];
 		
 		$skillTagsDifference			 =	array_diff($skillTags, $newSkillTags);
 		
@@ -94,7 +93,7 @@ class Project extends AbstractModel
 			
 		}
 		
-		foreach ($data->skill_tags as $tag) {
+		foreach ($data["skill_tags"] as $tag) {
 			
 			SkillTag::saveSkillTag([
 				"skill_id"				 =>	$tag,
@@ -105,7 +104,7 @@ class Project extends AbstractModel
 		}
 		
 		$galleryIds						 =	Gallery::getCurrentIDs(Gallery::ENTITY_PROJECT, $project->id);
-		$newGalleryIds					 =	$data->existing_gallery_ids ?? [];
+		$newGalleryIds					 =	$data["existing_gallery_ids"] ?? [];
 		
 		$galleryDifference				 =	array_diff($galleryIds, $newGalleryIds);
 		
@@ -115,9 +114,9 @@ class Project extends AbstractModel
 			
 		}
 		
-		$galleryTitles					 =	$data->gallery_titles;
-		$galleryImages					 =	$data->gallery_images;
-		$galleryImageNames				 =	$data->gallery_image_names;
+		$galleryTitles					 =	$data["gallery_titles"] ?? [];
+		$galleryImages					 =	$data["gallery_images"] ?? [];
+		$galleryImageNames				 =	$data["gallery_image_names"] ?? [];
 		
 		foreach ($galleryTitles as $galleryKey => $galleryTitle) {
 			

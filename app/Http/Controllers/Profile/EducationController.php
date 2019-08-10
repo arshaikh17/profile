@@ -44,14 +44,14 @@ class EducationController extends Controller
 	public function create()
 	{
 		
-		return $this->getForm(new Education());
+		return $this->getForm(new Education);
 		
 	}
 	
 	/**
 	 * Displays edit view
 	 * 
-	 * @param App\Education $education
+	 * @param App\Models\Profile\Education $education
 	 */
 	public function edit(Education $education)
 	{
@@ -68,7 +68,7 @@ class EducationController extends Controller
 	public function store(Request $request)
 	{
 		
-		Education::saveEducation(new Education, $request);
+		Education::saveEducation(new Education, $request->toArray());
 		
 		return redirect()->back()->with("message", "Education added.");
 		
@@ -83,7 +83,7 @@ class EducationController extends Controller
 	public function update(Education $education, Request $request)
 	{
 		
-		Education::saveEducation($education, $request);
+		Education::saveEducation($education, $request->toArray());
 		
 		return redirect()->back()->with("message", "Education updated.");
 		
@@ -92,7 +92,7 @@ class EducationController extends Controller
 	/**
 	 * Returns education form
 	 * 
-	 * @param App\Education $education
+	 * @param App\Models\Profile\Education $education
 	 */
 	private function getForm(Education $education)
 	{

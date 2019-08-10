@@ -84,16 +84,15 @@ class Experience extends AbstractModel
 	 * Saves record
 	 * 
 	 * @param App\Models\Profile\Experience $experience
-	 * @param json $data[]
+	 * @param Array $data
 	 */
 	public static function saveExperience(Experience $experience, $data)
 	{
 		
 		$company_logo					 =	$experience->company_logo;
+		$file							 =	$data["company_logo"] ?? false;
 		
-		if ($data->hasFile("company_logo")) {
-			
-			$file						 =	$data->file("company_logo");
+		if ($file) {
 			
 			//if (file_exists(public_path() . self::$path_logo . $experience->company_logo)) var_dump(unlink(public_path() . self::$path_logo . "$experience->company_logo"));
 			
@@ -104,23 +103,23 @@ class Experience extends AbstractModel
 		}
 		
 		$experience						 =	Experience::updateOrCreate([
-			"id"						 =>	$data->id
+			"id"						 =>	$experience->id
 		], [
-			"company"					 =>	$data->company,
-			"title"						 =>	$data->title,
-			"description"				 =>	$data->description,
-			"responsibilities"			 =>	$data->responsibilities,
-			"city"						 =>	$data->city,
-			"country"					 =>	$data->country,
-			"start_date"				 =>	$data->start_date,
-			"end_date"					 =>	$data->end_date,
-			"is_active"					 =>	$data->is_active ?: 0,
+			"company"					 =>	$data["company"],
+			"title"						 =>	$data["title"],
+			"description"				 =>	$data["description"],
+			"responsibilities"			 =>	$data["responsibilities"],
+			"city"						 =>	$data["city"],
+			"country"					 =>	$data["country"],
+			"start_date"				 =>	$data["start_date"],
+			"end_date"					 =>	$data["end_date"],
+			"is_active"					 =>	$data["is_active"] ?? 0,
 			"company_logo"				 =>	$company_logo,
-			"job_type_id"				 =>	$data->job_type_id
+			"job_type_id"				 =>	$data["job_type_id"]
 		]);
 		
 		$skillTags						 =	SkillTag::getCurrentIDs(SkillTag::ENTITY_EXPERIENCE, $experience->id);
-		$newSkillTags					 =	$data->existing_skill_tags ?: [];
+		$newSkillTags					 =	$data["existing_skill_tags"] ?? [];
 		
 		$skillTagsDifference			 =	array_diff($skillTags, $newSkillTags);
 		
@@ -130,7 +129,7 @@ class Experience extends AbstractModel
 			
 		}
 		
-		foreach ($data->skill_tags as $tag) {
+		foreach ($data["skill_tags"] as $tag) {
 			
 			SkillTag::saveSkillTag([
 				"skill_id"				 =>	$tag,
