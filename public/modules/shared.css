@@ -37,6 +37,9 @@ h3{margin:1em;text-transform:capitalize;font-size:1.7em;}
 .text-20 {
 	font-size: 20px;
 }
+.text-30 {
+	font-size: 30px;
+}
 
 /*======================================
  * HEIGHTS
@@ -60,11 +63,21 @@ h3{margin:1em;text-transform:capitalize;font-size:1.7em;}
 }
 
 /*======================================
- * Statistics Card
+ * STATISTICS CARD
 ======================================*/
 .statistics-card {
 	margin-bottom: 10px;
 	color: rgb(108, 117, 125);
+}
+
+/*======================================
+ * STATISTICS STRIP
+======================================*/
+.statistics-strip {
+	height: 90px;
+	margin-bottom: 10px;
+	padding: 20px;
+	line-height: 15px;
 }
 
 /*======================================
