@@ -132,21 +132,6 @@ class RouteServiceProvider extends ServiceProvider
 	}
 	
 	/**
-	 * Define the "comics" routes for the application.
-	 *
-	 * @return void
-	 */
-	protected function mapComicsRoutes()
-	{
-		
-		Route::middleware("web")
-			->namespace($this->namespace)
-			->group(base_path("routes/comics.php"))
-		;
-		
-	}
-	
-	/**
 	 * Define the "expenses" routes for the application.
 	 *
 	 * @return void
