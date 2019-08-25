@@ -18,4 +18,17 @@ Route::group([
 	 */
 	Route::get("/", "Expenses\IndexController@index")->name("index");
 	
+	/**
+	 * App\Controllers\Expenses\BudgetController
+	 */
+	Route::group([
+		"prefix"						 =>	"/budgets",
+		"as"							 =>	"budgets."
+	], function() {
+		
+		Route::post("/store", "Expenses\BudgetController@store")->name("store");
+		Route::post("/{budget}", "Expenses\BudgetController@update")->name("update");
+		
+	});
+	
 });

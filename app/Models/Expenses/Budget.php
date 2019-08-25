@@ -4,15 +4,14 @@ namespace App\Models\Expenses;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Traits\ExpensesTrait;
+use App\Models\Expenses\{
+	Expense
+};
 
-class Budget extends Model
+use DateTime;
+
+class Budget extends Expense
 {
-	
-	/**
-	 * Traits
-	 */
-	use ExpensesTrait;
 	
 	/**
 	 * Fillables
@@ -22,6 +21,13 @@ class Budget extends Model
 		"description",
 		"amount",
 		"date",
+	];
+	
+	/**
+	 * Casts
+	 */
+	protected $casts					 =	[
+		"date"							 => "DateTime",
 	];
 	
 	/* =====================================================
@@ -37,12 +43,7 @@ class Budget extends Model
 	public static function saveBudget(Budget $budget, $data)
 	{
 		
-		$budget->fill([
-			"title"						 =>	$data["title"],
-			"description"				 =>	$data["description"] ?? "",
-			"amount"					 =>	$data["amount"],
-			"date"						 =>	$data["date"],
-		]);
+		$budget->fill($data);
 		
 		$budget->save();
 		
@@ -69,12 +70,14 @@ class Budget extends Model
 	public static function getBudget(DateTime $dateTime)
 	{
 		
-		
+		/*$d = Budget::create(["title"=>"Salary", "description" => "Salary hai bhai", "amount" => "1600", "date" => new DateTime()]);
+		dd($d);*/
+		return Budget::whereMonthAndYear("date", "=", $dateTime)->first();
 		
 	}
 	
-	/* =====================================================
-	 * 							RELATIONS					
-	 * ===================================================*/
+	/**
+	 * Checks for the month's 
+	 */
 	
 }

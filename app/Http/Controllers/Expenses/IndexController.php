@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Expenses;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Expenses\ExpensesController as Controller;
+
+use App\Models\Expenses\{
+	Budget
+};
 
 class IndexController extends Controller
 {
@@ -14,22 +18,14 @@ class IndexController extends Controller
 	CONST VIEW_PATH						 =	"expenses.";
 	
 	/**
-	 * Constructor
-	 */
-	public function __construct()
-	{
-		
-		$this->middleware("auth");
-		
-	}
-	
-	/**
 	 * Displays index view
 	 */
 	public function index()
 	{
 		
-		return view(self::VIEW_PATH . "index");
+		$budget							 =	Budget::getBudget($this->date);
+		
+		return view(self::VIEW_PATH . "index", compact("budget"));
 		
 	}
 	

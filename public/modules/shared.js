@@ -6,6 +6,7 @@ $(document).ready(function () {
 	initialiseTooltip();
 	toggleDOM();
 	initialiseMasonry();
+	initialiseSortingArrowOnBootstrapCollapse();
 	
 });
 
@@ -135,6 +136,45 @@ function initialiseMasonry() {
 		$($(this).data("masonry-parent")).masonry({
 			itemSelector				 :	$(this).data("masonry-child"),
 		});
+		
+	});
+	
+}
+
+/**
+ * Initialises sorting arrows on bootstrap collapse
+ */
+function initialiseSortingArrowOnBootstrapCollapse() {
+	
+	$("[data-toggle='collapse']").each(function (index, element) {
+		
+		var element						 =	$(element);
+		
+		if (!element.hasClass("chevron")) element.addClass("chevron");
+		
+		if ($(element.data("target")).hasClass("show")) {
+			
+			element.removeClass("chevron-down");
+			
+		} else {
+			
+			element.addClass("chevron-down");
+			
+		}
+		
+	});
+	
+	$("body").on("click", "[data-toggle='collapse']", function (e) {
+		//console.log($(this).data("target"))
+		if ($($(this).data("target")).hasClass("show")) {
+			
+			$(this).addClass("chevron-down");
+			
+		} else {
+			
+			$(this).removeClass("chevron-down");
+			
+		}
 		
 	});
 	

@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use App\Traits\ModelTrait;
 
-trait ComicsTrait
+trait ExpensesTrait
 {
 	
 	/**
