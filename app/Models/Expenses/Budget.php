@@ -70,14 +70,8 @@ class Budget extends Expense
 	public static function getBudget(DateTime $dateTime)
 	{
 		
-		/*$d = Budget::create(["title"=>"Salary", "description" => "Salary hai bhai", "amount" => "1600", "date" => new DateTime()]);
-		dd($d);*/
 		return Budget::whereMonthAndYear("date", "=", $dateTime)->first();
 		
 	}
-	
-	/**
-	 * Checks for the month's 
-	 */
 	
 }

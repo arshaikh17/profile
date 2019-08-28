@@ -31,4 +31,18 @@ Route::group([
 		
 	});
 	
+	/**
+	 * App\Controllers\Expenses\ExpenditureController
+	 */
+	Route::group([
+		"prefix"						 =>	"/expenditures",
+		"as"							 =>	"expenditures."
+	], function() {
+		
+		Route::post("/store", "Expenses\ExpenditureController@store")->name("store");
+		Route::post("/{expenditure}", "Expenses\ExpenditureController@update")->name("update");
+		Route::post("/{expenditure}/destroy", "Expenses\ExpenditureController@destroy")->name("destroy");
+		
+	});
+	
 });

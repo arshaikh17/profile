@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Expenses\ExpensesController as Controller;
 
 use App\Models\Expenses\{
-	Budget
+	Budget,
+	Expenditure,
+	Tag
 };
 
 class IndexController extends Controller
@@ -24,8 +26,11 @@ class IndexController extends Controller
 	{
 		
 		$budget							 =	Budget::getBudget($this->date);
+		$expenditures					 =	Expenditure::getExpenditures($this->date);
+		$totalAmountSpent				 =	Expenditure::getTotalAmountSpent($this->date);
+		//dd();
 		
-		return view(self::VIEW_PATH . "index", compact("budget"));
+		return view(self::VIEW_PATH . "index", compact("budget", "expenditures", "totalAmountSpent"));
 		
 	}
 	

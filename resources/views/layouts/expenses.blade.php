@@ -13,6 +13,8 @@
 	@include("partials.modules.nprogress")
 	@yield("scripts")
 	@include("partials.modules.shared")
+	<script src="{{ asset('modules/expenses/js/app.js') }}"></script>
+	<link href="{{ asset('modules/expenses/css/app.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<main id="app">
@@ -33,8 +35,7 @@
 					<a
 						href="#"
 						class="btn btn-sm btn-info"
-						data-toggle="modal"
-						data-target="#expenseModal"
+						id="addExpense"
 					>
 						Expense
 					</a>
@@ -67,7 +68,7 @@
 					<div class="card">
 						<div class="card-body bg-info text-white">
 							<h4 class="card-title">Spent</h4>
-							<h1 class="card-text">£{{ number_format(100) }}</h1>
+							<h1 class="card-text">£{{ number_format($totalAmountSpent) }}</h1>
 						</div>
 					</div>
 				</div>
@@ -141,14 +142,23 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>Comics</td>
-										<td>£10</td>
-									</tr>
-									<tr>
-										<td>Food</td>
-										<td>£25</td>
-									</tr>
+									@php
+										$count				 =	0;
+									@endphp
+									
+									@forelse ($expenditures as $expenditure2)
+										@if ($count == 10) @break @endif
+										
+										<tr>
+											<td>{{ $expenditure2->tag ? $expenditure2->tag->name : "Else" }}</td>
+											<td>£{{ $expenditure2->amount }}</td>
+										</tr>
+										
+										@php
+											$count++;
+										@endphp
+									@empty
+									@endforelse
 								</tbody>
 							</table>
 						</div>
@@ -312,7 +322,13 @@
 					<h4 class="modal-title">Expense</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				<form>
+				<form
+					method="POST"
+					data-action-add="{{ route('expenses.expenditures.store') }}"
+					data-action-edit="{{ route('expenses.expenditures.update', -1) }}"
+				>
+					{{ csrf_field() }}
+					
 					<div class="modal-body row">
 						<div class="form-group col-md-6">
 							<label>Amount</label>
@@ -320,7 +336,7 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label>Tag</label>
-							<select name="tag" class="form-control form-control-sm">
+							<select name="tag_id" class="form-control form-control-sm">
 								<option value="">No tag</option>
 								<option value="1">Comics</option>
 								<option value="2">Food</option>
@@ -332,8 +348,8 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<input type="submit" class="btn btn-info" value="Save" />
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						<input type="submit" class="btn btn-info" value="Save" />
 					</div>
 				</form>
 			</div>
@@ -347,33 +363,44 @@
 					<h4 class="modal-title">All Expenses</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				<form>
-					<div class="modal-body">
-						<div>
-							<table class="table table-sm table-hover table-striped table-bordered">
-								<thead>
-									<tr>
-										<th>Tag</th>
-										<th>Amount</th>
+				<div class="modal-body">
+					<div>
+						<table class="table table-sm table-hover table-striped table-bordered">
+							<thead>
+								<tr>
+									<th>Tag</th>
+									<th>Amount</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								@forelse ($expenditures as $expenditure)
+									<tr
+										class="hover-link expenditureRow"
+										data-data="{{ $expenditure }}"
+									>
+										<td>{{ $expenditure->tag ? $expenditure->tag->name : "Else" }}</td>
+										<td>£{{ $expenditure->amount }}</td>
+										<td class="text-center">
+											<form method="POST" action="{{ route('expenses.expenditures.destroy', [$expenditure]) }}">
+												{{ csrf_field() }}
+												<input
+													type="submit"
+													class="btn btn-sm btn-danger"
+													value="X"
+												/>
+											</form>
+										</td>
 									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Comics</td>
-										<td>£51</td>
-									</tr>
-									<tr>
-										<td>Food</td>
-										<td>£12</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+								@empty
+								@endforelse
+							</tbody>
+						</table>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-					</div>
-				</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
 			</div>
 		</div>
 	</div>
