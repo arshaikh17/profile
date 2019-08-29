@@ -4,15 +4,12 @@ namespace App\Models\Expenses;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Traits\ExpensesTrait;
+use App\Models\Expenses\{
+	Expense
+};
 
-class Tag extends Model
+class Tag extends Expense
 {
-	
-	/**
-	 * Traits
-	 */
-	use ExpensesTrait;
 	
 	/**
 	 * Fillables

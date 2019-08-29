@@ -92,6 +92,25 @@ class Expenditure extends Expense
 		
 	}
 	
+	/**
+	 * Amount spent by Tags
+	 * 
+	 * @param DateTime $dateTime
+	 * 
+	 * @return App\Models\Expenses\Expenditure[] $expenditure
+	 */
+	public static function getExpendituresByTags(DateTime $dateTime)
+	{
+		
+		return Expenditure::selectRaw("t.id, t.name, SUM(expenses_expenditures.amount) AS total")
+			->join("expenses_tags AS t", "t.id", "expenses_expenditures.tag_id")
+			->groupBy("t.id") 
+			->whereMonthAndYear("expenses_expenditures.date", "=", $dateTime)
+			->get()
+		;
+		
+	}
+	
 	/* =====================================================
 	 * 						RELATIONS						
 	 * ===================================================*/

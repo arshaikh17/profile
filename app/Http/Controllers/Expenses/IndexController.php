@@ -30,8 +30,9 @@ class IndexController extends Controller
 		$expenditures					 =	Expenditure::getExpenditures($this->date);
 		$totalAmountSpent				 =	Expenditure::getTotalAmountSpent($this->date);
 		$tags							 =	Tag::all();
-		
-		return view(self::VIEW_PATH . "index", compact("date", "budget", "expenditures", "totalAmountSpent", "tags"));
+		$expendituresByTags				 =	Expenditure::getExpendituresByTags($this->date);
+		//dd($d);
+		return view(self::VIEW_PATH . "index", compact("date", "budget", "expenditures", "totalAmountSpent", "tags", "expendituresByTags"));
 		
 	}
 	

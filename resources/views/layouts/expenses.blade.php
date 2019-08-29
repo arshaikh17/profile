@@ -23,7 +23,10 @@
 				<div class="col-md-6">
 					<h1><span class="text-info">{{ $date->format("F") }}</span>, {{ $date->format("Y") }}</h1>
 				</div>
-				<div class="col-md-6 mt-3">
+				<div class="text-right col-md-6 mt-3">
+					<span class="text-info text-20">
+						£{{ number_format(($budget ? $budget->amount : 0) - $totalAmountSpent) }}
+					</span>
 					<a
 						href="#"
 						class="btn btn-sm btn-info"
@@ -177,11 +180,11 @@
 						</div>
 						<div class="col-12 collapse show" id="expendituresByTags">
 							<div class="row mt-3">
-								@foreach (array_fill(0, 6, 1) as $a)
+								@foreach ($expendituresByTags as $expendituresByTag)
 									<div class="col-12 col-md-4">
 										<div class="chip">
-											<div class="chip-content">Comics</div>
-											<div class="chip-head">£1100</div>
+											<div class="chip-content">{{ $expendituresByTag->name }}</div>
+											<div class="chip-head">£{{ number_format($expendituresByTag->total) }}</div>
 										</div>
 									</div>
 								@endforeach
