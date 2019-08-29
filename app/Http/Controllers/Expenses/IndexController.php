@@ -25,12 +25,13 @@ class IndexController extends Controller
 	public function index()
 	{
 		
+		$date							 =	$this->date;
 		$budget							 =	Budget::getBudget($this->date);
 		$expenditures					 =	Expenditure::getExpenditures($this->date);
 		$totalAmountSpent				 =	Expenditure::getTotalAmountSpent($this->date);
-		//dd();
+		$tags							 =	Tag::all();
 		
-		return view(self::VIEW_PATH . "index", compact("budget", "expenditures", "totalAmountSpent"));
+		return view(self::VIEW_PATH . "index", compact("date", "budget", "expenditures", "totalAmountSpent", "tags"));
 		
 	}
 	

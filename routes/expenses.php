@@ -45,4 +45,17 @@ Route::group([
 		
 	});
 	
+	/**
+	 * App\Controllers\Expenses\TagController
+	 */
+	Route::group([
+		"prefix"						 =>	"/tags",
+		"as"							 =>	"tags."
+	], function() {
+		
+		Route::post("/store", "Expenses\TagController@store")->name("store");
+		Route::post("/{tag}", "Expenses\TagController@update")->name("update");
+		
+	});
+	
 });

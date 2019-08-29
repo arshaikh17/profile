@@ -21,7 +21,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
-					<h1><span class="text-info">August</span>, 2019</h1>
+					<h1><span class="text-info">{{ $date->format("F") }}</span>, {{ $date->format("Y") }}</h1>
 				</div>
 				<div class="col-md-6 mt-3">
 					<a
@@ -221,16 +221,17 @@
 					<h4 class="modal-title">Tags</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				<form>
-					<div class="modal-body">
-						<h6
-							class="hover-link"
-							data-toggle="collapse"
-							data-target="#tagForm"
-						>
-							Tag Form
-						</h6>
-						<div class="collapse" id="tagForm">
+				<div class="modal-body">
+					<h6
+						class="hover-link"
+						data-toggle="collapse"
+						data-target="#tagForm"
+					>
+						Tag Form
+					</h6>
+					<div class="collapse" id="tagForm">
+						<form method="POST" action="{{ route('expenses.tags.store') }}">
+							{{ csrf_field() }}
 							<div class="form-group">
 								<label>Name</label>
 								<input type="text" name="name" class="form-control form-control-sm" required />
@@ -242,29 +243,29 @@
 							<div class="form-group float-right">
 								<input type="submit" class="btn btn-sm btn-info" value="Save" />
 							</div>
-						</div>
-						<div>
-							<table class="table table-hover table-striped table-bordered">
-								<thead>
-									<tr>
-										<th>Tag</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Comics</td>
-									</tr>
-									<tr>
-										<td>Food</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+						</form>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					<div>
+						<table class="table table-hover table-striped table-bordered">
+							<thead>
+								<tr>
+									<th>Tag</th>
+								</tr>
+							</thead>
+							<tbody>
+								@forelse ($tags as $tag)
+									<tr class="hover-link">
+										<td>{{ $tag->name }}</td>
+									</tr>
+								@empty
+								@endforelse
+							</tbody>
+						</table>
 					</div>
-				</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -338,8 +339,10 @@
 							<label>Tag</label>
 							<select name="tag_id" class="form-control form-control-sm">
 								<option value="">No tag</option>
-								<option value="1">Comics</option>
-								<option value="2">Food</option>
+								@forelse ($tags as $tag)
+									<option value="{{ $tag->id }}">{{ $tag->name }}</option>
+								@empty
+								@endforelse
 							</select>
 						</div>
 						<div class="form-group col-12">
