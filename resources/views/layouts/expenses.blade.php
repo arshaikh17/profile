@@ -25,7 +25,7 @@
 				</div>
 				<div class="text-right col-md-6 mt-3">
 					<span class="text-info text-20">
-						£{{ number_format(($budget ? $budget->amount : 0) - $totalAmountSpent) }}
+						£{{ number_format(($budget ? $budget->amount : 0) - $totalAmountSpent - $totalBillsPaid) }}
 					</span>
 					<a
 						href="#"
@@ -49,6 +49,14 @@
 						data-target="#tagsModal"
 					>
 						Tags
+					</a>
+					<a
+						href="#"
+						class="btn btn-sm btn-info"
+						data-toggle="modal"
+						data-target="#billsModal"
+					>
+						Pay Bill
 					</a>
 				</div>
 			</div>
@@ -95,8 +103,8 @@
 						</div>
 						<div class="col-md-4">
 							<div class="bg-info text-white statistics-strip">
-								<p>Returned</p>
-								<p class="text-30">£101</p>
+								<p>Bill Paid</p>
+								<p class="text-30">£{{ number_format($totalBillsPaid) }}</p>
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -381,11 +389,13 @@
 							</thead>
 							<tbody>
 								@forelse ($expenditures as $expenditure)
-									<tr
-										class="hover-link expenditureRow"
-										data-data="{{ $expenditure }}"
-									>
-										<td>{{ $expenditure->tag ? $expenditure->tag->name : "Else" }}</td>
+									<tr>
+										<td
+											class="hover-link expenditureRow"
+											data-data="{{ $expenditure }}"
+										>
+											{{ $expenditure->tag ? $expenditure->tag->name : "Else" }}
+										</td>
 										<td>£{{ $expenditure->amount }}</td>
 										<td class="text-center">
 											<form method="POST" action="{{ route('expenses.expenditures.destroy', [$expenditure]) }}">
@@ -397,6 +407,80 @@
 												/>
 											</form>
 										</td>
+									</tr>
+								@empty
+								@endforelse
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal" id="billsModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Bills of this Month</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<h6
+						class="hover-link"
+						data-toggle="collapse"
+						data-target="#billsForm"
+					>
+						Bills Form
+					</h6>
+					<div class="collapse" id="billsForm">
+						<form method="POST" action="{{ route('expenses.bills.store') }}">
+							{{ csrf_field() }}
+							<div class="row">
+								<div class="col-4">
+									<div class="form-group">
+										<label>Amount</label>
+										<input type="text" name="amount" class="form-control form-control-sm" required />
+									</div>
+								</div>
+								<div class="col-8">
+									<div class="form-group">
+										<label>Bill Of</label>
+										<select name="bill_of" class="form-control form-control-sm" required>
+											<option>Select bill</option>
+											@forelse ($billNames as $billKey => $billName)
+												<option value="{{ $billKey }}">{{ $billName }}</option>
+											@empty
+											@endforelse
+										</select>
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label>Description</label>
+								<textarea name="description" class="form-control form-control-sm" required></textarea>
+							</div>
+							
+							<div class="form-group float-right">
+								<input type="submit" class="btn btn-sm btn-info" value="Save" />
+							</div>
+						</form>
+					</div>
+					<div>
+						<table class="table table-hover table-striped table-bordered">
+							<thead>
+								<tr>
+									<th>Bills paid this month</th>
+								</tr>
+							</thead>
+							<tbody>
+								@forelse ($bills as $bill)
+									<tr class="hover-link">
+										<td>{{ $bill->bill }}, <span class="text-info">£{{ $bill->amount }}</span></td>
 									</tr>
 								@empty
 								@endforelse

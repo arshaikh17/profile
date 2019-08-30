@@ -3,15 +3,15 @@
 namespace App\Models\Expenses;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\ExpensesTrait;
 
-class Bill extends Model
+use App\Models\Expenses\{
+	Expense
+};
+
+use DateTime;
+
+class Bill extends Expense
 {
-	
-	/**
-	 * Traits
-	 */
-	use ExpensesTrait;
 	
 	/**
 	 * Fillables
@@ -19,7 +19,7 @@ class Bill extends Model
 	protected $fillable					 =	[
 		"bill_of",
 		"amount",
-		"paid_on",
+		"date",
 	];
 	
 	/**
@@ -42,11 +42,38 @@ class Bill extends Model
 	 * ===================================================*/
 	
 	/**
+	 * Saves record
+	 * 
+	 * @param App\Models\Expenses\Bill $nill
+	 * @param Array $data
+	 */
+	public static function saveBill(Bill $nill, $data)
+	{
+		
+		$nill->fill($data);
+		
+		$nill->save();
+		
+	}
+	
+	/**
+	 * Removes record
+	 * 
+	 * @param App\Models\Expenses\Bill $nill
+	 */
+	public static function removeBill(Bill $nill)
+	{
+		
+		$nill->delete();
+		
+	}
+	
+	/**
 	 * Returns bill types or names
 	 * 
 	 * @param Array $bills
 	 */
-	public static function getBills()
+	public static function getBillNames()
 	{
 		
 		return [
@@ -55,6 +82,41 @@ class Bill extends Model
 			self::BILL_INTERNET			 =>	"Internet",
 			self::BILL_NETFLIX			 =>	"Netflix",
 		];
+		
+	}
+	
+	/**
+	 * Get bills
+	 * 
+	 * @param DateTime $dateTime
+	 * 
+	 * @return App\Models\Expenses\Bill[]
+	 */
+	public static function getBills(DateTime $dateTime)
+	{
+		
+		return Bill::whereMonthAndYear("date", "=", $dateTime)
+			->orderBy("id", "DESC")
+			->get()
+		;
+		
+	}
+	
+	/**
+	 * Counts total amount in bills by date
+	 * 
+	 * @param DateTime $dateTime
+	 * 
+	 * @return Double $totalAmount
+	 */
+	public static function getTotalBillsPaid(DateTime $dateTime)
+	{
+		
+		return Bill::whereMonthAndYear("date", "=", $dateTime)
+			->selectRaw("SUM(amount) as total")
+			->first()
+			->toArray()["total"]
+		;
 		
 	}
 	
@@ -70,7 +132,8 @@ class Bill extends Model
 	public function getBillAttribute()
 	{
 		
-		return self::getBills()[$this->bill_of];
+		return self::getBillNames()[$this->bill_of] ?? "";
 		
 	}
+	
 }

@@ -58,4 +58,17 @@ Route::group([
 		
 	});
 	
+	/**
+	 * App\Controllers\Expenses\BillController
+	 */
+	Route::group([
+		"prefix"						 =>	"/bills",
+		"as"							 =>	"bills."
+	], function() {
+		
+		Route::post("/store", "Expenses\BillController@store")->name("store");
+		Route::post("/{bill}", "Expenses\BillController@update")->name("update");
+		
+	});
+	
 });

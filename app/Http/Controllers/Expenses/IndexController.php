@@ -8,7 +8,8 @@ use App\Http\Controllers\Expenses\ExpensesController as Controller;
 use App\Models\Expenses\{
 	Budget,
 	Expenditure,
-	Tag
+	Tag,
+	Bill
 };
 
 class IndexController extends Controller
@@ -31,8 +32,22 @@ class IndexController extends Controller
 		$totalAmountSpent				 =	Expenditure::getTotalAmountSpent($this->date);
 		$tags							 =	Tag::all();
 		$expendituresByTags				 =	Expenditure::getExpendituresByTags($this->date);
+		$billNames						 =	Bill::getBillNames();
+		$bills							 =	Bill::getBills($this->date);
+		$totalBillsPaid					 =	Bill::getTotalBillsPaid($this->date);
+		
 		//dd($d);
-		return view(self::VIEW_PATH . "index", compact("date", "budget", "expenditures", "totalAmountSpent", "tags", "expendituresByTags"));
+		return view(self::VIEW_PATH . "index", compact(
+			"date",
+			"budget",
+			"expenditures",
+			"totalAmountSpent",
+			"tags",
+			"expendituresByTags",
+			"billNames",
+			"bills",
+			"totalBillsPaid"
+		));
 		
 	}
 	
