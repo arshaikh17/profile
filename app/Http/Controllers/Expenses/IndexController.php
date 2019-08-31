@@ -61,7 +61,7 @@ class IndexController extends Controller
 			"saving",
 			"allowances",
 			"totalAllowances",
-			"remaining",
+			"remaining"
 		));
 		
 	}
