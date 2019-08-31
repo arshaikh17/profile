@@ -9,7 +9,9 @@ use App\Models\Expenses\{
 	Budget,
 	Expenditure,
 	Tag,
-	Bill
+	Bill,
+	Saving,
+	Allowance
 };
 
 class IndexController extends Controller
@@ -35,8 +37,17 @@ class IndexController extends Controller
 		$billNames						 =	Bill::getBillNames();
 		$bills							 =	Bill::getBills($this->date);
 		$totalBillsPaid					 =	Bill::getTotalBillsPaid($this->date);
+		$saving							 =	Saving::getSaving($this->date);
+		$allowances						 =	Allowance::getAllowances($this->date);
+		$totalAllowances				 =	Allowance::getTotalAllowances($this->date);
 		
-		//dd($d);
+		$remaining						 =	($budget ? $budget->amount : 0)
+											 - $totalAmountSpent
+											 - $totalBillsPaid
+											 - ($saving && $saving->status == Saving::GOAL_ACTIVE ? $saving->amount : 0)
+											 - $totalAllowances
+										;
+		
 		return view(self::VIEW_PATH . "index", compact(
 			"date",
 			"budget",
@@ -46,7 +57,11 @@ class IndexController extends Controller
 			"expendituresByTags",
 			"billNames",
 			"bills",
-			"totalBillsPaid"
+			"totalBillsPaid",
+			"saving",
+			"allowances",
+			"totalAllowances",
+			"remaining",
 		));
 		
 	}

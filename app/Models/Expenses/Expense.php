@@ -15,6 +15,12 @@ class Expense extends Model
 	 */
 	use ExpensesTrait;
 	
+	/**
+	 * Constants
+	 */
+	CONST GOAL_INACTIVE					 =	0;
+	CONST GOAL_ACTIVE					 =	1;
+	
 	/* =====================================================
 	 * 							SCOPES						
 	 * ===================================================*/

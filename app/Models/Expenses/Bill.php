@@ -44,27 +44,27 @@ class Bill extends Expense
 	/**
 	 * Saves record
 	 * 
-	 * @param App\Models\Expenses\Bill $nill
+	 * @param App\Models\Expenses\Bill $bill
 	 * @param Array $data
 	 */
-	public static function saveBill(Bill $nill, $data)
+	public static function saveBill(Bill $bill, $data)
 	{
 		
-		$nill->fill($data);
+		$bill->fill($data);
 		
-		$nill->save();
+		$bill->save();
 		
 	}
 	
 	/**
 	 * Removes record
 	 * 
-	 * @param App\Models\Expenses\Bill $nill
+	 * @param App\Models\Expenses\Bill $bill
 	 */
-	public static function removeBill(Bill $nill)
+	public static function removeBill(Bill $bill)
 	{
 		
-		$nill->delete();
+		$bill->delete();
 		
 	}
 	

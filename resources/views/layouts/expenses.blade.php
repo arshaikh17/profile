@@ -18,6 +18,18 @@
 </head>
 <body>
 	<main id="app">
+		@if (session()->has("status"))
+			@include("partials.toast-alert", [
+				"alertType"				 =>	"success",
+				"message"				 =>	session("status")
+			])
+		@endif
+		@if ($errors->any())
+			@include("partials.toast-alert", [
+				"alertType"				 =>	"fail",
+				"message"				 =>	$errors->first()
+			])
+		@endif
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
@@ -25,7 +37,7 @@
 				</div>
 				<div class="text-right col-md-6 mt-3">
 					<span class="text-info text-20">
-						£{{ number_format(($budget ? $budget->amount : 0) - $totalAmountSpent - $totalBillsPaid) }}
+						£{{ number_format($remaining) }}
 					</span>
 					<a
 						href="#"
@@ -95,22 +107,34 @@
 				</div>
 				<div class="col-12">
 					<div class="row collapse show" id="statisticsStrip">
-						<div class="col-md-4">
+						<div
+							class="col-md-4 hover-link"
+							data-toggle="modal"
+							data-target="#savingModal"
+						>
 							<div class="bg-info text-white statistics-strip">
 								<p>Savings</p>
-								<p class="text-30">£100</p>
+								<p class="text-30">£{{ $saving ? $saving->amount : 0 }}</p>
 							</div>
 						</div>
-						<div class="col-md-4">
+						<div
+							class="col-md-4 hover-link"
+							data-toggle="modal"
+							data-target="#billsModal"
+						>
 							<div class="bg-info text-white statistics-strip">
 								<p>Bill Paid</p>
 								<p class="text-30">£{{ number_format($totalBillsPaid) }}</p>
 							</div>
 						</div>
-						<div class="col-md-4">
+						<div
+							class="col-md-4 hover-link"
+							data-toggle="modal"
+							data-target="#allowancesModal"
+						>
 							<div class="bg-info text-white statistics-strip">
-								<p>Savings</p>
-								<p class="text-30">£100</p>
+								<p>Allowances</p>
+								<p class="text-30">£{{ number_format($totalAllowances) }}</p>
 							</div>
 						</div>
 					</div>
@@ -481,6 +505,134 @@
 								@forelse ($bills as $bill)
 									<tr class="hover-link">
 										<td>{{ $bill->bill }}, <span class="text-info">£{{ $bill->amount }}</span></td>
+									</tr>
+								@empty
+								@endforelse
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal" id="savingModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Month's Saving</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					
+					<div>
+						@if ($saving)
+							<p>
+								Saving goal for this month.
+							</p>
+							<h3 class="text-info">£{{ number_format($saving->amount) }}</h3>
+							
+							<p>Here is something you can do about it.</p>
+							<form
+								action="{{ $saving->status ? route('expenses.goals.savings.mark-inactive', [$saving]) : route('expenses.goals.savings.mark-active', [$saving]) }}"
+								method="POST"
+							>
+								{{ csrf_field() }}
+								<div class="form-group text-right">
+									<input type="submit" class="btn btn-info" value="Mark as {{ $saving->status ? 'Inactive' : 'Active' }}" />
+								</div>
+							</form>
+						@else
+							<p>
+								You haven't set any saving goal for this month.
+							</p>
+						@endif
+					</div>
+					<div>
+						<p class="hover-link" data-toggle="collapse" data-target="#editSavingForm">It's okay if you wish to update it.</p>
+						<div class="collapse" id="editSavingForm">
+							<form
+								action="{{ $saving ? route('expenses.goals.savings.update', $saving) : route('expenses.goals.savings.store') }}"
+								method="POST"
+							>
+								{{ csrf_field() }}
+								
+								@include("expenses.partials.goal-form-fields", [
+									"goal"					 =>	$saving,
+								])
+								
+								<div class="form-group text-right">
+									<input type="submit" class="btn btn-info" value="Save" />
+								</div>
+							</form>
+						</div>
+					</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal" id="allowancesModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Allowances to this Month</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div>
+						<p class="hover-link" data-toggle="collapse" data-target="#editAllowanceForm">Allowance form.</p>
+						<div class="collapse" id="editAllowanceForm">
+							<form
+								action="{{ route('expenses.goals.allowances.store') }}"
+								method="POST"
+							>
+								{{ csrf_field() }}
+								
+								@include("expenses.partials.goal-form-fields")
+								
+								<div class="form-group text-right">
+									<input type="submit" class="btn btn-info" value="Save" />
+								</div>
+							</form>
+						</div>
+					</div>
+					<div>
+						<table class="table table-sm table-hover table-striped table-bordered">
+							<thead>
+								<tr>
+									<th>Description</th>
+									<th>Amount</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								@forelse ($allowances as $allowance)
+									<tr>
+										<td
+											class="hover-link allowanceRow"
+											data-data="{{ $allowance }}"
+										>
+											{{ $allowance->description }}
+										</td>
+										<td>£{{ $allowance->amount }}</td>
+										<td class="text-center">
+											<form method="POST" action="{{ route('expenses.goals.allowances.destroy', [$allowance]) }}">
+												{{ csrf_field() }}
+												<input
+													type="submit"
+													class="btn btn-sm btn-danger"
+													value="X"
+												/>
+											</form>
+										</td>
 									</tr>
 								@empty
 								@endforelse
