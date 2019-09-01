@@ -7,10 +7,10 @@
 			<a class="nav-link btn btn-sm btn-secondary" href="{{ route('comics.index') }}">Comics Area</a>
 		</li>
 		<li class="nav-item ml-2">
-			<a class="nav-link btn btn-sm btn-light" href="{{ route('wishlists.index') }}">Wishlists</a>
+			<a class="nav-link btn btn-sm btn-info text-white" href="{{ route('expenses.index') }}">Expenses</a>
 		</li>
 		<li class="nav-item ml-2">
-			<a class="nav-link btn btn-sm btn-info text-white" href="{{ route('expenses.index') }}">Expenses</a>
+			<a class="nav-link btn btn-sm btn-light" href="{{ route('wishlists.index') }}">Wishlists</a>
 		</li>
 	</ul>
 	<ul class="navbar-nav">

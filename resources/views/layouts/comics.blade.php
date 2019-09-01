@@ -20,7 +20,10 @@
 <body>
 	<div id="app">
 		
-		@include("partials.nav-dark", [
+		@include("partials.top-nav", [
+			"config"					 =>	[
+				"background"			 =>	"bg-dark"
+			],
 			"brand"						 =>	[
 				"title"					 =>	"Comics Area",
 				"route"					 =>	route("comics.index")

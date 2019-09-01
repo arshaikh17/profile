@@ -18,6 +18,18 @@
 </head>
 <body>
 	<main id="app">
+		@include("partials.top-nav", [
+			"config"					 =>	[
+				"background"			 =>	"bg-info"
+			],
+			"brand"						 =>	[
+				"title"					 =>	"Expenses",
+				"route"					 =>	route("expenses.index"),
+				"colour"				 =>	"text-white",
+			],
+			"links"						 =>	[
+			]
+		])
 		@if (session()->has("status"))
 			@include("partials.alert", [
 				"alertType"				 =>	"success",

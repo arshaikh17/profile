@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-md bg-dark navbar-laravel">
+<nav class="navbar navbar-expand-md {{ $config["background"] ?? "bg-white" }} navbar-laravel">
 	<div class="container">
-		<a class="navbar-brand" href="{{ $brand['route'] }}">
+		<a class="navbar-brand {{ $brand["colour"] ?? "text-white" }}" href="{{ $brand['route'] }}">
 			{{ $brand['title'] }}
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -14,7 +14,7 @@
 						<a
 							href="{{ $link['route'] }}"
 							title="{{ $link['title'] }}"
-							class="nav-link"
+							class="nav-link {{ $link["colour"] ?? "text-white" }}"
 						>
 							{{ $link["title"] }}
 						</a>
