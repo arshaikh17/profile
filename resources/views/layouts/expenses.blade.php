@@ -424,11 +424,14 @@
 										<td class="text-center">
 											<form method="POST" action="{{ route('expenses.expenditures.destroy', [$expenditure]) }}">
 												{{ csrf_field() }}
-												<input
+												<button
 													type="submit"
 													class="btn btn-sm btn-danger"
-													value="X"
-												/>
+													data-toggle="tooltip"
+													title="Delete this expenditure"
+												>
+													<i class="fa fa-times"></i>
+												</button>
 											</form>
 										</td>
 									</tr>
@@ -623,14 +626,31 @@
 											{{ $allowance->description }}
 										</td>
 										<td>£{{ $allowance->amount }}</td>
-										<td class="text-center">
+										<td class="btn-group">
+											<form
+												method="POST"
+												action="{{ $allowance->status ? route('expenses.goals.allowances.mark-inactive', [$allowance]) : route('expenses.goals.allowances.mark-active', [$allowance]) }}"
+											>
+												{{ csrf_field() }}
+												<button
+													type="submit"
+													class="btn btn-sm btn-info"
+													data-toggle="tooltip"
+													title="Mark {{ $allowance->status ? "inactive" : "active" }}"
+												>
+													<i class="fa fa-{{ $allowance->status ? 'times' : 'check' }}"></i>
+												</button>
+											</form>
 											<form method="POST" action="{{ route('expenses.goals.allowances.destroy', [$allowance]) }}">
 												{{ csrf_field() }}
-												<input
+												<button
 													type="submit"
 													class="btn btn-sm btn-danger"
-													value="X"
-												/>
+													data-toggle="tooltip"
+													title="Delete this allowance"
+												>
+													<i class="fa fa-times"></i>
+												</button>
 											</form>
 										</td>
 									</tr>
