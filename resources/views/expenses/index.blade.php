@@ -225,5 +225,6 @@
 @include("expenses.partials.modals.all-expenses-modal")
 @include("expenses.partials.modals.bills-modal")
 @include("expenses.partials.modals.allowances-modal")
+@include("expenses.partials.modals.saving-modal")
 
 @endsection
