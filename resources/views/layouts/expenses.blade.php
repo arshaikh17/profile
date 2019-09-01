@@ -19,13 +19,13 @@
 <body>
 	<main id="app">
 		@if (session()->has("status"))
-			@include("partials.toast-alert", [
+			@include("partials.alert", [
 				"alertType"				 =>	"success",
 				"message"				 =>	session("status")
 			])
 		@endif
 		@if ($errors->any())
-			@include("partials.toast-alert", [
+			@include("partials.alert", [
 				"alertType"				 =>	"fail",
 				"message"				 =>	$errors->first()
 			])
