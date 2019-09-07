@@ -21,7 +21,8 @@
 			<a
 				href="#"
 				class="btn btn-sm btn-info"
-				id="addExpense"
+				data-toggle="modal"
+				data-target="#expenseModal"
 			>
 				Expense
 			</a>

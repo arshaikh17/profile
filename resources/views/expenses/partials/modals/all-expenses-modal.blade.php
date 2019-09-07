@@ -17,11 +17,11 @@
 						</thead>
 						<tbody>
 							@forelse ($expenditures as $expenditure)
-								<tr>
-									<td
-										class="hover-link expenditureRow"
-										data-data="{{ $expenditure }}"
-									>
+								<tr
+									class="hover-link"
+									data-values="{{ $expenditure }}"
+								>
+									<td>
 										{{ $expenditure->tag ? $expenditure->tag->name : "Else" }}
 									</td>
 									<td>£{{ $expenditure->amount }}</td>
@@ -34,7 +34,7 @@
 												data-toggle="tooltip"
 												title="Delete this expenditure"
 											>
-												<i class="fa fa-times"></i>
+												<i class="fas fa-trash"></i>
 											</button>
 										</form>
 									</td>
