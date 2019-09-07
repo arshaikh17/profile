@@ -57,7 +57,7 @@
 												<i class="fa fa-{{ $allowance->status ? 'times' : 'check' }}"></i>
 											</button>
 										</form>
-										<form method="POST" action="{{ route('expenses.goals.allowances.destroy', [$allowance]) }}">
+										<form method="POST" action="{{ route('expenses.goals.allowances.destroy', [$allowance]) }}" class="ml-1">
 											{{ csrf_field() }}
 											<button
 												type="submit"
@@ -65,7 +65,7 @@
 												data-toggle="tooltip"
 												title="Delete this allowance"
 											>
-												<i class="fa fa-times"></i>
+												<i class="fas fa-trash"></i>
 											</button>
 										</form>
 									</td>
