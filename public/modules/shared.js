@@ -7,6 +7,7 @@ $(document).ready(function () {
 	toggleDOM();
 	initialiseMasonry();
 	initialiseSortingArrowOnBootstrapCollapse();
+	resetForm();
 	
 });
 
@@ -201,5 +202,52 @@ function delay(callback, ms) {
 		}, ms || 0);
 		
 	};
+	
+}
+
+/**
+ * Appends values on form
+ * 
+ * @param DOM form
+ * @param JSON values
+ */
+function formValues(form, values) {
+	
+	var field;
+	
+	for (var key in values) {
+		
+		field							 =	form.find(`[name="${key}"]`);
+		
+		if (field.length) {
+			
+			field.val(values[key]);
+			
+			if (field.is("select")) field.change();
+			
+		}
+		
+	}
+	
+}
+
+/**
+ * Resets form
+ */
+function resetForm() {
+	
+	$("body").on("click", ".resetForm", function(e) {
+		
+		e.preventDefault();
+		
+		var form						 =	$($(this).data("form"));
+		
+		form.find("input").val("");
+		form.find("textarea").val("");
+		form.find("select").val("").change();
+		
+		if (form.data("add-url")) form.attr("action", form.data("add-url"));
+		
+	});
 	
 }

@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	
 	expenditures();
+	tags();
 	
 });
 
@@ -56,5 +57,27 @@ function expenditures() {
 		form.find("select[name='tag_id']").val(tag_id).change();
 		
 	}
+	
+}
+
+/**
+ * Methods for tags modal
+ */
+function tags() {
+	
+	var tagModalName					 =	"#tagsModal";
+	var tagModal						 =	$(tagModalName);
+	var tagForm							 =	tagModal.find("form");
+	var tagTable						 =	tagModal.find("table");
+	
+	//EDIT TAG
+	$("body").on("click", `${ tagModalName } table tbody tr`, function() {
+		
+		var values						 =	$(this).data("data");
+		tagForm.attr("action", tagForm.data("edit-url").replace(-1, values.id))
+		
+		formValues(tagForm, values);
+		
+	})
 	
 }
