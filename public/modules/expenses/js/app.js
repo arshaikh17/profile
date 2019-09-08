@@ -2,6 +2,7 @@ $(document).ready(function() {
 	
 	expenditures();
 	tags();
+	allowances();
 	
 });
 
@@ -48,6 +49,28 @@ function tags() {
 		tagForm.attr("action", tagForm.data("edit-url").replace(-1, values.id))
 		
 		formValues(tagForm, values);
+		
+	})
+	
+}
+
+/**
+ * Methods for allowances modal
+ */
+function allowances() {
+	
+	var allowancesModalName				 =	"#allowancesModal";
+	var allowancesModal					 =	$(allowancesModalName);
+	var allowancesForm					 =	allowancesModal.find("form");
+	var allowancesTable					 =	allowancesModal.find("table");
+	
+	//EDIT TAG
+	$("body").on("click", `${ allowancesModalName } table tbody tr`, function() {
+		
+		var values						 =	$(this).data("values");
+		allowancesForm.attr("action", allowancesForm.data("edit-url").replace(-1, values.id))
+		
+		formValues(allowancesForm, values);
 		
 	})
 	

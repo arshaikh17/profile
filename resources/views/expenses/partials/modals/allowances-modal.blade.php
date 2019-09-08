@@ -7,10 +7,32 @@
 			</div>
 			<div class="modal-body">
 				<div>
-					<p class="hover-link" data-toggle="collapse" data-target="#editAllowanceForm">Allowance form.</p>
+					<div class="row mb-2">
+						<div class="col-10">
+							<h6
+								class="hover-link"
+								data-toggle="collapse"
+								data-target="#editAllowanceForm"
+							>
+								Allowance Form
+							</h6>
+						</div>
+						<div class="col-2 text-right">
+							<a
+								href="#"
+								class="btn btn-sm btn-info resetForm"
+								data-form="#allowancesForm"
+							>
+								<i class="fas fa-redo-alt"></i>
+							</a>
+						</div>
+					</div>
 					<div class="collapse" id="editAllowanceForm">
 						<form
+							id="allowancesForm"
 							action="{{ route('expenses.goals.allowances.store') }}"
+							data-add-url="{{ route('expenses.goals.allowances.store') }}"
+							data-edit-url="{{ route('expenses.goals.allowances.update', -1) }}"
 							method="POST"
 						>
 							{{ csrf_field() }}
@@ -18,7 +40,7 @@
 							@include("expenses.partials.goal-form-fields")
 							
 							<div class="form-group text-right">
-								<input type="submit" class="btn btn-info" value="Save" />
+								<button type="submit" class="btn btn-sm btn-info">Save</button>
 							</div>
 						</form>
 					</div>
@@ -34,11 +56,11 @@
 						</thead>
 						<tbody>
 							@forelse ($allowances as $allowance)
-								<tr>
-									<td
-										class="hover-link allowanceRow"
-										data-data="{{ $allowance }}"
-									>
+								<tr
+									class="hover-link"
+									data-values="{{ $allowance }}"
+								>
+									<td>
 										{{ $allowance->description }}
 									</td>
 									<td>£{{ $allowance->amount }}</td>
@@ -77,7 +99,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
