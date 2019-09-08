@@ -59,7 +59,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-12 col-sm-6 statistics-card">
+		<div
+			class="col-12 col-sm-6 statistics-card hover-link"
+			data-toggle="modal"
+			data-target="#allExpensesModal"
+		>
 			<div class="card">
 				<div class="card-body bg-info text-white">
 					<h4 class="card-title">Spent</h4>
