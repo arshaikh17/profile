@@ -42,6 +42,14 @@
 			>
 				Pay Bill
 			</a>
+			<a
+				href="#"
+				class="btn btn-sm btn-info"
+				data-toggle="modal"
+				data-target="#personModal"
+			>
+				Add Person
+			</a>
 		</div>
 	</div>
 	<div class="row">
@@ -231,5 +239,6 @@
 @include("expenses.partials.modals.bills-modal")
 @include("expenses.partials.modals.allowances-modal")
 @include("expenses.partials.modals.saving-modal")
+@include("generals.partials.modals.person-form-modal")
 
 @endsection

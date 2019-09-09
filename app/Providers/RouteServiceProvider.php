@@ -49,6 +49,8 @@ class RouteServiceProvider extends ServiceProvider
 		
 		$this->mapExpensesRoutes();
 		
+		$this->mapGeneralsRoutes();
+		
 	}
 	
 	/**
@@ -142,6 +144,21 @@ class RouteServiceProvider extends ServiceProvider
 		Route::middleware("web")
 			->namespace($this->namespace)
 			->group(base_path("routes/expenses.php"))
+		;
+		
+	}
+	
+	/**
+	 * Define the "generals" routes for the application.
+	 *
+	 * @return void
+	 */
+	protected function mapGeneralsRoutes()
+	{
+		
+		Route::middleware("web")
+			->namespace($this->namespace)
+			->group(base_path("routes/generals.php"))
 		;
 		
 	}

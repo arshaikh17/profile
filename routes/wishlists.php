@@ -1,6 +1,6 @@
 <?php
 /**
- * This contains all the routes related to comics module.
+ * This contains all the routes related to wishlists module.
  * 
  * Module Directory: /Http/Controllers/Wishlists
  */

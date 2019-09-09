@@ -13,7 +13,7 @@ trait ExpensesTrait
 	use ModelTrait;
 	
 	/**
-	 * Scopped Variables
+	 * Scoped Variables
 	 */
 	protected $table_prefix				 =	"expenses_";
 	

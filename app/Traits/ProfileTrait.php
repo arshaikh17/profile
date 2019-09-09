@@ -13,7 +13,7 @@ trait ProfileTrait
 	use ModelTrait;
 	
 	/**
-	 * Scopped Variables
+	 * Scoped Variables
 	 */
 	protected $table_prefix				 =	"profile_";
 	

@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use App\Traits\ModelTrait;
 
-trait ComicsTrait
+trait GeneralsTrait
 {
 	
 	/**
@@ -15,6 +15,6 @@ trait ComicsTrait
 	/**
 	 * Scoped Variables
 	 */
-	protected $table_prefix				 =	"comics_";
+	protected $table_prefix				 =	"generals_";
 	
 }

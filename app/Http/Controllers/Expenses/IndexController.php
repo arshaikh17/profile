@@ -14,6 +14,8 @@ use App\Models\Expenses\{
 	Allowance
 };
 
+use App\Models\Generals\Person;
+
 class IndexController extends Controller
 {
 	
