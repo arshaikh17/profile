@@ -12,6 +12,7 @@
 							<tr>
 								<th>Tag</th>
 								<th>Amount</th>
+								<th>Spent At</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -25,6 +26,7 @@
 										{{ $expenditure->tag ? $expenditure->tag->name : "Else" }}
 									</td>
 									<td>£{{ $expenditure->amount }}</td>
+									<td>{{ \Carbon\Carbon::parse($expenditure->date)->format("F dS, Y") }}</td>
 									<td class="text-center">
 										<form method="POST" action="{{ route('expenses.expenditures.destroy', [$expenditure]) }}">
 											{{ csrf_field() }}
