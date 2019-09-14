@@ -82,46 +82,46 @@ function allowances() {
  */
 function payments() {
 	
-	var paymentOweModalName				 =	"#paymentOweModal";
-	var paymentOweModal					 =	$(paymentOweModalName);
-	var paymentOweForm					 =	paymentOweModal.find("form");
+	var paymentDebtModalName			 =	"#paymentDebtModal";
+	var paymentDebtModal				 =	$(paymentDebtModalName);
+	var paymentDebtForm					 =	paymentDebtModal.find("form");
 	
 	//OPEN MODAL
-	$("body").on("click", ".paymentOwe", function(e) {
+	$("body").on("click", ".paymentDebt", function(e) {
 		
 		e.preventDefault();
 		
 		var person						 =	$(this).data("person");
-		var paymentOweModalAsText		 =	paymentOweModal.html();
+		var paymentDebtModalAsText		 =	paymentDebtModal.html();
 		
-		paymentOweModal.html(paymentOweModalAsText.replace(/-1/g, person.id));
-		paymentOweModal.find("#name").text(person.name);
-		paymentOweModal.find("table").find("tbody").empty();
+		paymentDebtModal.html(paymentDebtModalAsText.replace(/-1/g, person.id));
+		paymentDebtModal.find("#name").text(person.name);
+		paymentDebtModal.find("table").find("tbody").empty();
 		
 		$.ajax({
 			url							 :	$(this).data("url"),
 			method						 :	"GET",
 			success						 :	function(data) {
 				
-				paymentOweModal.find("table").find("tbody").append(data.owes);
+				paymentDebtModal.find("table").find("tbody").append(data.debts);
 				
 			}
 		});
 		
-		paymentOweModal.modal("show");
+		paymentDebtModal.modal("show");
 		
 	})
 	
 	//EDITS PAYMENTS
-	$("body").on("click", `${ paymentOweModalName } table tbody td`, function(e) {
+	$("body").on("click", `${ paymentDebtModalName } table tbody td`, function(e) {
 		
 		if (!$(this).hasClass("defaultActions")) e.preventDefault();
 		
 		var parent						 =	$(this).closest("tr");
 		var values						 =	parent.data("values");
 		
-		formValues(paymentOweForm, values);
-		paymentOweForm.attr("action", paymentOweForm.data("edit-url").replace(-2, values.id));
+		formValues(paymentDebtForm, values);
+		paymentDebtForm.attr("action", paymentDebtForm.data("edit-url").replace(-2, values.id));
 		
 	});
 	

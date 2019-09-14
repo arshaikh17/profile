@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\GeneralsTrait;
 
 use App\Models\Expenses\{
-	Owe
+	Debt
 };
 
 class Person extends Model
@@ -31,7 +31,7 @@ class Person extends Model
 	protected $fillable					 =	[
 		"first_name",
 		"surname",
-		"owed",
+		"debt",
 		"lent",
 	];
 	
@@ -45,7 +45,7 @@ class Person extends Model
 	/**
 	 * Constants
 	 */
-	CONST AMOUNT_OWED					 =	1;
+	CONST AMOUNT_DEBT					 =	1;
 	CONST AMOUNT_LEND					 =	2;
 	
 	/* =====================================================
@@ -111,9 +111,9 @@ class Person extends Model
 		
 		switch ($type) {
 			
-			case self::AMOUNT_OWED:
+			case self::AMOUNT_DEBT:
 				
-				$column					 =	"owed";
+				$column					 =	"debt";
 				
 				break;
 				
@@ -172,14 +172,14 @@ class Person extends Model
 	 * 
 	 * @param String $orderBy
 	 * 
-	 * @return App\Models\Expenses\Owe[]
+	 * @return App\Models\Expenses\Debt[]
 	 */
-	public function owes($orderBy = false)
+	public function debts($orderBy = false)
 	{
 		
-		$owes							 =	$this->hasMany(Owe::class, "person_id", "id");
+		$debts							 =	$this->hasMany(Debt::class, "person_id", "id");
 		
-		return $orderBy ? $owes->orderBy("id", $orderBy)->get() : $owes;
+		return $orderBy ? $debts->orderBy("id", $orderBy)->get() : $debts;
 		
 	}
 }

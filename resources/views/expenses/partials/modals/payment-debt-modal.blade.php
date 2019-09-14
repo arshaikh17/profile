@@ -1,4 +1,4 @@
-<div class="modal" id="paymentOweModal">
+<div class="modal" id="paymentDebtModal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -16,9 +16,9 @@
 				<div class="collapse" id="paymentForm">
 					<form
 						method="POST"
-						action="{{ route('expenses.payments.persons.owes.store', -1) }}"
-						data-add-url="{{ route('expenses.payments.persons.owes.store', -1) }}"
-						data-edit-url="{{ route('expenses.payments.persons.owes.update', [-1, -2]) }}"
+						action="{{ route('expenses.payments.persons.debts.store', -1) }}"
+						data-add-url="{{ route('expenses.payments.persons.debts.store', -1) }}"
+						data-edit-url="{{ route('expenses.payments.persons.debts.update', [-1, -2]) }}"
 					>
 						{{ csrf_field() }}
 						<div class="row">
@@ -49,7 +49,7 @@
 					</form>
 				</div>
 				<div>
-					<p>Payments returned over course.</p>
+					<p>Debt returned over course.</p>
 					<table class="table table-hover table-striped table-bordered">
 						<thead>
 							<tr>

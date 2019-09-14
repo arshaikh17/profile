@@ -227,14 +227,14 @@
 							<p class="text-20">
 								{{ $person->name }}
 								<a
-									class="btn btn-sm btn-info text-white hover-link paymentOwe"
+									class="btn btn-sm btn-info text-white hover-link paymentDebt"
 									data-person="{{ $person }}"
 									data-url="{{ route("expenses.payments.persons.history", $person) }}"
 								>
 									<i class="fas fa-plus"></i>
 								</a>
 							</p>
-							<p class="text-info text-30">£{{ number_format($person->owed) }}</p>
+							<p class="text-info text-30">£{{ number_format($person->debt) }}</p>
 						</div>
 					</div>
 				@empty
@@ -251,7 +251,7 @@
 @include("expenses.partials.modals.bills-modal")
 @include("expenses.partials.modals.allowances-modal")
 @include("expenses.partials.modals.saving-modal")
-@include("expenses.partials.modals.payment-owe-modal")
+@include("expenses.partials.modals.payment-debt-modal")
 @include("generals.partials.modals.person-form-modal")
 
 @endsection

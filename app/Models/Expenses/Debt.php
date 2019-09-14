@@ -10,7 +10,7 @@ use App\Models\Expenses\{
 
 use DateTime;
 
-class Owe extends Expense
+class Debt extends Expense
 {
 	
 	/**
@@ -30,39 +30,39 @@ class Owe extends Expense
 	/**
 	 * Saves record
 	 * 
-	 * @param App\Models\Expenses\Owe $owe
+	 * @param App\Models\Expenses\Debt $debt
 	 * @param Array $data
 	 */
-	public static function saveOwe(Owe $owe, $data)
+	public static function saveDebt(Debt $debt, $data)
 	{
 		
-		self::savePayment($owe, $data);
+		self::savePayment($debt, $data);
 		
 	}
 	
 	/**
 	 * Removes record
 	 * 
-	 * @param App\Models\Expenses\Owe $owe
+	 * @param App\Models\Expenses\Debt $debt
 	 */
-	public static function removeOwe(Owe $owe)
+	public static function removeDebt(Debt $debt)
 	{
 		
-		self::removePayment($owe);
+		self::removePayment($debt);
 		
 	}
 	
 	/**
-	 * Get Owes
+	 * Get Debts
 	 * 
 	 * @param DateTime $dateTime
 	 * 
-	 * @return App\Models\Expenses\Owe[]
+	 * @return App\Models\Expenses\Debt[]
 	 */
-	public static function getOwes(DateTime $dateTime)
+	public static function getDebts(DateTime $dateTime)
 	{
 		
-		return self::getPayments(new Owe, $dateTime);
+		return self::getPayments(new Debt, $dateTime);
 		
 	}
 	

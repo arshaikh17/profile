@@ -7,14 +7,14 @@ use App\Http\Controllers\Expenses\ExpensesController as Controller;
 
 use App\Models\Generals\Person;
 use App\Models\Expenses\{
-	Owe
+	Debt
 };
 
-class PaymentOweController extends Controller
+class PaymentDebtController extends Controller
 {
 	
 	/**
-	 * Saves owe
+	 * Saves debt
 	 * 
 	 * @param Illuminate\Http\Request $request
 	 * @param App\Models\Generals\Person $person
@@ -22,38 +22,38 @@ class PaymentOweController extends Controller
 	public function store(Request $request, Person $person)
 	{
 		
-		Owe::saveOwe(new Owe, array_merge($request->toArray(), [
+		Debt::saveDebt(new Debt, array_merge($request->toArray(), [
 			"date"						 =>	$this->date,
-			"is_paid"					 =>	$request->is_paid ? Owe::PAID : Owe::UNPAID,
+			"is_paid"					 =>	$request->is_paid ? Debt::PAID : Debt::UNPAID,
 			"person"					 =>	$person,
 		]));
 		
-		if ($request->is_paid) $person->deductAmount(Person::AMOUNT_OWED, $request->amount);
+		if ($request->is_paid) $person->deductAmount(Person::AMOUNT_DEBT, $request->amount);
 		
 		return redirect()->back()->with("status", "Payment saved");
 		
 	}
 	
 	/**
-	 * Updates owe
+	 * Updates debt
 	 * 
 	 * @param Illuminate\Http\Request $request
 	 * @param App\Models\Generals\Person $person
-	 * @param App\Models\Expenses\Owe $owe
+	 * @param App\Models\Expenses\Debt $debt
 	 */
-	public function update(Request $request, Person $person, Owe $owe)
+	public function update(Request $request, Person $person, Debt $debt)
 	{
 		
-		Owe::saveOwe($owe, array_merge($request->toArray(), [
-			"is_paid"					 =>	$request->is_paid ? Owe::PAID : Owe::UNPAID,
+		Debt::saveDebt($debt, array_merge($request->toArray(), [
+			"is_paid"					 =>	$request->is_paid ? Debt::PAID : Debt::UNPAID,
 		]));
 		
 		if ($request->is_paid) {
 			
-			$amount						 =	$owe->amount - $request->amount;
+			$amount						 =	$debt->amount - $request->amount;
 			
-			if ($amount <= 0) $person->deductAmount(Person::AMOUNT_OWED, $amount);
-			if ($amount >= 0) $person->addAmount(Person::AMOUNT_OWED, $amount);
+			if ($amount <= 0) $person->deductAmount(Person::AMOUNT_DEBT, $amount);
+			if ($amount >= 0) $person->addAmount(Person::AMOUNT_DEBT, $amount);
 			
 		}
 		
@@ -66,14 +66,14 @@ class PaymentOweController extends Controller
 	 * 
 	 * @param Illuminate\Http\Request $request
 	 * @param App\Models\Generals\Person $person
-	 * @param App\Models\Expenses\Owe $owe
+	 * @param App\Models\Expenses\Debt $debt
 	 */
-	public function destroy(Request $request, Person $person, Owe $owe)
+	public function destroy(Request $request, Person $person, Debt $debt)
 	{
 		
-		Owe::removeOwe($owe);
+		Debt::removeDebt($debt);
 		
-		$person->addAmount(Person::AMOUNT_OWED, $owe->amount);
+		$person->addAmount(Person::AMOUNT_DEBT, $debt->amount);
 		
 		return redirect()->back()->with("status", "Payment deleted");
 		
@@ -84,14 +84,14 @@ class PaymentOweController extends Controller
 	 * 
 	 * @param Illuminate\Http\Request $request
 	 * @param App\Models\Generals\Person $person
-	 * @param App\Models\Expenses\Owe $owe
+	 * @param App\Models\Expenses\Debt $debt
 	 */
-	public function markPaid(Request $request, Person $person, Owe $owe)
+	public function markPaid(Request $request, Person $person, Debt $debt)
 	{
 		
-		Owe::updateStatus($owe, Owe::GOAL_ACTIVE);
+		Debt::updateStatus($debt, Debt::GOAL_ACTIVE);
 		
-		$person->deductAmount(Person::AMOUNT_OWED, $owe->amount);
+		$person->deductAmount(Person::AMOUNT_DEBT, $debt->amount);
 		
 		return redirect()->back()->with("status", "Payment marked paid");
 		
@@ -102,14 +102,14 @@ class PaymentOweController extends Controller
 	 * 
 	 * @param Illuminate\Http\Request $request
 	 * @param App\Models\Generals\Person $person
-	 * @param App\Models\Expenses\Owe $owe
+	 * @param App\Models\Expenses\Debt $debt
 	 */
-	public function markUnpaid(Request $request, Person $person, Owe $owe)
+	public function markUnpaid(Request $request, Person $person, Debt $debt)
 	{
 		
-		Owe::updateStatus($owe, Owe::GOAL_INACTIVE);
+		Debt::updateStatus($debt, Debt::GOAL_INACTIVE);
 		
-		$person->addAmount(Person::AMOUNT_OWED, $owe->amount);
+		$person->addAmount(Person::AMOUNT_DEBT, $debt->amount);
 		
 		return redirect()->back()->with("status", "Payment marked unpaid");
 		
@@ -126,14 +126,14 @@ class PaymentOweController extends Controller
 	public function history(Request $request, Person $person)
 	{
 		
-		$oweHistory						 =	$person->owes("DESC");
+		$debtHistory						 =	$person->debts("DESC");
 		
 		if ($request->ajax()) {
 			
-			$owesView					 =	view("expenses.partials.tables.payments-owe-table-rows", ["owes" => $oweHistory])->render();
+			$debtsView					 =	view("expenses.partials.tables.payments-debt-table-rows", ["debts" => $debtHistory])->render();
 			
 			return response()->json([
-				"owes"					 =>	$owesView
+				"debts"					 =>	$debtsView
 			], 200);
 			
 		}

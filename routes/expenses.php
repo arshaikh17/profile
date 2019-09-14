@@ -128,18 +128,18 @@ Route::group([
 			"as"						 =>	"persons."
 		], function() {
 				
-			Route::get("/history", "Expenses\PaymentOweController@history")->name("history");
+			Route::get("/history", "Expenses\PaymentDebtController@history")->name("history");
 			
 			Route::group([
-				"prefix"				 =>	"/owes",
-				"as"					 =>	"owes."
+				"prefix"				 =>	"/debts",
+				"as"					 =>	"debts."
 			], function() {
 				
-				Route::post("/store", "Expenses\PaymentOweController@store")->name("store");
-				Route::post("/{owe}", "Expenses\PaymentOweController@update")->name("update");
-				Route::post("/{owe}/destroy", "Expenses\PaymentOweController@destroy")->name("destroy");
-				Route::post("/{owe}/mark-paid", "Expenses\PaymentOweController@markPaid")->name("mark-paid");
-				Route::post("/{owe}/mark-unpaid", "Expenses\PaymentOweController@markUnpaid")->name("mark-unpaid");
+				Route::post("/store", "Expenses\PaymentDebtController@store")->name("store");
+				Route::post("/{debt}", "Expenses\PaymentDebtController@update")->name("update");
+				Route::post("/{debt}/destroy", "Expenses\PaymentDebtController@destroy")->name("destroy");
+				Route::post("/{debt}/mark-paid", "Expenses\PaymentDebtController@markPaid")->name("mark-paid");
+				Route::post("/{debt}/mark-unpaid", "Expenses\PaymentDebtController@markUnpaid")->name("mark-unpaid");
 				
 			});
 			
