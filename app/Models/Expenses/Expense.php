@@ -21,6 +21,9 @@ class Expense extends Model
 	CONST GOAL_INACTIVE					 =	0;
 	CONST GOAL_ACTIVE					 =	1;
 	
+	CONST UNPAID						 =	0;
+	CONST PAID							 =	1;
+	
 	/* =====================================================
 	 * 							SCOPES						
 	 * ===================================================*/

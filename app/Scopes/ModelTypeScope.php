@@ -1,13 +1,28 @@
 <?php
 
-namespace App\Scopes\Expenses;
+namespace App\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 
-class GoalTypeScope implements Scope
+class ModelTypeScope implements Scope
 {
+	
+	/**
+	 * Scoped variables
+	 */
+	protected $column					 =	"type";
+	
+	/**
+	 * Construct
+	 */
+	public function __construct($column = false)
+	{
+		
+		if ($column) $this->column		 =	$column;
+		
+	}
 	
 	/**
 	 * Applies scope
@@ -18,7 +33,7 @@ class GoalTypeScope implements Scope
 	public function apply(Builder $builder, Model $model)
 	{
 		
-		$builder->where("goal_type", "=", $model->getGoalType());
+		$builder->where($this->column, "=", $model->getModelType());
 		
 	}
 	

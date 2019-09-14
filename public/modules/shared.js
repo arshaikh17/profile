@@ -224,6 +224,7 @@ function formValues(form, values) {
 			field.val(values[key]);
 			
 			if (field.is("select")) field.change();
+			if (field.is(":checkbox") && values[key]) field.prop("checked", true);
 			
 		}
 		

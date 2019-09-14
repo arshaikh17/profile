@@ -22,7 +22,7 @@ class Allowance extends Expense
 	/**
 	 * Scoped Variables
 	 */
-	protected $goal_type				 =	1;
+	protected $model_type				 =	1;
 	
 	/* =====================================================
 	 * 						STATIC METHODS					

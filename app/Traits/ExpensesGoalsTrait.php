@@ -3,7 +3,7 @@
 namespace App\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
-use App\Scopes\Expenses\GoalTypeScope;
+use App\Scopes\ModelTypeScope;
 
 use DateTime;
 
@@ -34,11 +34,11 @@ trait ExpensesGoalsTrait
 		
 		parent::boot();
 		
-		static::addGlobalScope(new GoalTypeScope);
+		static::addGlobalScope(new ModelTypeScope("goal_type"));
 		
 		static::creating(function($asset) {
 			
-			$asset->setAttribute("goal_type", $asset->getGoalType());
+			$asset->setAttribute("goal_type", $asset->getModelType());
 			
 		});
 		
@@ -59,12 +59,12 @@ trait ExpensesGoalsTrait
 	/**
 	 * Return goal type of model
 	 * 
-	 * @return Integer $goal_type
+	 * @return Integer $model_type
 	 */
-	public function getGoalType()
+	public function getModelType()
 	{
 		
-		return $this->goal_type;
+		return $this->model_type;
 		
 	}
 	

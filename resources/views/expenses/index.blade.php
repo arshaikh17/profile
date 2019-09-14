@@ -214,19 +214,31 @@
 			<h5
 				class="hover-link"
 				data-toggle="collapse"
-				data-target="#otherStatistics"
+				data-target="#paymentReturnStatistics"
 			>
-				Other Statistics
+				Money to Return
 			</h5>
 		</div>
 		<div class="col-12">
-			<div class="row collapse show" id="otherStatistics">
-				<div class="col-4">
-					<span class="text-20">Owned</span>
-					<p class="text-info text-30">
-						£4000
-					</p>
-				</div>
+			<div class="row collapse show" id="paymentReturnStatistics">
+				@forelse ($persons as $person)
+					<div class="col-6 col-md-3">
+						<div class="statistics-strip border shadow h-auto">
+							<p class="text-20">
+								{{ $person->name }}
+								<a
+									class="btn btn-sm btn-info text-white hover-link paymentOwe"
+									data-person="{{ $person }}"
+									data-url="{{ route("expenses.payments.persons.history", $person) }}"
+								>
+									<i class="fas fa-plus"></i>
+								</a>
+							</p>
+							<p class="text-info text-30">£{{ number_format($person->owed) }}</p>
+						</div>
+					</div>
+				@empty
+				@endforelse
 			</div>
 		</div>
 	</div>
@@ -239,6 +251,7 @@
 @include("expenses.partials.modals.bills-modal")
 @include("expenses.partials.modals.allowances-modal")
 @include("expenses.partials.modals.saving-modal")
+@include("expenses.partials.modals.payment-owe-modal")
 @include("generals.partials.modals.person-form-modal")
 
 @endsection

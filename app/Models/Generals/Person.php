@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Traits\GeneralsTrait;
 
+use App\Models\Expenses\{
+	Owe
+};
+
 class Person extends Model
 {
 	
@@ -38,8 +42,14 @@ class Person extends Model
 		"name",
 	];
 	
+	/**
+	 * Constants
+	 */
+	CONST AMOUNT_OWED					 =	1;
+	CONST AMOUNT_LEND					 =	2;
+	
 	/* =====================================================
-	 * 							MUTATORS					
+	 * 							ACCESSORS					
 	 * ===================================================*/
 	
 	/**
@@ -85,4 +95,91 @@ class Person extends Model
 		
 	}
 	
+	/* =====================================================
+	 * 					RELATIONAL METHODs					
+	 * ===================================================*/
+	
+	/**
+	 * Returns column associated to the amount
+	 * 
+	 * @param Integer $type
+	 * 
+	 * @return String $column
+	 */
+	private function getAmountColumn($type)
+	{
+		
+		switch ($type) {
+			
+			case self::AMOUNT_OWED:
+				
+				$column					 =	"owed";
+				
+				break;
+				
+			case self::AMOUNT_LEND;
+				
+				$column					 =	"lend";
+				
+			default:
+				
+				break;
+				
+		}
+		
+		return $column;
+		
+	}
+	
+	/**
+	 * Adds amount
+	 * 
+	 * @param Integer $type
+	 * @param Double $amount
+	 */
+	public function addAmount($type, $amount)
+	{
+		
+		$column							 =	$this->getAmountColumn($type);
+		$totalAmount					 =	$this->$column + $amount;
+		
+		self::savePerson($this, [$column => $totalAmount]);
+		
+	}
+	
+	/**
+	 * Deducts amount
+	 * 
+	 * @param Integer $type
+	 * @param Double $amount
+	 */
+	public function deductAmount($type, $amount)
+	{
+		
+		$column							 =	$this->getAmountColumn($type);
+		$totalAmount					 =	$this->$column - $amount;
+		
+		self::savePerson($this, [$column => $totalAmount]);
+		
+	}
+	
+	/* =====================================================
+	 * 							RELATIONS					
+	 * ===================================================*/
+	
+	/**
+	 * Return payments that have been returned to the person
+	 * 
+	 * @param String $orderBy
+	 * 
+	 * @return App\Models\Expenses\Owe[]
+	 */
+	public function owes($orderBy = false)
+	{
+		
+		$owes							 =	$this->hasMany(Owe::class, "person_id", "id");
+		
+		return $orderBy ? $owes->orderBy("id", $orderBy)->get() : $owes;
+		
+	}
 }

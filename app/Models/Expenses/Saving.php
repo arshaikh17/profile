@@ -22,7 +22,7 @@ class Saving extends Expense
 	/**
 	 * Scoped Variables
 	 */
-	protected $goal_type				 =	2;
+	protected $model_type				 =	2;
 	
 	/* =====================================================
 	 * 						STATIC METHODS					

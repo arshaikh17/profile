@@ -42,6 +42,8 @@ class IndexController extends Controller
 		$saving							 =	Saving::getSaving($this->date);
 		$allowances						 =	Allowance::getAllowances($this->date);
 		$totalAllowances				 =	Allowance::getTotalAllowances($this->date);
+		$persons						 =	Person::where("owed", ">", 0)->get();
+		//dd($person);
 		
 		$remaining						 =	($budget ? $budget->amount : 0)
 											 - $totalAmountSpent
@@ -63,7 +65,8 @@ class IndexController extends Controller
 			"saving",
 			"allowances",
 			"totalAllowances",
-			"remaining"
+			"remaining",
+			"persons"
 		));
 		
 	}
