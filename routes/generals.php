@@ -15,6 +15,11 @@ Route::group([
 {
 	
 	/**
+	 * App\Controllers\Generals\IndexController
+	 */
+	Route::get("/", "Generals\IndexController@index")->name("index");
+	
+	/**
 	 * App\Controllers\Generals\PersonController
 	 */
 	Route::group([
@@ -23,6 +28,7 @@ Route::group([
 	], function()
 	{
 		
+		Route::get("/", "Generals\PersonController@index")->name("index"); //No implemented.
 		Route::post("/store", "Generals\PersonController@store")->name("store");
 		Route::post("/{person}/update", "Generals\PersonController@update")->name("update");
 		Route::post("/{person}/destroy", "Generals\PersonController@destroy")->name("destroy");
