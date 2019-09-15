@@ -60,7 +60,7 @@
 								<label>Owed anything?</label>
 								<input
 									type="text"
-									name="owed"
+									name="debt"
 									class="form-control"
 								/>
 							</div>
