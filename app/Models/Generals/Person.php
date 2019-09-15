@@ -31,8 +31,10 @@ class Person extends Model
 	protected $fillable					 =	[
 		"first_name",
 		"surname",
+		"email",
 		"debt",
 		"lent",
+		"password",
 	];
 	
 	/**
@@ -40,6 +42,13 @@ class Person extends Model
 	 */
 	protected $appends					 =	[
 		"name",
+	];
+	
+	/**
+	 * Hiddens
+	 */
+	protected $hidden					 =	[
+		"password",
 	];
 	
 	/**
@@ -92,6 +101,20 @@ class Person extends Model
 	{
 		
 		$person->delete();
+		
+	}
+	
+	/**
+	 * Finds by email
+	 * 
+	 * @param String $email
+	 * 
+	 * @return App\Models\Generals\Person|null
+	 */
+	public static function findByEmail($email)
+	{
+		
+		return self::where("email", "=", $email)->first();
 		
 	}
 	

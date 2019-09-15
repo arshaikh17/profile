@@ -29,7 +29,7 @@ class IndexController extends Controller
 	public function index()
 	{
 		
-		return view(self::VIEW_PATH . ".index");
+		return view(self::VIEW_PATH . "index");
 		
 	}
 	

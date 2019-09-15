@@ -33,6 +33,8 @@ Route::group([
 		Route::post("/{person}/update", "Generals\PersonController@update")->name("update");
 		Route::post("/{person}/destroy", "Generals\PersonController@destroy")->name("destroy");
 		
+		Route::get("/public/history/{identity}/{pass}", "Generals\PersonController@publicHistory")->name("public.history");
+		
 	});
 	
 });

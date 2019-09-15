@@ -13,12 +13,34 @@ class PersonController extends Controller
 {
 	
 	/**
+	 * Constants
+	 */
+	CONST VIEW_PATH						 =	"generals.persons.";
+	
+	/**
 	 * Construct
 	 */
 	public function __construct()
 	{
 		
-		$this->middleware("auth");
+		$this->middleware("auth", [
+			"except"					 =>	[
+				"publicHistory",
+				"publicHistoryPost",
+			],
+		]);
+		
+	}
+	
+	/**
+	 * Displays index view
+	 */
+	public function index()
+	{
+		
+		return view(self::VIEW_PATH . "index", [
+			"persons"					 =>	Person::all(),
+		]);
 		
 	}
 	
@@ -63,6 +85,33 @@ class PersonController extends Controller
 		Person::removePerson($person);
 		
 		return redirect()->back()->with("status", "Person removed");
+		
+	}
+	
+	/**
+	 * Displays public history view
+	 * 
+	 * @param Integer|String $identity
+	 */
+	public function publicHistory($identity, $pass)
+	{
+		
+		$person							 =	ctype_digit($identity) ? Person::find($identity) : Person::findByEmail($identity);
+		
+		if ($person) {
+			
+			$password						 =	md5($pass);
+			
+			if ($person->password == $password) {
+				
+				return view(self::VIEW_PATH . "public.history", compact("person"));
+				
+			}
+			
+		}
+		
+		dd($person);
+		//$person							 =	Person::find();
 		
 	}
 	
