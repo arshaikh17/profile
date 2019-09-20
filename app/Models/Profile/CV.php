@@ -45,16 +45,16 @@ class CV extends Model
 	{
 		
 		$cv_name						 =	$data["cv_name"] ?? "";
-		$cv								 =	$data["cv"] ?? false;
+		$cv_file						 =	$data["cv"] ?? false;
 		
-		if ($cv && in_array($cv->getClientMimeType(), self::$mime_types)) {
+		if ($cv_file && in_array($cv_file->getClientMimeType(), self::$mime_types)) {
 			
-			$cv_name					 =	time() . "." . $cv->getClientOriginalName();
-			$cv->move(public_path() . self::$path_cv, $cv_name);
+			$cv_name					 =	time() . "." . $cv_file->getClientOriginalName();
+			$cv_file->move(public_path() . self::$path_cv, $cv_name);
 			
 		}
 		
-		if ($data->is_main) self::updateIsMainColumn();
+		if (isset($data["is_main"])) self::updateIsMainColumn();
 		
 		CV::updateOrCreate([
 			"id"						 =>	$cv->id
