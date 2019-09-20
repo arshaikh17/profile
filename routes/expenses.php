@@ -127,19 +127,39 @@ Route::group([
 			"prefix"					 =>	"/persons/{person}",
 			"as"						 =>	"persons."
 		], function() {
-				
-			Route::get("/history", "Expenses\PaymentDebtController@history")->name("history");
 			
 			Route::group([
 				"prefix"				 =>	"/debts",
 				"as"					 =>	"debts."
 			], function() {
 				
-				Route::post("/store", "Expenses\PaymentDebtController@store")->name("store");
-				Route::post("/{debt}", "Expenses\PaymentDebtController@update")->name("update");
-				Route::post("/{debt}/destroy", "Expenses\PaymentDebtController@destroy")->name("destroy");
-				Route::post("/{debt}/mark-paid", "Expenses\PaymentDebtController@markPaid")->name("mark-paid");
-				Route::post("/{debt}/mark-unpaid", "Expenses\PaymentDebtController@markUnpaid")->name("mark-unpaid");
+				Route::group([
+					"prefix"			 =>	"/returns",
+					"as"				 =>	"returns."
+				], function() {
+					
+					Route::post("/store", "Expenses\Payments\DebtReturnController@store")->name("store");
+					Route::post("/{debt}", "Expenses\Payments\DebtReturnController@update")->name("update");
+					Route::post("/{debt}/destroy", "Expenses\Payments\DebtReturnController@destroy")->name("destroy");
+					Route::post("/{debt}/mark-paid", "Expenses\Payments\DebtReturnController@markPaid")->name("mark-paid");
+					Route::post("/{debt}/mark-unpaid", "Expenses\Payments\DebtReturnController@markUnpaid")->name("mark-unpaid");
+					
+					Route::get("/history", "Expenses\Payments\DebtReturnController@history")->name("history");
+					
+				});
+				
+				Route::group([
+					"prefix"			 =>	"/takens",
+					"as"				 =>	"takens."
+				], function() {
+					
+					Route::post("/store", "Expenses\Payments\DebtTakenController@store")->name("store");
+					Route::post("/{debt}", "Expenses\Payments\DebtTakenController@update")->name("update");
+					Route::post("/{debt}/destroy", "Expenses\Payments\DebtTakenController@destroy")->name("destroy");
+					Route::post("/{debt}/mark-paid", "Expenses\Payments\DebtTakenController@markPaid")->name("mark-paid");
+					Route::post("/{debt}/mark-unpaid", "Expenses\Payments\DebtTakenController@markUnpaid")->name("mark-unpaid");
+					
+				});
 				
 			});
 			

@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Traits\GeneralsTrait;
 
-use App\Models\Expenses\{
-	Debt
+use App\Models\Expenses\Payments\{
+	DebtReturn,
+	DebtTaken
 };
 
 class Person extends Model
@@ -191,18 +192,35 @@ class Person extends Model
 	 * ===================================================*/
 	
 	/**
-	 * Return payments that have been returned to the person
+	 * Return debts that have been returned to the person
 	 * 
 	 * @param String $orderBy
 	 * 
-	 * @return App\Models\Expenses\Debt[]
+	 * @return App\Models\Expenses\DebtReturn[]
 	 */
-	public function debts($orderBy = false)
+	public function debtReturns($orderBy = false)
 	{
 		
-		$debts							 =	$this->hasMany(Debt::class, "person_id", "id");
+		$debtReturns					 =	$this->hasMany(DebtReturn::class, "person_id", "id");
 		
-		return $orderBy ? $debts->orderBy("id", $orderBy)->get() : $debts;
+		return $orderBy ? $debtReturns->orderBy("id", $orderBy)->get() : $debtReturns;
 		
 	}
+	
+	/**
+	 * Return debts that have been taken to the person
+	 * 
+	 * @param String $orderBy
+	 * 
+	 * @return App\Models\Expenses\DebtTaken[]
+	 */
+	public function debtTakens($orderBy = false)
+	{
+		
+		$debtTakens						 =	$this->hasMany(DebtTaken::class, "person_id", "id");
+		
+		return $orderBy ? $debtTakens->orderBy("id", $orderBy)->get() : $debtTakens;
+		
+	}
+	
 }

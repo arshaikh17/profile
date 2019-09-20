@@ -16,9 +16,9 @@
 				<div class="collapse" id="paymentForm">
 					<form
 						method="POST"
-						action="{{ route('expenses.payments.persons.debts.store', -1) }}"
-						data-add-url="{{ route('expenses.payments.persons.debts.store', -1) }}"
-						data-edit-url="{{ route('expenses.payments.persons.debts.update', [-1, -2]) }}"
+						action="{{ route('expenses.payments.persons.debts.returns.store', -1) }}"
+						data-add-url="{{ route('expenses.payments.persons.debts.returns.store', -1) }}"
+						data-edit-url="{{ route('expenses.payments.persons.debts.returns.update', [-1, -2]) }}"
 					>
 						{{ csrf_field() }}
 						<div class="row">

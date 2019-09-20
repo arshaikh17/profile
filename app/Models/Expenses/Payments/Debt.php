@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Expenses;
+namespace App\Models\Expenses\Payments;
 
 use App\Traits\ExpensesPaymentsTrait;
 
@@ -17,11 +17,6 @@ class Debt extends Expense
 	 * Traits
 	 */
 	use ExpensesPaymentsTrait;
-	
-	/**
-	 * Scoped Variables
-	 */
-	protected $model_type				 =	1;
 	
 	/* =====================================================
 	 * 						STATIC METHODS					
