@@ -30,6 +30,7 @@ Route::group([
 		
 		Route::get("/", "Generals\PersonController@index")->name("index"); //No implemented.
 		Route::post("/store", "Generals\PersonController@store")->name("store");
+		Route::get("/{person}", "Generals\PersonController@show")->name("show");
 		Route::post("/{person}/update", "Generals\PersonController@update")->name("update");
 		Route::post("/{person}/destroy", "Generals\PersonController@destroy")->name("destroy");
 		

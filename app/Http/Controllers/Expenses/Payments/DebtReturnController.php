@@ -73,7 +73,7 @@ class DebtReturnController extends Controller
 		
 		DebtReturn::removeDebt($debtReturn);
 		
-		$person->addAmount(Person::AMOUNT_DEBT, $debtReturn->amount);
+		if ($debtReturn->is_paid) $person->addAmount(Person::AMOUNT_DEBT, $debtReturn->amount);
 		
 		return redirect()->back()->with("status", "Payment deleted");
 		
@@ -91,7 +91,7 @@ class DebtReturnController extends Controller
 		
 		DebtReturn::updateStatus($debtReturn, DebtReturn::GOAL_ACTIVE);
 		
-		$person->deductAmount(Person::AMOUNT_DEBT, $debtReturn->amount);
+		if ($debtReturn->is_paid) $person->deductAmount(Person::AMOUNT_DEBT, $debtReturn->amount);
 		
 		return redirect()->back()->with("status", "Payment marked paid");
 		

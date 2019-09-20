@@ -86,31 +86,26 @@ function payments() {
 	var paymentDebtModal				 =	$(paymentDebtModalName);
 	var paymentDebtForm					 =	paymentDebtModal.find("form");
 	
+	var paymentDebtTakenModalName		 =	"#paymentDebtTakenModal";
+	var paymentDebtTakenModal			 =	$(paymentDebtTakenModalName);
+	var paymentDebtTakenForm			 =	paymentDebtTakenModal.find("form");
+	
 	//OPEN MODAL
 	$("body").on("click", ".paymentDebt", function(e) {
 		
 		e.preventDefault();
 		
-		var person						 =	$(this).data("person");
-		var paymentDebtModalAsText		 =	paymentDebtModal.html();
+		switchDebtModalValues(paymentDebtModal, $(this));
 		
-		paymentDebtModal.html(paymentDebtModalAsText.replace(/-1/g, person.id));
-		paymentDebtModal.find("#name").text(person.name);
-		paymentDebtModal.find("table").find("tbody").empty();
+	});
+	
+	$("body").on("click", ".paymentDebtReturn", function(e) {
 		
-		$.ajax({
-			url							 :	$(this).data("url"),
-			method						 :	"GET",
-			success						 :	function(data) {
+		e.preventDefault();
 				
-				paymentDebtModal.find("table").find("tbody").append(data.debts);
-				
-			}
-		});
+		switchDebtModalValues(paymentDebtTakenModal, $(this));
 		
-		paymentDebtModal.modal("show");
-		
-	})
+	});
 	
 	//EDITS PAYMENTS
 	$("body").on("click", `${ paymentDebtModalName } table tbody td`, function(e) {
@@ -124,5 +119,45 @@ function payments() {
 		paymentDebtForm.attr("action", paymentDebtForm.data("edit-url").replace(-2, values.id));
 		
 	});
+	
+	$("body").on("click", `${ paymentDebtTakenModalName } table tbody td`, function(e) {
+		
+		if (!$(this).hasClass("defaultActions")) e.preventDefault();
+		
+		var parent						 =	$(this).closest("tr");
+		var values						 =	parent.data("values");
+		
+		formValues(paymentDebtTakenForm, values);
+		paymentDebtTakenForm.attr("action", paymentDebtTakenForm.data("edit-url").replace(-2, values.id));
+		
+	});
+	
+	/**
+	 * Switches values and sends request
+	 * @param DOM modal
+	 * @param DOM event
+	 */
+	function switchDebtModalValues(modal, event) {
+		
+		var person						 =	event.data("person");
+		var modalAsText					 =	modal.html();
+		
+		modal.html(modalAsText.replace(/-1/g, person.id));
+		modal.find("#name").text(person.name);
+		modal.find("table").find("tbody").empty();
+		
+		$.ajax({
+			url							 :	event.data("url"),
+			method						 :	"GET",
+			success						 :	function(data) {
+				
+				modal.find("table").find("tbody").append(data.debts);
+				
+			}
+		});
+		
+		modal.modal("show");
+		
+	}
 	
 }

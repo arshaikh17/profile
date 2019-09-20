@@ -22,7 +22,7 @@ class DebtTakenController extends Controller
 	public function store(Request $request, Person $person)
 	{
 		
-		DebtTaken::saveDebtTaken(new DebtTaken, array_merge($request->toArray(), [
+		DebtTaken::saveDebt(new DebtTaken, array_merge($request->toArray(), [
 			"date"						 =>	$this->date,
 			"is_paid"					 =>	$request->is_paid ? DebtTaken::PAID : DebtTaken::UNPAID,
 			"person"					 =>	$person,
@@ -44,7 +44,7 @@ class DebtTakenController extends Controller
 	public function update(Request $request, Person $person, DebtTaken $debtTaken)
 	{
 		
-		DebtTaken::saveDebtTaken($debtTaken, array_merge($request->toArray(), [
+		DebtTaken::saveDebt($debtTaken, array_merge($request->toArray(), [
 			"is_paid"					 =>	$request->is_paid ? DebtTaken::PAID : DebtTaken::UNPAID,
 		]));
 		
@@ -71,7 +71,7 @@ class DebtTakenController extends Controller
 	public function destroy(Request $request, Person $person, DebtTaken $debtTaken)
 	{
 		
-		DebtTaken::removeDebtTaken($debtTaken);
+		DebtTaken::removeDebt($debtTaken);
 		
 		$person->deductAmount(Person::AMOUNT_DEBT, $debtTaken->amount);
 		
@@ -91,7 +91,7 @@ class DebtTakenController extends Controller
 		
 		DebtTaken::updateStatus($debtTaken, DebtTaken::GOAL_ACTIVE);
 		
-		$person->addAmount(Person::AMOUNT_DEBT, $debtTaken->amount);
+		if ($debtTaken->is_paid) $person->addAmount(Person::AMOUNT_DEBT, $debtTaken->amount);
 		
 		return redirect()->back()->with("status", "Payment marked paid");
 		
@@ -109,9 +109,34 @@ class DebtTakenController extends Controller
 		
 		DebtTaken::updateStatus($debtTaken, DebtTaken::GOAL_INACTIVE);
 		
-		$person->deductAmount(Person::AMOUNT_DEBT, $debtTaken->amount);
+		if ($debtTaken->is_paid) $person->deductAmount(Person::AMOUNT_DEBT, $debtTaken->amount);
 		
 		return redirect()->back()->with("status", "Payment marked unpaid");
+		
+	}
+	
+	/**
+	 * Return history of payments of a Person
+	 * 
+	 * @param Illuminate\Http\Request $request
+	 * @param App\Models\Generals\Person $person
+	 * 
+	 * @return view|JSON
+	 */
+	public function history(Request $request, Person $person)
+	{
+		
+		$debtTakenHistory				 =	$person->debtTakens("DESC");
+		
+		if ($request->ajax()) {
+			
+			$debtTakensView			 =	view("expenses.partials.tables.payments-debtTaken-table-rows", ["debtTakens" => $debtTakenHistory])->render();
+			
+			return response()->json([
+				"debts"					 =>	$debtTakensView
+			], 200);
+			
+		}
 		
 	}
 	

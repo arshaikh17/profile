@@ -45,6 +45,18 @@ class PersonController extends Controller
 	}
 	
 	/**
+	 * Displays show view
+	 * 
+	 * @param App\Models\Generals\Person $person
+	 */
+	public function show(Person $person)
+	{
+		
+		return view(self::VIEW_PATH . "show", compact("person"));
+		
+	}
+	
+	/**
 	 * Saves person
 	 * 
 	 * @param Illuminate\Http\Request $request
