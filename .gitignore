@@ -12,3 +12,4 @@ yarn-error.log
 /public/uploads
 /.vagrant/*
 /public/vue/*
+/public/mix-manifest.json

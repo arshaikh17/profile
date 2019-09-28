@@ -51,6 +51,8 @@ class RouteServiceProvider extends ServiceProvider
 		
 		$this->mapGeneralsRoutes();
 		
+		$this->mapTrackerRoutes();
+		
 	}
 	
 	/**
@@ -159,6 +161,21 @@ class RouteServiceProvider extends ServiceProvider
 		Route::middleware("web")
 			->namespace($this->namespace)
 			->group(base_path("routes/generals.php"))
+		;
+		
+	}
+	
+	/**
+	 * Define the "tracker" routes for the application.
+	 *
+	 * @return void
+	 */
+	protected function mapTrackerRoutes()
+	{
+		
+		Route::middleware("web")
+			->namespace($this->namespace)
+			->group(base_path("routes/tracker.php"))
 		;
 		
 	}
