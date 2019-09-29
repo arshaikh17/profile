@@ -33,9 +33,13 @@ class ModuleController extends Controller
 	public function index(Request $request)
 	{
 		
+		
 		if ($request->ajax()) {
 			
-			$modules					 =	Module::orderBy("id", "DESC")->paginate(10);
+			$modules					 =	Module::with("issues")
+				->orderBy("id", "DESC")
+				->paginate(10)
+			;
 			
 			return response()->json([
 				"links"					 =>	$modules->links(),

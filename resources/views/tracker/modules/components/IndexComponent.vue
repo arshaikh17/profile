@@ -8,12 +8,14 @@
 					<thead>
 						<tr>
 							<th>Name</th>
+							<th>Issues</th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr v-for="module in modules">
 							<td>{{ module.name }}</td>
+							<td>{{ module.issues.length }}</td>
 							<td>
 								<a
 									class="btn btn-sm btn-secondary text-white"

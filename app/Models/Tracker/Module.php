@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Traits\TrackerTrait;
 
+use App\Models\Tracker\Issue;
+
 class Module extends Model
 {
 	
@@ -69,6 +71,22 @@ class Module extends Model
 	{
 		
 		$module->delete();
+		
+	}
+	
+	/* =====================================================
+	 * 						RELATIONS						
+	 * ===================================================*/
+	
+	/**
+	 * Returns issues associated with this module
+	 * 
+	 * @return App\Models\Tracker\Issue[]
+	 */
+	public function issues()
+	{
+		
+		return $this->hasMany(Issue::class);
 		
 	}
 	
