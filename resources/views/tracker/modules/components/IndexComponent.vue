@@ -14,7 +14,15 @@
 					</thead>
 					<tbody>
 						<tr v-for="module in modules">
-							<td>{{ module.name }}</td>
+							<td>
+								<a
+									:href="createLink(showModuleLink, module.id)"
+									:title="module.name"
+									class="btn btn-link"
+								>
+									{{ module.name }}
+								</a>
+							</td>
 							<td>{{ module.issues.length }}</td>
 							<td>
 								<a
