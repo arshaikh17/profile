@@ -24,6 +24,11 @@ Route::group([
 	{
 		
 		Route::get("/", "Tracker\ModuleController@index")->name("index");
+		Route::get("/{module}", "Tracker\ModuleController@show")->name("show");
+		Route::get("/create", "Tracker\ModuleController@create")->name("create");
+		Route::post("/store", "Tracker\ModuleController@store")->name("store");
+		Route::post("/{module}/update", "Tracker\ModuleController@update")->name("update");
+		Route::post("/{module}/destroy", "Tracker\ModuleController@destroy")->name("destroy");
 		
 	});
 	
