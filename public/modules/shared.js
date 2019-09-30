@@ -8,6 +8,8 @@ $(document).ready(function () {
 	initialiseMasonry();
 	initialiseSortingArrowOnBootstrapCollapse();
 	resetForm();
+	initialiseDataTables();
+	renderCharts();
 	
 });
 
@@ -248,6 +250,85 @@ function resetForm() {
 		form.find("select").val("").change();
 		
 		if (form.data("add-url")) form.attr("action", form.data("add-url"));
+		
+	});
+	
+}
+
+/**
+ * Initialises DataTables
+ */
+function initialiseDataTables() {
+	
+	var table;
+	
+	$(".datatables").each(function(index, table) {
+		
+		table							 =	$(table);
+		
+		table.DataTable();
+		
+	});
+	
+}
+
+/**
+ * Renders charts
+ */
+function renderCharts() {
+	
+	var chartColours					 =	{
+		red: 'rgb(255, 99, 132)',
+		orange: 'rgb(255, 159, 64)',
+		yellow: 'rgb(255, 205, 86)',
+		green: 'rgb(75, 192, 192)',
+		blue: 'rgb(54, 162, 235)',
+		purple: 'rgb(153, 102, 255)',
+		grey: 'rgb(201, 203, 207)'
+	};
+	var chartColoursSet					 =	[
+		chartColours.red,
+		chartColours.orange,
+		chartColours.yellow,
+		chartColours.green,
+		chartColours.blue,
+	];
+	
+	$(".chart").each(function(index, chart) {
+		
+		var chart						 =	$(chart);
+		var datasets					 =	chart.data("datasets");
+		var type						 =	chart.data("type");
+		var data						 =	[];
+		
+		for (var i in datasets.values) {
+			
+			data.push({
+				label					 :	datasets.values[i].label,
+				data					 :	datasets.values[i].values,
+				borderWidth				 :	2,
+				backgroundColor			 :	chartColoursSet,
+				borderColor				 :	chartColoursSet,
+				hoverBackgroundColor	 :	chartColoursSet,
+				hoverBorderColor		 :	chartColoursSet,
+			});
+			
+			console.log(datasets.values)
+			
+		}
+		
+		var config						 =	{
+			type						 :	type,
+			data						 :	{
+				labels					 :	datasets.labels,
+				datasets				 :	data,
+			},
+			options						 :	{
+				responsive				 :	true
+			}
+		};
+		
+		new Chart(chart, config);
 		
 	});
 	

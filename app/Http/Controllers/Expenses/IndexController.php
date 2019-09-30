@@ -11,10 +11,13 @@ use App\Models\Expenses\{
 	Tag,
 	Bill,
 	Saving,
-	Allowance
+	Allowance,
+	Expense
 };
 
 use App\Models\Generals\Person;
+
+use Carbon\Carbon;
 
 class IndexController extends Controller
 {
@@ -43,7 +46,6 @@ class IndexController extends Controller
 		$allowances						 =	Allowance::getAllowances($this->date);
 		$totalAllowances				 =	Allowance::getTotalAllowances($this->date);
 		$persons						 =	Person::where("debt", ">", 0)->get();
-		//dd($person);
 		
 		$remaining						 =	($budget ? $budget->amount : 0)
 											 - $totalAmountSpent
@@ -51,6 +53,11 @@ class IndexController extends Controller
 											 - ($saving && $saving->status == Saving::GOAL_ACTIVE ? $saving->amount : 0)
 											 - $totalAllowances
 										;
+										//dd(Expense::buildExpendituresChart($expenditures, Carbon::now()));
+		$charts							 =	[
+			"byTags"					 =>	Expense::buildExpendituresByTagsChart($expendituresByTags, Carbon::now()),
+			"allExpenses"				 =>	Expense::buildExpendituresChart($expenditures, Carbon::now()),
+		];
 		
 		return view(self::VIEW_PATH . "index", compact(
 			"date",
@@ -66,7 +73,8 @@ class IndexController extends Controller
 			"allowances",
 			"totalAllowances",
 			"remaining",
-			"persons"
+			"persons",
+			"charts"
 		));
 		
 	}

@@ -3,8 +3,14 @@
 namespace App\Models\Expenses;
 
 use Illuminate\Database\Eloquent\Model;
+
 use App\Traits\ExpensesTrait;
 
+use App\Models\Expenses\{
+	Expenditure
+};
+
+use Carbon\Carbon;
 use DateTime;
 
 class Expense extends Model
@@ -23,6 +29,75 @@ class Expense extends Model
 	
 	CONST UNPAID						 =	0;
 	CONST PAID							 =	1;
+	
+	/* =====================================================
+	 * 						STATIC METHODS					
+	 * ===================================================*/
+	
+	/**
+	 * Returns values for pie chart by tag distributons
+	 * 
+	 * @param $expenses
+	 * @param Carbon\Carbon $date
+	 * 
+	 * @return Array $data
+	 */
+	public static function buildExpendituresByTagsChart($expenses, Carbon $date)
+	{
+		
+		$data							 =	[];
+		$labels							 =	[];
+		$values							 =	[];
+		
+		foreach ($expenses as $expense) {
+			
+			$labels[]					 =	$expense->name;
+			$values[]					 =	$expense->total;
+			
+		}
+		
+		$data["labels"]					 =	$labels;
+		$data["values"][]				 =	[
+			"label"						 =>	$date->format("F"),
+			"values"					 =>	$values,
+		];
+		
+		return $data;
+		
+	}
+	
+	/**
+	 * Returns values for bar chart all expenses
+	 * 
+	 * @param $expenses
+	 * @param Carbon\Carbon $date
+	 * 
+	 * @return Array $data
+	 */
+	public static function buildExpendituresChart($expenses, Carbon $date)
+	{
+		
+		$data							 =	[];
+		$labels							 =	[];
+		$values							 =	[];
+		
+		foreach ($expenses as $expense) {
+			
+			$labels[]					 =	Carbon::parse($expense->date)->format("dS");
+			$values[]					 =	$expense->amount;
+			
+		}
+		
+		$data["labels"]					 =	$labels;
+		$data["values"][]				 =	[
+			"label"						 =>	$date->format("F"),
+			"values"					 =>	$values,
+		];
+		
+		//dd($data);
+		return $data;
+		
+	}
 	
 	/* =====================================================
 	 * 							SCOPES						

@@ -2,9 +2,12 @@
 
 @section("content")
 <div class="container">
-	<div class="row">
+	<div class="row pb-3">
 		<div class="col-md-6">
-			<h1><span class="text-info">{{ $date->format("F") }}</span>, {{ $date->format("Y") }}</h1>
+			<p class="text-30 font-weight-400">
+				<i class="far fa-calendar-alt text-info shadow p-3"></i>
+				<span>{{ $date->format("F") }}</span>, {{ $date->format("Y") }}
+			</p>
 		</div>
 		<div class="text-right col-md-6 mt-3">
 			<span class="text-info text-20">
@@ -52,134 +55,166 @@
 			</a>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-12 col-sm-6 statistics-card">
-			<div class="card">
-				<div class="card-body text-info">
-					<h4 class="card-title">Budget</h4>
-					<h1 class="card-text">
-						@if ($budget)
-							£{{ number_format($budget->amount) }}
-						@else
-							Not set.
-						@endif
-					</h1>
-				</div>
-			</div>
-		</div>
-		<div
-			class="col-12 col-sm-6 statistics-card hover-link"
-			data-toggle="modal"
-			data-target="#allExpensesModal"
-		>
-			<div class="card">
-				<div class="card-body bg-info text-white">
-					<h4 class="card-title">Spent</h4>
-					<h1 class="card-text">£{{ number_format($totalAmountSpent) }}</h1>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row mt-3">
-		<div class="col-12 hover-link">
+	
+	<!-- THIS MONTH -->
+	<div class="card mt-3 shadow">
+		<div class="card-header hover-link text-center">
 			<h5
 				data-toggle="collapse"
 				data-target="#statisticsStrip"
 			>
-				Monthly Allocations
+				This Month
 			</h5>
 		</div>
-		<div class="col-12">
-			<div class="row collapse show" id="statisticsStrip">
-				<div
-					class="col-md-4 hover-link"
-					data-toggle="modal"
-					data-target="#savingModal"
-				>
-					<div class="bg-info text-white statistics-strip">
-						<p>Savings</p>
-						<p class="text-30">£{{ $saving ? $saving->amount : 0 }}</p>
+		<div class="collapse show" id="statisticsStrip">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-12 col-sm-6 statistics-card">
+						<div class="p-4 form-inline">
+							<i class="fas fa-chart-bar text-30 mr-2"></i>
+							<div>
+								<span>Budget</span>
+								<p class="text-30 font-weight-800">
+									<sub>£</sub><span>{{ $budget ? number_format($budget->amount) : "Not set" }}</span>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div
+						class="col-12 col-sm-6 statistics-card hover-link"
+						data-toggle="modal"
+						data-target="#allExpensesModal"
+					>
+						<div class="p-4 form-inline">
+							<i class="fas fa-shopping-cart text-30 mr-2"></i>
+							<div>
+								<span>Spent</span>
+								<p class="text-30 font-weight-800">
+									<sub>£</sub><span class="text-info">{{ number_format($totalAmountSpent) }}</span>
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div
-					class="col-md-4 hover-link"
-					data-toggle="modal"
-					data-target="#billsModal"
-				>
-					<div class="bg-info text-white statistics-strip">
-						<p>Bill Paid</p>
-						<p class="text-30">£{{ number_format($totalBillsPaid) }}</p>
-					</div>
-				</div>
-				<div
-					class="col-md-4 hover-link"
-					data-toggle="modal"
-					data-target="#allowancesModal"
-				>
-					<div class="bg-info text-white statistics-strip">
-						<p>Allowances</p>
-						<p class="text-30">£{{ number_format($totalAllowances) }}</p>
+			</div>
+			<div class="card-body text-center">
+				<div class="col-12">
+					<div class="row">
+						<div
+							class="col-md-4 hover-link"
+							data-toggle="modal"
+							data-target="#savingModal"
+						>
+							<div class="statistics-strip">
+								<p>Savings</p>
+								<p class="text-30">£{{ $saving ? $saving->amount : 0 }}</p>
+							</div>
+						</div>
+						<div
+							class="col-md-4 hover-link"
+							data-toggle="modal"
+							data-target="#billsModal"
+						>
+							<div class="statistics-strip">
+								<p>Bill Paid</p>
+								<p class="text-30">£{{ number_format($totalBillsPaid) }}</p>
+							</div>
+						</div>
+						<div
+							class="col-md-4 hover-link"
+							data-toggle="modal"
+							data-target="#allowancesModal"
+						>
+							<div class="statistics-strip">
+								<p>Allowances</p>
+								<p class="text-30">£{{ number_format($totalAllowances) }}</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="row mt-3">
-		<div class="col-md-4">
-			<div class="row">
-				<div class="col-12">
-					<div class="row">
-						<div class="col-10">
-							<h5
+	
+	<!-- WHERE I SPENT -->
+	<div class="card mt-3 shadow">
+		<div class="card-header hover-link text-center">
+			<h5
+				data-toggle="collapse"
+				data-target="#expensesTable"
+			>
+				Where I Spent
+			</h5>
+		</div>
+		<div class="collapse show" id="expensesTable">
+			<div class="card-body">
+				<table class="table table-sm table-hover table-striped table-bordered datatables">
+					<thead>
+						<tr>
+							<th>Tag</th>
+							<th>Amount</th>
+							<th>Spent At</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@forelse ($expenditures as $expenditure)
+							<tr
 								class="hover-link"
-								data-toggle="collapse"
-								data-target="#lastExpenditures"
+								data-values="{{ $expenditure }}"
 							>
-								Last 10 Expenditures
-							</h5>
-						</div>
-						<div class="col-2">
-							<a
-								href="#"
-								class="float-right btn btn-sm btn-info"
-								data-toggle="modal"
-								data-target="#allExpensesModal"
-							>
-								All
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 collapse show" id="lastExpenditures">
-					<table
-						class="table table-sm table-hover table-striped table-bordered"
-					>
-						<thead>
-							<tr>
-								<th>Spent On</th>
-								<th>Amount</th>
+								<td>
+									{{ $expenditure->tag ? $expenditure->tag->name : "Else" }}
+								</td>
+								<td>£{{ $expenditure->amount }}</td>
+								<td>{{ \Carbon\Carbon::parse($expenditure->date)->format("F dS, Y") }}</td>
+								<td class="text-center">
+									<form method="POST" action="{{ route('expenses.expenditures.destroy', [$expenditure]) }}">
+										{{ csrf_field() }}
+										<button
+											type="submit"
+											class="btn btn-sm btn-danger"
+											data-toggle="tooltip"
+											title="Delete this expenditure"
+										>
+											<i class="fas fa-trash"></i>
+										</button>
+									</form>
+								</td>
 							</tr>
-						</thead>
-						<tbody>
-							@php
-								$count	 =	0;
-							@endphp
-							
-							@forelse ($expenditures as $expenditure2)
-								@if ($count == 10) @break @endif
-								
-								<tr>
-									<td>{{ $expenditure2->tag ? $expenditure2->tag->name : "Else" }}</td>
-									<td>£{{ $expenditure2->amount }}</td>
-								</tr>
-								
-								@php
-									$count++;
-								@endphp
-							@empty
-							@endforelse
-						</tbody>
-					</table>
+						@empty
+						@endforelse
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="row mt-3">
+		<div class="col-md-6">
+			<div class="card shadow">
+				<div class="card-header">
+					Spending By Tags
+				</div>
+				<div class="card-body">
+					<canvas
+						class="chart"
+						data-datasets="{{ json_encode($charts["byTags"]) }}"
+						data-type="pie"
+					></canvas>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="card shadow">
+				<div class="card-header">
+					All Spendings
+				</div>
+				<div class="card-body">
+					<canvas
+						class="chart"
+						data-datasets="{{ json_encode($charts["allExpenses"]) }}"
+						data-type="bar"
+					></canvas>
 				</div>
 			</div>
 		</div>
@@ -263,7 +298,6 @@
 @include("expenses.partials.modals.tags-modal")
 @include("expenses.partials.modals.budget-modal")
 @include("expenses.partials.modals.expense-modal")
-@include("expenses.partials.modals.all-expenses-modal")
 @include("expenses.partials.modals.bills-modal")
 @include("expenses.partials.modals.allowances-modal")
 @include("expenses.partials.modals.saving-modal")
