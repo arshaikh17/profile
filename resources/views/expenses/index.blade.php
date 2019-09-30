@@ -107,7 +107,7 @@
 						>
 							<div class="statistics-strip">
 								<p>Savings</p>
-								<p class="text-30">£{{ $saving ? $saving->amount : 0 }}</p>
+								<p class="text-30"><sub>£</sub>{{ $saving ? $saving->amount : 0 }}</p>
 							</div>
 						</div>
 						<div
@@ -117,7 +117,7 @@
 						>
 							<div class="statistics-strip">
 								<p>Bill Paid</p>
-								<p class="text-30">£{{ number_format($totalBillsPaid) }}</p>
+								<p class="text-30"><sub>£</sub>{{ number_format($totalBillsPaid) }}</p>
 							</div>
 						</div>
 						<div
@@ -127,7 +127,7 @@
 						>
 							<div class="statistics-strip">
 								<p>Allowances</p>
-								<p class="text-30">£{{ number_format($totalAllowances) }}</p>
+								<p class="text-30"><sub>£</sub>{{ number_format($totalAllowances) }}</p>
 							</div>
 						</div>
 					</div>
