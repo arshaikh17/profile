@@ -2,6 +2,10 @@ body {
 	background-color: #F7F9FA;
 	color: rgb(108, 117, 125) !important;
 }
+
+canvas {
+	min-height: 300px;
+}
 /*======================================
  * MODALS
 ======================================*/

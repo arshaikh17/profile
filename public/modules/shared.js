@@ -324,7 +324,8 @@ function renderCharts() {
 				datasets				 :	data,
 			},
 			options						 :	{
-				responsive				 :	true
+				responsive				 :	true,
+				maintainAspectRatio		 :	false,
 			}
 		};
 		
