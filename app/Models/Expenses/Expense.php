@@ -11,7 +11,9 @@ use App\Models\Expenses\{
 };
 
 use Carbon\Carbon;
+
 use DateTime;
+use DB;
 
 class Expense extends Model
 {
@@ -69,17 +71,22 @@ class Expense extends Model
 	/**
 	 * Returns values for bar chart all expenses
 	 * 
-	 * @param $expenses
+	 * @param $expensesQuery
 	 * @param Carbon\Carbon $date
 	 * 
 	 * @return Array $data
 	 */
-	public static function buildExpendituresChart($expenses, Carbon $date)
+	public static function buildExpendituresChart($expensesQuery, Carbon $date)
 	{
 		
 		$data							 =	[];
 		$labels							 =	[];
 		$values							 =	[];
+		
+		$expenses						 =	$expensesQuery->selectRaw("date, SUM(amount) AS amount")
+			->groupBy(DB::raw("DATE_FORMAT(date, 'd/m/Y')"))
+			->get()
+		;
 		
 		foreach ($expenses as $expense) {
 			

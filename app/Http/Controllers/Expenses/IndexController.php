@@ -35,7 +35,10 @@ class IndexController extends Controller
 		
 		$date							 =	$this->date;
 		$budget							 =	Budget::getBudget($this->date);
-		$expenditures					 =	Expenditure::getExpenditures($this->date);
+		
+		$expendituresQuery				 =	Expenditure::getExpenditures($this->date, true);
+		$expenditures					 =	$expendituresQuery->get();
+		
 		$totalAmountSpent				 =	Expenditure::getTotalAmountSpent($this->date);
 		$tags							 =	Tag::all();
 		$expendituresByTags				 =	Expenditure::getExpendituresByTags($this->date);
@@ -48,15 +51,15 @@ class IndexController extends Controller
 		$persons						 =	Person::where("debt", ">", 0)->get();
 		
 		$remaining						 =	($budget ? $budget->amount : 0)
-											 - $totalAmountSpent
-											 - $totalBillsPaid
-											 - ($saving && $saving->status == Saving::GOAL_ACTIVE ? $saving->amount : 0)
-											 - $totalAllowances
-										;
-										//dd(Expense::buildExpendituresChart($expenditures, Carbon::now()));
+			 - $totalAmountSpent
+			 - $totalBillsPaid
+			 - ($saving && $saving->status == Saving::GOAL_ACTIVE ? $saving->amount : 0)
+			 - $totalAllowances
+		;
+			
 		$charts							 =	[
 			"byTags"					 =>	Expense::buildExpendituresByTagsChart($expendituresByTags, Carbon::now()),
-			"allExpenses"				 =>	Expense::buildExpendituresChart($expenditures, Carbon::now()),
+			"allExpenses"				 =>	Expense::buildExpendituresChart($expendituresQuery, Carbon::now()),
 		];
 		
 		return view(self::VIEW_PATH . "index", compact(

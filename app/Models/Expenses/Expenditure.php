@@ -61,16 +61,18 @@ class Expenditure extends Expense
 	 * Gets expenditures
 	 * 
 	 * @param DateTime $dateTime
+	 * @param Bool $queryOnly
 	 * 
 	 * @return App\Models\Expenses\Expenditure[]
 	 */
-	public static function getExpenditures(DateTime $dateTime)
+	public static function getExpenditures(DateTime $dateTime, $queryOnly = false)
 	{
 		
-		return Expenditure::whereMonthAndYear("date", "=", $dateTime)
+		$query							 =	Expenditure::whereMonthAndYear("date", "=", $dateTime)
 			->orderBy("id", "DESC")
-			->get()
 		;
+		
+		return $queryOnly ? $query : $query->get();
 		
 	}
 	

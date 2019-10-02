@@ -3,6 +3,14 @@ body {
 	color: rgb(108, 117, 125) !important;
 }
 
+a {
+	color: #17A2B8;
+}
+
+h1, h2, h3, h4, h5, p, span, b, i, a {
+	
+}
+
 canvas {
 	min-height: 300px;
 }
@@ -13,6 +21,17 @@ canvas {
 	z-index: 9999;
 }
 
+/*======================================
+ * CARD
+======================================*/
 .card {
 	border: none;
+}
+
+/*======================================
+ * PAGINATION
+======================================*/
+.page-item.active .page-link {
+	background-color: #17A2B8;
+	border: 1px solid #17A2B8;
 }

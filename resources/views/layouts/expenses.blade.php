@@ -11,12 +11,13 @@
 	@include("partials.modules.fontawesome-5-8-1")
 	@include("partials.libraries.datatables-bootstrap4")
 	@include("partials.libraries.chartjs2-8")
-	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 	@include("partials.modules.nprogress")
 	@yield("scripts")
 	@include("partials.modules.shared")
-	<script src="{{ asset('modules/expenses/js/app.js') }}"></script>
-	<link href="{{ asset('modules/expenses/css/app.css') }}" rel="stylesheet" type="text/css">
+	<script src="{{ asset('modules/expenses/js/app.js?v=' . time()) }}"></script>
+	<link href="{{ asset('modules/expenses/css/app.css?v=' . time()) }}" rel="stylesheet" type="text/css">
+	
+	@include("partials.fonts.raleway")
 </head>
 <body>
 	<div id="app">
