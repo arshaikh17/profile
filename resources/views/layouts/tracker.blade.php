@@ -8,11 +8,11 @@
 	<title>{{ config('app.name', 'Laravel') }}</title>
 	<!-- Scripts -->
 	@include("partials.modules.jquery3-4-1")
-	<script src="{{ asset('vue/app.js') }}" defer></script>
+	<script src="{{ asset('vue/app.js?v=' . time()) }}" defer></script>
 	<!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+	@include("partials.fonts.quicksand")
 	<!-- Styles -->
-	<link href="{{ asset('vue/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('vue/app.css?v=' . time()) }}" rel="stylesheet">
 	@include("partials.modules.fontawesome-5-8-1")
 </head>
 <body>
