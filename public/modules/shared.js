@@ -266,7 +266,9 @@ function initialiseDataTables() {
 		
 		table							 =	$(table);
 		
-		table.DataTable();
+		table.DataTable({
+			scrollY						 :	250,
+		});
 		
 	});
 	
