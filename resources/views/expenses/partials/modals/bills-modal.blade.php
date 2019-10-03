@@ -47,7 +47,7 @@
 							@forelse ($bills as $bill)
 								<tr class="hover-link">
 									<td><span class="text-info">£{{ $bill->amount }}</span></td>
-									<td><span class="text-info">£{{ $bill->description }}</span></td>
+									<td><span>{{ $bill->description }}</span></td>
 								</tr>
 							@empty
 							@endforelse

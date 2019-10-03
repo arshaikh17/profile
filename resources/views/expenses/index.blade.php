@@ -135,7 +135,7 @@
 						>
 							<div class="statistics-strip">
 								<p>Allowances</p>
-								<p class="text-30"><sub>£</sub>{{ number_format($totalAllowances) }}</p>
+								<p class="text-30"><sub>£</sub>{{ number_format($totalAllowances["total"]) }}</p>
 							</div>
 						</div>
 					</div>

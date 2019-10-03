@@ -87,7 +87,7 @@ Route::group([
 	});
 	
 	/**
-	 * App\Controllers\Expenses\GoalAllowanceController
+	 * App\Controllers\Expenses\AllowanceController
 	 */
 	Route::group([
 		"prefix"					 =>	"/allowances",
@@ -95,10 +95,10 @@ Route::group([
 	], function() {
 		
 		Route::post("/store", "Expenses\AllowanceController@store")->name("store");
-		Route::post("/{allowance}", "Expenses\AllowanceController@update")->name("update");
 		Route::post("/{allowance}/destroy", "Expenses\AllowanceController@destroy")->name("destroy");
 		Route::post("/{allowance}/mark-active", "Expenses\AllowanceController@markActive")->name("mark-active");
 		Route::post("/{allowance}/mark-inactive", "Expenses\AllowanceController@markInactive")->name("mark-inactive");
+		Route::post("/{allowance}", "Expenses\AllowanceController@update")->name("update");
 		
 	});
 	

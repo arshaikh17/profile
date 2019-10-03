@@ -85,9 +85,9 @@ class Allowance extends Expense
 	{
 		
 		return Allowance::whereMonthAndYear("date", "=", $date)
-			->selectRaw("SUM(amount) as total")
+			->selectRaw("SUM(amount) as total, is_paid")
 			->first()
-			->toArray()["total"]
+			->toArray()
 		;
 		
 	}

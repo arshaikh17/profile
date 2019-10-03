@@ -53,7 +53,7 @@ class IndexController extends Controller
 			 - $totalAmountSpent
 			 - $totalBillsPaid
 			 - ($saving && $saving->is_paid == Saving::PAID ? $saving->amount : 0)
-			 - $totalAllowances
+			 - ($totalAllowances["is_paid"] ? $totalAllowances["total"] : 0)
 		;
 			
 		$charts							 =	[
