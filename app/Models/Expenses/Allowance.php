@@ -3,13 +3,13 @@
 namespace App\Models\Expenses;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\ExpensesGoalsTrait;
+use App\Traits\ExpensesExpendituresTrait;
 
 use App\Models\Expenses\{
 	Expense
 };
 
-use DateTime;
+use Carbon\Carbon;
 
 class Allowance extends Expense
 {
@@ -17,12 +17,12 @@ class Allowance extends Expense
 	/**
 	 * Traits
 	 */
-	use ExpensesGoalsTrait;
+	use ExpensesExpendituresTrait;
 	
 	/**
 	 * Scoped Variables
 	 */
-	protected $model_type				 =	1;
+	protected $model_type				 =	3;
 	
 	/* =====================================================
 	 * 						STATIC METHODS					
@@ -37,7 +37,12 @@ class Allowance extends Expense
 	public static function saveAllowance(Allowance $allowance, $data)
 	{
 		
-		self::saveGoal($allowance, $data);
+		$data							 =	array_merge($data, [
+			"is_paid"					 =>	Expense::UNPAID,
+			"tag_id"					 =>	0,
+		]);
+		
+		self::saveExpense($allowance, $data);
 		
 	}
 	
@@ -49,37 +54,38 @@ class Allowance extends Expense
 	public static function removeAllowance(Allowance $allowance)
 	{
 		
-		self::removeGoal($allowance);
+		self::removeExpense($allowance);
 		
 	}
 	
 	/**
 	 * Get Allowances
 	 * 
-	 * @param DateTime $dateTime
+	 * @param Carbon $date
 	 * 
 	 * @return App\Models\Expenses\Allowance[]
 	 */
-	public static function getAllowances(DateTime $dateTime)
+	public static function getAllowances(Carbon $date)
 	{
 		
-		return self::getGoals(new Allowance, $dateTime);
+		return self::getExpenses((new self), $date)
+			->get()
+		;
 		
 	}
 	
 	/**
 	 * Returns total Allowances amount
 	 * 
-	 * @param DateTime $dateTime
+	 * @param Carbon $date
 	 * 
 	 * @return Double $amount
 	 */
-	public static function getTotalAllowances(DateTime $dateTime)
+	public static function getTotalAllowances(Carbon $date)
 	{
 		
-		return Allowance::whereMonthAndYear("date", "=", $dateTime)
+		return Allowance::whereMonthAndYear("date", "=", $date)
 			->selectRaw("SUM(amount) as total")
-			->where("status", "=", Expense::GOAL_ACTIVE)
 			->first()
 			->toArray()["total"]
 		;

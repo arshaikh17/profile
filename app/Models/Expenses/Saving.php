@@ -3,12 +3,13 @@
 namespace App\Models\Expenses;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\ExpensesGoalsTrait;
+use App\Traits\ExpensesExpendituresTrait;
 
 use App\Models\Expenses\{
 	Expense
 };
 
+use Carbon\Carbon;
 use DateTime;
 
 class Saving extends Expense
@@ -17,7 +18,7 @@ class Saving extends Expense
 	/**
 	 * Traits
 	 */
-	use ExpensesGoalsTrait;
+	use ExpensesExpendituresTrait;
 	
 	/**
 	 * Scoped Variables
@@ -37,7 +38,12 @@ class Saving extends Expense
 	public static function saveSaving(Saving $saving, $data)
 	{
 		
-		self::saveGoal($saving, $data);
+		$data							 =	array_merge($data, [
+			"is_paid"					 =>	Expense::UNPAID,
+			"tag_id"					 =>	0,
+		]);
+		
+		self::saveExpense($saving, $data);
 		
 	}
 	
@@ -49,21 +55,21 @@ class Saving extends Expense
 	public static function removeSaving(Saving $saving)
 	{
 		
-		self::removeGoal($saving);
+		self::removeExpense($saving);
 		
 	}
 	
 	/**
 	 * Get Saving
 	 * 
-	 * @param DateTime $dateTime
+	 * @param Carbon $date
 	 * 
 	 * @return App\Models\Expenses\Saving[]
 	 */
-	public static function getSaving(DateTime $dateTime)
+	public static function getSaving(Carbon $date)
 	{
 		
-		return Saving::whereMonthAndYear("date", "=", $dateTime)
+		return self::getExpenses((new self), $date)
 			->first()
 		;
 		

@@ -30,9 +30,9 @@
 					<div class="collapse" id="editAllowanceForm">
 						<form
 							id="allowancesForm"
-							action="{{ route('expenses.goals.allowances.store') }}"
-							data-add-url="{{ route('expenses.goals.allowances.store') }}"
-							data-edit-url="{{ route('expenses.goals.allowances.update', -1) }}"
+							action="{{ route('expenses.allowances.store') }}"
+							data-add-url="{{ route('expenses.allowances.store') }}"
+							data-edit-url="{{ route('expenses.allowances.update', -1) }}"
 							method="POST"
 						>
 							{{ csrf_field() }}
@@ -67,19 +67,19 @@
 									<td class="btn-group">
 										<form
 											method="POST"
-											action="{{ $allowance->status ? route('expenses.goals.allowances.mark-inactive', [$allowance]) : route('expenses.goals.allowances.mark-active', [$allowance]) }}"
+											action="{{ $allowance->is_paid ? route('expenses.allowances.mark-inactive', [$allowance]) : route('expenses.allowances.mark-active', [$allowance]) }}"
 										>
 											{{ csrf_field() }}
 											<button
 												type="submit"
 												class="btn btn-sm btn-info"
 												data-toggle="tooltip"
-												title="Mark {{ $allowance->status ? "inactive" : "active" }}"
+												title="Mark {{ $allowance->is_paid ? "inactive" : "active" }}"
 											>
-												<i class="fa fa-{{ $allowance->status ? 'times' : 'check' }}"></i>
+												<i class="fa fa-{{ $allowance->is_paid ? 'times' : 'check' }}"></i>
 											</button>
 										</form>
-										<form method="POST" action="{{ route('expenses.goals.allowances.destroy', [$allowance]) }}" class="ml-1">
+										<form method="POST" action="{{ route('expenses.allowances.destroy', [$allowance]) }}" class="ml-1">
 											{{ csrf_field() }}
 											<button
 												type="submit"

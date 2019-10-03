@@ -21,7 +21,7 @@ class ExpensesController extends Controller
 		
 		$this->middleware("auth");
 		
-		$this->date						 =	new \DateTime();
+		$this->date						 =	\Carbon\Carbon::now();
 		
 	}
 	

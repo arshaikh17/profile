@@ -17,22 +17,10 @@
 					<form method="POST" action="{{ route('expenses.bills.store') }}">
 						{{ csrf_field() }}
 						<div class="row">
-							<div class="col-4">
+							<div class="col-12">
 								<div class="form-group">
 									<label>Amount</label>
 									<input type="text" name="amount" class="form-control form-control-sm" required />
-								</div>
-							</div>
-							<div class="col-8">
-								<div class="form-group">
-									<label>Bill Of</label>
-									<select name="bill_of" class="form-control form-control-sm" required>
-										<option>Select bill</option>
-										@forelse ($billNames as $billKey => $billName)
-											<option value="{{ $billKey }}">{{ $billName }}</option>
-										@empty
-										@endforelse
-									</select>
 								</div>
 							</div>
 						</div>
@@ -51,13 +39,15 @@
 					<table class="table table-hover table-striped table-bordered">
 						<thead>
 							<tr>
-								<th>Bills paid this month</th>
+								<th>Amount</th>
+								<th>Description</th>
 							</tr>
 						</thead>
 						<tbody>
 							@forelse ($bills as $bill)
 								<tr class="hover-link">
-									<td>{{ $bill->bill }}, <span class="text-info">£{{ $bill->amount }}</span></td>
+									<td><span class="text-info">£{{ $bill->amount }}</span></td>
+									<td><span class="text-info">£{{ $bill->description }}</span></td>
 								</tr>
 							@empty
 							@endforelse

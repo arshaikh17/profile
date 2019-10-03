@@ -7,14 +7,14 @@ use App\Http\Controllers\Expenses\ExpensesController as Controller;
 
 use App\Models\Generals\Person;
 use App\Models\Expenses\Payments\{
-	DebtTaken
+	Loan
 };
 
-class DebtTakenController extends Controller
+class LoanController extends Controller
 {
 	
 	/**
-	 * Saves debtTaken
+	 * Saves loan
 	 * 
 	 * @param Illuminate\Http\Request $request
 	 * @param App\Models\Generals\Person $person
@@ -22,9 +22,9 @@ class DebtTakenController extends Controller
 	public function store(Request $request, Person $person)
 	{
 		
-		DebtTaken::saveDebt(new DebtTaken, array_merge($request->toArray(), [
+		Loan::saveLoan(new Loan, array_merge($request->toArray(), [
 			"date"						 =>	$this->date,
-			"is_paid"					 =>	$request->is_paid ? DebtTaken::PAID : DebtTaken::UNPAID,
+			"is_paid"					 =>	$request->is_paid ? Loan::PAID : Loan::UNPAID,
 			"person"					 =>	$person,
 		]));
 		
@@ -35,22 +35,22 @@ class DebtTakenController extends Controller
 	}
 	
 	/**
-	 * Updates debtTaken
+	 * Updates loan
 	 * 
 	 * @param Illuminate\Http\Request $request
 	 * @param App\Models\Generals\Person $person
-	 * @param App\Models\Expenses\DebtTaken $debtTaken
+	 * @param App\Models\Expenses\Loan $loan
 	 */
-	public function update(Request $request, Person $person, DebtTaken $debtTaken)
+	public function update(Request $request, Person $person, Loan $loan)
 	{
 		
-		DebtTaken::saveDebt($debtTaken, array_merge($request->toArray(), [
-			"is_paid"					 =>	$request->is_paid ? DebtTaken::PAID : DebtTaken::UNPAID,
+		Loan::saveLoan($loan, array_merge($request->toArray(), [
+			"is_paid"					 =>	$request->is_paid ? Loan::PAID : Loan::UNPAID,
 		]));
 		
 		if ($request->is_paid) {
 			
-			$amount						 =	$debtTaken->amount - $request->amount;
+			$amount						 =	$loan->amount - $request->amount;
 			
 			if ($amount <= 0) $person->addAmount(Person::AMOUNT_DEBT, $amount);
 			if ($amount >= 0) $person->deductAmount(Person::AMOUNT_DEBT, $amount);
@@ -66,14 +66,14 @@ class DebtTakenController extends Controller
 	 * 
 	 * @param Illuminate\Http\Request $request
 	 * @param App\Models\Generals\Person $person
-	 * @param App\Models\Expenses\DebtTaken $debtTaken
+	 * @param App\Models\Expenses\Loan $loan
 	 */
-	public function destroy(Request $request, Person $person, DebtTaken $debtTaken)
+	public function destroy(Request $request, Person $person, Loan $loan)
 	{
 		
-		DebtTaken::removeDebt($debtTaken);
+		Loan::removeLoan($loan);
 		
-		$person->deductAmount(Person::AMOUNT_DEBT, $debtTaken->amount);
+		$person->deductAmount(Person::AMOUNT_DEBT, $loan->amount);
 		
 		return redirect()->back()->with("status", "Payment deleted");
 		
@@ -84,14 +84,14 @@ class DebtTakenController extends Controller
 	 * 
 	 * @param Illuminate\Http\Request $request
 	 * @param App\Models\Generals\Person $person
-	 * @param App\Models\Expenses\DebtTaken $debtTaken
+	 * @param App\Models\Expenses\Loan $loan
 	 */
-	public function markPaid(Request $request, Person $person, DebtTaken $debtTaken)
+	public function markPaid(Request $request, Person $person, Loan $loan)
 	{
 		
-		DebtTaken::updateStatus($debtTaken, DebtTaken::GOAL_ACTIVE);
+		Loan::updateStatus($loan, Loan::GOAL_ACTIVE);
 		
-		if ($debtTaken->is_paid) $person->addAmount(Person::AMOUNT_DEBT, $debtTaken->amount);
+		if ($loan->is_paid) $person->addAmount(Person::AMOUNT_DEBT, $loan->amount);
 		
 		return redirect()->back()->with("status", "Payment marked paid");
 		
@@ -102,14 +102,14 @@ class DebtTakenController extends Controller
 	 * 
 	 * @param Illuminate\Http\Request $request
 	 * @param App\Models\Generals\Person $person
-	 * @param App\Models\Expenses\DebtTaken $debtTaken
+	 * @param App\Models\Expenses\Loan $loan
 	 */
-	public function markUnpaid(Request $request, Person $person, DebtTaken $debtTaken)
+	public function markUnpaid(Request $request, Person $person, Loan $loan)
 	{
 		
-		DebtTaken::updateStatus($debtTaken, DebtTaken::GOAL_INACTIVE);
+		Loan::updateStatus($loan, Loan::GOAL_INACTIVE);
 		
-		if ($debtTaken->is_paid) $person->deductAmount(Person::AMOUNT_DEBT, $debtTaken->amount);
+		if ($loan->is_paid) $person->deductAmount(Person::AMOUNT_DEBT, $loan->amount);
 		
 		return redirect()->back()->with("status", "Payment marked unpaid");
 		
@@ -126,14 +126,14 @@ class DebtTakenController extends Controller
 	public function history(Request $request, Person $person)
 	{
 		
-		$debtTakenHistory				 =	$person->debtTakens("DESC");
+		$loanHistory				 =	$person->loans("DESC");
 		
 		if ($request->ajax()) {
 			
-			$debtTakensView			 =	view("expenses.partials.tables.payments-debtTaken-table-rows", ["debtTakens" => $debtTakenHistory])->render();
+			$loansView			 =	view("expenses.partials.tables.payments-loan-table-rows", ["loans" => $loanHistory])->render();
 			
 			return response()->json([
-				"debts"					 =>	$debtTakensView
+				"debts"					 =>	$loansView
 			], 200);
 			
 		}

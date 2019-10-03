@@ -72,48 +72,38 @@ Route::group([
 	});
 	
 	/**
-	 * App\Controllers\Expenses\GoalController (not implemented)
+	 * App\Controllers\Expenses\SavingController
 	 */
 	Route::group([
-		"prefix"						 =>	"/goals",
-		"as"							 =>	"goals."
+		"prefix"					 =>	"/savings",
+		"as"						 =>	"savings."
 	], function() {
 		
-		/**
-		 * App\Controllers\Expenses\GoalSavingController
-		 */
-		Route::group([
-			"prefix"					 =>	"/savings",
-			"as"						 =>	"savings."
-		], function() {
-			
-			Route::post("/store", "Expenses\GoalSavingController@store")->name("store");
-			Route::post("/{saving}", "Expenses\GoalSavingController@update")->name("update");
-			Route::post("/{saving}/mark-active", "Expenses\GoalSavingController@markActive")->name("mark-active");
-			Route::post("/{saving}/mark-inactive", "Expenses\GoalSavingController@markInactive")->name("mark-inactive");
-			
-		});
-		
-		/**
-		 * App\Controllers\Expenses\GoalAllowanceController
-		 */
-		Route::group([
-			"prefix"					 =>	"/allowances",
-			"as"						 =>	"allowances."
-		], function() {
-			
-			Route::post("/store", "Expenses\GoalAllowanceController@store")->name("store");
-			Route::post("/{allowance}", "Expenses\GoalAllowanceController@update")->name("update");
-			Route::post("/{allowance}/destroy", "Expenses\GoalAllowanceController@destroy")->name("destroy");
-			Route::post("/{allowance}/mark-active", "Expenses\GoalAllowanceController@markActive")->name("mark-active");
-			Route::post("/{allowance}/mark-inactive", "Expenses\GoalAllowanceController@markInactive")->name("mark-inactive");
-			
-		});
+		Route::post("/store", "Expenses\SavingController@store")->name("store");
+		Route::post("/{saving}", "Expenses\SavingController@update")->name("update");
+		Route::post("/{saving}/mark-active", "Expenses\SavingController@markActive")->name("mark-active");
+		Route::post("/{saving}/mark-inactive", "Expenses\SavingController@markInactive")->name("mark-inactive");
 		
 	});
 	
 	/**
-	 * App\Controllers\Expenses\PaymentController (Not implemented)
+	 * App\Controllers\Expenses\GoalAllowanceController
+	 */
+	Route::group([
+		"prefix"					 =>	"/allowances",
+		"as"						 =>	"allowances."
+	], function() {
+		
+		Route::post("/store", "Expenses\AllowanceController@store")->name("store");
+		Route::post("/{allowance}", "Expenses\AllowanceController@update")->name("update");
+		Route::post("/{allowance}/destroy", "Expenses\AllowanceController@destroy")->name("destroy");
+		Route::post("/{allowance}/mark-active", "Expenses\AllowanceController@markActive")->name("mark-active");
+		Route::post("/{allowance}/mark-inactive", "Expenses\AllowanceController@markInactive")->name("mark-inactive");
+		
+	});
+	
+	/**
+	 * App\Controllers\Expenses\Payment\IndexController (Not implemented)
 	 */
 	Route::group([
 		"prefix"						 =>	"/payments",
@@ -121,47 +111,46 @@ Route::group([
 	], function() {
 		
 		/**
-		 * App\Controllers\Expenses\PaymentOweController
+		 * App\Controllers\Expenses\Payment\PersonController (Not implemented)
 		 */
 		Route::group([
 			"prefix"					 =>	"/persons/{person}",
 			"as"						 =>	"persons."
 		], function() {
 			
+			/**
+			 * App\Controllers\Expenses\Payments\DebtController
+			 */
 			Route::group([
 				"prefix"				 =>	"/debts",
 				"as"					 =>	"debts."
 			], function() {
 				
-				Route::group([
-					"prefix"			 =>	"/returns",
-					"as"				 =>	"returns."
-				], function() {
-					
-					Route::post("/store", "Expenses\Payments\DebtReturnController@store")->name("store");
-					Route::post("/{debtReturn}", "Expenses\Payments\DebtReturnController@update")->name("update");
-					Route::post("/{debtReturn}/destroy", "Expenses\Payments\DebtReturnController@destroy")->name("destroy");
-					Route::post("/{debtReturn}/mark-paid", "Expenses\Payments\DebtReturnController@markPaid")->name("mark-paid");
-					Route::post("/{debtReturn}/mark-unpaid", "Expenses\Payments\DebtReturnController@markUnpaid")->name("mark-unpaid");
-					
-					Route::get("/history", "Expenses\Payments\DebtReturnController@history")->name("history");
-					
-				});
+				Route::post("/store", "Expenses\Payments\DebtController@store")->name("store");
+				Route::post("/{debt}", "Expenses\Payments\DebtController@update")->name("update");
+				Route::post("/{debt}/destroy", "Expenses\Payments\DebtController@destroy")->name("destroy");
+				Route::post("/{debt}/mark-paid", "Expenses\Payments\DebtController@markPaid")->name("mark-paid");
+				Route::post("/{debt}/mark-unpaid", "Expenses\Payments\DebtController@markUnpaid")->name("mark-unpaid");
 				
-				Route::group([
-					"prefix"			 =>	"/takens",
-					"as"				 =>	"takens."
-				], function() {
-					
-					Route::post("/store", "Expenses\Payments\DebtTakenController@store")->name("store");
-					Route::post("/{debtTaken}", "Expenses\Payments\DebtTakenController@update")->name("update");
-					Route::post("/{debtTaken}/destroy", "Expenses\Payments\DebtTakenController@destroy")->name("destroy");
-					Route::post("/{debtTaken}/mark-paid", "Expenses\Payments\DebtTakenController@markPaid")->name("mark-paid");
-					Route::post("/{debtTaken}/mark-unpaid", "Expenses\Payments\DebtTakenController@markUnpaid")->name("mark-unpaid");
-					
-					Route::get("/history", "Expenses\Payments\DebtTakenController@history")->name("history");
-					
-				});
+				Route::get("/history", "Expenses\Payments\DebtController@history")->name("history");
+				
+			});
+			
+			/**
+			 * App\Controllers\Expenses\Payments\LoanController
+			 */
+			Route::group([
+				"prefix"				 =>	"/loans",
+				"as"					 =>	"loans."
+			], function() {
+				
+				Route::post("/store", "Expenses\Payments\LoanController@store")->name("store");
+				Route::post("/{loan}", "Expenses\Payments\LoanController@update")->name("update");
+				Route::post("/{loan}/destroy", "Expenses\Payments\LoanController@destroy")->name("destroy");
+				Route::post("/{loan}/mark-paid", "Expenses\Payments\LoanController@markPaid")->name("mark-paid");
+				Route::post("/{loan}/mark-unpaid", "Expenses\Payments\LoanController@markUnpaid")->name("mark-unpaid");
+				
+				Route::get("/history", "Expenses\Payments\LoanController@history")->name("history");
 				
 			});
 			

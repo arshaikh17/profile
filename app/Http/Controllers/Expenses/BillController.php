@@ -18,7 +18,10 @@ class BillController extends Controller
 	public function store(Request $request)
 	{
 		
-		Bill::saveBill(new Bill, array_merge($request->toArray(), ["date" => $this->date]));
+		Bill::saveBill(new Bill, array_merge($request->toArray(), [
+			"date"						 =>	$this->date,
+			"is_paid"					 =>	Bill::PAID,
+		]));
 		
 		return redirect()->back()->with("status", "Bill saved");
 		
@@ -51,6 +54,36 @@ class BillController extends Controller
 		Bill::removeBill($bill);
 		
 		return redirect()->back()->with("status", "Bill removed");
+		
+	}
+	
+	/**
+	 * Marks active
+	 * 
+	 * @param Illuminate\Http\Request $request
+	 * @param App\Models\Expenses\Bill $bill
+	 */
+	public function markActive(Request $request, Bill $bill)
+	{
+		
+		Bill::updateStatus($bill, Bill::PAID);
+		
+		return redirect()->back()->with("status", "Bill marked active");
+		
+	}
+	
+	/**
+	 * Marks inactive
+	 * 
+	 * @param Illuminate\Http\Request $request
+	 * @param App\Models\Expenses\Bill $bill
+	 */
+	public function markInactive(Request $request, Bill $bill)
+	{
+		
+		Bill::updateStatus($bill, Bill::UNPAID);
+		
+		return redirect()->back()->with("status", "Bill inactive");
 		
 	}
 	

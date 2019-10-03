@@ -12,7 +12,7 @@ use App\Models\Generals\Person;
 
 use Carbon\Carbon;
 
-class Debt extends Expense
+class Loan extends Expense
 {
 	
 	/**
@@ -23,7 +23,7 @@ class Debt extends Expense
 	/**
 	 * Scoped Variables
 	 */
-	protected $model_type				 =	5;
+	protected $model_type				 =	6;
 	
 	/* =====================================================
 	 * 						STATIC METHODS					
@@ -32,38 +32,38 @@ class Debt extends Expense
 	/**
 	 * Saves record
 	 * 
-	 * @param App\Models\Expenses\Debt $debt
+	 * @param App\Models\Expenses\Loan $loan
 	 * @param Array $data
 	 */
-	public static function saveDebt(Debt $debt, $data)
+	public static function saveLoan(Loan $loan, $data)
 	{
 		
-		$debt->person()->associate($data["person"]);
+		$loan->person()->associate($data["person"]);
 		
-		self::saveExpense($debt, $data);
+		self::saveExpense($loan, $data);
 		
 	}
 	
 	/**
 	 * Removes record
 	 * 
-	 * @param App\Models\Expenses\Debt $debt
+	 * @param App\Models\Expenses\Loan $loan
 	 */
-	public static function removeDebt(Debt $debt)
+	public static function removeLoan(Loan $loan)
 	{
 		
-		self::saveExpense($debt);
+		self::saveExpense($loan);
 		
 	}
 	
 	/**
-	 * Get Debts
+	 * Get Loans
 	 * 
 	 * @param Carbon $date
 	 * 
-	 * @return App\Models\Expenses\Debt[]
+	 * @return App\Models\Expenses\Loan[]
 	 */
-	public static function getDebts(Carbon $date)
+	public static function getLoans(Carbon $date)
 	{
 		
 		return self::getExpenses((new self), $date)
@@ -77,7 +77,7 @@ class Debt extends Expense
 	 * ===================================================*/
 	
 	/**
-	 * Returns tag associated with debt
+	 * Returns tag associated with loan
 	 * 
 	 * @return App\Models\Generals\Person
 	 */

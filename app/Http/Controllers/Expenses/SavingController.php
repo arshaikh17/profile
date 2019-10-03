@@ -9,7 +9,7 @@ use App\Models\Expenses\{
 	Saving
 };
 
-class GoalSavingController extends Controller
+class SavingController extends Controller
 {
 	
 	/**
@@ -22,7 +22,6 @@ class GoalSavingController extends Controller
 		
 		Saving::saveSaving(new Saving, array_merge($request->toArray(), [
 			"date"						 =>	$this->date,
-			"status"					 =>	Saving::GOAL_ACTIVE
 		]));
 		
 		return redirect()->back()->with("status", "Saving saved");
@@ -53,7 +52,7 @@ class GoalSavingController extends Controller
 	public function markActive(Request $request, Saving $saving)
 	{
 		
-		Saving::updateStatus($saving, Saving::GOAL_ACTIVE);
+		Saving::updateStatus($saving, Saving::PAID);
 		
 		return redirect()->back()->with("status", "Saving marked active");
 		
@@ -68,7 +67,7 @@ class GoalSavingController extends Controller
 	public function markInactive(Request $request, Saving $saving)
 	{
 		
-		Saving::updateStatus($saving, Saving::GOAL_INACTIVE);
+		Saving::updateStatus($saving, Saving::UNPAID);
 		
 		return redirect()->back()->with("status", "Saving inactive");
 		

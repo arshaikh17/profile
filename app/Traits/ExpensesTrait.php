@@ -17,4 +17,16 @@ trait ExpensesTrait
 	 */
 	protected $table_prefix				 =	"expenses_";
 	
+	/**
+	 * Return goal type of model
+	 * 
+	 * @return Integer $model_type
+	 */
+	public function getModelType()
+	{
+		
+		return $this->model_type;
+		
+	}
+	
 }

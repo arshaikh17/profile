@@ -288,16 +288,16 @@
 									<a
 										class="btn btn-sm btn-info text-white hover-link paymentDebt"
 										data-person="{{ $person }}"
-										data-url="{{ route("expenses.payments.persons.debts.returns.history", $person) }}"
+										data-url="{{ route("expenses.payments.persons.debts.history", $person) }}"
 									>
-										<i class="fas fa-minus"></i>
+										debt
 									</a>
 									<a
 										class="btn btn-sm btn-info text-white hover-link paymentDebtReturn"
 										data-person="{{ $person }}"
-										data-url="{{ route("expenses.payments.persons.debts.takens.history", $person) }}"
+										data-url="{{ route("expenses.payments.persons.loans.history", $person) }}"
 									>
-										<i class="fas fa-plus"></i>
+										loan
 									</a>
 								</td>
 							</tr>
@@ -316,8 +316,8 @@
 @include("expenses.partials.modals.bills-modal")
 @include("expenses.partials.modals.allowances-modal")
 @include("expenses.partials.modals.saving-modal")
-@include("expenses.partials.modals.payment-debtReturns-modal")
-@include("expenses.partials.modals.payment-debtTakens-modal")
+@include("expenses.partials.modals.payment-debt-modal")
+@include("expenses.partials.modals.payment-loan-modal")
 @include("generals.partials.modals.person-form-modal")
 
 @endsection

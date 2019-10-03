@@ -1,4 +1,4 @@
-<div class="modal" id="paymentDebtModal">
+<div class="modal" id="paymentDebtTakenModal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -9,16 +9,16 @@
 				<h6
 					class="hover-link"
 					data-toggle="collapse"
-					data-target="#paymentForm"
+					data-target="#paymentDebtTakenForm"
 				>
 					Payment Form
 				</h6>
-				<div class="collapse" id="paymentForm">
+				<div class="collapse" id="paymentDebtTakenForm">
 					<form
 						method="POST"
-						action="{{ route('expenses.payments.persons.debts.returns.store', -1) }}"
-						data-add-url="{{ route('expenses.payments.persons.debts.returns.store', -1) }}"
-						data-edit-url="{{ route('expenses.payments.persons.debts.returns.update', [-1, -2]) }}"
+						action="{{ route('expenses.payments.persons.loans.store', -1) }}"
+						data-add-url="{{ route('expenses.payments.persons.loans.store', -1) }}"
+						data-edit-url="{{ route('expenses.payments.persons.loans.update', [-1, -2]) }}"
 					>
 						{{ csrf_field() }}
 						<div class="row">
@@ -49,7 +49,7 @@
 					</form>
 				</div>
 				<div>
-					<p>Debt returned over course.</p>
+					<p>Loans given over course.</p>
 					<table class="table table-hover table-striped table-bordered">
 						<thead>
 							<tr>

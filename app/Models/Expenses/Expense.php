@@ -101,7 +101,6 @@ class Expense extends Model
 			"values"					 =>	$values,
 		];
 		
-		//dd($data);
 		return $data;
 		
 	}
@@ -116,15 +115,14 @@ class Expense extends Model
 	 * @param Builder $query
 	 * @param String $column
 	 * @param String $relationalOperator
-	 * @param DateTime $dateTime
+	 * @param Carbon $date
 	 * 
 	 * @return Builder $query
 	 */
-	public function scopeWhereMonthAndYear($query, $column, $relationalOperator, DateTime $dateTime)
+	public function scopeWhereMonthAndYear($query, $column, $relationalOperator, Carbon $date)
 	{
 		
-		
-		return $query->whereRaw("DATE_FORMAT({$column}, '%m/%Y') {$relationalOperator} ?", [$dateTime->format("m/Y")]);
+		return $query->whereRaw("DATE_FORMAT({$column}, '%m/%Y') {$relationalOperator} ?", [$date->format("m/Y")]);
 		
 	}
 	

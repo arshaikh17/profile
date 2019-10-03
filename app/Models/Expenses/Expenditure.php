@@ -4,12 +4,14 @@ namespace App\Models\Expenses;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Traits\ExpensesTrait;
+use App\Traits\ExpensesExpendituresTrait;
 
 use App\Models\Expenses\{
 	Expense,
 	Tag
 };
+
+use Carbon\Carbon;
 
 use DateTime;
 
@@ -17,14 +19,14 @@ class Expenditure extends Expense
 {
 	
 	/**
-	 * Fillables
+	 * Traits
 	 */
-	protected $fillable					 =	[
-		"amount",
-		"description",
-		"tag_id",
-		"date",
-	];
+	use ExpensesExpendituresTrait;
+	
+	/**
+	 * Scoped varables
+	 */
+	protected $model_type				 =	1;
 	
 	/* =====================================================
 	 * 						STATIC METHODS					
@@ -39,9 +41,7 @@ class Expenditure extends Expense
 	public static function saveExpenditure(Expenditure $expenditure, $data)
 	{
 		
-		$expenditure->fill($data);
-		
-		$expenditure->save();
+		self::saveExpense($expenditure, $data);
 		
 	}
 	
@@ -53,22 +53,22 @@ class Expenditure extends Expense
 	public static function removeExpenditure(Expenditure $expenditure)
 	{
 		
-		$expenditure->delete();
+		self::removeExpense($expenditure);
 		
 	}
 	
 	/**
 	 * Gets expenditures
 	 * 
-	 * @param DateTime $dateTime
+	 * @param DateTime $date
 	 * @param Bool $queryOnly
 	 * 
 	 * @return App\Models\Expenses\Expenditure[]
 	 */
-	public static function getExpenditures(DateTime $dateTime, $queryOnly = false)
+	public static function getExpenditures(DateTime $date, $queryOnly = false)
 	{
 		
-		$query							 =	Expenditure::whereMonthAndYear("date", "=", $dateTime)
+		$query							 =	Expenditure::whereMonthAndYear("date", "=", $date)
 			->orderBy("id", "DESC")
 		;
 		

@@ -16,12 +16,12 @@
 						
 						<p>Here is something you can do about it.</p>
 						<form
-							action="{{ $saving->status ? route('expenses.goals.savings.mark-inactive', [$saving]) : route('expenses.goals.savings.mark-active', [$saving]) }}"
+							action="{{ $saving->is_paid ? route('expenses.savings.mark-inactive', [$saving]) : route('expenses.savings.mark-active', [$saving]) }}"
 							method="POST"
 						>
 							{{ csrf_field() }}
 							<div class="form-group text-right">
-								<input type="submit" class="btn btn-info" value="Mark as {{ $saving->status ? 'Inactive' : 'Active' }}" />
+								<input type="submit" class="btn btn-info" value="Mark as {{ $saving->is_paid ? 'Inactive' : 'Active' }}" />
 							</div>
 						</form>
 					@else
@@ -34,7 +34,7 @@
 					<p class="hover-link" data-toggle="collapse" data-target="#editSavingForm">It's okay if you wish to update it.</p>
 					<div class="collapse" id="editSavingForm">
 						<form
-							action="{{ $saving ? route('expenses.goals.savings.update', $saving) : route('expenses.goals.savings.store') }}"
+							action="{{ $saving ? route('expenses.savings.update', $saving) : route('expenses.savings.store') }}"
 							method="POST"
 						>
 							{{ csrf_field() }}

@@ -42,7 +42,6 @@ class IndexController extends Controller
 		$totalAmountSpent				 =	Expenditure::getTotalAmountSpent($this->date);
 		$tags							 =	Tag::all();
 		$expendituresByTags				 =	Expenditure::getExpendituresByTags($this->date);
-		$billNames						 =	Bill::getBillNames();
 		$bills							 =	Bill::getBills($this->date);
 		$totalBillsPaid					 =	Bill::getTotalBillsPaid($this->date);
 		$saving							 =	Saving::getSaving($this->date);
@@ -53,7 +52,7 @@ class IndexController extends Controller
 		$remaining						 =	($budget ? $budget->amount : 0)
 			 - $totalAmountSpent
 			 - $totalBillsPaid
-			 - ($saving && $saving->status == Saving::GOAL_ACTIVE ? $saving->amount : 0)
+			 - ($saving && $saving->is_paid == Saving::PAID ? $saving->amount : 0)
 			 - $totalAllowances
 		;
 			
@@ -69,7 +68,6 @@ class IndexController extends Controller
 			"totalAmountSpent",
 			"tags",
 			"expendituresByTags",
-			"billNames",
 			"bills",
 			"totalBillsPaid",
 			"saving",

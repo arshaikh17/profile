@@ -9,7 +9,7 @@ use App\Models\Expenses\{
 	Allowance
 };
 
-class GoalAllowanceController extends Controller
+class AllowanceController extends Controller
 {
 	
 	/**
@@ -22,7 +22,7 @@ class GoalAllowanceController extends Controller
 		
 		Allowance::saveAllowance(new Allowance, array_merge($request->toArray(), [
 			"date"						 =>	$this->date,
-			"status"					 =>	Allowance::GOAL_ACTIVE
+			"is_paid"					 =>	Allowance::UNPAID
 		]));
 		
 		return redirect()->back()->with("status", "Allowance saved");
@@ -68,7 +68,7 @@ class GoalAllowanceController extends Controller
 	public function markActive(Request $request, Allowance $allowance)
 	{
 		
-		Allowance::updateStatus($allowance, Allowance::GOAL_ACTIVE);
+		Allowance::updateStatus($allowance, Allowance::PAID);
 		
 		return redirect()->back()->with("status", "Allowance marked active");
 		
@@ -83,7 +83,7 @@ class GoalAllowanceController extends Controller
 	public function markInactive(Request $request, Allowance $allowance)
 	{
 		
-		Allowance::updateStatus($allowance, Allowance::GOAL_INACTIVE);
+		Allowance::updateStatus($allowance, Allowance::UNPAID);
 		
 		return redirect()->back()->with("status", "Allowance inactive");
 		

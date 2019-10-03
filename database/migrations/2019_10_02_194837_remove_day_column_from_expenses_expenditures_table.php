@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RemovePaidOnColumnInBillsTable extends Migration
+class RemoveDayColumnFromExpensesExpendituresTable extends Migration
 {
 	
 	/**
@@ -15,10 +15,8 @@ class RemovePaidOnColumnInBillsTable extends Migration
 	public function up()
 	{
 		
-		Schema::table("expenses_bills", function(Blueprint $table) {
-			
-			$table->dropColumn("paid_on");
-			
+		Schema::table("expenses_expenditures", function (Blueprint $table) {
+			$table->dropColumn("day");
 		});
 		
 	}
@@ -31,10 +29,8 @@ class RemovePaidOnColumnInBillsTable extends Migration
 	public function down()
 	{
 		
-		Schema::table("expenses_bills", function(Blueprint $table) {
-			
-			$table->datetime("paid_on");
-			
+		Schema::table("expenses_expenditures", function (Blueprint $table) {
+			$table->integer("day");
 		});
 		
 	}
