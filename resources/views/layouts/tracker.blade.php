@@ -13,19 +13,29 @@
 	@include("partials.fonts.quicksand")
 	<!-- Styles -->
 	<link href="{{ asset('vue/app.css?v=' . time()) }}" rel="stylesheet">
+	<link href="{{ asset("modules/shared.css?v=" . time()) }}" rel="stylesheet">
+	<link href="{{ asset("modules/tracker/css/app.css?v=" . time()) }}" rel="stylesheet">
 	@include("partials.modules.fontawesome-5-8-1")
 </head>
 <body>
 	@include("partials.top-nav", [
 		"config"						 =>	[
-			"background"				 =>	"bg-danger"
+			"background"				 =>	"bg-primary"
 		],
 		"brand"							 =>	[
-			"title"						 =>	"Expenses",
-			"route"						 =>	route("expenses.index"),
+			"title"						 =>	"Tracker",
+			"route"						 =>	route("tracker.index"),
 			"colour"					 =>	"text-white",
 		],
 		"links"							 =>	[
+			[
+				"title"					 =>	"Modules",
+				"route"					 =>	route("tracker.modules.index")
+			],
+			[
+				"title"					 =>	"Issues",
+				"route"					 =>	route("tracker.issues.index")
+			],
 		]
 	])
 	<main class="py-4" id="app">

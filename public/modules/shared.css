@@ -1,7 +1,7 @@
 /*======================================
  * HTML ELEMENTS
 ======================================*/
-a:hover {text-decoration: none;}
+a:hover {text-decoration: none !important;}
 
 /*======================================
  * ITEM GRID

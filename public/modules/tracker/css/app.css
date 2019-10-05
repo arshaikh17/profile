@@ -1,0 +1,20 @@
+/*======================================
+ * DOM
+======================================*/
+a {
+	color: #F6993F;
+}
+
+/*======================================
+ * BOOTSTRAP CLASSES
+======================================*/
+.text-primary {
+	color: #F6993F;
+}
+
+.btn-primary,
+.bg-primary {
+	background-color: #F6993F !important;
+	color: white;
+	border-color: #F6993F !important;
+}

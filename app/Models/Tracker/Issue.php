@@ -32,7 +32,7 @@ class Issue extends Model
 		"title",
 		"description",
 		"url",
-		"current_status",
+		"status",
 		"module_id",
 	];
 	
@@ -40,7 +40,7 @@ class Issue extends Model
 	 * Appends
 	 */
 	protected $appends					 =	[
-		"status",
+		"status_name",
 	];
 	
 	/**
@@ -125,14 +125,14 @@ class Issue extends Model
 	 * ===================================================*/
 	
 	/**
-	 * Returns status field
+	 * Returns status name field
 	 * 
 	 * @return String
 	 */
-	public function getStatusAttribute()
+	public function getStatusNameAttribute()
 	{
 		
-		return self::getStatuses()[$this->current_status] ?? "-";
+		return self::getStatuses()[$this->status] ?? "-";
 		
 	}
 	

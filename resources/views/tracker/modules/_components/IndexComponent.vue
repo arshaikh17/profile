@@ -3,7 +3,7 @@
 		<div class="row justify-content-center">
 			<div class="col-12">
 				<h1>Modules</h1>
-				<a class="btn btn-sm btn-danger text-white" @click="addModule($event)">Add New Module</a>
+				<a class="btn btn-sm btn-primary text-white" @click="addModule($event)">Add New Module</a>
 				<table class="table table-hover table-stripped table-border mt-2">
 					<thead>
 						<tr>
@@ -31,6 +31,18 @@
 									@click.prevent="editModule(module.id)"
 								>
 									Edit
+								</a>
+								<a
+									class="btn btn-sm btn-primary text-white"
+									:href="createLink(indexModuleIssueLink, module.id)"
+								>
+									Issues
+								</a>
+								<a
+									class="btn btn-sm btn-primary text-white"
+									:href="createLink(createModuleIssueLink, module.id)"
+								>
+									Add Issues
 								</a>
 							</td>
 						</tr>
@@ -91,7 +103,7 @@
 							>
 								Delete
 							</button>
-							<button type="submit" class="btn btn-sm btn-danger text-white">Save</button>
+							<button type="submit" class="btn btn-sm btn-primary text-white">Save</button>
 						</div>
 					</form>
 				</div>
@@ -127,11 +139,16 @@
 			
 		},
 		props							 :	{
+			
 			indexModuleLink				 :	String,
 			showModuleLink				 :	String,
 			storeModuleLink				 :	String,
 			updateModuleLink			 :	String,
 			destroyModuleLink			 :	String,
+			destroyModuleLink			 :	String,
+			indexModuleIssueLink		 :	String,
+			createModuleIssueLink		 :	String,
+			
 		},
 		created() {
 			
