@@ -13,8 +13,13 @@ a {
 }
 
 .btn-primary,
-.bg-primary {
+.bg-primary,
+.badge-primary {
 	background-color: #F6993F !important;
 	color: white;
 	border-color: #F6993F !important;
+}
+
+.list-group-item {
+	 padding: 0px;
 }

@@ -41,7 +41,15 @@ class ModuleIssueController extends Controller
 		
 		if ($request->ajax()) {
 			
-			return response()->json(["issues" => $module->issues], 200);
+			$excluding					 =	json_decode($request->excluding);
+			
+			$issues						 =	$module->issues()
+				->with("module")
+				->whereNotIn("tracker_issues.id", $excluding)
+				->get()
+			;
+			
+			return response()->json(["issues" => $issues], 200);
 			
 		}
 		
@@ -58,6 +66,31 @@ class ModuleIssueController extends Controller
 	{
 		
 		return $this->form($module, new Issue);
+		
+	}
+	
+	/**
+	 * Displays show view
+	 * 
+	 * @param Illuminate\Http\Request $request
+	 * @param App\Models\Tracker\Module $module
+	 * @param App\Models\Tracker\Issue $issue
+	 * 
+	 * @return JSON
+	 */
+	public function show(Request $request, Module $module, Issue $issue)
+	{
+		
+		if ($request->ajax()) {
+			
+			return response()->json([
+				"module"				 =>	$module,
+				"issue"					 =>	$issue,
+			], 200);
+			
+		}
+		
+		return view(self::VIEW_PATH . "show", compact("module", "issue"));
 		
 	}
 	
