@@ -62,6 +62,20 @@ class ModuleIssueController extends Controller
 	}
 	
 	/**
+	 * Displays edit view
+	 * 
+	 * @param Illuminate\Http\Request $request
+	 * @param App\Models\Tracker\Module $module
+	 * @param App\Models\Tracker\Issue $issue
+	 */
+	public function edit(Request $request, Module $module, Issue $issue)
+	{
+		
+		return $this->form($module, $issue);
+		
+	}
+	
+	/**
 	 * Stores issue
 	 * 
 	 * @param Illuminate\Http\Request $request
@@ -77,6 +91,29 @@ class ModuleIssueController extends Controller
 		return response()->json(["message" => "Issue saved"], 200);
 		
 	}
+	
+	/**
+	 * Updates record
+	 * 
+	 * @param Illuminate\Http\Request $request
+	 * @param App\Models\Tracker\Module $module
+	 * @param App\Models\Tracker\Issue $issue
+	 */
+	public function update(Request $request, Module $module, Issue $issue)
+	{
+		
+		$issue							 =	Issue::saveIssue(
+			$issue,
+			array_merge($request->toArray(), ["module_id" => $module->id])
+		);
+		
+		return response()->json([
+			"issue"						 =>	$issue,
+			"message"					 =>	"Issue saved"
+		], 200);
+		
+	}
+
 	
 	/**
 	 * Returns form

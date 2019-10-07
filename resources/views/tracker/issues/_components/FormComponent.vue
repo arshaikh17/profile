@@ -87,6 +87,7 @@
 						status			 :	"0",
 					},
 					success				 :	false,
+					new					 :	false,
 				},
 			};
 			
@@ -106,12 +107,24 @@
 			this.issue					 =	JSON.parse(this.issueJson);
 			this.statuses				 =	JSON.parse(this.statusesJson);
 			
+			this.form.new				 =	this.issue.id ? false : true,
+			
+			this.fillForm();
+			
 		},
 		mounted() {
 			
 		},
 		methods							 :	{
 			
+			fillForm() {
+				
+				this.form.fields.title						 =	this.issue.title;
+				this.form.fields.description				 =	this.issue.description;
+				this.form.fields.url						 =	this.issue.url;
+				this.form.fields.status						 =	this.issue.status;
+				
+			},
 			submitForm() {
 				
 				axios
@@ -119,10 +132,9 @@
 					.then((response)	 =>	{
 						
 						this.form.success					 =	true;
-						this.form.fields.title				 =	"";
-						this.form.fields.description		 =	"";
-						this.form.fields.url				 =	"";
-						this.form.fields.status				 =	"0";
+						this.issue		 =	this.form.new ? [] : response.data.issue;
+						
+						this.fillForm();
 						
 					})
 				;
