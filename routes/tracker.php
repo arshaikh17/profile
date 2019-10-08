@@ -51,17 +51,4 @@ Route::group([
 		
 	});
 	
-	/**
-	 * Tracker/IssueController Routes
-	 */
-	Route::group([
-		"prefix"						 =>	"/issues",
-		"as"							 =>	"issues."
-	], function()
-	{
-		
-		Route::get("/", "Tracker\IssueController@index")->name("index");
-		
-	});
-	
 });

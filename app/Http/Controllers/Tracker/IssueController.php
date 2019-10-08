@@ -36,25 +36,7 @@ class IssueController extends Controller
 	public function index(Request $request)
 	{
 		
-		$statuses						 =	Issue::getStatuses();
 		
-		if ($request->ajax()) {
-			
-			$status						 =	$request->status != "false" ? $request->status : Issue::OPEN;
-			
-			$issues						 =	Issue::with("module")
-				->orderBy("id", "DESC")
-				->where("status", "=", $status)
-				->get()
-			;
-			
-			return response()->json([
-				"issues"				 =>	$issues,
-			], 200);
-			
-		}
-		
-		return view(self::VIEW_PATH . "index", compact("statuses"));
 		
 	}
 	

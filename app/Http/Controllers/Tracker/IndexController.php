@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Tracker;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Models\Tracker\{
+	Module,
+	Issue
+};
+
 class IndexController extends Controller
 {
 	
@@ -25,11 +30,31 @@ class IndexController extends Controller
 	
 	/**
 	 * Display index view
+	 * 
+	 * @param Illuminate\Http\Request $request
 	 */
-	public function index()
+	public function index(Request $request)
 	{
 		
-		return view(self::VIEW_PATH . "index");
+		$statuses						 =	Issue::getStatuses();
+		
+		if ($request->ajax()) {
+			
+			$status						 =	$request->status != "false" ? $request->status : Issue::OPEN;
+			
+			$issues						 =	Issue::with("module")
+				->orderBy("id", "DESC")
+				->where("status", "=", $status)
+				->get()
+			;
+			
+			return response()->json([
+				"issues"				 =>	$issues,
+			], 200);
+			
+		}
+		
+		return view(self::VIEW_PATH . "index", compact("statuses"));
 		
 	}
 	

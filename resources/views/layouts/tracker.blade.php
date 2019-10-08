@@ -32,10 +32,6 @@
 				"title"					 =>	"Modules",
 				"route"					 =>	route("tracker.modules.index")
 			],
-			[
-				"title"					 =>	"Issues",
-				"route"					 =>	route("tracker.issues.index")
-			],
 		]
 	])
 	<main class="py-4" id="app">

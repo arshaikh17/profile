@@ -27,10 +27,9 @@ window.Vue								 =	require("vue");
  */
 const tracker							 =	"";
 //console.log(require("./../views/tracker/modules/components/IndexComponent.vue"));
-Vue.component("issue-index", require("./../views/tracker/issues/_components/IndexComponent.vue").default);
-Vue.component("issue-show", require("./../views/tracker/issues/_components/ShowComponent.vue").default);
-Vue.component("issue-form", require("./../views/tracker/issues/_components/FormComponent.vue").default);
-Vue.component("tracker-index", require("./../views/tracker/_components/IndexComponent.vue").default);
+Vue.component("issue-index", require("./../views/tracker/modules/issues/_components/IndexComponent.vue").default);
+Vue.component("issue-show", require("./../views/tracker/modules/issues/_components/ShowComponent.vue").default);
+Vue.component("issue-form", require("./../views/tracker/modules/issues/_components/FormComponent.vue").default);
 Vue.component("module-index", require("./../views/tracker/modules/_components/IndexComponent.vue").default);
 
 
