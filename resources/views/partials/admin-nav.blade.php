@@ -24,6 +24,9 @@
 			<li class="nav-item ml-2">
 				<a class="nav-link btn btn-sm btn-light" href="{{ route('wishlists.index') }}">Wishlists</a>
 			</li>
+			<li class="nav-item ml-2">
+				<a class="nav-link btn btn-sm btn-orange text-white" href="{{ route('tracker.index') }}">Tracker</a>
+			</li>
 		</ul>
 		<ul class="navbar-nav">
 			<li class="nav-item">

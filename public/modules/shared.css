@@ -121,6 +121,21 @@ h3{margin:1em;text-transform:capitalize;font-size:1.7em;}
 }
 
 /*======================================
+ * BUTTON
+======================================*/
+.btn-orange {
+	background-color: #F6993F !important;
+	border-color: #F6993F;
+}
+
+/*======================================
+ * BACKGROUNDS
+======================================*/
+.bg-orange {
+	background-color: #F6993F;
+}
+
+/*======================================
  * HOVER
 ======================================*/
 .hover-link:hover {
