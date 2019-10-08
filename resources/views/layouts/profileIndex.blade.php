@@ -10,8 +10,8 @@
 	<meta name="author" content="Ali Rasheed">
 	<meta name="csrf-token" content="<?= csrf_token(); ?>">
 	
-	@include("partials.modules.bootstrap4")
-	@include("partials.modules.fontawesome-5-8-1")
+	@include("partials.libraries.bootstrap4")
+	@include("partials.libraries.fontawesome-5-8-1")
 	@include("partials.fonts.roboto")
 	<link href="{{ asset('modules/profile/css/profile.css') }}" rel="stylesheet" />
 	<link href="{{ asset('modules/profile/css/profile.media.css') }}" rel="stylesheet" />

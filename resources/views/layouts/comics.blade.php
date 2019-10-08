@@ -6,16 +6,16 @@
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>Comics Area</title>
-	@include("partials.modules.jquery3-4-1")
-	@include("partials.modules.bootstrap4")
-	@include("partials.modules.fontawesome-5-8-1")
-	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-	@include("partials.modules.nprogress")
-	@include("partials.modules.masonry")
+	@include("partials.libraries.jquery3-4-1")
+	@include("partials.libraries.bootstrap4")
+	@include("partials.libraries.fontawesome-5-8-1")
+	@include("partials.fonts.nunito")
+	@include("partials.libraries.nprogress")
+	@include("partials.libraries.masonry")
 	<link rel="stylesheet" type="text/css" href="{{ asset('modules/comics/css/app.css') }}">
 	<script src="{{ asset('modules/comics/js/app.js') }}"></script>
 	@yield("scripts")
-	@include("partials.modules.shared")
+	@include("partials.libraries.shared")
 </head>
 <body>
 	<div id="app">

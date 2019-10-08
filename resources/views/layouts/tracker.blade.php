@@ -7,7 +7,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>{{ config('app.name', 'Laravel') }}</title>
 	<!-- Scripts -->
-	@include("partials.modules.jquery3-4-1")
+	@include("partials.libraries.jquery3-4-1")
 	<script src="{{ asset('vue/app.js?v=' . time()) }}" defer></script>
 	<!-- Fonts -->
 	@include("partials.fonts.quicksand")
@@ -15,7 +15,7 @@
 	<link href="{{ asset('vue/app.css?v=' . time()) }}" rel="stylesheet">
 	<link href="{{ asset("modules/shared.css?v=" . time()) }}" rel="stylesheet">
 	<link href="{{ asset("modules/tracker/css/app.css?v=" . time()) }}" rel="stylesheet">
-	@include("partials.modules.fontawesome-5-8-1")
+	@include("partials.libraries.fontawesome-5-8-1")
 </head>
 <body>
 	@include("partials.top-nav", [

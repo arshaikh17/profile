@@ -6,11 +6,11 @@
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>{{ config('app.name', 'Laravel') }}</title>
-	@include("partials.modules.jquery3-4-1")
-	@include("partials.modules.bootstrap4")
-	@include("partials.modules.fontawesome-5-8-1")
-	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-	@include("partials.modules.shared")
+	@include("partials.libraries.jquery3-4-1")
+	@include("partials.libraries.bootstrap4")
+	@include("partials.libraries.fontawesome-5-8-1")
+	@include("partials.fonts.quicksand")
+	@include("partials.libraries.shared")
 </head>
 <body>
 	<div id="app">

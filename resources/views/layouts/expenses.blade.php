@@ -6,14 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	@include("partials.modules.jquery3-4-1")
-	@include("partials.modules.bootstrap4")
-	@include("partials.modules.fontawesome-5-8-1")
+	@include("partials.libraries.jquery3-4-1")
+	@include("partials.libraries.bootstrap4")
+	@include("partials.libraries.fontawesome-5-8-1")
 	@include("partials.libraries.datatables-bootstrap4")
 	@include("partials.libraries.chartjs2-8")
-	@include("partials.modules.nprogress")
+	@include("partials.libraries.nprogress")
 	@yield("scripts")
-	@include("partials.modules.shared")
+	@include("partials.libraries.shared")
 	<script src="{{ asset('modules/expenses/js/app.js?v=' . time()) }}"></script>
 	<link href="{{ asset('modules/expenses/css/app.css?v=' . time()) }}" rel="stylesheet" type="text/css">
 	
