@@ -1,13 +1,13 @@
 <template>
 	<div class="row">
 		<div class="col-12">
-			<p class="text-30">Open Issues</p>
+			<p class="text-30">{{ currentStatus }} Issues</p>
 			<div class="form-inline">
 				<a
 					class="btn btn-sm btn-primary mr-2"
 					v-for="(status, statusKey) in statuses"
 					href="#"
-					@click.prevent="loadIssues(statusKey)"
+					@click.prevent="loadIssues(statusKey, $event)"
 				>
 					{{ status }}
 				</a>
@@ -70,6 +70,7 @@
 				statuses				 :	[],
 				issues					 :	[],
 				emptyResult				 :	"",
+				currentStatus			 :	"Open",
 			};
 			
 		},
@@ -107,10 +108,11 @@
 				return route;
 				
 			},
-			loadIssues(status = false) {
+			loadIssues(status = false, event = false) {
 				
 				this.emptyResult		 =	"Loading issues"
-				this.issues				 =	[];
+				
+				if (event) this.currentStatus				 =	event.target.innerText;
 				
 				axios
 					.get(this.indexRoute, {
