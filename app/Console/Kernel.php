@@ -5,7 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
-use App\Console\Commands\Comics\ResizeIssueCoversCommand;
+use App\Console\Commands\Comics\ResizeCommand;
 
 class Kernel extends ConsoleKernel
 {
@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
 	 * @var array
 	 */
 	protected $commands					 =	[
-		ResizeIssueCoversCommand::class,
+		ResizeCommand::class,
 	];
 	
 	/**
