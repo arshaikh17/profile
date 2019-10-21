@@ -2,22 +2,22 @@
  * DOM
 ======================================*/
 a {
-	color: #F6993F;
+	color: #FF6D00;
 }
 
 /*======================================
  * BOOTSTRAP CLASSES
 ======================================*/
 .text-primary {
-	color: #F6993F;
+	color: #FF6D00;
 }
 
 .btn-primary,
 .bg-primary,
 .badge-primary {
-	background-color: #F6993F !important;
+	background-color: #FF6D00 !important;
 	color: white;
-	border-color: #F6993F !important;
+	border-color: #FF6D00 !important;
 }
 
 .list-group-item {
