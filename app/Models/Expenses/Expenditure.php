@@ -60,15 +60,16 @@ class Expenditure extends Expense
 	/**
 	 * Gets expenditures
 	 * 
-	 * @param DateTime $date
+	 * @param Carbon $date
 	 * @param Bool $queryOnly
 	 * 
 	 * @return App\Models\Expenses\Expenditure[]
 	 */
-	public static function getExpenditures(DateTime $date, $queryOnly = false)
+	public static function getExpenditures(Carbon $date, $queryOnly = false)
 	{
 		
-		$query							 =	Expenditure::whereMonthAndYear("date", "=", $date)
+		$query							 =	Expenditure::whereMonth("date", "=", $date)
+			->whereYear("date", "=", $date)
 			->orderBy("id", "DESC")
 		;
 		
@@ -79,11 +80,11 @@ class Expenditure extends Expense
 	/**
 	 * Counts total amount in expenditures by date
 	 * 
-	 * @param DateTime $dateTime
+	 * @param Carbon $dateTime
 	 * 
 	 * @return Double $totalAmount
 	 */
-	public static function getTotalAmountSpent(DateTime $dateTime)
+	public static function getTotalAmountSpent(Carbon $dateTime)
 	{
 		
 		return Expenditure::whereMonthAndYear("date", "=", $dateTime)
@@ -97,11 +98,11 @@ class Expenditure extends Expense
 	/**
 	 * Amount spent by Tags
 	 * 
-	 * @param DateTime $dateTime
+	 * @param Carbon $dateTime
 	 * 
 	 * @return App\Models\Expenses\Expenditure[] $expenditure
 	 */
-	public static function getExpendituresByTags(DateTime $dateTime)
+	public static function getExpendituresByTags(Carbon $dateTime)
 	{
 		
 		return Expenditure::selectRaw("t.id, t.name, SUM(expenses_expenditures.amount) AS total")

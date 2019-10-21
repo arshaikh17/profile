@@ -84,7 +84,10 @@ class Expense extends Model
 		$values							 =	[];
 		
 		$expenses						 =	$expensesQuery->selectRaw("date, SUM(amount) AS amount")
-			->groupBy(DB::raw("DATE_FORMAT(date, 'd/m/Y')"))
+			->whereMonth("date", "=", $date)
+			->whereYear("date", "=", $date)
+			->groupBy(DB::raw("DATE_FORMAT(date, '%Y-%m-%d')"))
+			->orderBy("date")
 			->get()
 		;
 		
