@@ -18,6 +18,7 @@ use App\Models\Expenses\{
 use App\Models\Generals\Person;
 
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 
 class IndexController extends Controller
 {
@@ -29,24 +30,28 @@ class IndexController extends Controller
 	
 	/**
 	 * Displays index view
+	 * 
+	 * @param $date
 	 */
-	public function index()
+	public function index($date = false)
 	{
+		$date							 =	$date ? Carbon::createFromFormat("m-Y", $date) : $this->date;
+		//dd($date);
+		$calendarMonths					 =	$this->getCalendarMonths($date);
+		//dd($calendarMonths);
+		$budget							 =	Budget::getBudget($date);
 		
-		$date							 =	$this->date;
-		$budget							 =	Budget::getBudget($this->date);
-		
-		$expendituresQuery				 =	Expenditure::getExpenditures($this->date, true);
+		$expendituresQuery				 =	Expenditure::getExpenditures($date, true);
 		$expenditures					 =	$expendituresQuery->get();
-		//dd($expenditures);
-		$totalAmountSpent				 =	Expenditure::getTotalAmountSpent($this->date);
+		
+		$totalAmountSpent				 =	Expenditure::getTotalAmountSpent($date);
 		$tags							 =	Tag::all();
-		$expendituresByTags				 =	Expenditure::getExpendituresByTags($this->date);
-		$bills							 =	Bill::getBills($this->date);
-		$totalBillsPaid					 =	Bill::getTotalBillsPaid($this->date);
-		$saving							 =	Saving::getSaving($this->date);
-		$allowances						 =	Allowance::getAllowances($this->date);
-		$totalAllowances				 =	Allowance::getTotalAllowances($this->date);
+		$expendituresByTags				 =	Expenditure::getExpendituresByTags($date);
+		$bills							 =	Bill::getBills($date);
+		$totalBillsPaid					 =	Bill::getTotalBillsPaid($date);
+		$saving							 =	Saving::getSaving($date);
+		$allowances						 =	Allowance::getAllowances($date);
+		$totalAllowances				 =	Allowance::getTotalAllowances($date);
 		$persons						 =	Person::where("debt", ">", 0)->get();
 		
 		$remaining						 =	($budget ? $budget->amount : 0)
@@ -57,13 +62,13 @@ class IndexController extends Controller
 		;
 			
 		$charts							 =	[
-			"byTags"					 =>	Expense::buildExpendituresByTagsChart($expendituresByTags, Carbon::now()),
-			"allExpenses"				 =>	Expense::buildExpendituresChart($expendituresQuery, Carbon::now()),
+			"byTags"					 =>	Expense::buildExpendituresByTagsChart($expendituresByTags, $date),
+			"allExpenses"				 =>	Expense::buildExpendituresChart($expendituresQuery, $date),
 		];
-		//dd($expendituresQuery);
-		//dd($charts["allExpenses"]);
+		//dd($date);
 		return view(self::VIEW_PATH . "index", compact(
 			"date",
+			"calendarMonths",
 			"budget",
 			"expenditures",
 			"totalAmountSpent",
@@ -78,6 +83,31 @@ class IndexController extends Controller
 			"persons",
 			"charts"
 		));
+		
+	}
+	
+	/**
+	 * Returns months
+	 * 
+	 * @param Carbon\Carbon $date
+	 * 
+	 * @return array
+	 */
+	private function getCalendarMonths(Carbon $date)
+	{
+		
+		$months["year"]					 =	$date->format("Y");
+		
+		foreach (CarbonPeriod::create(Carbon::parse($date)->startOfYear(), "1 month", Carbon::parse($date)->startOfYear()) as $month) {
+			
+			$months["months"][]			 =	[
+				"name"					 =>	$month->format("F"),
+				"month"					 =>	$month->format("m"),
+			];
+			
+		}
+		
+		return $months;
 		
 	}
 	

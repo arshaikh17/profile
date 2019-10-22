@@ -16,7 +16,7 @@ Route::group([
 	/**
 	 * App\Controllers\Expenses\IndexController
 	 */
-	Route::get("/", "Expenses\IndexController@index")->name("index");
+	Route::get("/{date?}", "Expenses\IndexController@index")->name("index");
 	
 	/**
 	 * App\Controllers\Expenses\BudgetController

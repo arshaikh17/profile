@@ -12,6 +12,8 @@
 	@include("partials.libraries.datatables-bootstrap4")
 	@include("partials.libraries.chartjs2-8")
 	@include("partials.libraries.nprogress")
+	@include("partials.libraries.momentjs")
+	@include("partials.libraries.tempusdominus-bootstrap4-datetimepicker")
 	@yield("scripts")
 	@include("partials.libraries.shared")
 	<script src="{{ asset('modules/expenses/js/app.js?v=' . time()) }}"></script>

@@ -35,3 +35,10 @@ canvas {
 	background-color: #17A2B8;
 	border: 1px solid #17A2B8;
 }
+
+/*======================================
+ * TEMPUS DOMINUS DATETIMEPICKER
+======================================*/
+.bootstrap-datetimepicker-widget table td span.active {
+	background-color: #17A2B8 !important;
+}

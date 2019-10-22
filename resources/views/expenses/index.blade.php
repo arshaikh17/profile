@@ -4,10 +4,23 @@
 <div class="container">
 	<div class="row pb-3">
 		<div class="col-md-6">
-			<p class="text-30 font-weight-400">
-				<i class="far fa-calendar-alt text-info shadow p-3"></i>
-				<span>{{ $date->format("M, Y") }}</span>
-			</p>
+			<div
+				class="input-group date"
+				id="expensesDatePicker"
+				data-target-input="nearest"
+				data-route="{{ route("expenses.index") }}"
+				data-date="{{ $date }}"
+			>
+				<div class="input-group-append" data-target="#expensesDatePicker" data-toggle="datetimepicker">
+					<input type="text" style="display: none;" class="form-control datetimepicker-input" data-target="#expensesDatePicker"/>
+					<p
+						class="text-30 font-weight-400 hover-link"
+					>
+						<i class="far fa-calendar-alt text-info shadow p-3"></i>
+						<span>{{ $date->format("M, Y") }}</span>
+					</p>
+				</div>
+			</div>
 		</div>
 		<div class="col-md-6 mt-3">
 			<a
@@ -318,6 +331,7 @@
 @include("expenses.partials.modals.saving-modal")
 @include("expenses.partials.modals.payment-debt-modal")
 @include("expenses.partials.modals.payment-loan-modal")
+@include("expenses.partials.modals.calendar-modal")
 @include("generals.partials.modals.person-form-modal")
 
 @endsection

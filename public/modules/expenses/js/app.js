@@ -4,6 +4,7 @@ $(document).ready(function() {
 	tags();
 	allowances();
 	payments();
+	initialiseExpensesDatePicker();
 	
 });
 
@@ -159,5 +160,25 @@ function payments() {
 		modal.modal("show");
 		
 	}
+	
+}
+
+/**
+ * Initialises datepicker
+ */
+function initialiseExpensesDatePicker() {
+	
+	var expensesDatePicker				 =	"#expensesDatePicker";
+	
+	$(expensesDatePicker).datetimepicker({
+		format							 :	"MM-Y",
+		defaultDate						 :	$(expensesDatePicker).data("date")
+	});
+	
+	$(expensesDatePicker).on("change.datetimepicker", function(e) {
+		
+		window.location.replace($(expensesDatePicker).data("route") + "/" + $(expensesDatePicker).data("date"));
+			
+	});
 	
 }
