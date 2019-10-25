@@ -35,15 +35,11 @@ class IndexController extends Controller
 	 */
 	public function index($date = false)
 	{
-		$date							 =	$date ? Carbon::createFromFormat("m-Y", $date) : $this->date;
-		//dd($date);
-		$calendarMonths					 =	$this->getCalendarMonths($date);
-		//dd($calendarMonths);
-		$budget							 =	Budget::getBudget($date);
 		
+		$date							 =	$date ? Carbon::createFromFormat("m-Y", $date) : $this->date;
+		$budget							 =	Budget::getBudget($date);
 		$expendituresQuery				 =	Expenditure::getExpenditures($date, true);
 		$expenditures					 =	$expendituresQuery->get();
-		
 		$totalAmountSpent				 =	Expenditure::getTotalAmountSpent($date);
 		$tags							 =	Tag::all();
 		$expendituresByTags				 =	Expenditure::getExpendituresByTags($date);
@@ -65,10 +61,9 @@ class IndexController extends Controller
 			"byTags"					 =>	Expense::buildExpendituresByTagsChart($expendituresByTags, $date),
 			"allExpenses"				 =>	Expense::buildExpendituresChart($expendituresQuery, $date),
 		];
-		//dd($date);
+		
 		return view(self::VIEW_PATH . "index", compact(
 			"date",
-			"calendarMonths",
 			"budget",
 			"expenditures",
 			"totalAmountSpent",
@@ -83,31 +78,6 @@ class IndexController extends Controller
 			"persons",
 			"charts"
 		));
-		
-	}
-	
-	/**
-	 * Returns months
-	 * 
-	 * @param Carbon\Carbon $date
-	 * 
-	 * @return array
-	 */
-	private function getCalendarMonths(Carbon $date)
-	{
-		
-		$months["year"]					 =	$date->format("Y");
-		
-		foreach (CarbonPeriod::create(Carbon::parse($date)->startOfYear(), "1 month", Carbon::parse($date)->startOfYear()) as $month) {
-			
-			$months["months"][]			 =	[
-				"name"					 =>	$month->format("F"),
-				"month"					 =>	$month->format("m"),
-			];
-			
-		}
-		
-		return $months;
 		
 	}
 	

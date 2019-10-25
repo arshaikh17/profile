@@ -331,7 +331,6 @@
 @include("expenses.partials.modals.saving-modal")
 @include("expenses.partials.modals.payment-debt-modal")
 @include("expenses.partials.modals.payment-loan-modal")
-@include("expenses.partials.modals.calendar-modal")
 @include("generals.partials.modals.person-form-modal")
 
 @endsection
