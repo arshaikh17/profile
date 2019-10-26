@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
 	 */
 	protected $commands					 =	[
 		ResizeCommand::class,
+		\App\Console\Commands\Make\ServiceCommand::class,
 	];
 	
 	/**

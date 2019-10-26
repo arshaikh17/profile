@@ -1,0 +1,52 @@
+<?php
+
+namespace __namespace__;
+
+use Illuminate\Http\Request;
+use __controller_namespace__;
+
+use __model_namespace__;
+
+class __service__
+{
+	
+	/**
+	 * Construct
+	 */
+	public function __construct()
+	{
+		
+		//
+		
+	}
+	
+	/**
+	 * Saves record
+	 * 
+	 * @param __model_namespace__ __model_variable__
+	 * @param Array $data
+	 * 
+	 * @return __model_namespace__ __model_variable__
+	 */
+	public function save(__model__ __model_variable__, Array $data)
+	{
+		
+		__model_variable__->save();
+		
+		return __model_variable__;
+		
+	}
+	
+	/**
+	 * Deletes record
+	 * 
+	 * @param __model_namespace__ __model_variable__
+	 */
+	public function delete(__model__ __model_variable__)
+	{
+		
+		__model_variable__->delete();
+		
+	}
+	
+}
