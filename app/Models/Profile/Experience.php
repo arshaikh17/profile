@@ -54,6 +54,7 @@ class Experience extends AbstractModel
 	CONST TYPE_PERMANENT				 =	1;
 	CONST TYPE_CONTRACT					 =	2;
 	CONST TYPE_INTERNSHIP				 =	3;
+	CONST TYPE_PART_TIME				 =	4;
 	
 	/**
 	 * Scoped variables
@@ -73,9 +74,10 @@ class Experience extends AbstractModel
 	{
 		
 		return [
-			self::TYPE_PERMANENT		 =>	"Permanent",
+			self::TYPE_PERMANENT		 =>	"Permanent (Full Time)",
 			self::TYPE_CONTRACT			 =>	"Contract",
 			self::TYPE_INTERNSHIP		 =>	"Internship"
+			self::TYPE_PART_TIME		 =>	"Part Time"
 		];
 		
 	}
