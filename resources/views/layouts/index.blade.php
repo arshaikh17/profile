@@ -104,6 +104,7 @@
 								</div>
 								<div class="experience-location">
 									<p class="job">{{ $experience->title }}</p>
+									<p><span class="badge badge-primary">{{ $experience->job_type }}</span ></p>
 									<p class="location"><i class="fas fa-map-marker-alt"></i> {{ $experience->city . ", " . $experience->country }}</p>
 									<p class="dates">{{ $experience->start_date }} - {{ $experience->is_active ? "Present" : $experience->end_date }}</p>
 								</div>
