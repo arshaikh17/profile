@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Comics;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Models\Comics\Series;
-use App\Models\Comics\Character;
+use App\Services\Comics\SeriesService;
+
+use App\Models\Comics\{
+	Series,
+	Character
+};
 
 class SeriesController extends Controller
 {
@@ -17,10 +21,17 @@ class SeriesController extends Controller
 	CONST VIEW_PATH						 =	"comics.series.";
 	
 	/**
+	 * Scoped variables
+	 */
+	private $service;
+	
+	/**
 	 * Constructor
 	 */
-	public function __construct()
+	public function __construct(SeriesService $service)
 	{
+		
+		$this->service					 =	$service;
 		
 		$this->middleware("auth");
 		
@@ -32,7 +43,7 @@ class SeriesController extends Controller
 	public function index()
 	{
 		
-		$series					 =	Series::all();
+		$series							 =	Series::all();
 		
 		return view(self::VIEW_PATH . "index", compact("series"));
 		
@@ -80,7 +91,7 @@ class SeriesController extends Controller
 	public function store(Request $request)
 	{
 		
-		Series::saveSeries(new Series, $request->toArray());
+		$this->service->save(new Series, $request->toArray());
 		
 		return redirect()->back()->with("status", "Record added.");
 		
@@ -95,7 +106,7 @@ class SeriesController extends Controller
 	public function update(Series $series, Request $request)
 	{
 		
-		Series::saveSeries($series, $request->toArray());
+		$this->service->save($series, $request->toArray());
 		
 		return redirect()->back()->with("status", "Record updated.");
 		
@@ -114,7 +125,7 @@ class SeriesController extends Controller
 		
 		$view							 =	"";
 		
-		$series							 =	Series::searchSeries($term);
+		$series							 =	$this->service->search($term);
 		
 		foreach ($series as $singleSeries) $view			 .=	view("comics.partials.series-table-body-row", ["series" => $singleSeries])->render();
 		

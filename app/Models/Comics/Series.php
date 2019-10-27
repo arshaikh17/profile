@@ -37,72 +37,11 @@ class Series extends Model
 	/**
 	 * Scoped variables
 	 */
-	private static $path_logo			 =	"/uploads/comics/series/";
+	public static $path_logo			 =	"/uploads/comics/series/";
 	
 	/* =====================================================
 	 * 						STATIC METHODS					
 	 * ===================================================*/
-	
-	/**
-	 * Saves record
-	 * 
-	 * @param App\Models\Comics\Series $series
-	 * @param Array $data
-	 */
-	public static function saveSeries(Series $series, $data)
-	{
-		
-		$cover							 =	$series->cover;
-		
-		if ($data["cover"] ?? false) {
-			
-			$file						 =	$data["cover"];
-			
-			//if (file_exists(public_path() . self::$path_logo . $cover)) var_dump(unlink(public_path() . self::$path_logo . $cover));
-			
-			$cover						 =	time() . "." . $file->getClientOriginalExtension();
-			
-			$file->move(public_path() . self::$path_logo, $cover);
-			
-		}
-		
-		$series->fill([
-			"title"						 =>	$data["title"] ?? "",
-			"cover"						 =>	$cover
-		]);
-		
-		if ($data["character_id"] ?? false) $series->character()->associate(Character::find($data["character_id"]));
-		
-		$series->save();
-		
-	}
-	
-	/**
-	 * Removes record
-	 * 
-	 * @param App\Models\Comics\Series $series
-	 */
-	public static function removeSeries(Series $series)
-	{
-		
-		$series->delete();
-		
-	}
-	
-	/**
-	 * Searches the model
-	 * 
-	 * @param String $term
-	 * @return App\Models\Comics\Series $series[]
-	 */
-	public static function searchSeries($term)
-	{
-		
-		return Series::whereRaw("title LIKE '%" . $term . "%'")
-			->get()
-		;
-		
-	}
 	
 	/**
 	 * Returns current ids associated to model
