@@ -67,7 +67,7 @@ class ServiceCommand extends Command
 		$service						 =	array_pop($names);
 		$implodedNames					 =	implode("\\", $names);
 		$prefix							 =	str_replace("Service", "", $service);
-		$namespace						 =	"App\\" . ;
+		$namespace						 =	"App\\" . $implodedNames;
 		$controller						 =	$prefix . "Controller";
 		$controllerNamespace			 =	"App\Http\\" . str_replace("Services", "Controllers", $implodedNames) . "\\" . $controller;
 		
