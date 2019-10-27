@@ -7,8 +7,10 @@ use App\Http\Controllers\Controller;
 
 use Auth;
 
-use App\Models\Comics\Comics;
-use App\Models\Comics\Arc;
+use App\Models\Comics\{
+	Comics,
+	Arc
+};
 
 class ComicsController extends Controller
 {
