@@ -76,8 +76,8 @@ class Experience extends AbstractModel
 		return [
 			self::TYPE_PERMANENT		 =>	"Permanent (Full Time)",
 			self::TYPE_CONTRACT			 =>	"Contract",
-			self::TYPE_INTERNSHIP		 =>	"Internship"
-			self::TYPE_PART_TIME		 =>	"Part Time"
+			self::TYPE_INTERNSHIP		 =>	"Internship",
+			self::TYPE_PART_TIME		 =>	"Part Time",
 		];
 		
 	}
