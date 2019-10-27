@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Comics;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Services\Comics\CharacterService;
+
 use App\Models\Comics\Character;
 
 class CharacterController extends Controller
@@ -16,10 +18,17 @@ class CharacterController extends Controller
 	CONST VIEW_PATH						 =	"comics.characters.";
 	
 	/**
+	 * Scoped variables
+	 */
+	private $service;
+	
+	/**
 	 * Constructor
 	 */
-	public function __construct()
+	public function __construct(CharacterService $service)
 	{
+		
+		$this->service					 =	$service;
 		
 		$this->middleware("auth", [
 			"only"						 =>	[
@@ -88,7 +97,7 @@ class CharacterController extends Controller
 	public function store(Request $request)
 	{
 		
-		Character::saveCharacter(new Character, $request->toArray());
+		$this->service->save(new Character, $request->toArray());
 		
 		return redirect()->back()->with("message", "Record added.");
 		
@@ -103,7 +112,7 @@ class CharacterController extends Controller
 	public function update(Request $request, Character $character)
 	{
 		
-		Character::saveCharacter($character, $request->toArray());
+		$this->service->save($character, $request->toArray());
 		
 		return redirect()->back()->with("message", "Record updated.");
 		
@@ -122,7 +131,7 @@ class CharacterController extends Controller
 		
 		$view							 =	"";
 		
-		$characters						 =	Character::searchCharacters($term);
+		$characters						 =	$this->service->search($term);
 		
 		foreach ($characters as $character) $view			 .=	view("comics.partials.characters-table-body-row", ["character" => $character])->render();
 		

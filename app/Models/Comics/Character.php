@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Traits\ComicsTrait;
 
-use App\Models\Comics\Series;
-use App\Models\Comics\Arc;
+use App\Models\Comics\{
+	Series,
+	Arc
+};
 
 class Character extends Model
 {
@@ -28,70 +30,11 @@ class Character extends Model
 	/**
 	 * Scoped Variable
 	 */
-	private static $path_logo			 =	"/uploads/comics/characters/";
+	public static $path_logo			 =	"/uploads/comics/characters/";
 	
 	/* =====================================================
 	 * 						STATIC METHODS					
 	 * ===================================================*/
-	
-	/**
-	 * Saves record
-	 * 
-	 * @param App\Models\Comics\Character $character
-	 * @param Array $data
-	 */
-	public static function saveCharacter(Character $character, $data)
-	{
-		
-		$cover							 =	$character->cover;
-		
-		if ($data["cover"] ?? false) {
-			
-			$file						 =	$data["cover"];
-			
-			//if (file_exists(public_path() . self::$path_logo . $cover)) var_dump(unlink(public_path() . self::$path_logo . $cover));
-			
-			$cover						 =	time() . "." . $file->getClientOriginalExtension();
-			
-			$file->move(public_path() . self::$path_logo, $cover);
-			
-		}
-		
-		Character::updateOrCreate([
-			"id"						 =>	$character->id
-		], [
-			"name"						 =>	$data["name"],
-			"cover"						 =>	$cover
-		]);
-		
-	}
-	
-	/**
-	 * Removes record
-	 * 
-	 * @param App\Models\Comics\Character $character
-	 */
-	public static function removeCharacter(Character $character)
-	{
-		
-		$character->delete();
-		
-	}
-	
-	/**
-	 * Searches the model
-	 * 
-	 * @param String $term
-	 * @return App\Models\Comics\Character $characters[]
-	 */
-	public static function searchCharacters($term)
-	{
-		
-		return Character::whereRaw("name LIKE '%" . $term . "%'")
-			->get()
-		;
-		
-	}
 	
 	/**
 	 * Returns current ids associated to model
