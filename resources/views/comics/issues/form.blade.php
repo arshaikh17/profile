@@ -213,7 +213,8 @@
 	<div id="authorsFormFields">
 		<div class="col-md-4" id="__INDEX__">
 			@include("comics.partials.authors-form-fields", [
-				"subForm"				 =>	"true"
+				"subForm"				 =>	"true",
+				"new"					 =>	"true"
 			])
 			<a href="#" class="btn btn-sm btn-danger remove-template" data-id="__INDEX__">delete</a>
 		</div>

@@ -31,7 +31,7 @@ class Issue extends Model
 	/**
 	 * Scoped Variable
 	 */
-	private static $path_logo			 =	"/uploads/comics/issues/";
+	public static $path_logo			 =	"/uploads/comics/issues/";
 	
 	/**
 	 * Constants
@@ -39,72 +39,9 @@ class Issue extends Model
 	CONST STATUS_OWNED					 =	0;
 	CONST STATUS_WISHLIST				 =	1;
 	
-	/**
-	 * Saves record
-	 * 
-	 * @param App\Models\Comics\Issue $issue
-	 * @param Array $data
-	 * @return App\Models\Comics\Issue $issue
-	 */
-	public static function saveIssue(Issue $issue, $data)
-	{
-		
-		$cover							 =	$issue->cover;
-		
-		if ($data["cover"] ?? false) {
-			
-			$file						 =	$data["cover"];
-			
-			//if (file_exists(public_path() . self::$path_logo . $cover)) var_dump(unlink(public_path() . self::$path_logo . $cover));
-			
-			$cover						 =	time() . "." . $file->getClientOriginalExtension();
-			
-			$file->move(public_path() . self::$path_logo, $cover);
-			
-		}
-		
-		$issue->fill([
-			"title"						 =>	$data["title"] ?? "",
-			"issue"						 =>	$data["issue"] ?? "",
-			"is_wishlist"				 =>	$data["is_wishlist"] ?? self::STATUS_WISHLIST,
-			"cover"						 =>	$cover
-		]);
-		
-		if ($data["series_id"] ?? false) $issue->series()->associate($data["series_id"]);
-		if ($data["arc_id"] ?? false) $issue->arc()->associate(Arc::find($data["arc_id"]));
-		
-		$issue->save();
-		
-		if ($data["author_ids"] && count($data["author_ids"])) foreach ($data["author_ids"] as $author_id) $issue->authors()->attach($author_id);
-		
-		//Save New Authors
-		if ($data["authors"] ?? false) {
-			
-			foreach ($data["authors"] as $author) {
-				
-				$author					 =	Author::saveAuthor(new Author, $author);
-				
-				$issue->authors()->attach($author);
-				
-			}
-			
-		}
-		
-		return $issue;
-		
-	}
-	
-	/**
-	 * Removes record
-	 * 
-	 * @param App\Models\Comics\Issue $issue
-	 */
-	public static function removeIssue(Issue $issue)
-	{
-		
-		$issue->delete();
-		
-	}
+	/* =====================================================
+	 * 						STATIC METHODS					
+	 * ===================================================*/
 	
 	/**
 	 * Returns current ids associated to model
@@ -132,25 +69,7 @@ class Issue extends Model
 		
 	}
 	
-	/**
-	 * Returns details about Issues
-	 * 
-	 * @return Array $statistics
-	 */
-	public static function statistics()
-	{
-		
-		$statistics						 =	[];
-		
-		$statistics						 =	[
-			"total"						 =>	Issue::count(),
-			"owned"						 =>	Issue::where("is_wishlist", "=", Issue::STATUS_OWNED)->count(),
-			"wishlist"					 =>	Issue::where("is_wishlist", "=", Issue::STATUS_WISHLIST)->count()
-		];
-		
-		return $statistics;
-		
-	}
+	
 	
 	/* =====================================================
 	 * 						RELATIONS						

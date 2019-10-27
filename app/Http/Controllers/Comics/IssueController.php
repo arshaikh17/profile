@@ -5,11 +5,15 @@ namespace App\Http\Controllers\Comics;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Models\Comics\Character;
-use App\Models\Comics\Series;
-use App\Models\Comics\Arc;
-use App\Models\Comics\Issue;
-use App\Models\Comics\Author;
+use App\Services\Comics\IssueService;
+
+use App\Models\Comics\{
+	Character,
+	Series,
+	Arc,
+	Issue,
+	Author
+};
 
 class IssueController extends Controller
 {
@@ -20,10 +24,17 @@ class IssueController extends Controller
 	CONST VIEW_PATH						 =	"comics.issues.";
 	
 	/**
+	 * Scoped variables
+	 */
+	private $service;
+	
+	/**
 	 * Constructor
 	 */
-	public function __construct()
+	public function __construct(IssueService $service)
 	{
+		
+		$this->service					 =	$service;
 		
 		$this->middleware("auth");
 		
@@ -35,7 +46,7 @@ class IssueController extends Controller
 	public function index()
 	{
 		
-		$statistics						 =	Issue::statistics();
+		$statistics						 =	$this->service->statistics();
 		$characters						 =	Character::all();
 		
 		return view(self::VIEW_PATH . "index", compact("statistics", "characters"));
@@ -96,7 +107,7 @@ class IssueController extends Controller
 	public function store(Request $request)
 	{
 		
-		Issue::saveIssue(new Issue, $request->toArray());
+		$this->service->save(new Issue, $request->toArray());
 		
 		return redirect()->back()->with("message", "Record added.");
 		
@@ -111,7 +122,7 @@ class IssueController extends Controller
 	public function update(Issue $issue, Request $request)
 	{
 		
-		Issue::saveIssue($issue, $request->toArray());
+		$this->service->save($issue, $request->toArray());
 		
 		return redirect()->back()->with("message", "Record updated.");
 		

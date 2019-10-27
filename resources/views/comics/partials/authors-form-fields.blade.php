@@ -4,7 +4,7 @@
 		type="text"
 		class="form-control"
 		name="{{ isset($subForm) && $subForm ? 'authors[__INDEX__][first_name]' : 'first_name' }}"
-		value="{{ $author->first_name }}"
+		value="{{ isset($new) && $new ? "" : $author->first_name }}"
 		required
 	/>
 </div>
@@ -14,7 +14,7 @@
 		type="text"
 		class="form-control"
 		name="{{ isset($subForm) && $subForm ? 'authors[__INDEX__][surname]' : 'surname' }}"
-		value="{{ $author->surname }}"
+		value="{{isset($new) && $new ? "" : $author->surname }}"
 		required
 	/>
 </div>
