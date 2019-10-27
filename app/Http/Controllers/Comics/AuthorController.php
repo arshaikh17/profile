@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Comics;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Services\Comics\AuthorService;
+
 use App\Models\Comics\Author;
 
 class AuthorController extends Controller
@@ -16,10 +18,17 @@ class AuthorController extends Controller
 	CONST VIEW_PATH						 =	"comics.authors.";
 	
 	/**
+	 * Scoped variables
+	 */
+	private $service;
+	
+	/**
 	 * Constructor
 	 */
-	public function __construct()
+	public function __construct(AuthorService $service)
 	{
+		
+		$this->service					 =	$service;
 		
 		$this->middleware("auth");
 		
@@ -79,7 +88,7 @@ class AuthorController extends Controller
 	public function store(Request $request)
 	{
 		
-		Author::saveAuthor(new Author, $request->toArray());
+		$this->service->save(new Author, $request->toArray());
 		
 		return redirect()->back()->with("status", "Record added.");
 		
@@ -94,7 +103,7 @@ class AuthorController extends Controller
 	public function update(Author $author, Request $request)
 	{
 		
-		Author::saveAuthor($author, $request->toArray());
+		$this->service->save($author, $request->toArray());
 		
 		return redirect()->back()->with("status", "Record updated.");
 		
@@ -113,7 +122,7 @@ class AuthorController extends Controller
 		
 		$view							 =	"";
 		
-		$authors						 =	Author::searchAuthors($term);
+		$authors						 =	$this->service->service($term);
 		
 		foreach ($authors as $author) $view					 .=	view("comics.partials.authors-table-body-row", ["author" => $author])->render();
 		

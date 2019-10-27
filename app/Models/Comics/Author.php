@@ -34,54 +34,6 @@ class Author extends Model
 	 * ===================================================*/
 	
 	/**
-	 * Saves record
-	 * 
-	 * @param App\Models\Comics\Author $author
-	 * @param Array $data
-	 * @return App\Models\Comics\Author $author
-	 */
-	public static function saveAuthor(Author $author, $data)
-	{
-		
-		$author->fill([
-			"first_name"				 =>	$data["first_name"],
-			"surname"					 =>	$data["surname"]
-		]);
-		
-		$author->save();
-		
-		return $author;
-		
-	}
-	
-	/**
-	 * Removes record
-	 * 
-	 * @param App\Models\Comics\Author $author
-	 */
-	public static function removeAuthor(Author $author)
-	{
-		
-		$author->delete();
-		
-	}
-	
-	/**
-	 * Searches the model
-	 * 
-	 * @param String $term
-	 * @return App\Models\Comics\Author $authors[]
-	 */
-	public static function searchAuthors($term)
-	{
-		
-		return Author::whereRaw("CONCAT(first_name, CONCAT(' ', surname)) LIKE '%" . $term . "%'")
-			->get()
-		;
-		
-	}
-	
-	/**
 	 * Returns current ids associated to model
 	 * 
 	 * @return array $ids
