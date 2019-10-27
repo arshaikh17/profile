@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Comics;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Models\Comics\Arc;
-use App\Models\Comics\Series;
+use App\Services\Comics\ArcService;
+
+use App\Models\Comics\{
+	Arc,
+	Series
+};
 
 class ArcController extends Controller
 {
@@ -17,10 +21,17 @@ class ArcController extends Controller
 	CONST VIEW_PATH						 =	"comics.arcs.";
 	
 	/**
+	 * Scoped variables
+	 */
+	private $service;
+	
+	/**
 	 * Constructor
 	 */
-	public function __construct()
+	public function __construct(ArcService $service)
 	{
+		
+		$this->service					 =	$service;
 		
 		$this->middleware("auth");
 		
@@ -82,7 +93,7 @@ class ArcController extends Controller
 	public function store(Request $request)
 	{
 		
-		Arc::saveArc(new Arc, $request->toArray());
+		$this->service->save(new Arc, $request->toArray());
 		
 		return redirect()->back()->with("message", "Record added.");
 		
@@ -97,7 +108,7 @@ class ArcController extends Controller
 	public function update(Request $request, Arc $arc)
 	{
 		
-		Arc::saveArc($arc, $request->toArray());
+		$this->service->save($arc, $request->toArray());
 		
 		return redirect()->back()->with("message", "Record updated.");
 		
@@ -116,7 +127,7 @@ class ArcController extends Controller
 		
 		$view							 =	"";
 		
-		$arcs							 =	Arc::searchArcs($term);
+		$arcs							 =	$this->service->search($term);
 		
 		foreach ($arcs as $arc) $view	 .=	view("comics.partials.arcs-table-body-row", ["arc" => $arc])->render();
 		

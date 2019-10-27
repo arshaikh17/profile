@@ -5,7 +5,10 @@ namespace App\Services\Comics;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Comics\ArcController;
 
-use App\Models\Comics\Arc;
+use App\Models\Comics\{
+	Arc,
+	Series
+};
 
 class ArcService
 {
@@ -31,6 +34,12 @@ class ArcService
 	public function save(Arc $arc, Array $data)
 	{
 		
+		$arc->fill([
+			"title"						 =>	$data["title"] ?? "",
+		]);
+		
+		if ($data["series_id"] ?? false) $arc->series()->associate(Series::find($data["series_id"]));
+		
 		$arc->save();
 		
 		return $arc;
@@ -46,6 +55,22 @@ class ArcService
 	{
 		
 		$arc->delete();
+		
+	}
+	
+	/**
+	 * Searches the model
+	 * 
+	 * @param String $term
+	 * 
+	 * @return App\Models\Comics\Arc $arcs[]
+	 */
+	public static function search($term)
+	{
+		
+		return Arc::whereRaw("title LIKE '%" . $term . "%'")
+			->get()
+		;
 		
 	}
 	
