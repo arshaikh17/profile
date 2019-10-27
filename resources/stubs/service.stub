@@ -31,6 +31,8 @@ class __service__
 	public function save(__model__ __model_variable__, Array $data)
 	{
 		
+		__model_variable__->fill($data);
+		
 		__model_variable__->save();
 		
 		return __model_variable__;
