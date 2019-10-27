@@ -65,19 +65,19 @@ class ServiceCommand extends Command
 		array_unshift($names, "Services");
 		
 		$service						 =	array_pop($names);
+		$implodedNames					 =	implode("\\", $names);
 		$prefix							 =	str_replace("Service", "", $service);
-		$namespace						 =	"App\\" . implode("\\", $names);
-		
+		$namespace						 =	"App\\" . ;
 		$controller						 =	$prefix . "Controller";
-		$controllerNamespace			 =	"App\Http\\" . str_replace("Services", "Controllers", implode("\\", $names)) . "\\" . $controller;
+		$controllerNamespace			 =	"App\Http\\" . str_replace("Services", "Controllers", $implodedNames) . "\\" . $controller;
 		
-		$modelNamespace					 =	"App\\" . str_replace("Services", "Models", implode("\\", $names)) . "\\" . $prefix;
+		$modelNamespace					 =	"App\\" . str_replace("Services", "Models", $implodedNames) . "\\" . $prefix;
 		
 		$parent							 =	false;
 		
 		foreach ($names as $name) {
 			
-		$path							 =	app_path();
+			$path						 =	app_path();
 			$path						 .=	$parent ?: "";
 			$path						 .=	"\\" . $name;
 			$parent						 =	"\\" . $name;
