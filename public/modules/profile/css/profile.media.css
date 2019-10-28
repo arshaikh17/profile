@@ -27,6 +27,9 @@
 		position: static;
 		top: 0px;
 	}
+	.experience-description ul li {
+		margin-left: -26px !important;
+	}
 	.experience-item {
 		margin-left: 0px;
 	}

@@ -114,12 +114,12 @@
 									<p>
 										{{ $experience->description }}
 									</p>
-										<ul>
-											@forelse ($experience->responsibilities as $responsibility)
-												<li>{{ $responsibility }}</li>
-											@empty
-											@endforelse
-										</ul>
+									<ul>
+										@forelse ($experience->responsibilities as $responsibility)
+											<li>{{ $responsibility }}</li>
+										@empty
+										@endforelse
+									</ul>
 								</div>
 							</div>
 							@empty
