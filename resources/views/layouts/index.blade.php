@@ -98,11 +98,13 @@
 					<div class="row">
 						<div class="col-md-12">
 							@forelse ($experiences as $experience)
+							
 							<div class="experience-item">
 								<div class="experience-title">
 									<p>{{ $experience->company }}</p>
 								</div>
 								<div class="experience-location">
+									<img src="{{ asset("uploads/profile/companies/" . $experience->company_logo) }}" class="mb-2" height="50">
 									<p class="job">{{ $experience->title }}</p>
 									<p><span class="badge badge-primary">{{ $experience->job_type }}</span ></p>
 									<p class="location"><i class="fas fa-map-marker-alt"></i> {{ $experience->city . ", " . $experience->country }}</p>
