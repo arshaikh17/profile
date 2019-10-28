@@ -13,9 +13,9 @@
 	@include("partials.libraries.bootstrap4")
 	@include("partials.libraries.fontawesome-5-8-1")
 	@include("partials.fonts.roboto")
-	<link href="{{ asset('modules/profile/css/profile.css') }}" rel="stylesheet" />
-	<link href="{{ asset('modules/profile/css/profile.media.css') }}" rel="stylesheet" />
-	<link href="{{ asset('modules/shared.css') }}" rel="stylesheet" />
+	<link href="{{ asset('modules/profile/css/profile.css?v=' . time()) }}" rel="stylesheet" />
+	<link href="{{ asset('modules/profile/css/profile.media.css?v=' . time()) }}" rel="stylesheet" />
+	<link href="{{ asset('modules/shared.css?v=' . time()) }}" rel="stylesheet" />
 	
 </head>
 @if (Auth::user())
