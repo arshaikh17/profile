@@ -17,6 +17,9 @@
 }
 
 @media screen and (max-width: 997px) {
+	.experience-title {
+		text-align: center;
+	}
 	.experience-location {
 		position: static;
 		left: 0px;
