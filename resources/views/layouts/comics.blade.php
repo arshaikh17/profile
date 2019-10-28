@@ -66,7 +66,9 @@
 					"message"					 =>	$errors->first()
 				])
 			@endif
-			@yield("content")
+			<div id="main-content" class="container shadow">
+				@yield("content")
+			</div>
 		</main>
 	</div>
 </body>

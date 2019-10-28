@@ -2,7 +2,11 @@
  * DOM
 ======================================*/
 body {
-	font-family: "Nunito";
+	background: #003464 url(/defaults/comics_background.jpg) top center repeat;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-color:#003464;
 }
 
 /*======================================
@@ -37,4 +41,12 @@ body {
 ======================================*/
 .pagination {
 	justify-content: center !important;
+}
+
+/*======================================
+ * Main Content Container
+======================================*/
+#main-content {
+	background-color: #CFD8DC;
+	padding: 20px 20px 10px 20px;
 }
