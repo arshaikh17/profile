@@ -35,33 +35,6 @@ class Budget extends Expense
 	 * ===================================================*/
 	
 	/**
-	 * Saves record
-	 * 
-	 * @param App\Models\Expenses\Budget $budget
-	 * @param Array $data
-	 */
-	public static function saveBudget(Budget $budget, $data)
-	{
-		
-		$budget->fill($data);
-		
-		$budget->save();
-		
-	}
-	
-	/**
-	 * Removes record
-	 * 
-	 * @param App\Models\Expenses\Budget $budget
-	 */
-	public static function removeBudget(Budget $budget)
-	{
-		
-		$budget->delete();
-		
-	}
-	
-	/**
 	 * Gets budget set for the month
 	 * 
 	 * @param DateTime $dateTime

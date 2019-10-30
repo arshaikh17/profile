@@ -30,39 +30,9 @@ class Saving extends Expense
 	 * ===================================================*/
 	
 	/**
-	 * Saves record
-	 * 
-	 * @param App\Models\Expenses\Saving $saving
-	 * @param Array $data
-	 */
-	public static function saveSaving(Saving $saving, $data)
-	{
-		
-		$data							 =	array_merge($data, [
-			"is_paid"					 =>	Expense::UNPAID,
-			"tag_id"					 =>	0,
-		]);
-		
-		self::saveExpense($saving, $data);
-		
-	}
-	
-	/**
-	 * Removes record
-	 * 
-	 * @param App\Models\Expenses\Saving $saving
-	 */
-	public static function removeSaving(Saving $saving)
-	{
-		
-		self::removeExpense($saving);
-		
-	}
-	
-	/**
 	 * Get Saving
 	 * 
-	 * @param Carbon $date
+	 * @param Carbon\Carbon $date
 	 * 
 	 * @return App\Models\Expenses\Saving[]
 	 */

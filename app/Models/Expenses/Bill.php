@@ -30,36 +30,6 @@ class Bill extends Expense
 	 * ===================================================*/
 	
 	/**
-	 * Saves record
-	 * 
-	 * @param App\Models\Expenses\Bill $bill
-	 * @param Array $data
-	 */
-	public static function saveBill(Bill $bill, $data)
-	{
-		
-		$data							 =	array_merge($data, [
-			"is_paid"					 =>	Expense::UNPAID,
-			"tag_id"					 =>	0,
-		]);
-		
-		self::saveExpense($bill, $data);
-		
-	}
-	
-	/**
-	 * Removes record
-	 * 
-	 * @param App\Models\Expenses\Bill $bill
-	 */
-	public static function removeBill(Bill $bill)
-	{
-		
-		self::removeExpense($bill);
-		
-	}
-	
-	/**
 	 * Get bills
 	 * 
 	 * @param Carbon $date
