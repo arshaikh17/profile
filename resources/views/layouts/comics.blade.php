@@ -12,8 +12,8 @@
 	@include("partials.fonts.nunito")
 	@include("partials.libraries.nprogress")
 	@include("partials.libraries.masonry")
-	<link rel="stylesheet" type="text/css" href="{{ asset('modules/comics/css/app.css') }}">
-	<script src="{{ asset('modules/comics/js/app.js') }}"></script>
+	<link rel="stylesheet" type="text/css" href="{{ asset('modules/comics/css/app.css?v=' . time()) }}">
+	<script src="{{ asset('modules/comics/js/app.js?v=' . time()) }}"></script>
 	@yield("scripts")
 	@include("partials.libraries.shared")
 </head>
