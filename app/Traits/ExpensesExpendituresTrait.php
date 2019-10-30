@@ -73,35 +73,6 @@ trait ExpensesExpendituresTrait
 	 * ===================================================*/
 	
 	/**
-	 * Saves record
-	 * 
-	 * @param App\Models\Expenses\Expenditure|Saving|Allowance|Bill $expenditure
-	 * @param Array $data
-	 */
-	public static function saveExpense($expenditure, $data)
-	{
-		
-		$data							 =	isset($data["date"]) ? $data : array_merge($data, ["date" => Carbon::now()]);
-		
-		$expenditure->fill($data);
-		
-		$expenditure->save();
-		
-	}
-	
-	/**
-	 * Removes record
-	 * 
-	 * @param App\Models\Expenses\Expenditure|Saving|Allowance|Bill $expenditure
-	 */
-	public static function removeExpense($expenditure)
-	{
-		
-		$expenditure->delete();
-		
-	}
-	
-	/**
 	 * Gets expenditures
 	 * 
 	 * @param App\Models\Expenses\Expenditure|Saving|Allowance|Bill $expenditure

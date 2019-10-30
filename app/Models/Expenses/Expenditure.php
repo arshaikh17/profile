@@ -33,31 +33,6 @@ class Expenditure extends Expense
 	 * ===================================================*/
 	
 	/**
-	 * Saves record
-	 * 
-	 * @param App\Models\Expenses\Expenditure $expenditure
-	 * @param Array $data
-	 */
-	public static function saveExpenditure(Expenditure $expenditure, $data)
-	{
-		
-		self::saveExpense($expenditure, $data);
-		
-	}
-	
-	/**
-	 * Removes record
-	 * 
-	 * @param App\Models\Expenses\Expenditure $expenditure
-	 */
-	public static function removeExpenditure(Expenditure $expenditure)
-	{
-		
-		self::removeExpense($expenditure);
-		
-	}
-	
-	/**
 	 * Gets expenditures
 	 * 
 	 * @param Carbon $date

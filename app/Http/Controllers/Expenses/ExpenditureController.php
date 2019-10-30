@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Expenses\ExpensesController as Controller;
 
 use App\Models\Expenses\{
-	Expenditure
+	Expenditure,
 };
 
 class ExpenditureController extends Controller
@@ -20,7 +20,7 @@ class ExpenditureController extends Controller
 	public function store(Request $request)
 	{
 		
-		Expenditure::saveExpenditure(new Expenditure, array_merge($request->toArray(), ["date" => $this->date]));
+		$this->service->save(new Expenditure, array_merge($request->toArray(), ["date" => $this->date]));
 		
 		return redirect()->back()->with("status", "Expenditure saved");
 		
@@ -35,7 +35,7 @@ class ExpenditureController extends Controller
 	public function update(Request $request, Expenditure $expenditure)
 	{
 		
-		Expenditure::saveExpenditure($expenditure, $request->toArray());
+		$this->service->save($expenditure, array_merge($request->toArray(), ["date" => $this->date]));
 		
 		return redirect()->back()->with("status", "Expenditure saved");
 		
@@ -50,7 +50,7 @@ class ExpenditureController extends Controller
 	public function destroy(Request $request, Expenditure $expenditure)
 	{
 		
-		Expenditure::removeExpenditure($expenditure);
+		$this->service->delete($expenditure);
 		
 		return redirect()->back()->with("status", "Expenditure removed");
 		

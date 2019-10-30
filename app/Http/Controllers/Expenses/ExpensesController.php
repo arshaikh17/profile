@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Expenses;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Services\Expenses\ExpenseService;
+
 class ExpensesController extends Controller
 {
 	
@@ -13,15 +15,19 @@ class ExpensesController extends Controller
 	 */
 	protected $date;
 	
+	protected $service;
+	
 	/**
 	 * Constructor
 	 */
-	public function __construct()
+	public function __construct(ExpenseService $service)
 	{
 		
 		$this->middleware("auth");
 		
 		$this->date						 =	\Carbon\Carbon::now();
+		
+		$this->service					 =	$service;
 		
 	}
 	
