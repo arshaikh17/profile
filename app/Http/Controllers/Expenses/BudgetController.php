@@ -18,7 +18,7 @@ class BudgetController extends Controller
 	public function store(Request $request)
 	{
 		
-		Budget::saveBudget(new Budget, array_merge($request->toArray(), ["date" => $this->date]));
+		$this->service->save(new Budget, array_merge($request->toArray(), ["date" => $this->date]));
 		
 		return redirect()->back()->with("status", "Budget saved");
 		
@@ -33,7 +33,7 @@ class BudgetController extends Controller
 	public function update(Request $request, Budget $budget)
 	{
 		
-		Budget::saveBudget($budget, $request->toArray());
+		$this->service->save($budget, $request->toArray());
 		
 		return redirect()->back()->with("status", "Budget saved");
 		

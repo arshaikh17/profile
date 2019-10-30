@@ -89,19 +89,4 @@ trait ExpensesExpendituresTrait
 		
 	}
 	
-	/**
-	 * Update status
-	 * 
-	 * @param App\Models\Expenses\Expenditure|Saving|Allowance|Bill $xpenditure
-	 * @param Integer $status
-	 */
-	public static function updateStatus($expenditure, $status)
-	{
-		
-		$expenditure->update([
-			"is_paid"					 =>	$status
-		]);
-		
-	}
-	
 }

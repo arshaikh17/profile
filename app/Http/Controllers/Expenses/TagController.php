@@ -20,7 +20,7 @@ class TagController extends Controller
 	public function store(Request $request)
 	{
 		
-		Tag::saveTag(new Tag, array_merge($request->toArray(), ["date" => $this->date]));
+		$this->service->save(new Tag, array_merge($request->toArray(), ["date" => $this->date]));
 		
 		return redirect()->back()->with("status", "Tag saved");
 		
@@ -35,7 +35,7 @@ class TagController extends Controller
 	public function update(Request $request, Tag $tag)
 	{
 		
-		Tag::saveTag($tag, $request->toArray());
+		$this->service->save($tag, $request->toArray());
 		
 		return redirect()->back()->with("status", "Tag saved");
 		

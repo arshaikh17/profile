@@ -20,7 +20,7 @@ class SavingController extends Controller
 	public function store(Request $request)
 	{
 		
-		Saving::saveSaving(new Saving, array_merge($request->toArray(), [
+		$this->service->save(new Saving, array_merge($request->toArray(), [
 			"date"						 =>	$this->date,
 		]));
 		
@@ -37,7 +37,7 @@ class SavingController extends Controller
 	public function update(Request $request, Saving $saving)
 	{
 		
-		Saving::saveSaving($saving, $request->toArray());
+		$this->service->save($saving, $request->toArray());
 		
 		return redirect()->back()->with("status", "Saving saved");
 		
@@ -52,7 +52,7 @@ class SavingController extends Controller
 	public function markActive(Request $request, Saving $saving)
 	{
 		
-		Saving::updateStatus($saving, Saving::PAID);
+		$this->service->updateStatus($saving, Saving::PAID);
 		
 		return redirect()->back()->with("status", "Saving marked active");
 		
@@ -67,7 +67,7 @@ class SavingController extends Controller
 	public function markInactive(Request $request, Saving $saving)
 	{
 		
-		Saving::updateStatus($saving, Saving::UNPAID);
+		$this->service->updateStatus($saving, Saving::UNPAID);
 		
 		return redirect()->back()->with("status", "Saving inactive");
 		

@@ -56,4 +56,19 @@ class ExpenseService
 		
 	}
 	
+	/**
+	 * Update status
+	 * 
+	 * @param App\Models\Expenses\Expense $expense
+	 * @param Integer $status
+	 */
+	public function updateStatus(Expense $expense, $status)
+	{
+		
+		$expense->update([
+			"is_paid"					 =>	$status
+		]);
+		
+	}
+	
 }

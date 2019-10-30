@@ -20,7 +20,7 @@ class AllowanceController extends Controller
 	public function store(Request $request)
 	{
 		
-		Allowance::saveAllowance(new Allowance, array_merge($request->toArray(), [
+		$this->service->save(new Allowance, array_merge($request->toArray(), [
 			"date"						 =>	$this->date,
 			"is_paid"					 =>	Allowance::UNPAID
 		]));
@@ -38,7 +38,7 @@ class AllowanceController extends Controller
 	public function update(Request $request, Allowance $allowance)
 	{
 		
-		Allowance::saveAllowance($allowance, $request->toArray());
+		$this->service->save($allowance, $request->toArray());
 		
 		return redirect()->back()->with("status", "Allowance saved");
 		
@@ -53,7 +53,7 @@ class AllowanceController extends Controller
 	public function destroy(Request $request, Allowance $allowance)
 	{
 		
-		Allowance::removeAllowance($allowance);
+		$this->service->delete($allowance);
 		
 		return redirect()->back()->with("status", "Allowance removed");
 		
@@ -68,7 +68,7 @@ class AllowanceController extends Controller
 	public function markActive(Request $request, Allowance $allowance)
 	{
 		
-		Allowance::updateStatus($allowance, Allowance::PAID);
+		$this->service->updateStatus($allowance, Allowance::PAID);
 		
 		return redirect()->back()->with("status", "Allowance marked active");
 		
@@ -83,7 +83,7 @@ class AllowanceController extends Controller
 	public function markInactive(Request $request, Allowance $allowance)
 	{
 		
-		Allowance::updateStatus($allowance, Allowance::UNPAID);
+		$this->service->updateStatus($allowance, Allowance::UNPAID);
 		
 		return redirect()->back()->with("status", "Allowance inactive");
 		

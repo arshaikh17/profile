@@ -23,36 +23,6 @@ class Tag extends Expense
 	 * 						STATIC METHODS					
 	 * ===================================================*/
 	
-	/**
-	 * Saves record
-	 * 
-	 * @param App\Models\Expenses\Tag $tag
-	 * @param Array $data
-	 */
-	public static function saveTag(Tag $tag, $data)
-	{
-		
-		$tag->fill([
-			"name"						 =>	$data["name"],
-			"description"				 =>	$data["description"] ?? "",
-		]);
-		
-		$tag->save();
-		
-	}
-	
-	/**
-	 * Removes record
-	 * 
-	 * @param App\Models\Expenses\Tag $tag
-	 */
-	public static function removeTag(Tag $tag)
-	{
-		
-		$tag->delete();
-		
-	}
-	
 	/* =====================================================
 	 * 							RELATIONS					
 	 * ===================================================*/
