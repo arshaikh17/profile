@@ -2,14 +2,23 @@
 
 @section("meta")
 <meta property="og:title" content="My Friend Aitashan Babu Bhaiyyan" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Home - Overkapping Breda" />
+<meta property="og:description" content="He gone" />
+<meta property="og:site_name" content="IAliRasheed" />
+<meta property="og:image" content="https://my.profile/defaults/aitashan.png" />
+<meta property="og:image:secure_url" content="https://my.profile/defaults/aitashan.png" />
+<meta property="og:image:width" content="340" />
+<meta property="og:image:height" content="340" />
 <meta name="twitter:description" property="og:description" itemprop="description" content="He gone" />
-<meta property="og:image" content="{{ asset("defaults/aitashan.png") }}">
+<meta property="og:image" content="https://my.profile/defaults/aitashan.png">
 <meta property="og:url" content="{{ route("articles.dummy") }}">
 <meta name="twitter:title" content="My Friend Aitashan Babu Bhaiyyan">
 <meta name="twitter:description" content="He gone">
-<meta name="twitter:image" content="{{ asset("defaults/aitashan.png") }}">
+<meta name="twitter:image" content="https://my.profile/defaults/aitashan.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" href="{{ asset("defaults/aitashan.png") }}" sizes="192x192" />
+<link rel="icon" type="image/png" href="https://my.profile/defaults/aitashan.png" sizes="192x192" />
 @endsection
 
 @section("content")
