@@ -53,6 +53,8 @@ class RouteServiceProvider extends ServiceProvider
 		
 		$this->mapTrackerRoutes();
 		
+		$this->mapArticlesRoutes();
+		
 	}
 	
 	/**
@@ -176,6 +178,21 @@ class RouteServiceProvider extends ServiceProvider
 		Route::middleware("web")
 			->namespace($this->namespace)
 			->group(base_path("routes/tracker.php"))
+		;
+		
+	}
+	
+	/**
+	 * Define the "articles" routes for the application.
+	 *
+	 * @return void
+	 */
+	protected function mapArticlesRoutes()
+	{
+		
+		Route::middleware("web")
+			->namespace($this->namespace)
+			->group(base_path("routes/articles.php"))
 		;
 		
 	}
