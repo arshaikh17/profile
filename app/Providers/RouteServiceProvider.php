@@ -55,6 +55,8 @@ class RouteServiceProvider extends ServiceProvider
 		
 		$this->mapArticlesRoutes();
 		
+		$this->mapInvestmentsRoutes();
+		
 	}
 	
 	/**
@@ -193,6 +195,21 @@ class RouteServiceProvider extends ServiceProvider
 		Route::middleware("web")
 			->namespace($this->namespace)
 			->group(base_path("routes/articles.php"))
+		;
+		
+	}
+	
+	/**
+	 * Define the "investments" routes for the application.
+	 *
+	 * @return void
+	 */
+	protected function mapInvestmentsRoutes()
+	{
+		
+		Route::middleware("web")
+			->namespace($this->namespace)
+			->group(base_path("routes/investments.php"))
 		;
 		
 	}
