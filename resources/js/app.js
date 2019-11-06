@@ -32,6 +32,10 @@ Vue.component("issue-show", require("./../views/tracker/modules/issues/_componen
 Vue.component("issue-form", require("./../views/tracker/modules/issues/_components/FormComponent.vue").default);
 Vue.component("module-index", require("./../views/tracker/modules/_components/IndexComponent.vue").default);
 
+/**
+ * Investments Components
+ */
+Vue.component("investments-index", require("./../views/investments/_components/IndexComponent.vue").default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
