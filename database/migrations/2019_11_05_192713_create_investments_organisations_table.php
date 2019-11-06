@@ -15,7 +15,7 @@ class CreateInvestmentsOrganisationsTable extends Migration
 	public function up()
 	{
 		
-		Schema::create("organisations", function (Blueprint $table) {
+		Schema::create("investments_organisations", function (Blueprint $table) {
 			$table->bigIncrements("id");
 			$table->string("name")->nullable(false);
 			$table->string("logo")->nullable();
@@ -33,7 +33,7 @@ class CreateInvestmentsOrganisationsTable extends Migration
 	public function down()
 	{
 		
-		Schema::dropIfExists("organisations");
+		Schema::dropIfExists("investments_organisations");
 		
 	}
 	

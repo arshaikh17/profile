@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-use App\Models\Investments\Return;
+use App\Models\Investments\Investment;
 
 class CreateInvestmentsInvestmentsTable extends Migration
 {
@@ -17,14 +17,14 @@ class CreateInvestmentsInvestmentsTable extends Migration
 	public function up()
 	{
 		
-		Schema::create("investments", function (Blueprint $table) {
+		Schema::create("investments_investments", function (Blueprint $table) {
 			$table->bigIncrements("id");
 			$table->string("amount")->nullable(false);
-			$table->integer("currency_id")->nullable(false)->index();
-			$table->integer("return_type")->nullable(false)->default(Return::TYPE_MONTHLY)->index();
-			$table->string("roi")->nullable(false)->default(0);
+			$table->integer("return_type")->nullable(false)->default(Investment::TYPE_MONTHLY)->index();
+			$table->string("roi_percentage")->nullable(false)->default(0);
 			$table->integer("type")->nullable(false);
 			$table->string("type_category")->nullable();
+			$table->integer("currency_id")->nullable(false)->index();
 			$table->integer("organisation_id")->index();
 			$table->timestamps();
 		});
@@ -39,7 +39,7 @@ class CreateInvestmentsInvestmentsTable extends Migration
 	public function down()
 	{
 		
-		Schema::dropIfExists("investments");
+		Schema::dropIfExists("investments_investments");
 		
 	}
 	

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInvestmentsReturnsTable extends Migration
+class CreateInvestmentsRoisTable extends Migration
 {
 	
 	/**
@@ -15,7 +15,7 @@ class CreateInvestmentsReturnsTable extends Migration
 	public function up()
 	{
 		
-		Schema::create("returns", function (Blueprint $table) {
+		Schema::create("investments_rois", function (Blueprint $table) {
 			$table->bigIncrements("id");
 			$table->string("amount")->nullable(false);
 			$table->dateTime("paid_at")->nullable(false);
@@ -33,7 +33,7 @@ class CreateInvestmentsReturnsTable extends Migration
 	public function down()
 	{
 		
-		Schema::dropIfExists("returns");
+		Schema::dropIfExists("investments_rois");
 		
 	}
 	
