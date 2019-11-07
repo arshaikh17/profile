@@ -24,6 +24,13 @@ class Organisation extends Model
 	];
 	
 	/**
+	 * Appends
+	 */
+	protected $appends					 =	[
+		"type",
+	];
+	
+	/**
 	 * Constants
 	 */
 	CONST TYPE_IT						 =	1;
@@ -50,6 +57,38 @@ class Organisation extends Model
 			self::TYPE_IT				 =>	"IT & Software",
 			self::TYPE_OTHERS			 =>	"Others",
 		];
+		
+	}
+	
+	/* =====================================================
+	 * 							ACCESSORS					
+	 * ===================================================*/
+	
+	/**
+	 * Returns type appended column
+	 * 
+	 * @return string
+	 */
+	public function getTypeAttribute()
+	{
+		
+		return self::getTypes()[$this->type_id] ?? "-";
+		
+	}
+	
+	/* =====================================================
+	 * 						RELATIONS						
+	 * ===================================================*/
+	
+	/**
+	 * Returns investments
+	 * 
+	 * @return App\Models\Investments\Investment[]
+	 */
+	public function investments()
+	{
+		
+		return $this->hasMany(Investment::class, "organisation_id", "id");
 		
 	}
 	

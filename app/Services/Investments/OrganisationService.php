@@ -33,7 +33,7 @@ class OrganisationService
 		
 		$logo							 =	$organisation->logo;
 		
-		if ($data["organisation_logo"] ?? false) {
+		if ($data["organisation_logo"] ?: false) {
 			
 			$file						 =	$data["organisation_logo"];
 			

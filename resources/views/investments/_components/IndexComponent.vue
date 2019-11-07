@@ -3,13 +3,19 @@
 		<h1>Investments</h1>
 		<div class="row">
 			<div class="col-12 flex mb-3">
-				<a href="#" class="btn btn-sm btn-primary" v-on:click.prevent="addOrganisation">Add Organisation</a>
-				<a href="#" class="btn btn-sm btn-primary">Add Organisation</a>
-				<a href="#" class="btn btn-sm btn-primary">Add Organisation</a>
+				<a href="#" class="btn btn-sm btn-primary" @click.prevent="organisationForm()">Add Organisation</a>
+				<a
+					href="#"
+					class="btn btn-sm btn-primary"
+					v-if="selected.organisation"
+				>
+					Add Investment
+				</a>
+				<a href="#" class="btn btn-sm btn-primary">Add ROI</a>
 			</div>
 			<div class="col-md-4">
 				<p class="display-5">Organisations</p>
-				<ul class="list-group">
+				<ul class="list-group organisations-list">
 					<li
 						class="list-group-item"
 						v-if="!organisations.length"
@@ -17,7 +23,7 @@
 						No organisations
 					</li>
 					<li
-						class="list-group-item"
+						:class="{'list-group-item': true, 'active': selected.organisation && selected.organisation.id == organisation.id}"
 						v-for="organisation in organisations"
 					>
 						<div class="row">
@@ -25,7 +31,16 @@
 								<img class="img-fluid" :src="showImage('organisation', organisation.logo)" />
 							</div>
 							<div class="col-8">
-								{{ organisation.name }}
+								<div class="flex">
+									<a
+										href="#"
+										@click.prevent="getOrganisationInvestments(organisation, createLink(organisationShowRoute, [organisation.id]))"
+									>
+										{{ organisation.name }}
+									</a>
+									<a href="#" class="float-right" @click.prevent="organisationForm(organisation)"><i class="fas fa-edit"></i></a>
+								</div>
+								<p><span class="badge badge-dark">{{ organisation.type }}</span></p>
 							</div>
 						</div>
 					</li>
@@ -86,7 +101,6 @@
 									class="form-control"
 									name="organisation_logo"
 									v-on:change="updateImage($event, 'organisation')"
-									required
 								/>
 								<img v-if="modals.organisation.form.fields.image" :src="modals.organisation.form.fields.image" class="img-fluid" width="200" />
 							</div>
@@ -170,6 +184,10 @@
 						}
 					},
 				},
+				selected				 :	{
+					organisation		 :	false,
+					investment			 :	false,
+				},
 				
 			};
 			
@@ -180,13 +198,14 @@
 			assetLink					 :	String,
 			organisationIndexRoute		 :	String,
 			organisationStoreRoute		 :	String,
+			organisationShowRoute		 :	String,
+			organisationUpdateRoute		 :	String,
 			
 		},
 		created() {
 			
 			this.modals.organisation.types					 =	JSON.parse(this.typesJson);
 			this.loadOrganisations();
-			console.log(this.assetLink)
 			
 		},
 		mounted() {
@@ -208,12 +227,12 @@
 					})
 				
 			},
-			addOrganisation() {
+			organisationForm(organisation = false) {
 				
-				this.modals.organisation.form.fields.name	 =	"";
-				this.modals.organisation.form.fields.logo	 =	false;
-				this.modals.organisation.form.fields.type_id =	null;
-				this.modals.organisation.form.action		 =	this.organisationStoreRoute;
+				this.modals.organisation.form.fields.name	 =	organisation ? organisation.name : "";
+				this.modals.organisation.form.fields.logo	 =	"";
+				this.modals.organisation.form.fields.type_id =	organisation ? organisation.type_id : null;
+				this.modals.organisation.form.action		 =	organisation ? this.createLink(this.organisationUpdateRoute, [organisation.id]) : this.organisationStoreRoute;
 				
 				$(this.modals.organisation.name).modal("show");
 				
@@ -239,8 +258,25 @@
 						this.modals.organisation.form.fields.logo				 =	false;
 						this.modals.organisation.form.fields.type_id			 =	null;
 						this.modals.organisation.form.action					 =	this.organisationStoreRoute;
-				
+						
+						this.selected.organisation			 =	false;
+						this.selected.investment			 =	false;
+						
 						$(this.modals.organisation.name).modal("hide");
+						
+					})
+				;
+				
+			},
+			getOrganisationInvestments(organisation, url) {
+				
+				this.selected.organisation					 =	organisation;
+				
+				axios
+					.get(url)
+					.then((response) => {
+						
+						this.investments =	response.data.investments;
 						
 					})
 				;
@@ -261,6 +297,22 @@
 			showImage(type, src) {
 				
 				return this.assetLink + "/" + src;
+				
+			},
+			createLink(link, ids = []) {
+				
+				var url					 =	"";
+				var idCount				 =	0;
+				
+				for (var i in ids) {
+					
+					--idCount;
+					
+					url					 +=	link.replace(idCount, ids[i]);
+					
+				}
+				
+				return url;
 				
 			}
 			

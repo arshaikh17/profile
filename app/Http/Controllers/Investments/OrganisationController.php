@@ -53,6 +53,27 @@ class OrganisationController extends Controller
 	}
 	
 	/**
+	 * Displays show view
+	 * 
+	 * @param Illuminate\Http\Request $request
+	 * @param App\Models\Investments\Organisation $organisation
+	 * 
+	 * @return json
+	 */
+	public function show(Request $request, Organisation $organisation)
+	{
+		
+		if ($request->ajax()) {
+			
+			return response()->json([
+				"investments"			 =>	$organisation->investments
+			], 200);
+			
+		}
+		
+	}
+	
+	/**
 	 * Stores organisation
 	 * 
 	 * @param Illuminate\Http\Request $request
@@ -63,6 +84,27 @@ class OrganisationController extends Controller
 	{
 		
 		$organisation					 =	$this->service->save(new Organisation, $request->toArray());
+		
+		if ($request->ajax()) {
+			
+			return response()->json(["organisation" => $organisation], 200);
+			
+		}
+		
+	}
+	
+	/**
+	 * Updates organisation
+	 * 
+	 * @param Illuminate\Http\Request $request
+	 * @param App\Models\Investments\Organisation $organisation
+	 * 
+	 * @return JSON
+	 */
+	public function update(Request $request, Organisation $organisation)
+	{
+		
+		$organisation					 =	$this->service->save($organisation, $request->toArray());
 		
 		if ($request->ajax()) {
 			

@@ -28,8 +28,23 @@ Route::group([
 	], function()
 	{
 		
-		Route::get("/index", "Investments\OrganisationController@index")->name("index");
+		Route::get("/", "Investments\OrganisationController@index")->name("index");
 		Route::post("/store", "Investments\OrganisationController@store")->name("store");
+		Route::post("/{organisation}", "Investments\OrganisationController@update")->name("update");
+		Route::get("/{organisation}/show", "Investments\OrganisationController@show")->name("show");
+		
+		/**
+		 * Investments/InvestmentController Routes
+		 */
+		Route::group([
+			"prefix"					 =>	"/{organisation}/investments",
+			"as"						 =>	"investments.",
+		], function()
+		{
+			
+			Route::post("/store", "Investments\InvestmentController@store")->name("store");
+			
+		});
 		
 	});
 	
