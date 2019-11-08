@@ -8,6 +8,7 @@
 					href="#"
 					class="btn btn-sm btn-primary"
 					v-if="selected.organisation"
+					@click.prevent="investmentForm()"
 				>
 					Add Investment
 				</a>
@@ -23,8 +24,10 @@
 						No organisations
 					</li>
 					<li
-						:class="{'list-group-item': true, 'active': selected.organisation && selected.organisation.id == organisation.id}"
+						:class="{'hover-link': true, 'list-group-item': true, 'active': selected.organisation && selected.organisation.id == organisation.id}"
 						v-for="organisation in organisations"
+						@click.prevent="getOrganisationInvestments(organisation, createLink(organisationInvestmentsRoute, [organisation.id]))"
+						
 					>
 						<div class="row">
 							<div class="col-4">
@@ -32,13 +35,10 @@
 							</div>
 							<div class="col-8">
 								<div class="flex">
-									<a
-										href="#"
-										@click.prevent="getOrganisationInvestments(organisation, createLink(organisationShowRoute, [organisation.id]))"
-									>
+									<span>
 										{{ organisation.name }}
-									</a>
-									<a href="#" class="float-right" @click.prevent="organisationForm(organisation)"><i class="fas fa-edit"></i></a>
+									</span>
+									<a href="#" class="float-right organisation-action" @click.prevent="organisationForm(organisation)"><i class="fas fa-edit"></i></a>
 								</div>
 								<p><span class="badge badge-dark">{{ organisation.type }}</span></p>
 							</div>
@@ -54,6 +54,21 @@
 						v-if="!investments.length"
 					>
 						No investments or select organisation
+					</li>
+					<li
+						:class="{'hover-link': true, 'list-group-item': true, 'active': selected.investment && selected.investment.id == investment.id}"
+						v-for="investment in investments"
+					>
+						<div class="flex">
+							<p class="text-20">Investment: {{ investment.currency }}{{ investment.amount }}</p>
+							<a href="#" class="float-right investment-action" @click.prevent="investmentForm(investment)"><i class="fas fa-edit"></i></a>
+						</div>
+						<div>
+							<span class="d-block">ROI Percentage: {{ investment.roi_percentage }}%</span>
+							<span class="d-block">ROI Return Type: {{ investment.return_type_name }}</span>
+							<span class="d-block">ROI Return Amount (approx): {{ investment.currency }}{{ investment.roi_return_amount }}</span>
+							<span class="d-block">Made On: {{ investment.created_at }}</span>
+						</div>
 					</li>
 				</ul>
 			</div>
@@ -133,10 +148,133 @@
 				</div>
 			</div>
 		</div>
+		<div class="modal" id="investmentModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Investments</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<form
+						method="POST"
+						:action="modals.investment.form.action"
+						v-on:submit.prevent="submitInvestmentForm"
+					>
+						<div class="modal-body">
+							<div class="form-group">
+								<label>Amount</label>
+								<input
+									type="text"
+									class="form-control"
+									name="amount"
+									placeholder="Enter amount"
+									v-model="modals.investment.form.fields.amount"
+									required
+								/>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Return Type</label>
+										<select
+											type="text"
+											class="form-control"
+											name="amount"
+											v-model="modals.investment.form.fields.return_type"
+											required
+										>
+											<option
+												v-for="(returnType, returnTypeIndex) in modals.investment.return_types"
+												:value="returnTypeIndex"
+											>
+												{{ returnType }}
+											</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>ROI Percentage</label>
+										<input
+											type="text"
+											class="form-control"
+											name="roi_percentage"
+											placeholder="Enter ROI percentage"
+											v-model="modals.investment.form.fields.roi_percentage"
+											required
+										/>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Investment Type</label>
+										<select
+											type="text"
+											class="form-control"
+											name="type"
+											v-model="modals.investment.form.fields.type"
+											required
+										>
+											<option
+												v-for="(investmentType, investmentTypeIndex) in modals.investment.types"
+												:value="investmentTypeIndex"
+											>
+												{{ investmentType }}
+											</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Type Category</label>
+										<input
+											type="text"
+											class="form-control"
+											name="type_category"
+											placeholder="Enter Type Category"
+											v-model="modals.investment.form.fields.type_category"
+											required
+										/>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Currency</label>
+								<select
+									type="text"
+									class="form-control"
+									name="currency_id"
+									v-model="modals.investment.form.fields.currency_id"
+									required
+								>
+									<option
+										v-for="(currency, currencyKey) in currencies"
+										:value="currencyKey"
+									>
+										{{ currency }}
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-sm btn-primary">Save</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 	
 </template>
 
+<style>
+	.list-group-item.active .organisation-action {
+		color: white !important;
+	}
+</style>
 <script>
 	export default {
 		data							 :	() => {
@@ -145,6 +283,7 @@
 				organisations			 :	[],
 				investments				 :	[],
 				rois					 :	[],
+				currencies				 :	[],
 				modals					 :	{
 					organisation		 :	{
 						name			 :	"#organisationModal",
@@ -171,7 +310,10 @@
 								currency_id					 :	"",
 								organisation_id				 :	"",
 							},
+							action		 :	"",
 						},
+						types			 :	[],
+						return_types	 :	[],
 					},
 					roi										 :	{
 						name								 :	"#roiModal",
@@ -196,15 +338,28 @@
 			
 			typesJson					 :	String,
 			assetLink					 :	String,
+			currenciesJson				 :	String,
+			investmentTypesJson			 :	String,
+			investmentReturnTypesJson	 :	String,
+			
 			organisationIndexRoute		 :	String,
 			organisationStoreRoute		 :	String,
 			organisationShowRoute		 :	String,
+			organisationInvestmentsRoute :	String,
 			organisationUpdateRoute		 :	String,
+			
+			organisationInvestmentsStoreRoute				 :	String,
+			organisationInvestmentsUpdateRoute				 :	String,
 			
 		},
 		created() {
 			
 			this.modals.organisation.types					 =	JSON.parse(this.typesJson);
+			this.modals.investment.types					 =	JSON.parse(this.investmentTypesJson);
+			this.modals.investment.return_types				 =	JSON.parse(this.investmentReturnTypesJson);
+			
+			this.currencies				 =	JSON.parse(this.currenciesJson);
+			
 			this.loadOrganisations();
 			
 		},
@@ -225,6 +380,7 @@
 						this.organisations					 =	response.data.organisations;
 						
 					})
+				;
 				
 			},
 			organisationForm(organisation = false) {
@@ -282,6 +438,44 @@
 				;
 				
 			},
+			investmentForm(investment = false) {
+				
+				this.modals.investment.form.fields.amount						 =	investment ? investment.amount : "";
+				this.modals.investment.form.fields.return_type					 =	investment ? investment.return_type : "";
+				this.modals.investment.form.fields.roi_percentage				 =	investment ? investment.roi_percentage : "";
+				this.modals.investment.form.fields.type							 =	investment ? investment.type : "";
+				this.modals.investment.form.fields.type_category				 =	investment ? investment.type_category : "";
+				this.modals.investment.form.fields.currency_id					 =	investment ? investment.currency_id : "";
+				this.modals.investment.form.fields.name							 =	investment ? investment.name : "";
+				this.modals.investment.form.action								 =	investment ? this.createLink(this.organisationInvestmentsUpdateRoute, [this.selected.organisation.id, investment.id]) : this.createLink(this.organisationInvestmentsStoreRoute, [this.selected.organisation.id]);
+				
+				$(this.modals.investment.name).modal("show");
+				
+			},
+			submitInvestmentForm() {
+				
+				axios
+					.post(this.modals.investment.form.action, this.modals.investment.form.fields)
+					.then((response) => {
+						
+						this.getOrganisationInvestments(this.selected.organisation, this.createLink(this.organisationInvestmentsRoute, [this.selected.organisation.id]));
+						
+						this.modals.investment.form.fields.amount				 =	"";
+						this.modals.investment.form.fields.return_type			 =	"";
+						this.modals.investment.form.fields.roi_percentage		 =	"";
+						this.modals.investment.form.fields.type					 =	"";
+						this.modals.investment.form.fields.type_category		 =	"";
+						this.modals.investment.form.fields.currency_id			 =	"";
+						this.modals.investment.form.action						 =	this.organisationInvestmentsStoreRoute;
+							
+						this.selected.investment			 =	false;
+						
+						$(this.modals.investment.name).modal("hide");
+						
+					})
+				;
+				
+			},
 			updateImage($event, type) {
 				
 				const file				 =	$event.target.files[0];
@@ -301,18 +495,16 @@
 			},
 			createLink(link, ids = []) {
 				
-				var url					 =	"";
 				var idCount				 =	0;
 				
 				for (var i in ids) {
 					
 					--idCount;
-					
-					url					 +=	link.replace(idCount, ids[i]);
+					link					 =	link.replace(idCount, ids[i]);
 					
 				}
 				
-				return url;
+				return link;
 				
 			}
 			

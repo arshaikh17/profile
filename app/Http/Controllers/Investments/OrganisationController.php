@@ -66,7 +66,7 @@ class OrganisationController extends Controller
 		if ($request->ajax()) {
 			
 			return response()->json([
-				"investments"			 =>	$organisation->investments
+				"organisation"			 =>	$organisation
 			], 200);
 			
 		}
@@ -109,6 +109,27 @@ class OrganisationController extends Controller
 		if ($request->ajax()) {
 			
 			return response()->json(["organisation" => $organisation], 200);
+			
+		}
+		
+	}
+	
+	/**
+	 * Displays investments view
+	 * 
+	 * @param Illuminate\Http\Request $request
+	 * @param App\Models\Investments\Organisation $organisation
+	 * 
+	 * @return json
+	 */
+	public function investments(Request $request, Organisation $organisation)
+	{
+		
+		if ($request->ajax()) {
+			
+			return response()->json([
+				"investments"			 =>	$organisation->investments
+			], 200);
 			
 		}
 		

@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Investments\{
-	Organisation
+	Organisation,
+	Investment
 };
 
 class IndexController extends Controller
@@ -34,8 +35,11 @@ class IndexController extends Controller
 	{
 		
 		$types							 =	Organisation::getTypes();
+		$investmentTypes				 =	Investment::getTypes();
+		$investmentReturnTypes			 =	Investment::getReturnTypes();
+		$currencies						 =	Investment::getCurrencies();
 		
-		return view(self::VIEW_PATH . "index", compact("types"));
+		return view(self::VIEW_PATH . "index", compact("types", "investmentTypes", "investmentReturnTypes", "currencies"));
 		
 	}
 	
