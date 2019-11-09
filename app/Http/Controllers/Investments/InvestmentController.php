@@ -90,7 +90,7 @@ class InvestmentController extends Controller
 	public function store(Request $request, Organisation $organisation)
 	{
 		
-		$investment					 =	$this->service->save(new Investment, array_merge($request->toArray(), ["organisation_id" => $organisation->id]));
+		$investment						 =	$this->service->save(new Investment, array_merge($request->toArray(), ["organisation_id" => $organisation->id]));
 		
 		if ($request->ajax()) {
 			
@@ -112,7 +112,7 @@ class InvestmentController extends Controller
 	public function update(Request $request, Organisation $organisation, Investment $investment)
 	{
 		
-		$investment					 =	$this->service->save($investment, array_merge($request->toArray(), ["organisation_id" => $organisation->id]));
+		$investment						 =	$this->service->save($investment, array_merge($request->toArray(), ["organisation_id" => $organisation->id]));
 		
 		if ($request->ajax()) {
 			
