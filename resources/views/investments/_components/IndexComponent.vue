@@ -488,6 +488,8 @@
 						
 						this.selected.organisation			 =	false;
 						this.selected.investment			 =	false;
+						this.investments					 =	[];
+						this.rois							 =	[];
 						
 						$(this.modals.organisation.name).modal("hide");
 						
