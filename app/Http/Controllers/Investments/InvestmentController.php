@@ -18,7 +18,7 @@ class InvestmentController extends Controller
 	/**
 	 * Constants
 	 */
-	CONST VIEW_PATH						 =	"investments.orginsations.";
+	CONST VIEW_PATH						 =	"investments.organisations.investments";
 	
 	/**
 	 * Scoped variables
@@ -121,5 +121,26 @@ class InvestmentController extends Controller
 		}
 		
 	}
+	
+	/**
+	 * Returns ROis
+	 * 
+	 * @param Illuminate\Http\Request $request
+	 * @param App\Models\Investments\Organisation $organisation
+	 * @param App\Models\Investments\Investment $investment
+	 * 
+	 * @return JSON
+	 */
+	public function rois(Request $request, Organisation $organisation, Investment $investment)
+	{
+		
+		if ($request->ajax()) {
+			
+			return response()->json(["rois" => $investment->rois], 200);
+			
+		}
+		
+	}
+	
 	
 }

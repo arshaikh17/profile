@@ -156,4 +156,20 @@ class Investment extends Model
 		
 	}
 	
+	/* =====================================================
+	 * 						RELATIONS						
+	 * ===================================================*/
+	
+	/**
+	 * Returns ROIs
+	 * 
+	 * @return App\Models\Investments\ROI[]
+	 */
+	public function rois()
+	{
+		
+		return $this->hasMany(ROI::class, "investment_id", "id");
+		
+	}
+	
 }

@@ -12,7 +12,14 @@
 				>
 					Add Investment
 				</a>
-				<a href="#" class="btn btn-sm btn-primary">Add ROI</a>
+				<a
+					href="#"
+					class="btn btn-sm btn-primary"
+					v-if="selected.organisation && selected.investment"
+					@click.prevent="roiForm()"
+				>
+					Add ROI
+				</a>
 			</div>
 			<div class="col-md-4">
 				<p class="display-5">Organisations</p>
@@ -58,6 +65,7 @@
 					<li
 						:class="{'hover-link': true, 'list-group-item': true, 'active': selected.investment && selected.investment.id == investment.id}"
 						v-for="investment in investments"
+						@click.prevent="getInvestmentsReturns(investment, createLink(organisationInvestmentsReturnsRoute, [selected.organisation.id, investment.id]))"
 					>
 						<div class="flex">
 							<p class="text-20">Investment: {{ investment.currency }}{{ investment.amount }}</p>
@@ -80,6 +88,18 @@
 						v-if="!rois.length"
 					>
 						No rois or select investment
+					</li>
+					<li
+						class="hover-link list-group-item"
+						v-for="roi in rois"
+					>
+						<div class="flex">
+							<p class="text-20">ROI: {{ selected.investment.currency }}{{ roi.amount }}</p>
+							<a href="#" class="float-right roi-action" @click.prevent="roiForm(roi)"><i class="fas fa-edit"></i></a>
+						</div>
+						<div>
+							<span class="d-block">Paid On: {{ roi.paid_at }}</span>
+						</div>
 					</li>
 				</ul>
 			</div>
@@ -266,6 +286,47 @@
 				</div>
 			</div>
 		</div>
+		<div class="modal" id="roiModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">ROI</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<form
+						method="POST"
+						:action="modals.roi.form.action"
+						v-on:submit.prevent="submitROIForm"
+					>
+						<div class="modal-body">
+							<div class="form-group">
+								<label>Amount</label>
+								<input
+									type="text"
+									class="form-control"
+									name="amount"
+									placeholder="Enter ROI amount"
+									v-model="modals.roi.form.fields.amount"
+									required
+								/>
+							</div>
+							<div class="form-group">
+								<label>Paid At</label>
+								<datetime
+									format="YYYY-MM-DD"
+									name="date"
+									v-model="modals.roi.form.fields.paid_at"
+								></datetime>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-sm btn-primary">Save</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 	
 </template>
@@ -274,8 +335,13 @@
 	.list-group-item.active .organisation-action {
 		color: white !important;
 	}
+	.list-group-item.active .investment-action {
+		color: white !important;
+	}
 </style>
 <script>
+	import datetime from "vuejs-datetimepicker";
+	
 	export default {
 		data							 :	() => {
 			
@@ -308,7 +374,6 @@
 								type						 :	"",
 								type_category				 :	"",
 								currency_id					 :	"",
-								organisation_id				 :	"",
 							},
 							action		 :	"",
 						},
@@ -321,7 +386,6 @@
 							fields							 :	{
 								amount						 :	"",
 								paid_at						 :	"",
-								investment_id				 :	"",
 							},
 						}
 					},
@@ -350,7 +414,14 @@
 			
 			organisationInvestmentsStoreRoute				 :	String,
 			organisationInvestmentsUpdateRoute				 :	String,
+			organisationInvestmentsReturnsRoute				 :	String,
 			
+			organisationInvestmentsRoisStoreRoute			 :	String,
+			organisationInvestmentsRoisUpdateRoute			 :	String,
+			
+		},
+		components						 :	{
+			datetime
 		},
 		created() {
 			
@@ -427,6 +498,7 @@
 			getOrganisationInvestments(organisation, url) {
 				
 				this.selected.organisation					 =	organisation;
+				this.investments		 =	[];
 				
 				axios
 					.get(url)
@@ -471,6 +543,50 @@
 						this.selected.investment			 =	false;
 						
 						$(this.modals.investment.name).modal("hide");
+						
+					})
+				;
+				
+			},
+			getInvestmentsReturns(investment, url) {
+				
+				this.selected.investment =	investment;
+				this.rois				 =	[];
+				
+				axios
+					.get(url)
+					.then((response) => {
+						
+						this.rois		 =	response.data.rois;
+						
+					})
+				;
+				
+			},
+			roiForm(roi = false) {
+				
+				this.modals.roi.form.fields.amount			 =	roi ? roi.amount : "";
+				this.modals.roi.form.fields.paid_at			 =	roi ? roi.paid_at : "";
+				this.modals.roi.form.action					 =	roi
+																	?	this.createLink(this.organisationInvestmentsRoisUpdateRoute, [this.selected.organisation.id, this.selected.investment.id, roi.id])
+																	:	this.createLink(this.organisationInvestmentsRoisStoreRoute, [this.selected.organisation.id, this.selected.investment.id])
+																;
+				console.log(this.modals.roi.form.action);
+				$(this.modals.roi.name).modal("show");
+				
+			},
+			submitROIForm() {
+				
+				axios
+					.post(this.modals.roi.form.action, this.modals.roi.form.fields)
+					.then((response) => {
+						
+						this.getInvestmentsReturns(this.selected.investment, this.createLink(this.organisationInvestmentsReturnsRoute, [this.selected.organisation.id, this.selected.investment.id]));
+						
+						this.modals.roi.form.fields.amount				 =	"";
+						this.modals.roi.form.fields.paid_at				 =	"";
+						
+						$(this.modals.roi.name).modal("hide");
 						
 					})
 				;

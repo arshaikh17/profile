@@ -46,6 +46,21 @@ Route::group([
 			Route::post("/store", "Investments\InvestmentController@store")->name("store");
 			Route::post("/{investment}", "Investments\InvestmentController@update")->name("update");
 			Route::get("/{investment}/show", "Investments\InvestmentController@show")->name("show");
+			Route::get("/{investment}/rois", "Investments\InvestmentController@rois")->name("rois");
+			
+			/**
+			 * Investments/ROIController Routes
+			 */
+			Route::group([
+				"prefix"					 =>	"/{investment}/rois",
+				"as"						 =>	"rois.",
+			], function()
+			{
+				
+				Route::post("/store", "Investments\ROIController@store")->name("store");
+				Route::post("/{roi}", "Investments\ROIController@update")->name("update");
+				
+			});
 			
 		});
 		
