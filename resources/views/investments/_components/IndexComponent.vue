@@ -498,7 +498,9 @@
 			getOrganisationInvestments(organisation, url) {
 				
 				this.selected.organisation					 =	organisation;
+				this.selected.investment =	false;
 				this.investments		 =	[];
+				this.rois				 =	[];
 				
 				axios
 					.get(url)
@@ -571,7 +573,7 @@
 																	?	this.createLink(this.organisationInvestmentsRoisUpdateRoute, [this.selected.organisation.id, this.selected.investment.id, roi.id])
 																	:	this.createLink(this.organisationInvestmentsRoisStoreRoute, [this.selected.organisation.id, this.selected.investment.id])
 																;
-				console.log(this.modals.roi.form.action);
+				
 				$(this.modals.roi.name).modal("show");
 				
 			},
