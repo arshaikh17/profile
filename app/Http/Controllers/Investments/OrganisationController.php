@@ -71,6 +71,8 @@ class OrganisationController extends Controller
 			
 		}
 		
+		return view(self::VIEW_PATH . "show", compact("organisation"));
+		
 	}
 	
 	/**

@@ -46,6 +46,7 @@
 										{{ organisation.name }}
 									</span>
 									<a href="#" class="float-right organisation-action" @click.prevent="organisationForm(organisation)"><i class="fas fa-edit"></i></a>
+									<a href="#" class="float-right organisation-action" @click.prevent="redirect(createLink(organisationShowRoute, [organisation.id]))"><i class="fas fa-eye"></i></a>
 								</div>
 								<p><span class="badge badge-dark">{{ organisation.type }}</span></p>
 							</div>
@@ -587,8 +588,8 @@
 						
 						this.getInvestmentsReturns(this.selected.investment, this.createLink(this.organisationInvestmentsReturnsRoute, [this.selected.organisation.id, this.selected.investment.id]));
 						
-						this.modals.roi.form.fields.amount				 =	"";
-						this.modals.roi.form.fields.paid_at				 =	"";
+						this.modals.roi.form.fields.amount	 =	"";
+						this.modals.roi.form.fields.paid_at	 =	"";
 						
 						$(this.modals.roi.name).modal("hide");
 						
@@ -625,6 +626,11 @@
 				}
 				
 				return link;
+				
+			},
+			redirect(url) {
+				
+				window.location.href	 =	url;
 				
 			}
 			
