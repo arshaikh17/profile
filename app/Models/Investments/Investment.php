@@ -34,7 +34,8 @@ class Investment extends Model
 		"type",
 		"return_type",
 		"currency",
-		"roi_return_amount",
+		"roi_amount",
+		"total_roi_amount"
 	];
 	
 	/**
@@ -149,10 +150,22 @@ class Investment extends Model
 	 * 
 	 * @return String
 	 */
-	public function getRoiReturnAmountAttribute()
+	public function getRoiAmountAttribute()
 	{
 		
 		return ($this->roi_percentage * $this->amount) / 100;
+		
+	}
+	
+	/**
+	 * Return total_returns column
+	 * 
+	 * @return Double
+	 */
+	public function getTotalRoiAmountAttribute()
+	{
+		
+		return $this->rois()->sum("amount");
 		
 	}
 	

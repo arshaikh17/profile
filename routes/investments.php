@@ -31,7 +31,7 @@ Route::group([
 		Route::get("/", "Investments\OrganisationController@index")->name("index");
 		Route::post("/store", "Investments\OrganisationController@store")->name("store");
 		Route::post("/{organisation}", "Investments\OrganisationController@update")->name("update");
-		Route::get("/{organisation}/show", "Investments\OrganisationController@show")->name("show");
+		Route::get("/{organisation}", "Investments\OrganisationController@show")->name("show");
 		Route::get("/{organisation}/investments", "Investments\OrganisationController@investments")->name("investments");
 		
 		/**
@@ -45,7 +45,7 @@ Route::group([
 			
 			Route::post("/store", "Investments\InvestmentController@store")->name("store");
 			Route::post("/{investment}", "Investments\InvestmentController@update")->name("update");
-			Route::get("/{investment}/show", "Investments\InvestmentController@show")->name("show");
+			Route::get("/{investment}", "Investments\InvestmentController@show")->name("show");
 			Route::get("/{investment}/rois", "Investments\InvestmentController@rois")->name("rois");
 			
 			/**

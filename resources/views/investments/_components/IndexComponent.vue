@@ -75,7 +75,7 @@
 						<div>
 							<span class="d-block">ROI Percentage: {{ investment.roi_percentage }}%</span>
 							<span class="d-block">ROI Return Type: {{ investment.return_type }}</span>
-							<span class="d-block">ROI Return Amount (approx): {{ investment.currency }}{{ investment.roi_return_amount }}</span>
+							<span class="d-block">ROI Return Amount (approx): {{ investment.currency }}{{ investment.roi_amount }}</span>
 							<span class="d-block">Made On: {{ investment.created_at }}</span>
 						</div>
 					</li>

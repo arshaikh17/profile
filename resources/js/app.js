@@ -36,6 +36,7 @@ Vue.component("module-index", require("./../views/tracker/modules/_components/In
  * Investments Components
  */
 Vue.component("investments-index", require("./../views/investments/_components/IndexComponent.vue").default);
+Vue.component("investments-organisations-show", require("./../views/investments/organisations/_components/ShowComponent.vue").default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

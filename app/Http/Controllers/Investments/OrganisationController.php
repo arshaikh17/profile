@@ -15,7 +15,7 @@ class OrganisationController extends Controller
 	/**
 	 * Constants
 	 */
-	CONST VIEW_PATH						 =	"investments.orginsations.";
+	CONST VIEW_PATH						 =	"investments.organisations.";
 	
 	/**
 	 * Scoped variables
@@ -62,6 +62,12 @@ class OrganisationController extends Controller
 	 */
 	public function show(Request $request, Organisation $organisation)
 	{
+		
+		
+		$organisation					 =	$organisation
+			->with("investments")
+			->first()
+		;
 		
 		if ($request->ajax()) {
 			

@@ -28,6 +28,7 @@ class Organisation extends Model
 	 */
 	protected $appends					 =	[
 		"type",
+		"total_rois"
 	];
 	
 	/**
@@ -73,6 +74,22 @@ class Organisation extends Model
 	{
 		
 		return self::getTypes()[$this->type_id] ?? "-";
+		
+	}
+	
+	/**
+	 * Return total_rois appended column
+	 * 
+	 * @return Int
+	 */
+	public function getTotalRoisAttribute()
+	{
+		
+		$totalRois						 =	0;
+		
+		foreach ($this->investments as $investment) $totalRois					 +=	$investment->rois->count();
+		
+		return $totalRois;
 		
 	}
 	

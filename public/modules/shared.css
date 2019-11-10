@@ -6,7 +6,7 @@ a:hover {text-decoration: none !important;}
 /*======================================
  * ITEM GRID
 ======================================*/
-h3{margin:1em;text-transform:capitalize;font-size:1.7em;}
+h3{text-transform:capitalize;font-size:1.7em;}
 .item-grid{font-family:Roboto,sans-serif;text-align:center;position:relative;z-index:1;background-color: white;border: 0.5px solid #607D8B;margin-bottom: 10px;}
 .item-grid:before{content:"";height:81%;width:100%;background:#fff;opacity:0;position:absolute;top:0;left:0;z-index:-1;transition:all .5s ease 0s}
 .item-grid:hover:before{opacity:1;height:100%}
@@ -131,6 +131,12 @@ h3{margin:1em;text-transform:capitalize;font-size:1.7em;}
 /*======================================
  * BACKGROUNDS
 ======================================*/
+.bg-light-grey {
+	background-color: #ECEFF1;
+}
+.bg-light-blue-grey {
+	background-color: #CFD8DC;
+}
 .bg-orange {
 	background-color: #F6993F;
 }

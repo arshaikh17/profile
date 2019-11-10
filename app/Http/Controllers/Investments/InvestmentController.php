@@ -134,9 +134,11 @@ class InvestmentController extends Controller
 	public function rois(Request $request, Organisation $organisation, Investment $investment)
 	{
 		
+		$rois							 =	$investment->rois;
+		
 		if ($request->ajax()) {
 			
-			return response()->json(["rois" => $investment->rois], 200);
+			return response()->json(["rois" => $rois], 200);
 			
 		}
 		
