@@ -74,7 +74,7 @@
 						</div>
 						<div>
 							<span class="d-block">ROI Percentage: {{ investment.roi_percentage }}%</span>
-							<span class="d-block">ROI Return Type: {{ investment.return_type_name }}</span>
+							<span class="d-block">ROI Return Type: {{ investment.return_type }}</span>
 							<span class="d-block">ROI Return Amount (approx): {{ investment.currency }}{{ investment.roi_return_amount }}</span>
 							<span class="d-block">Made On: {{ investment.created_at }}</span>
 						</div>
@@ -200,8 +200,8 @@
 										<select
 											type="text"
 											class="form-control"
-											name="amount"
-											v-model="modals.investment.form.fields.return_type"
+											name="return_type_id"
+											v-model="modals.investment.form.fields.return_type_id"
 											required
 										>
 											<option
@@ -234,8 +234,8 @@
 										<select
 											type="text"
 											class="form-control"
-											name="type"
-											v-model="modals.investment.form.fields.type"
+											name="type_id"
+											v-model="modals.investment.form.fields.type_id"
 											required
 										>
 											<option
@@ -370,9 +370,9 @@
 						form								 :	{
 							fields							 :	{
 								amount						 :	"",
-								return_type					 :	"",
+								return_type_id				 :	"",
 								roi_percentage				 :	"",
-								type						 :	"",
+								type_id						 :	"",
 								type_category				 :	"",
 								currency_id					 :	"",
 							},
@@ -518,9 +518,9 @@
 			investmentForm(investment = false) {
 				
 				this.modals.investment.form.fields.amount						 =	investment ? investment.amount : "";
-				this.modals.investment.form.fields.return_type					 =	investment ? investment.return_type : "";
+				this.modals.investment.form.fields.return_type_id				 =	investment ? investment.return_type_id : "";
 				this.modals.investment.form.fields.roi_percentage				 =	investment ? investment.roi_percentage : "";
-				this.modals.investment.form.fields.type							 =	investment ? investment.type : "";
+				this.modals.investment.form.fields.type_id						 =	investment ? investment.type_id : "";
 				this.modals.investment.form.fields.type_category				 =	investment ? investment.type_category : "";
 				this.modals.investment.form.fields.currency_id					 =	investment ? investment.currency_id : "";
 				this.modals.investment.form.fields.name							 =	investment ? investment.name : "";
@@ -538,9 +538,9 @@
 						this.getOrganisationInvestments(this.selected.organisation, this.createLink(this.organisationInvestmentsRoute, [this.selected.organisation.id]));
 						
 						this.modals.investment.form.fields.amount				 =	"";
-						this.modals.investment.form.fields.return_type			 =	"";
+						this.modals.investment.form.fields.return_type_id		 =	"";
 						this.modals.investment.form.fields.roi_percentage		 =	"";
-						this.modals.investment.form.fields.type					 =	"";
+						this.modals.investment.form.fields.type_id				 =	"";
 						this.modals.investment.form.fields.type_category		 =	"";
 						this.modals.investment.form.fields.currency_id			 =	"";
 						this.modals.investment.form.action						 =	this.organisationInvestmentsStoreRoute;

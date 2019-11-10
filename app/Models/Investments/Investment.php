@@ -19,10 +19,10 @@ class Investment extends Model
 	 */
 	protected $fillable					 =	[
 		"amount",
-		"return_type",
 		"roi_percentage",
-		"type",
+		"type_id",
 		"type_category",
+		"return_type_id",
 		"currency_id",
 		"organisation_id",
 	];
@@ -31,8 +31,8 @@ class Investment extends Model
 	 * Appends
 	 */
 	protected $appends					 =	[
-		"type_name",
-		"return_type_name",
+		"type",
+		"return_type",
 		"currency",
 		"roi_return_amount",
 	];
@@ -113,10 +113,10 @@ class Investment extends Model
 	 * 
 	 * @return String
 	 */
-	public function getTypeNameAttribute()
+	public function getTypeAttribute()
 	{
 		
-		return self::getTypes()[$this->type] ?? "-";
+		return self::getTypes()[$this->type_id] ?? "-";
 		
 	}
 	
@@ -125,10 +125,10 @@ class Investment extends Model
 	 * 
 	 * @return String
 	 */
-	public function getReturnTypeNameAttribute()
+	public function getReturnTypeAttribute()
 	{
 		
-		return self::getReturnTypes()[$this->return_type] ?? "-";
+		return self::getReturnTypes()[$this->return_type_id] ?? "-";
 		
 	}
 	
