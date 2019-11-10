@@ -229,3 +229,11 @@ h3{text-transform:capitalize;font-size:1.7em;}
 	padding-left: 12px;
 	padding-right: 12px;
 }
+
+/*======================================
+ * BORDERS
+======================================*/
+
+.border-white {
+	border-color: white;
+}
