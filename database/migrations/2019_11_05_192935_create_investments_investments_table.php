@@ -20,7 +20,7 @@ class CreateInvestmentsInvestmentsTable extends Migration
 		Schema::create("investments_investments", function (Blueprint $table) {
 			$table->bigIncrements("id");
 			$table->string("amount")->nullable(false);
-			$table->integer("return_type")->nullable(false)->default(Investment::TYPE_MONTHLY)->index();
+			$table->integer("return_type")->nullable(false)->default(Investment::RETURN_TYPE_MONTHLY)->index();
 			$table->string("roi_percentage")->nullable(false)->default(0);
 			$table->integer("type")->nullable(false);
 			$table->string("type_category")->nullable();
