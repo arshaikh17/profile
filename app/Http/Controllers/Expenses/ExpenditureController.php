@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Expenses\ExpensesController as Controller;
 
 use App\Models\Expenses\{
-	Expenditure,
+	Expenditure
 };
 
 class ExpenditureController extends Controller
