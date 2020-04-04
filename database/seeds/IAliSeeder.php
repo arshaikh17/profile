@@ -18,7 +18,7 @@ class IAliSeeder extends Seeder
 		$details						 =	[
 			"name"						 =>	"Ali Rasheed",
 			"email"						 =>	"arshaikh_17@hotmail.com",
-			"password"					 =>	bcrypt(time())
+			"password"					 =>	bcrypt("Abc123")
 		];
 		
 		User::updateOrCreate([
