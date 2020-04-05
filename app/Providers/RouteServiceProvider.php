@@ -57,8 +57,6 @@ class RouteServiceProvider extends ServiceProvider
 		
 		$this->mapInvestmentsRoutes();
 		
-		$this->mapCollectiblesRoutes();
-		
 	}
 	
 	/**
@@ -212,21 +210,6 @@ class RouteServiceProvider extends ServiceProvider
 		Route::middleware("web")
 			->namespace($this->namespace)
 			->group(base_path("routes/investments.php"))
-		;
-		
-	}
-	
-	/**
-	 * Define the "collectibles" routes for the application.
-	 *
-	 * @return void
-	 */
-	protected function mapCollectiblesRoutes()
-	{
-		
-		Route::middleware("web")
-			->namespace($this->namespace)
-			->group(base_path("routes/collectibles.php"))
 		;
 		
 	}

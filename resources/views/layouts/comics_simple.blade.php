@@ -12,8 +12,6 @@
 	@include("partials.fonts.nunito")
 	@include("partials.libraries.nprogress")
 	@include("partials.libraries.masonry")
-	<link rel="stylesheet" type="text/css" href="{{ asset('modules/comics/css/app.css?v=' . time()) }}">
-	<script src="{{ asset('modules/comics/js/app.js?v=' . time()) }}"></script>
 	@yield("scripts")
 	@include("partials.libraries.shared")
 </head>
@@ -73,11 +71,12 @@
 					"message"					 =>	$errors->first()
 				])
 			@endif
-			<div id="main-content" class="container shadow">
+			<div id="main-content">
 				@yield("content")
 			</div>
 		</main>
 	</div>
 </body>
 @yield("js")
+@yield("css")
 </html>

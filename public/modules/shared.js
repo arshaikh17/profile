@@ -10,6 +10,7 @@ $(document).ready(function () {
 	resetForm();
 	initialiseDataTables();
 	renderCharts();
+	initialisePopover();
 	
 });
 
@@ -135,7 +136,7 @@ function toggleDOM() {
 function initialiseMasonry() {
 	
 	$(".masonry-grid").each(function (index, grid) {
-	
+		
 		$($(this).data("masonry-parent")).masonry({
 			itemSelector				 :	$(this).data("masonry-child"),
 		});
@@ -335,4 +336,11 @@ function renderCharts() {
 		
 	});
 	
+}
+
+/**
+ * Bootstrap 4 popover initialisation
+ */
+function initialisePopover() {
+	$('[data-toggle="popover"]').popover();
 }

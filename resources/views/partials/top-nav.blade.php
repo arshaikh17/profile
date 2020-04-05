@@ -10,6 +10,7 @@
 			<!-- Left Side Of Navbar -->
 			<ul class="navbar-nav mr-auto">
 				@forelse ($links as $link)
+					@if (isset($link["auth"]) && $link["auth"] && !Auth::user()) @continue; @endif
 					<li class="nav-item">
 						<a
 							href="{{ $link['route'] }}"

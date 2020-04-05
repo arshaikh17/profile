@@ -118,4 +118,16 @@ Route::group([
 		
 	});
 	
+	/**
+	 * Comics/CollectibleController Routes
+	 */
+	Route::group([
+		"prefix"							 =>	"/collectibles",
+		"as"								 =>	"collectibles."
+	], function()
+	{
+		
+		Route::get("/", "Comics\CollectibleController@index")->name("index");
+	});
+	
 });

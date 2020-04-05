@@ -39,9 +39,9 @@ Vue.component("investments-index", require("./../views/investments/_components/I
 Vue.component("investments-organisations-show", require("./../views/investments/organisations/_components/ShowComponent.vue").default);
 
 /**
- * Collectibles Components
+ * Comcis Components
  */
-Vue.component("collectibles-index", require("./../views/collectibles/_components/IndexComponent.vue").default);
+Vue.component("comics-collectibles-index", require("./../views/comics/collectibles/_components/IndexComponent.vue").default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
