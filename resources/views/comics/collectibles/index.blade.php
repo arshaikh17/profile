@@ -39,25 +39,28 @@
 	<h1>My Collectibles</h1>
 	
 	@forelse ($collectibles as $collectibleCollectionKey => $collectibleCollections)
-	<div class="mt-2">
-		<h3>{{ $collectibleCollectionKey }}</h3>
-		<div
-			class="collectible-layouts masonry-grid"
-			data-masonry-parent=".collectible-layout"
-			data-masonry-child=".collectible"
-		>
-			<div class="collectible-layout" id="collectibleLayout">
-				@forelse ($collectibleCollections as $collectible)
-					<div
-						class="collectible"
-					>
-						<img class="img-fluid" src="{{ $collectible->image }}" />
-					</div>
-				@empty
-				@endforelse
+	
+		@if (!$collectibleCollections->count()) @continue @endif
+		
+		<div class="mt-2">
+			<h3>{{ $collectibleCollectionKey }}</h3>
+			<div
+				class="collectible-layouts masonry-grid"
+				data-masonry-parent=".collectible-layout"
+				data-masonry-child=".collectible"
+			>
+				<div class="collectible-layout" id="collectibleLayout">
+					@forelse ($collectibleCollections as $collectible)
+						<div
+							class="collectible"
+						>
+							<img class="img-fluid" src="{{ $collectible->image }}" />
+						</div>
+					@empty
+					@endforelse
+				</div>
 			</div>
 		</div>
-	</div>
 	@empty
 	@endforelse
 </section>
