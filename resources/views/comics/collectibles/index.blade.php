@@ -33,23 +33,41 @@
 </style>
 @endsection
 
-@section("content")
+@section("js")
+<script>
+	
+</script>
+@endsection
 
+@section("content")
+<div id="filterCollectibles" class="fixed-bottom">
+	<div class="btn-group">
+		<button class="btn btn-dark dropdown-toggle" data-toggle="dropdown">Filter</button>
+		<div class="dropdown-menu">
+			@forelse ($characters as $character)
+				<a class="dropdown-item" href="#">{{ $character->name }}</a>
+			@empty
+			@endforelse
+		</div>
+	</div>
+</div>
+	
 <section class="container-fluid">
+	
 	<h1>My Collectibles</h1>
 	
 	@forelse ($collectibles as $collectibleCollectionKey => $collectibleCollections)
-	
+		
 		@if (!$collectibleCollections->count()) @continue @endif
 		
-		<div class="mt-2">
+		<div class="mt-2" id="collectible-layout-{{ str_replace(" ", "-", strtolower($collectibleCollectionKey)) }}">
 			<h3>{{ $collectibleCollectionKey }}</h3>
 			<div
 				class="collectible-layouts masonry-grid"
 				data-masonry-parent=".collectible-layout"
 				data-masonry-child=".collectible"
 			>
-				<div class="collectible-layout" id="collectibleLayout">
+				<div class="collectible-layout">
 					@forelse ($collectibleCollections as $collectible)
 						<div
 							class="collectible"
