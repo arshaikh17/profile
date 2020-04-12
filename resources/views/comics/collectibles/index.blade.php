@@ -35,17 +35,46 @@
 
 @section("js")
 <script>
+$(document).ready(function() {
 	
+	$("body").on("click", ".filter-by-character", function (e) {
+		
+		e.preventDefault();
+		
+		var id							 =	$(this).data("id");
+		$(".collectible").hide();
+		$(".collectible-character-" + id).show();
+		initialiseMasonry();
+		
+	});
+	
+	$("body").on("click", "#resetFilters", function (e) {
+		
+		e.preventDefault();
+		
+		$(".collectibles").show();
+		initialiseMasonry();
+		
+	});
+	
+});
 </script>
 @endsection
 
 @section("content")
 <div id="filterCollectibles" class="fixed-bottom">
 	<div class="btn-group">
-		<button class="btn btn-dark dropdown-toggle" data-toggle="dropdown">Filter</button>
+		<button class="btn btn-dark" id="resetFilters">All</button>
+		<button class="btn btn-dark dropdown-toggle" data-toggle="dropdown">Characters</button>
 		<div class="dropdown-menu">
 			@forelse ($characters as $character)
-				<a class="dropdown-item" href="#">{{ $character->name }}</a>
+				<a class="dropdown-item filter-by-character" href="#" data-id="{{ $character->id }}">
+					@if ($character->symbol)
+						<img src="{{ asset("uploads/comics/characters/" . $character->symbol) }}" class="img-fluid" width="150" />
+					@else
+						{{ $character->name }}
+					@endif
+				</a>
 			@empty
 			@endforelse
 		</div>
@@ -70,7 +99,7 @@
 				<div class="collectible-layout">
 					@forelse ($collectibleCollections as $collectible)
 						<div
-							class="collectible"
+							class="collectible collectible-character-{{ $collectible->character->id ?? "none" }}"
 						>
 							<img class="img-fluid" src="{{ $collectible->image }}" />
 						</div>

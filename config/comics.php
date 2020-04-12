@@ -25,37 +25,37 @@ return [
 	"vendors"							 =>	[
 		1								 =>	[
 			"name"						 =>	"Sideshow",
-			"logo"						 =>	asset("modules/comics/vendors/sideshow-logo.svg"),
+			//"logo"						 =>	asset("modules/comics/vendors/sideshow-logo.svg"),
 			"url"						 =>	"https://www.sideshow.com",
 		],
 		2								 =>	[
 			"name"						 =>	"Prime1 Studio",
-			"logo"						 =>	asset("modules/comics/vendors/prime1studio-logo.jpg"),
+			//"logo"						 =>	asset("modules/comics/vendors/prime1studio-logo.jpg"),
 			"url"						 =>	"https://www.prime1studio.com",
 		],
 		3								 =>	[
 			"name"						 =>	"XM Studio",
-			"logo"						 =>	asset("modules/comics/vendors/xm-logo.jpg"),
+			//"logo"						 =>	asset("modules/comics/vendors/xm-logo.jpg"),
 			"url"						 =>	"https://www.xm-studios.com",
 		],
 		4								 =>	[
 			"name"						 =>	"Kotobukiya",
-			"logo"						 =>	asset("modules/comics/vendors/kotobukiya-logo.png"),
+			//"logo"						 =>	asset("modules/comics/vendors/kotobukiya-logo.png"),
 			"url"						 =>	"http://en.kotobukiya.co.jp/",
 		],
 		5								 =>	[
 			"name"						 =>	"Iron Studios",
-			"logo"						 =>	asset("modules/comics/vendors/ironstudios-logo.png"),
+			//"logo"						 =>	asset("modules/comics/vendors/ironstudios-logo.png"),
 			"url"						 =>	"https://ironstudios.com/",
 		],
 		6								 =>	[
 			"name"						 =>	"Tweeterhead",
-			"logo"						 =>	asset("modules/comics/vendors/tweeterhead-logo.png"),
+			//"logo"						 =>	asset("modules/comics/vendors/tweeterhead-logo.png"),
 			"url"						 =>	"https://tweeterhead.com/",
 		],
 		7								 =>	[
 			"name"						 =>	"PCS Collectibles",
-			"logo"						 =>	asset("modules/comics/vendors/pcs-logo.jpg"),
+			//"logo"						 =>	asset("modules/comics/vendors/pcs-logo.jpg"),
 			"url"						 =>	"https://www.popcultureshocktoys.com/en/",
 		],
 	],

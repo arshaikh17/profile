@@ -24,7 +24,8 @@ class Character extends Model
 	 */
 	protected $fillable					 =	[
 		"name",
-		"cover"
+		"cover",
+		"symbol"
 	];
 	
 	/**

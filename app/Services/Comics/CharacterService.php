@@ -32,6 +32,7 @@ class CharacterService
 	{
 		
 		$cover							 =	$character->cover;
+		$symbol							 =	$character->symbol;
 		
 		if ($data["cover"] ?? false) {
 			
@@ -45,9 +46,23 @@ class CharacterService
 			
 		}
 		
+		if ($data["symbol"] ?? false) {
+			
+			$symbolFile					 =	$data["symbol"];
+			
+			//if (file_exists(public_path() . Character::$path_logo . $symbol)) var_dump(unlink(public_path() . Character::$path_logo . $symbol));
+			
+			$symbol						 =	time() . "." . $symbolFile->getClientOriginalExtension();
+			
+			$symbolFile->move(public_path() . Character::$path_logo, $symbol);
+			
+		}
+
+		
 		$character->fill([
 			"name"						 =>	$data["name"],
-			"cover"						 =>	$cover
+			"cover"						 =>	$cover,
+			"symbol"					 =>	$symbol
 		]);
 		
 		$character->save();

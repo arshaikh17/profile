@@ -42,6 +42,15 @@
 				/>
 			</div>
 			<div class="form-group">
+				<label>Symbol</label>
+				<input
+					type="file"
+					class="form-control"
+					name="symbol"
+					{{ $character->id ? "" : "required" }}
+				/>
+			</div>
+			<div class="form-group">
 				<input
 					type="submit"
 					class="btn btn-sm btn-dark w-100"
