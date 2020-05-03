@@ -83,7 +83,16 @@ $(document).ready(function() {
 	
 <section class="container-fluid">
 	
-	<h1>My Collectibles</h1>
+	<div class="clearfix">
+		<div class="float-left">
+			<h1>My Collectibles</h1>
+		</div>
+		@if (Auth::check())
+			<div class="float-right">
+				<a class="btn btn-dark" href="{{ route("comics.collectibles.create") }}"><i class="fas fa-plus"></i> New Collectible</a>
+			</div>
+		@endif
+	</div>
 	
 	@forelse ($collectibles as $collectibleCollectionKey => $collectibleCollections)
 		
@@ -101,7 +110,7 @@ $(document).ready(function() {
 						<div
 							class="collectible collectible-character-{{ $collectible->character->id ?? "none" }}"
 						>
-							<img class="img-fluid" src="{{ $collectible->image }}" />
+							<img class="img-fluid" src="{{ pathCollectibles($collectible->image) }}" />
 						</div>
 					@empty
 					@endforelse
