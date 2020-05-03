@@ -128,6 +128,7 @@ Route::group([
 	{
 		
 		Route::get("/", "Comics\CollectibleController@index")->name("index");
+		Route::get("/list", "Comics\CollectibleController@list")->name("list");
 		Route::get("/create", "Comics\CollectibleController@create")->name("create");
 		Route::get("/{collectible}/edit", "Comics\CollectibleController@edit")->name("edit");
 		Route::post("/", "Comics\CollectibleController@store")->name("store");

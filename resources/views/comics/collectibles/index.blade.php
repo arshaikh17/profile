@@ -89,7 +89,8 @@ $(document).ready(function() {
 		</div>
 		@if (Auth::check())
 			<div class="float-right">
-				<a class="btn btn-dark" href="{{ route("comics.collectibles.create") }}"><i class="fas fa-plus"></i> New Collectible</a>
+				<a class="btn btn-dark" href="{{ route("comics.collectibles.list") }}"><i class="fas fa-list"></i> List</a>
+				<a class="btn btn-dark" href="{{ route("comics.collectibles.create") }}"><i class="fas fa-plus"></i> New</a>
 			</div>
 		@endif
 	</div>

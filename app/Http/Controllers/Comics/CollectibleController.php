@@ -33,6 +33,8 @@ class CollectibleController extends Controller
 		
 		$this->service					 =	$service;
 		
+		$this->middleware("auth", ["except" => ["index"]]);
+		
 	}
 	
 	/**
@@ -45,13 +47,23 @@ class CollectibleController extends Controller
 		
 		foreach (config("comics.brands") as $brandKey => $brand) {
 			
-			$collectibles[$brand]	 =	Collectible::where("brand_id", "=", $brandKey)->get();
+			$collectibles[$brand]		 =	Collectible::where("brand_id", "=", $brandKey)->get();
 			
 		}
 		
 		if ($request->ajax()) return $collectibles->toJson();
 		
 		return view(self::VIEW_PATH . "index", compact("collectibles"));
+		
+	}
+	
+	/**
+	 * Displays lists view
+	 */
+	public function list()
+	{
+		
+		return view(self::VIEW_PATH . "list");
 		
 	}
 	
