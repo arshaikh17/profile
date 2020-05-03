@@ -15,7 +15,7 @@ class CharactersComposer
 	public function compose(View $view)
 	{
 		
-		$characters						 =	Character::whereIn("id", Collectible::groupBy("character_id")->pluck("character_id")->toArray())->get();
+		$characters						 =	Character::all();
 		
 		$view->with("characters", $characters);
 		
