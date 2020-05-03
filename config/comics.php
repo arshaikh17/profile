@@ -58,6 +58,11 @@ return [
 			//"logo"						 =>	asset("modules/comics/vendors/pcs-logo.jpg"),
 			"url"						 =>	"https://www.popcultureshocktoys.com/en/",
 		],
+		8								 =>	[
+			"name"						 =>	"DC Direct",
+			//"logo"						 =>	asset("modules/comics/vendors/dc-direct.png"),
+			"url"						 =>	"https://www.dccomics.com/collectibles",
+		],
 	],
 	
 	"brands"							 =>	[
@@ -65,6 +70,7 @@ return [
 		2								 =>	"Marvel Comics",
 		3								 =>	"Dragonball",
 		4								 =>	"Mortal Kombat",
+		5								 =>	"The Witcher",
 	],
 	
 ];
